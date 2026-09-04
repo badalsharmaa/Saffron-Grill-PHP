@@ -1,0 +1,99 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Saffron Grill",
+  "legalName": "Saffron Grill San Ramon",
+  "description": "Authentic Indian Restaurant, Daily Lunch Buffet, Tandoori Sizzlers and Catering in San Ramon, CA.",
+  "url": "https://saffrongrillsanramon.com",
+  "telephone": "+19258463077",
+  "telephoneAlt": "+19253694696",
+  "email": "gosaffrongrill@gmail.com",
+  "servesCuisine": [
+    "Indian",
+    "North Indian",
+    "Mughlai",
+    "Tandoori",
+    "Halal",
+    "Vegetarian",
+    "Vegan"
+  ],
+  "priceRange": "$$",
+  "currenciesAccepted": "USD",
+  "paymentAccepted": "Cash, Credit Card, Apple Pay, Google Pay",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3191 Crow Canyon Pl, Ste D",
+    "addressLocality": "San Ramon",
+    "addressRegion": "CA",
+    "postalCode": "94583",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 37.7663,
+    "longitude": -121.9745
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "11:30",
+      "closes": "15:00",
+      "name": "Weekday Lunch Buffet"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday", "Sunday"],
+      "opens": "12:00",
+      "closes": "15:30",
+      "name": "Weekend Lunch Buffet"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "17:00",
+      "closes": "22:00",
+      "name": "Dinner Service"
+    }
+  ],
+  "buffetPricing": {
+    "weekday": "$19.99",
+    "weekend": "$21.99"
+  },
+  "buffet": {
+    "pricing": {
+      "weekday_lunch": "$19.99",
+      "weekend_grand": "$21.99"
+    }
+  },
+  "hasMenu": "https://saffrongrillsanramon.com/menu",
+  "acceptsReservations": true,
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "name": "Weekday Lunch Buffet",
+      "price": "19.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "name": "Weekend Grand Buffet",
+      "price": "21.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  ],
+  "areaServed": [
+    "San Ramon",
+    "Danville",
+    "Dublin",
+    "Pleasanton",
+    "Blackhawk",
+    "Alamo",
+    "Livermore",
+    "Walnut Creek",
+    "Tri-Valley",
+    "East Bay"
+  ]
+}

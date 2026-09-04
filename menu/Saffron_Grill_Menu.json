@@ -1,0 +1,519 @@
+{
+  "restaurant": "Saffron Grill",
+  "categories": [
+    {
+      "name": "Salads & Appetizers",
+      "items": [
+        {
+          "name": "Arugula Salad",
+          "price": 9.99,
+          "description": "Green olives, cherry tomato, sprouts, cucumber, cranberry and feta cheese."
+        },
+        {
+          "name": "Beet Salad",
+          "price": 10.99,
+          "description": "Market beets, seasonal citrus, cumin, cilantro, extra virgin olive oil."
+        },
+        {
+          "name": "Potato and Peas Samosa",
+          "price": 8.99,
+          "description": "Cumin flavored potato and peas filled in flaky pastry."
+        },
+        {
+          "name": "Roasted Sweet Potato and Peanut Chaat",
+          "price": 10.99,
+          "description": "Mint and tamarind chutneys, yogurt, gram flour vermicelli."
+        },
+        {
+          "name": "Cauliflower Kurchan",
+          "price": 10.99,
+          "description": "Crispy cauliflower tossed in mild creamy coconut sauce."
+        },
+        {
+          "name": "Tofu and Sago Kabab",
+          "price": 10.99,
+          "description": "Deep fried tofu, sago, royal cumin, and green chili patties."
+        },
+        {
+          "name": "Gobi Manchurian",
+          "price": 10.99,
+          "description": "Crispy cauliflower tossed in garlic, ginger, green onion, and tangy tomato sauce."
+        },
+        {
+          "name": "Aloo Tikki Chaat",
+          "price": 10.99,
+          "description": "Cottage cheese stuffed potato patties served with tamarind, mint, and yogurt."
+        },
+        {
+          "name": "Salt and Pepper Calamari",
+          "price": 11.99,
+          "description": "Deep fried calamari with salt and pepper."
+        },
+        {
+          "name": "Malai Soya Chap",
+          "price": 11.99,
+          "description": "Roasted soya chap tossed with mild malai sauce."
+        },
+        {
+          "name": "Amritsari Fish",
+          "price": 12.99,
+          "description": "Crispy batter fried basa with gram flour, carom seeds, cumin, coriander, ginger, and garlic."
+        },
+        {
+          "name": "Nimbu Chicken",
+          "price": 12.99,
+          "description": "Roasted chicken breast with ginger and fresh lime juice."
+        },
+        {
+          "name": "Ginger Crab",
+          "price": 13.99,
+          "description": "Blue crab meat with onion, ginger, and coconut milk."
+        },
+        {
+          "name": "Three Cheese and Asparagus Kabab",
+          "price": 10.99,
+          "description": "Deep fried cottage cheese, mozzarella, cheddar, and asparagus patties."
+        }
+      ]
+    },
+    {
+      "name": "Tandoor Clay Oven Appetizers",
+      "items": [
+        {
+          "name": "Panch Pooran Paneer Tikka",
+          "price": 14.99,
+          "description": "Toasted five spice cottage cheese kabab."
+        },
+        {
+          "name": "Apricot and Walnut Chicken Kabab",
+          "price": 14.99,
+          "description": "Minced chicken with mint, cashew nut, apricots, walnut, pepper, cilantro, and green cardamom."
+        },
+        {
+          "name": "Tandoori Cauliflower",
+          "price": 14.99,
+          "description": "Skewer roasted cauliflower with yogurt, cilantro, and cumin."
+        },
+        {
+          "name": "Bukni Seekh Kabab",
+          "price": 16.99,
+          "description": "Minced lamb kabab with bukni chili, ginger, and garlic."
+        },
+        {
+          "name": "Bharwan Tandoori Aloo",
+          "price": 14.99,
+          "description": "Barrel shaped potato stuffed with cottage cheese, cashews, and raisins."
+        },
+        {
+          "name": "Banjara Chicken Tikka",
+          "price": 17.99,
+          "description": "Boneless chicken thigh marinated in hung yogurt, fresh cilantro, mint, roasted cumin, and crushed black peppercorns."
+        },
+        {
+          "name": "Trio of Chicken",
+          "price": 17.99,
+          "description": "Three marinades – lemongrass, mint, black pepper, and pomegranate."
+        },
+        {
+          "name": "Anari (Pomegranate) Chicken Tikka",
+          "price": 17.99,
+          "description": "Boneless chicken thigh marinated in tangy pomegranate juice, hung yogurt, and traditional tandoori spices."
+        },
+        {
+          "name": "Lemongrass Chicken Tikka",
+          "price": 17.99,
+          "description": "Boneless chicken breast marinated in mild creamy sauce and lemongrass flavor."
+        },
+        {
+          "name": "Kalmi Fish",
+          "price": 19.99,
+          "description": "Tandoor roasted whole golden pompano fish with chef's special spices."
+        },
+        {
+          "name": "Mustard Shrimp",
+          "price": 19.99,
+          "description": "Jumbo shrimp marinated in yogurt, mustard, ginger, and garlic."
+        },
+        {
+          "name": "Lime and Olive Oil Salmon",
+          "price": 19.99,
+          "description": "Salmon with fresh lime and olive oil for a light zesty flavor."
+        },
+        {
+          "name": "Tawa Masala Chap",
+          "price": 20.99,
+          "description": "Pan fried lamb chop with onion, tomato, ginger, and cilantro."
+        },
+        {
+          "name": "Tandoori Chicken",
+          "price": {
+            "half": 14.99,
+            "full": 21.99
+          },
+          "description": "Bone-in chicken marinated in hung yogurt and homemade spices."
+        }
+      ]
+    },
+    {
+      "name": "Veg Entrées",
+      "items": [
+        {
+          "name": "Kadhai Paneer",
+          "price": 13.99,
+          "description": "Cottage cheese cubes cooked with onion, bell peppers, cumin, and coriander seeds."
+        },
+        {
+          "name": "Yellow Dal Palak",
+          "price": 13.99,
+          "description": "Yellow lentils cooked with fresh spinach and authentic spices with special tadka."
+        },
+        {
+          "name": "Handi Subz",
+          "price": 13.99,
+          "description": "Market fresh vegetables tossed in home ground spices."
+        },
+        {
+          "name": "Subz Korma",
+          "price": 13.99,
+          "description": "Market fresh vegetables cooked in mild cashew nut sauce."
+        },
+        {
+          "name": "Subz Malabar",
+          "price": 13.99,
+          "description": "Market fresh vegetables in aromatic onion coconut sauce."
+        },
+        {
+          "name": "Bharwan Baingan Lababdar",
+          "price": 14.99,
+          "description": "Stuffed eggplant with nuts, raisins, and lababdar sauce."
+        },
+        {
+          "name": "Baingan Bhartha",
+          "price": 13.99,
+          "description": "Fire roasted eggplant with onion, tomato, and homemade spices."
+        },
+        {
+          "name": "Masaledar Bhindi",
+          "price": 13.99,
+          "description": "Fresh okra sautéed with caramelized onion, tangy tomato, ginger, and garlic."
+        },
+        {
+          "name": "Chana Masala",
+          "price": 13.99,
+          "description": "Garbanzo beans cooked with traditional homemade spices."
+        },
+        {
+          "name": "Palak Paneer",
+          "price": 13.99,
+          "description": "Cottage cheese cubes in spinach and garlic."
+        },
+        {
+          "name": "Gobi Musallam",
+          "price": 14.99,
+          "description": "Baked cauliflower tossed in rich musallam sauce."
+        },
+        {
+          "name": "Dal Makhni",
+          "price": 14.99,
+          "description": "Black lentils and red kidney beans slow cooked in creamy tomato based gravy."
+        },
+        {
+          "name": "Sun Dried Tomato Kofta",
+          "price": 14.99,
+          "description": "Sun dried tomato, cottage cheese, and potato dumplings in rich tomato and cashew nut sauce."
+        },
+        {
+          "name": "Malai Paneer",
+          "price": 15.99,
+          "description": "Cottage cheese cubes in onion and cashew nut creamy sauce."
+        },
+        {
+          "name": "Mirch or Baingan Ka Salan",
+          "price": 15.99,
+          "description": "Eggplant, red Fresno and Anaheim peppers in mustard, red chili, sesame, coconut, and peanut sauce."
+        },
+        {
+          "name": "Mushroom Amchuri",
+          "price": 15.99,
+          "description": "Button mushrooms sautéed with caramelized onion, cumin, green chili, ginger, and amchur spices."
+        }
+      ]
+    },
+    {
+      "name": "Non-Veg Entrées",
+      "items": [
+        {
+          "name": "Kadhai Chicken",
+          "price": 14.99,
+          "description": "Roasted chicken thigh with bell pepper and onion tossed in bold tomato onion masala."
+        },
+        {
+          "name": "Kolhapuri Chicken Curry",
+          "price": 15.99,
+          "description": "Tender chicken thigh pieces cooked in roasted coconut and hand ground spices."
+        },
+        {
+          "name": "Butter Chicken",
+          "price": 15.99,
+          "description": "Roasted and shredded chicken thigh in creamy tomato sauce."
+        },
+        {
+          "name": "Achari Chicken Curry",
+          "price": 15.99,
+          "description": "Tender chicken thigh pieces cooked with onion, tomato, and pickle spices."
+        },
+        {
+          "name": "Chicken Tikka Masala",
+          "price": 16.99,
+          "description": "Tandoor roasted chicken thigh with onion, ginger, garlic, green pepper, and fresh tomato sauce."
+        },
+        {
+          "name": "Malai Methi Chicken Korma",
+          "price": 16.99,
+          "description": "Tender chicken breast cooked in creamy cashew and fenugreek sauce."
+        },
+        {
+          "name": "Lamb Vindaloo",
+          "price": 17.99,
+          "description": "Tender lamb chunks and potato cooked in spicy vindaloo sauce."
+        },
+        {
+          "name": "Rara Gosht",
+          "price": 17.99,
+          "description": "Tender lamb chunks simmered in heavily spiced minced meat sauce."
+        },
+        {
+          "name": "Lamb Rogan Josh",
+          "price": 17.99,
+          "description": "Tender slow braised lamb chunks with fennel seeds, onion, and fresh tomato sauce."
+        },
+        {
+          "name": "Mutton (Goat) Curry",
+          "price": 18.99,
+          "description": "Bone-in goat cubes cooked with onion, tomato, and yogurt."
+        },
+        {
+          "name": "Shrimp Ambotik",
+          "price": 19.99,
+          "description": "Shrimp, onion, byadagi chilies, tamarind sauce."
+        },
+        {
+          "name": "Karavali Shrimp",
+          "price": 19.99,
+          "description": "Stir fried shrimp with star anise and fennel seed."
+        },
+        {
+          "name": "Nalli Nihari Gosht",
+          "price": 21.99,
+          "description": "Slow braised lamb shanks in rich velvety Lucknow style bone marrow gravy."
+        },
+        {
+          "name": "Bombay Fish Masala",
+          "price": 21.99,
+          "description": "Chilean seabass with onion, bell peppers, green chili, and fresh tomato sauce."
+        }
+      ]
+    },
+    {
+      "name": "Rice & Biryani",
+      "items": [
+        {
+          "name": "Basmati Rice",
+          "price": 6.99,
+          "description": "Aged basmati rice cooked dum style with saffron, cardamom, and cinnamon."
+        },
+        {
+          "name": "Tarkari Pulao",
+          "price": 14.99,
+          "description": "Fresh vegetables with saffron basmati rice, mint, and cilantro."
+        },
+        {
+          "name": "Vegetable Biryani",
+          "price": 14.99,
+          "description": "Aged basmati rice cooked with spices and seasonal vegetables."
+        },
+        {
+          "name": "Chicken Biryani",
+          "price": 16.99,
+          "description": "Boneless chicken thigh blended with aromatic sauce and aged basmati rice."
+        },
+        {
+          "name": "Lamb Biryani",
+          "price": 17.99,
+          "description": "Slow cooked aged basmati rice and spiced lamb with saffron and mint."
+        },
+        {
+          "name": "Mutton (Goat) Biryani",
+          "price": 18.99,
+          "description": "Traditionally spiced bone-in mutton with saffron scented basmati rice slow steamed to perfection."
+        }
+      ]
+    },
+    {
+      "name": "Breads from Tandoor",
+      "items": [
+        {
+          "name": "Roti",
+          "price": 3.99,
+          "description": "Whole wheat bread"
+        },
+        {
+          "name": "Plain Naan",
+          "price": 3.99,
+          "description": "All purpose flour bread"
+        },
+        {
+          "name": "Garlic Naan",
+          "price": 4.99,
+          "description": "All purpose flour bread with garlic and cilantro"
+        },
+        {
+          "name": "Butter Naan",
+          "price": 6.99,
+          "description": "Multi layered all purpose flour bread with butter"
+        },
+        {
+          "name": "Pesto Naan",
+          "price": 5.99,
+          "description": "Naan topped with pesto"
+        },
+        {
+          "name": "Paratha",
+          "price": 5.99,
+          "description": "Flaky whole wheat bread"
+        },
+        {
+          "name": "Lacha Paratha",
+          "price": 5.99,
+          "description": "Flaky whole wheat bread"
+        },
+        {
+          "name": "Stuffed Naan",
+          "price": 5.99,
+          "description": "Stuffed with onion, potato, or cheese"
+        },
+        {
+          "name": "Bread Basket",
+          "price": 13.99,
+          "description": "Assorted bread – plain naan, paratha, kulcha"
+        }
+      ]
+    },
+    {
+      "name": "Sides",
+      "items": [
+        {
+          "name": "Plain Yogurt",
+          "price": 3.49
+        },
+        {
+          "name": "Raita",
+          "price": 3.49
+        },
+        {
+          "name": "Papad",
+          "price": 3.99
+        },
+        {
+          "name": "Green Salad",
+          "price": 6.99
+        }
+      ]
+    },
+    {
+      "name": "Desserts",
+      "items": [
+        {
+          "name": "Rasmalai",
+          "price": 5.99,
+          "description": "Velvety cottage cheese discs poached in delicate sweetened saffron milk."
+        },
+        {
+          "name": "Gulab Jamun",
+          "price": 7.99,
+          "description": "Soft golden brown sweet milk dumplings."
+        },
+        {
+          "name": "Moong Dal Halwa",
+          "price": 8.99,
+          "description": "Rich artisanal yellow lentil pudding."
+        },
+        {
+          "name": "Saffron Phirni",
+          "price": 8.99,
+          "description": "Slow cooked creamy ground rice pudding with saffron."
+        },
+        {
+          "name": "Gajar Ka Halwa",
+          "price": 9.99,
+          "description": "Carrot pudding with milk, clarified butter, cardamom, and nuts."
+        },
+        {
+          "name": "Lychee Panna Cotta",
+          "price": 9.99,
+          "description": "Silky textured cream custard with lychee."
+        },
+        {
+          "name": "Falooda Ice Cream",
+          "price": 9.99,
+          "description": "Malai Indian ice cream with corn noodles."
+        },
+        {
+          "name": "Ginger Brulee",
+          "price": 10.99,
+          "description": "Velvety ginger flavored custard with hand torched sugar crust."
+        }
+      ]
+    },
+    {
+      "name": "Drinks",
+      "items": [
+        {
+          "name": "Mango Lassi",
+          "price": 5.99,
+          "description": "Mango flavored yogurt drink"
+        },
+        {
+          "name": "Strawberry Lassi",
+          "price": 5.99,
+          "description": "Strawberry flavored yogurt drink"
+        },
+        {
+          "name": "Iced Tea",
+          "price": 3.99,
+          "description": "Fresh brewed tea served chilled over ice"
+        },
+        {
+          "name": "Soda",
+          "price": 2.99,
+          "description": "Choice of Coke, Sprite, Diet Coke, or lemonade"
+        },
+        {
+          "name": "Chai",
+          "price": 2.99,
+          "description": "Indian spiced tea"
+        },
+        {
+          "name": "Latte",
+          "price": 4.99,
+          "description": "Espresso with steamed milk"
+        },
+        {
+          "name": "Cappuccino",
+          "price": 4.99,
+          "description": "Espresso with steamed milk foam"
+        },
+        {
+          "name": "Americano",
+          "price": 2.99,
+          "description": "Espresso with hot water"
+        },
+        {
+          "name": "Espresso",
+          "price": 2.99,
+          "description": "Rich espresso shot"
+        }
+      ]
+    }
+  ]
+}

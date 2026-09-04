@@ -1,0 +1,36 @@
+# Saffron Grill — Authentic Indian Cuisine & Grand Lunch Buffet
+
+> Saffron Grill is a premier Indian restaurant located in San Ramon, California, serving authentic North and South Indian culinary specialties, daily grand lunch buffets, tandoori grills, and full-service event catering across the San Francisco East Bay / Tri-Valley area.
+
+## Key Information
+- **Website**: https://saffrongrillsanramon.com
+- **Address**: 3191 Crow Canyon Pl, Ste D, San Ramon, CA 94583
+- **Primary Phone**: (925) 846-3077
+- **Secondary Phone**: (925) 369-4696
+- **Email**: gosaffrongrill@gmail.com
+- **Cuisine**: Authentic North Indian, Mughlai, Tandoori, South Indian, Indo-Chinese
+- **Price Range**: $$ (Buffet: $19.99 Weekday / $21.99 Weekend, Dinner Entrees: $14 - $24)
+- **Reservations**: Accepted via website, phone, or in-person.
+
+## Operating Hours
+- **Weekday Lunch Buffet**: Monday – Friday: 11:30 AM – 3:00 PM ($19.99/person)
+- **Weekend Grand Feast Buffet**: Saturday – Sunday: 12:00 PM – 3:30 PM ($21.99/person)
+- **Dinner Service**: Daily 5:00 PM – 10:00 PM (Full À la Carte Dining)
+
+## Signature Offerings
+- **Tandoori Sizzlers**: Saffron Tandoori Chicken, Paneer Tikka Sizzler, Lamb Seekh Kebabs, Tandoori Jumbo Prawns.
+- **Classic Curries**: Butter Chicken (Murgh Makhani), Chicken Tikka Masala, Kashmiri Lamb Rogan Josh, Traditional Goat Curry, Palak Paneer, Dal Makhani.
+- **Biryanis & Breads**: Hyderabadi Dum Biryani, Garlic Butter Naan, Bullet Naan, Laccha Paratha.
+- **Buffet Details**: 20+ hot dishes rotated daily including appetizers, tandoori specials, vegetarian & non-vegetarian curries, basmati rice, hot naans served at table, salad bar, and traditional desserts.
+- **Catering**: Custom full-service catering and drop-off packages (Silver $22, Gold $28, Platinum $36 per guest) with live tandoor station options for weddings, corporate luncheons, birthdays, and anniversaries.
+
+## Service Area
+San Ramon, Danville, Dublin, Pleasanton, Blackhawk, Alamo, Livermore, Walnut Creek, and the greater Tri-Valley / East Bay region.
+
+## Endpoints & Resources
+- Full Knowledge Base: https://saffrongrillsanramon.com/llms-full.txt
+- Machine-Readable API: https://saffrongrillsanramon.com/restaurant-facts.json
+- Menu: https://saffrongrillsanramon.com/menu
+- Buffet: https://saffrongrillsanramon.com/buffet
+- Catering Inquiries: https://saffrongrillsanramon.com/catering
+- Table Reservations: https://saffrongrillsanramon.com/reserve

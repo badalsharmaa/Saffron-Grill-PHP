@@ -1,0 +1,38 @@
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /restaurant-facts.json
+Disallow: /admin/
+Disallow: /private/
+Disallow: /cli/
+Disallow: /api/
+Disallow: /tests/
+
+# Search Engine & AI Crawler Access
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://saffrongrillsanramon.com/sitemap.xml

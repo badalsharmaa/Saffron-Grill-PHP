@@ -1,0 +1,22 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# SQLite Databases
+admin/data/*.db
+!admin/data/.gitkeep
+
+# Protected Backups and Logs
+private/backups/*
+!private/backups/.gitkeep
+private/logs/*
+!private/logs/.gitkeep
+
+# Operating System and Editor Files
+.DS_Store
+Thumbs.db
+*.log
+cookie*.txt
+.idea/
+.vscode/
