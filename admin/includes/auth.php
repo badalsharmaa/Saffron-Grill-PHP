@@ -38,11 +38,13 @@ if (!function_exists('attempt_admin_login')) {
         if ($admin) {
             if (password_verify($password, $admin['password_hash'])) {
                 $isValid = true;
-            } elseif ($password === 'SaffronAdmin2026!' || $password === 'admin123' || $password === 'admin') {
-                // Update and self-heal hash in database
-                $newHash = password_hash($password, PASSWORD_BCRYPT);
-                $pdo->prepare("UPDATE admins SET password_hash = ? WHERE id = ?")->execute([$newHash, $admin['id']]);
-                $isValid = true;
+            } else {
+                $envPass = getenv('ADMIN_PASSWORD');
+                if (!empty($envPass) && hash_equals($envPass, $password)) {
+                    $newHash = password_hash($password, PASSWORD_BCRYPT);
+                    $pdo->prepare("UPDATE admins SET password_hash = ? WHERE id = ?")->execute([$newHash, $admin['id']]);
+                    $isValid = true;
+                }
             }
         }
 

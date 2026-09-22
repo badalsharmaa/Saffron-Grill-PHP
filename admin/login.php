@@ -110,30 +110,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="error-box"><?= e($error) ?></div>
   <?php endif; ?>
 
-  <div style="background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.25); border-radius: 8px; padding: 12px 14px; margin-bottom: 20px; font-size: 12.5px; color: #f5d485; text-align: left; line-height: 1.5;">
-    <div style="display: flex; align-items: center; gap: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; color: #fff;">
-      <svg style="width: 14px; height: 14px; color: #eab308; stroke-width: 2;" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      Default Staff Credentials
-    </div>
-    <div>User: <strong style="color: #fff;">admin</strong> (or <em>gosaffrongrill@gmail.com</em>)</div>
-    <div>Pass: <strong style="color: #fff;">SaffronAdmin2026!</strong> (or <em>admin123</em>)</div>
-    <button type="button" id="autoFillBtn" style="margin-top: 8px; padding: 6px 12px; background: rgba(234, 179, 8, 0.25); border: 1px solid rgba(234, 179, 8, 0.4); color: #fff; font-size: 11.5px; font-weight: 600; border-radius: 4px; cursor: pointer; width: auto; display: inline-flex; align-items: center; gap: 6px;">
-      <svg style="width: 12px; height: 12px; fill: #eab308;" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      Quick Fill Credentials
-    </button>
-  </div>
-
   <form method="POST" action="/admin/login.php" id="loginForm">
     <div class="form-group">
       <label for="username">Username / Email</label>
-      <input type="text" name="username" id="username" required placeholder="admin" value="admin">
+      <input type="text" name="username" id="username" required placeholder="Enter username or email" autocomplete="username">
     </div>
     <div class="form-group">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
         <label for="password" style="margin-bottom: 0;">Password</label>
         <span id="togglePass" style="font-size: 11px; color: #eab308; cursor: pointer; user-select: none;">Show</span>
       </div>
-      <input type="password" name="password" id="password" required placeholder="SaffronAdmin2026!" autofocus>
+      <input type="password" name="password" id="password" required placeholder="••••••••••••" autocomplete="current-password" autofocus>
     </div>
     <button type="submit" style="cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
       <svg style="width: 15px; height: 15px; stroke-width: 2.2;" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
@@ -143,12 +130,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <script>
-document.getElementById('autoFillBtn').addEventListener('click', function() {
-  document.getElementById('username').value = 'admin';
-  document.getElementById('password').value = 'SaffronAdmin2026!';
-  document.getElementById('loginForm').submit();
-});
-
 document.getElementById('togglePass').addEventListener('click', function() {
   var pass = document.getElementById('password');
   if (pass.type === 'password') {
