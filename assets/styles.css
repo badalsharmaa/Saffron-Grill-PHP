@@ -1026,6 +1026,32 @@ image-slot { width: 100%; height: auto; box-shadow: var(--shadow-soft); }
   overflow: hidden;
 }
 
+/* Rotating Background Ornament in Reserve Section */
+.reserve-mandala {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(90vh, 760px);
+  aspect-ratio: 1;
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  -webkit-mask: radial-gradient(circle, #000 55%, transparent 75%);
+          mask: radial-gradient(circle, #000 55%, transparent 75%);
+  animation: spinSlowSmooth 80s linear infinite;
+  z-index: 1;
+  will-change: transform;
+}
+
+@keyframes spinSlowSmooth {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 /* =========================================================
    RESERVE
    ========================================================= */
@@ -1232,7 +1258,7 @@ image-slot img {
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; filter: none; }
   .char-anim { opacity: 1; transform: none; transition: none; filter: none; animation: none; }
-  .hero-mandala, .scroll-cue .line::after, .chip .dot.live, .hero-art-left, .hero-art-right, .instagram-track { animation: none; }
+  .hero-mandala, .reserve-mandala, .scroll-cue .line::after, .chip .dot.live, .hero-art-left, .hero-art-right, .instagram-track { animation: none; }
   html { scroll-behavior: auto; }
 }
 
@@ -1412,22 +1438,28 @@ image-slot img {
 .sgp-close {
   position: absolute;
   top: 14px; right: 14px;
-  width: 34px; height: 34px;
+  width: 36px; height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  color: rgba(255, 255, 255, 0.55);
-  display: flex;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.7);
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  z-index: 4;
+  padding: 0;
+  cursor: pointer;
+  z-index: 10;
   will-change: transform;
-  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.sgp-close svg {
+  display: block;
+  pointer-events: none;
 }
 .sgp-close:hover {
-  background: rgba(255, 255, 255, 0.11);
-  color: rgba(255, 255, 255, 0.92);
-  border-color: rgba(200, 148, 63, 0.45);
+  background: rgba(200, 148, 63, 0.25);
+  color: #ffffff;
+  border-color: rgba(200, 148, 63, 0.6);
   transform: rotate(90deg);
 }
 

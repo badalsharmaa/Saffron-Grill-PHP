@@ -52,6 +52,7 @@ if (!defined('APP_NAME')) {
     define('BUFFET_WEEKDAY_PRICE', get_setting('buffet_weekday_price', $siteData['hours']['lunch_weekday']['price']));
     define('BUFFET_WEEKEND_PRICE', get_setting('buffet_weekend_price', $siteData['hours']['lunch_weekend']['price']));
     define('GTM_CONTAINER_ID', get_setting('gtm_container_id', getenv('GTM_CONTAINER_ID') ?: ''));
+    define('ORDER_ONLINE_URL', get_setting('order_online_url', 'https://order.boons.io/site/saffron-grill/390/y'));
 }
 
 // Base URL detection

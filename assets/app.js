@@ -712,9 +712,9 @@
       '      </div>' +
       '    </div>' +
       '    <button class="sgp-close" id="mrClose" aria-label="Close" style="top: 15px; right: 15px;">' +
-      '      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">' +
-      '        <line x1="1" y1="1" x2="11" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
-      '        <line x1="11" y1="1" x2="1" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+      '      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '        <line x1="2" y1="2" x2="12" y2="12"></line>' +
+      '        <line x1="12" y1="2" x2="2" y2="12"></line>' +
       '      </svg>' +
       '    </button>' +
       '  </div>' +

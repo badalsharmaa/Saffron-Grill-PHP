@@ -36,9 +36,9 @@ $status = get_restaurant_status();
       <span class="dot <?= $status['is_open'] ? 'live' : '' ?>"></span>
       <span id="openState"><?= e($status['status_text']) ?></span>
     </div>
-    <button class="btn btn-gold btn-sm js-open-reserve" type="button" data-reserve-trigger>
-      <span>Reserve a Table</span>
-    </button>
+    <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold btn-sm" target="_blank" rel="noopener noreferrer">
+      <span>Order Online</span>
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" type="button">
       <span></span><span></span><span></span>
     </button>
@@ -54,9 +54,9 @@ $status = get_restaurant_status();
   <a href="/catering" class="<?= $currentPage === 'catering' ? 'active' : '' ?>">Catering</a>
   <a href="/contact" class="<?= $currentPage === 'contact' ? 'active' : '' ?>">Contact</a>
   <div style="margin-top: 20px; padding: 0 20px; display: flex; flex-direction: column; gap: 12px;">
-    <button class="btn btn-gold js-open-reserve" type="button" style="width: 100%;">
-      <span>Reserve a Table</span>
-    </button>
+    <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="width: 100%; text-align: center;">
+      <span>Order Online</span>
+    </a>
     <a href="tel:<?= e(PHONE_TEL) ?>" class="btn btn-outline" style="width: 100%; text-align: center;">
       <span>Call <?= e(PHONE_PRIMARY) ?></span>
     </a>

@@ -187,7 +187,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="catering.php">Catering</a>
     <a href="contact.php">Contact</a>
   </div>
-  <a href="contact.php#reserve" class="btn btn-gold nav-cta js-open-reserve">Reserve a Table</a>
+  <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold nav-cta" target="_blank" rel="noopener noreferrer">Order Online</a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -196,7 +196,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="menu.php">Menu</a>
   <a href="catering.php">Catering</a>
   <a href="contact.php">Contact</a>
-  <a href="contact.php#reserve" class="btn btn-gold js-open-reserve" style="color:#3a2208">Reserve a Table</a>
+  <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="color:#3a2208">Order Online</a>
 </div>
 
 <!-- ============== HERO ============== -->
@@ -375,7 +375,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============== RESERVE ============== -->
 <section class="section surface-dark" id="reserve" data-screen-label="Reserve">
-  <img class="hero-mandala" src="assets/mandala.png" alt="" style="opacity:.06; width:min(90vh,760px); animation-duration:220s" />
+  <img class="reserve-mandala" src="assets/mandala.png" alt="" aria-hidden="true" />
   <div class="wrap" style="position:relative; z-index:2">
     <div class="sec-head center">
       <span class="eyebrow on-dark center reveal">Reservations</span>
@@ -454,9 +454,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <button class="sgp-close" id="pgClose" aria-label="Close">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-        <line x1="1" y1="1" x2="11" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="11" y1="1" x2="11" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="2" y1="2" x2="12" y2="12"></line>
+        <line x1="12" y1="2" x2="2" y2="12"></line>
       </svg>
     </button>
   </div>

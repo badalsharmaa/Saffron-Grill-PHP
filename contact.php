@@ -285,7 +285,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="catering.php">Catering</a>
     <a href="contact.php" class="active">Contact</a>
   </div>
-  <a href="contact.php#reserve" class="btn btn-gold nav-cta">Reserve a Table</a>
+  <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold nav-cta" target="_blank" rel="noopener noreferrer">Order Online</a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -294,7 +294,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <a href="menu.php">Menu</a>
   <a href="catering.php">Catering</a>
   <a href="contact.php" class="active">Contact</a>
-  <a href="contact.php#reserve" class="btn btn-gold" style="color:#3a2208">Reserve a Table</a>
+  <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="color:#3a2208">Order Online</a>
 </div>
 
 <!-- ============== HERO ============== -->
@@ -579,7 +579,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <!-- ============== RESERVATIONS SECTION ============== -->
 <section class="section surface-dark" id="reserve" data-screen-label="Reserve">
   <!-- Mandala Background Effect -->
-  <img class="hero-mandala" src="assets/mandala.png" alt="" style="opacity:.05; width:min(90vh,760px); animation-duration:220s" />
+  <img class="reserve-mandala" src="assets/mandala.png" alt="" aria-hidden="true" />
   
   <div class="wrap" style="position:relative; z-index:2">
     <div class="sec-head center">
@@ -660,9 +660,9 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
     </div>
     <button class="sgp-close" id="pgClose" aria-label="Close">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-        <line x1="1" y1="1" x2="11" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="11" y1="1" x2="1" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="2" y1="2" x2="12" y2="12"></line>
+        <line x1="12" y1="2" x2="2" y2="12"></line>
       </svg>
     </button>
   </div>
