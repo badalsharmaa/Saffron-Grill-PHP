@@ -14,7 +14,7 @@ $status = get_restaurant_status();
 
 <!-- ============== NAV ============== -->
 <nav class="nav" id="nav">
-  <a class="nav-brand" href="index.php" aria-label="Saffron Grill home">
+  <a class="nav-brand" href="/" aria-label="Saffron Grill home">
     <img src="<?= asset('emblem.png') ?>" alt="Saffron Grill Emblem" />
     <span class="wordmark">
       <b><?= e(APP_NAME) ?></b>
@@ -23,12 +23,12 @@ $status = get_restaurant_status();
   </a>
 
   <div class="nav-links">
-    <a href="index.php" class="<?= $currentPage === 'index' ? 'active' : '' ?>">Home</a>
-    <a href="story.php" class="<?= $currentPage === 'story' ? 'active' : '' ?>">Our Story</a>
-    <a href="buffet.php" class="<?= $currentPage === 'buffet' ? 'active' : '' ?>">Lunch Buffet</a>
-    <a href="menu.php" class="<?= $currentPage === 'menu' ? 'active' : '' ?>">Menu</a>
-    <a href="catering.php" class="<?= $currentPage === 'catering' ? 'active' : '' ?>">Catering</a>
-    <a href="contact.php" class="<?= $currentPage === 'contact' ? 'active' : '' ?>">Contact</a>
+    <a href="/" class="<?= $currentPage === 'index' ? 'active' : '' ?>">Home</a>
+    <a href="/story" class="<?= $currentPage === 'story' ? 'active' : '' ?>">Our Story</a>
+    <a href="/buffet" class="<?= $currentPage === 'buffet' ? 'active' : '' ?>">Lunch Buffet</a>
+    <a href="/menu" class="<?= $currentPage === 'menu' ? 'active' : '' ?>">Menu</a>
+    <a href="/catering" class="<?= $currentPage === 'catering' ? 'active' : '' ?>">Catering</a>
+    <a href="/contact" class="<?= $currentPage === 'contact' ? 'active' : '' ?>">Contact</a>
   </div>
 
   <div class="nav-actions">
@@ -47,12 +47,12 @@ $status = get_restaurant_status();
 
 <!-- Mobile Navigation Drawer -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="index.php" class="<?= $currentPage === 'index' ? 'active' : '' ?>">Home</a>
-  <a href="story.php" class="<?= $currentPage === 'story' ? 'active' : '' ?>">Our Story</a>
-  <a href="buffet.php" class="<?= $currentPage === 'buffet' ? 'active' : '' ?>">Lunch Buffet</a>
-  <a href="menu.php" class="<?= $currentPage === 'menu' ? 'active' : '' ?>">Menu</a>
-  <a href="catering.php" class="<?= $currentPage === 'catering' ? 'active' : '' ?>">Catering</a>
-  <a href="contact.php" class="<?= $currentPage === 'contact' ? 'active' : '' ?>">Contact</a>
+  <a href="/" class="<?= $currentPage === 'index' ? 'active' : '' ?>">Home</a>
+  <a href="/story" class="<?= $currentPage === 'story' ? 'active' : '' ?>">Our Story</a>
+  <a href="/buffet" class="<?= $currentPage === 'buffet' ? 'active' : '' ?>">Lunch Buffet</a>
+  <a href="/menu" class="<?= $currentPage === 'menu' ? 'active' : '' ?>">Menu</a>
+  <a href="/catering" class="<?= $currentPage === 'catering' ? 'active' : '' ?>">Catering</a>
+  <a href="/contact" class="<?= $currentPage === 'contact' ? 'active' : '' ?>">Contact</a>
   <div style="margin-top: 20px; padding: 0 20px; display: flex; flex-direction: column; gap: 12px;">
     <button class="btn btn-gold js-open-reserve" type="button" style="width: 100%;">
       <span>Reserve a Table</span>

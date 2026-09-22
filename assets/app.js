@@ -888,6 +888,7 @@
       var email = cForm.querySelector("#c-email");
       var subject = cForm.querySelector("#c-subject");
       var message = cForm.querySelector("#c-message");
+      var submitBtn = cForm.querySelector("button[type='submit']");
 
       ok = setContactErr(name, name.value.trim().length < 2 ? "Please tell us your name" : "") && ok;
       
@@ -898,7 +899,7 @@
       ok = setContactErr(email, !emailRegex.test(email.value.trim()) ? "Please enter a valid email address" : "") && ok;
       
       ok = setContactErr(subject, !subject.value ? "Please select a subject" : "") && ok;
-      ok = setContactErr(message, message.value.trim().length < 10 ? "Please write a message (min. 10 characters)" : "") && ok;
+      ok = setContactErr(message, message.value.trim().length < 5 ? "Please write a message (min. 5 characters)" : "") && ok;
 
       if (!ok) {
         var firstErr = cForm.querySelector(".field.error input, .field.error select, .field.error textarea");
@@ -906,9 +907,40 @@
         return;
       }
 
-      document.getElementById("contactSuccessName").textContent = name.value.trim().split(" ")[0];
-      cForm.classList.add("hidden");
-      successCard.classList.remove("hidden");
+      var origText = submitBtn ? submitBtn.textContent : "Send Message";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+      }
+
+      var formData = new FormData(cForm);
+      fetch("send-mail.php", {
+        method: "POST",
+        body: formData,
+        headers: { "X-Requested-With": "XMLHttpRequest" }
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = origText;
+        }
+        if (data.success) {
+          var nameSpan = document.getElementById("contactSuccessName");
+          if (nameSpan) nameSpan.textContent = name.value.trim().split(" ")[0];
+          cForm.classList.add("hidden");
+          successCard.classList.remove("hidden");
+        } else {
+          alert(data.message || "Could not submit your message. Please try calling us.");
+        }
+      })
+      .catch(function(err) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = origText;
+        }
+        alert("An error occurred while submitting your message. Please call us directly.");
+      });
     });
 
     cForm.querySelectorAll("input, select, textarea").forEach(function(el) {
@@ -917,10 +949,126 @@
       });
     });
 
-    resetBtn.addEventListener("click", function() {
-      cForm.reset();
-      successCard.classList.add("hidden");
-      cForm.classList.remove("hidden");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function() {
+        cForm.reset();
+        successCard.classList.add("hidden");
+        cForm.classList.remove("hidden");
+      });
+    }
+  })();
+
+  /* ---------- Catering Form Handling ---------- */
+  (function initCateringForm() {
+    var catForm = document.getElementById("cateringForm");
+    if (!catForm) return;
+
+    var successCard = document.getElementById("cateringSuccess");
+    var resetBtn = document.getElementById("cateringReset");
+    var submitBtn = catForm.querySelector("button[type='submit']");
+
+    function setCatErr(field, msg) {
+      var f = field.closest(".field");
+      var e = f ? f.querySelector(".err") : null;
+      if (f && e) {
+        if (msg) {
+          f.classList.add("error");
+          e.textContent = msg;
+        } else {
+          f.classList.remove("error");
+          e.textContent = "";
+        }
+      }
+      return !msg;
+    }
+
+    catForm.addEventListener("submit", function(ev) {
+      ev.preventDefault();
+      var ok = true;
+      var name = catForm.querySelector("#c-name");
+      var email = catForm.querySelector("#c-email");
+      var phone = catForm.querySelector("#c-phone");
+      var date = catForm.querySelector("#c-date");
+      var guests = catForm.querySelector("#c-guests");
+
+      if (name) ok = setCatErr(name, name.value.trim().length < 2 ? "Please provide your name" : "") && ok;
+      
+      if (phone) {
+        var digits = phone.value.replace(/\D/g, "");
+        ok = setCatErr(phone, digits.length < 10 ? "A valid 10-digit phone number, please" : "") && ok;
+      }
+      
+      if (email) {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        ok = setCatErr(email, !emailRegex.test(email.value.trim()) ? "Please enter a valid email" : "") && ok;
+      }
+
+      if (date) ok = setCatErr(date, !date.value ? "Please select an event date" : "") && ok;
+
+      if (guests) {
+        var guestNum = parseInt(guests.value, 10);
+        ok = setCatErr(guests, (isNaN(guestNum) || guestNum < 10) ? "Catering requires minimum 10 guests" : "") && ok;
+      }
+
+      if (!ok) {
+        var firstErr = catForm.querySelector(".field.error input, .field.error select");
+        if (firstErr) firstErr.focus();
+        return;
+      }
+
+      var origText = submitBtn ? submitBtn.textContent : "Submit Inquiry";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting Inquiry...";
+      }
+
+      var formData = new FormData(catForm);
+      fetch("send-mail.php", {
+        method: "POST",
+        body: formData,
+        headers: { "X-Requested-With": "XMLHttpRequest" }
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = origText;
+        }
+        if (data.success) {
+          var nameSpan = document.getElementById("cSuccessName");
+          if (nameSpan && name) nameSpan.textContent = name.value.trim().split(" ")[0];
+          var phoneSpan = document.getElementById("cSuccessPhone");
+          if (phoneSpan && phone) phoneSpan.textContent = phone.value.trim();
+          var emailSpan = document.getElementById("cSuccessEmail");
+          if (emailSpan && email) emailSpan.textContent = email.value.trim();
+
+          catForm.classList.add("hidden");
+          if (successCard) successCard.classList.remove("hidden");
+        } else {
+          alert(data.message || "Could not submit inquiry. Please call us directly.");
+        }
+      })
+      .catch(function(err) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = origText;
+        }
+        alert("An error occurred while submitting inquiry. Please call us directly.");
+      });
     });
+
+    catForm.querySelectorAll("input, select").forEach(function(el) {
+      el.addEventListener("input", function() {
+        setCatErr(el, "");
+      });
+    });
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function() {
+        catForm.reset();
+        if (successCard) successCard.classList.add("hidden");
+        catForm.classList.remove("hidden");
+      });
+    }
   })();
 })();

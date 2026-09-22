@@ -160,6 +160,79 @@ if ($formType === 'table_reservation') {
         echo json_encode(['success' => false, 'message' => 'Could not save catering request: ' . $e->getMessage()]);
         exit;
     }
+} elseif ($formType === 'contact_message') {
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+    $subject = trim($_POST['subject'] ?? 'General Inquiry');
+    $message = trim($_POST['message'] ?? '');
+
+    $gclid = trim($_POST['gclid'] ?? '');
+    $gbraid = trim($_POST['gbraid'] ?? '');
+    $wbraid = trim($_POST['wbraid'] ?? '');
+    $utmSource = trim($_POST['utm_source'] ?? '');
+    $utmMedium = trim($_POST['utm_medium'] ?? '');
+    $utmCampaign = trim($_POST['utm_campaign'] ?? '');
+
+    if (empty($name) || strlen($name) < 2) {
+        http_response_code(422);
+        echo json_encode(['success' => false, 'message' => 'Please provide your full name.']);
+        exit;
+    }
+    if (empty($phone) || strlen(preg_replace('/\D/', '', $phone)) < 10) {
+        http_response_code(422);
+        echo json_encode(['success' => false, 'message' => 'Please provide a valid 10-digit phone number.']);
+        exit;
+    }
+    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        http_response_code(422);
+        echo json_encode(['success' => false, 'message' => 'Please provide a valid email address.']);
+        exit;
+    }
+    if (empty($message) || strlen($message) < 5) {
+        http_response_code(422);
+        echo json_encode(['success' => false, 'message' => 'Please provide a message with at least 5 characters.']);
+        exit;
+    }
+
+    $leadCode = 'MSG-' . strtoupper(substr(uniqid(), -6));
+    $notes = "[Subject: {$subject}] " . $message;
+
+    try {
+        $stmt = $pdo->prepare("INSERT INTO leads 
+            (lead_code, client_name, email, phone, event_type, event_date, guest_count, package_type, venue_location, special_notes, status, gclid, gbraid, wbraid, utm_source, utm_medium, utm_campaign, ip_address) 
+            VALUES (?, ?, ?, ?, 'Contact Message', ?, 0, ?, 'San Ramon / Online Inquiry', ?, 'new', ?, ?, ?, ?, ?, ?, ?)");
+        $today = date('Y-m-d');
+        $stmt->execute([
+            $leadCode, $name, $email, $phone, $today, $subject, $notes,
+            $gclid, $gbraid, $wbraid, $utmSource, $utmMedium, $utmCampaign, $ip
+        ]);
+
+        // Email Notification to Restaurant
+        $adminEmail = get_setting('contact_email', 'gosaffrongrill@gmail.com');
+        $emailSubject = "📩 New Contact Message: {$leadCode} ({$name} - {$subject})";
+        $body = "New Contact Inquiry for Saffron Grill:\n\n" .
+                "Reference Code: {$leadCode}\n" .
+                "Name: {$name}\n" .
+                "Phone: {$phone}\n" .
+                "Email: {$email}\n" .
+                "Subject: {$subject}\n" .
+                "Message:\n{$message}\n\n" .
+                "Campaign: " . ($utmCampaign ?: 'Direct') . "\n";
+
+        @mail($adminEmail, $emailSubject, $body, "From: no-reply@saffrongrillrestaurant.com\r\nReply-To: " . $email);
+
+        echo json_encode([
+            'success' => true,
+            'lead_code' => $leadCode,
+            'message' => 'Your message has been received! Reference: ' . $leadCode
+        ]);
+        exit;
+    } catch (Throwable $e) {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'message' => 'Could not save message: ' . $e->getMessage()]);
+        exit;
+    }
 } else {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Unknown form type']);

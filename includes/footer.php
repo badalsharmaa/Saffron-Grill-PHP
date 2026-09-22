@@ -37,13 +37,13 @@ require_once __DIR__ . '/consent_banner.php';
     <div class="footer-col">
       <h4 class="f-title">Quick Links</h4>
       <ul class="f-links">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="story.php">Our Heritage & Story</a></li>
-        <li><a href="buffet.php">Daily Lunch Buffet</a></li>
-        <li><a href="menu.php">Full Restaurant Menu</a></li>
-        <li><a href="catering.php">Party & Event Catering</a></li>
-        <li><a href="reserve.php">Book a Table</a></li>
-        <li><a href="contact.php">Location & Directions</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/story">Our Heritage & Story</a></li>
+        <li><a href="/buffet">Daily Lunch Buffet</a></li>
+        <li><a href="/menu">Full Restaurant Menu</a></li>
+        <li><a href="/catering">Party & Event Catering</a></li>
+        <li><a href="/reserve">Book a Table</a></li>
+        <li><a href="/contact">Location & Directions</a></li>
       </ul>
     </div>
 
@@ -86,8 +86,8 @@ require_once __DIR__ . '/consent_banner.php';
     <div class="fb-inner">
       <p>&copy; <?= date('Y') ?> <?= e(APP_NAME) ?>. All Rights Reserved. Crafted with royal passion.</p>
       <div class="fb-links">
-        <a href="privacy-policy.php">Privacy Policy</a>
-        <a href="terms.php">Terms of Service</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
         <a href="llms.txt" target="_blank">AI Context (llms.txt)</a>
         <a href="admin/login.php" style="opacity: 0.6;">Staff Login</a>
       </div>
