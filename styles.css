@@ -1026,32 +1026,6 @@ image-slot { width: 100%; height: auto; box-shadow: var(--shadow-soft); }
   overflow: hidden;
 }
 
-/* Rotating Background Ornament in Reserve Section */
-.reserve-mandala {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(90vh, 760px);
-  aspect-ratio: 1;
-  opacity: 0.08;
-  mix-blend-mode: screen;
-  pointer-events: none;
-  -webkit-mask: radial-gradient(circle, #000 55%, transparent 75%);
-          mask: radial-gradient(circle, #000 55%, transparent 75%);
-  animation: spinSlowSmooth 80s linear infinite;
-  z-index: 1;
-  will-change: transform;
-}
-
-@keyframes spinSlowSmooth {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
 /* =========================================================
    RESERVE
    ========================================================= */
@@ -1258,7 +1232,7 @@ image-slot img {
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; filter: none; }
   .char-anim { opacity: 1; transform: none; transition: none; filter: none; animation: none; }
-  .hero-mandala, .reserve-mandala, .scroll-cue .line::after, .chip .dot.live, .hero-art-left, .hero-art-right, .instagram-track { animation: none; }
+  .hero-mandala, .scroll-cue .line::after, .chip .dot.live, .hero-art-left, .hero-art-right, .instagram-track { animation: none; }
   html { scroll-behavior: auto; }
 }
 

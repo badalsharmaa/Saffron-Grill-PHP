@@ -579,7 +579,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <!-- ============== RESERVATIONS SECTION ============== -->
 <section class="section surface-dark" id="reserve" data-screen-label="Reserve">
   <!-- Mandala Background Effect -->
-  <img class="reserve-mandala" src="assets/mandala.png" alt="" aria-hidden="true" />
+  <img class="hero-mandala" src="assets/mandala.png" alt="" style="opacity:.05; width:min(90vh,760px); animation-duration:220s" />
   
   <div class="wrap" style="position:relative; z-index:2">
     <div class="sec-head center">

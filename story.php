@@ -375,7 +375,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============== RESERVE ============== -->
 <section class="section surface-dark" id="reserve" data-screen-label="Reserve">
-  <img class="reserve-mandala" src="assets/mandala.png" alt="" aria-hidden="true" />
+  <img class="hero-mandala" src="assets/mandala.png" alt="" style="opacity:.06; width:min(90vh,760px); animation-duration:220s" />
   <div class="wrap" style="position:relative; z-index:2">
     <div class="sec-head center">
       <span class="eyebrow on-dark center reveal">Reservations</span>
