@@ -135,7 +135,7 @@ require_once __DIR__ . '/includes/nav.php';
 
           <div style="grid-column: span 2;">
             <label style="display: block; font-size: 12px; text-transform: uppercase; color: #333; margin-bottom: 4px; font-weight: 600;">Special Requests / High Chair</label>
-            <textarea name="special_requests" rows="2" placeholder="e.g. Anniversary celebration, booster seat..." style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px;"></textarea>
+            <textarea name="special_requests" rows="2" placeholder="e.g. Anniversary celebration, booster seat..." style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; scrollbar-width: none; -ms-overflow-style: none;"></textarea>
           </div>
         </div>
 

@@ -4,7 +4,7 @@
  */
 ?>
 <div class="promo-modal-backdrop" id="promoModal" aria-hidden="true" style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(14, 5, 13, 0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px;">
-  <div class="promo-modal-panel" style="background: radial-gradient(circle at top, #33122e, #1a0818); border: 1px solid rgba(234, 179, 8, 0.4); border-radius: 12px; max-width: 520px; width: 100%; padding: 28px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.8); text-align: center;">
+  <div class="promo-modal-panel" style="background: radial-gradient(circle at top, #33122e, #1a0818); border: 1px solid rgba(234, 179, 8, 0.4); border-radius: 12px; max-width: 520px; width: 100%; padding: 32px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.8); text-align: center;">
     <button class="promo-close js-close-promo" type="button" style="position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 26px; color: #fff; cursor: pointer;">&times;</button>
     
     <span class="badge" style="background: rgba(234, 179, 8, 0.2); border: 1px solid #eab308; color: #f5d485; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px;">Daily Grand Buffet Feast</span>
@@ -28,9 +28,9 @@
       </div>
     </div>
 
-    <div style="display: flex; gap: 10px; justify-content: center;">
-      <a href="buffet.php" class="btn btn-gold btn-sm">Explore Buffet Menu</a>
-      <button class="btn btn-outline btn-sm js-open-reserve js-close-promo" type="button">Reserve a Table</button>
+    <div style="display: flex; gap: 12px; justify-content: center; width: 100%;">
+      <button class="btn btn-gold btn-sm js-open-reserve js-close-promo" type="button" style="flex: 1 1 0; min-width: 0; height: 44px; display: inline-flex; align-items: center; justify-content: center; text-align: center; padding: 0 12px; font-size: 13px; white-space: nowrap;">Reserve a Table</button>
+      <a href="/menu" class="btn btn-outline btn-sm" style="flex: 1 1 0; min-width: 0; height: 44px; display: inline-flex; align-items: center; justify-content: center; text-align: center; padding: 0 12px; font-size: 13px; white-space: nowrap;">Explore Menu</a>
     </div>
   </div>
 </div>

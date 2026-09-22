@@ -97,11 +97,13 @@ mkdir -p "{$remoteWebRoot}/admin/data"
 chmod 0775 "{$remoteWebRoot}/admin/data"
 chmod 0775 "{$remotePrivateDir}/backups"
 chmod 0775 "{$remotePrivateDir}/logs"
+rm -f "{$remoteWebRoot}/buffet.php"
 BASH;
 
 $hardenCmd = "{$sshCmd} " . escapeshellarg($hardenScript);
 $hardenOutput = shell_exec($hardenCmd);
 echo "  ✓ File permissions hardened (chmod 0600 on .env, chmod 0775 on data/)\n";
+echo "  ✓ Deprecated buffet.php removed from remote webroot\n";
 
 // Run Remote Schema Migration
 echo "  -> Executing schema migration on server...\n";
@@ -125,10 +127,11 @@ echo "\n[5/5] Executing post-deployment verification protocol...\n";
 $checks = [
     'Homepage (HTTP 200)'          => 'https://saffrongrillrestaurant.com/',
     'Clean URL /menu'              => 'https://saffrongrillrestaurant.com/menu',
-    'Clean URL /buffet'            => 'https://saffrongrillrestaurant.com/buffet',
+    'Clean URL /contact'           => 'https://saffrongrillrestaurant.com/contact',
     'Clean URL /catering'          => 'https://saffrongrillrestaurant.com/catering',
     'Clean URL /reserve'           => 'https://saffrongrillrestaurant.com/reserve',
     'Clean URL /story'             => 'https://saffrongrillrestaurant.com/story',
+    'XML Sitemap /sitemap.xml'     => 'https://saffrongrillrestaurant.com/sitemap.xml',
     'API Health /api/health'       => 'https://saffrongrillrestaurant.com/api/health',
     'Admin Portal /admin/login.php'=> 'https://saffrongrillrestaurant.com/admin/login.php',
 ];
@@ -137,6 +140,20 @@ foreach ($checks as $label => $url) {
     $code = trim(shell_exec("curl -s -o /dev/null -w '%{http_code}' " . escapeshellarg($url)));
     if ($code === '200') {
         echo "  ✓ {$label}: HTTP {$code}\n";
+    } else {
+        echo "  ⚠️ {$label}: HTTP {$code}\n";
+    }
+}
+
+// Redirect checks: /buffet and /buffet.php -> 301
+$redirectChecks = [
+    'Buffet Clean URL /buffet (301)'    => 'https://saffrongrillrestaurant.com/buffet',
+    'Buffet Script /buffet.php (301)'   => 'https://saffrongrillrestaurant.com/buffet.php',
+];
+foreach ($redirectChecks as $label => $url) {
+    $code = trim(shell_exec("curl -s -o /dev/null -w '%{http_code}' " . escapeshellarg($url)));
+    if ($code === '301' || $code === '302') {
+        echo "  ✓ {$label}: HTTP {$code} Redirect\n";
     } else {
         echo "  ⚠️ {$label}: HTTP {$code}\n";
     }

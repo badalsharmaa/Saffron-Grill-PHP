@@ -39,7 +39,6 @@ require_once __DIR__ . '/consent_banner.php';
       <ul class="f-links">
         <li><a href="/">Home</a></li>
         <li><a href="/story">Our Heritage & Story</a></li>
-        <li><a href="/buffet">Daily Lunch Buffet</a></li>
         <li><a href="/menu">Full Restaurant Menu</a></li>
         <li><a href="/catering">Party & Event Catering</a></li>
         <li><a href="/reserve">Book a Table</a></li>
@@ -89,7 +88,6 @@ require_once __DIR__ . '/consent_banner.php';
         <a href="/privacy-policy">Privacy Policy</a>
         <a href="/terms">Terms of Service</a>
         <a href="llms.txt" target="_blank">AI Context (llms.txt)</a>
-        <a href="admin/login.php" style="opacity: 0.6;">Staff Login</a>
       </div>
     </div>
   </div>
@@ -189,6 +187,7 @@ require_once __DIR__ . '/consent_banner.php';
       e.preventDefault();
       if (modal) {
         modal.classList.add('active');
+        modal.style.display = 'flex';
         populateFormTracking();
       }
     });
@@ -197,13 +196,19 @@ require_once __DIR__ . '/consent_banner.php';
   closeTriggers.forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      if (modal) modal.classList.remove('active');
+      if (modal) {
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+      }
     });
   });
 
   if (modal) {
     modal.addEventListener('click', function(e) {
-      if (e.target === modal) modal.classList.remove('active');
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+      }
     });
   }
 

@@ -32,7 +32,7 @@ RewriteRule ^(.*)$ api/index.php?path=$1 [QSA,L]
 
 ### Central Gateway (`api/index.php`)
 - **API Endpoints:** `/api/health`, `/api/menu`, `/api/reservation`, `/api/catering`
-- **Clean Pages:** `/`, `/menu`, `/buffet`, `/catering`, `/story`, `/contact`, `/reserve`, `/privacy-policy`, `/terms`
+- **Clean Pages:** `/`, `/menu`, `/catering`, `/story`, `/contact`, `/reserve`, `/privacy-policy`, `/terms`
 - **Admin Portal:** `/admin/` and `/admin/login.php`
 - **Static Asset Fallback:** Serves assets directly with appropriate MIME types if rewritten
 
@@ -56,7 +56,7 @@ The codebase maintains scripts and styles in **both** root and `/assets`:
 > **Rule:** Whenever modifying `styles.css` or `app.js`, **always copy or sync** to the counterpart in `/assets/` (e.g., `cp styles.css assets/styles.css`).
 
 ### Navigation Structure
-- Navigation header is defined in both [includes/nav.php](file:///Users/badalsharma/Work/Saffron-Grill-PHP/includes/nav.php) (used by modular pages like `buffet.php`) and inline `<nav class="nav" id="nav">` blocks on standalone pages (`index.php`, `menu.php`, `catering.php`, `story.php`, `contact.php`).
+- Navigation header is defined in both [includes/nav.php](file:///Users/badalsharma/Work/Saffron-Grill-PHP/includes/nav.php) (used by modular pages like `reserve.php`) and inline `<nav class="nav" id="nav">` blocks on standalone pages (`index.php`, `menu.php`, `catering.php`, `story.php`, `contact.php`).
 - Whenever updating nav elements (e.g., the CTA button or links), update **both** `includes/nav.php` and the individual page `<nav>` blocks to ensure site-wide consistency.
 
 ### Popup Modal (`#sgPopup`)
@@ -79,7 +79,7 @@ The codebase maintains scripts and styles in **both** root and `/assets`:
 ### Step 2: Syntax Validation
 Always run PHP syntax validation on all touched files:
 ```bash
-for f in index.php catering.php contact.php menu.php story.php buffet.php config/config.php includes/nav.php; do
+for f in index.php catering.php contact.php menu.php story.php reserve.php config/config.php includes/nav.php; do
   php -l "$f" || exit 1
 done
 ```

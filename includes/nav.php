@@ -25,7 +25,6 @@ $status = get_restaurant_status();
   <div class="nav-links">
     <a href="/" class="<?= $currentPage === 'index' ? 'active' : '' ?>">Home</a>
     <a href="/story" class="<?= $currentPage === 'story' ? 'active' : '' ?>">Our Story</a>
-    <a href="/buffet" class="<?= $currentPage === 'buffet' ? 'active' : '' ?>">Lunch Buffet</a>
     <a href="/menu" class="<?= $currentPage === 'menu' ? 'active' : '' ?>">Menu</a>
     <a href="/catering" class="<?= $currentPage === 'catering' ? 'active' : '' ?>">Catering</a>
     <a href="/contact" class="<?= $currentPage === 'contact' ? 'active' : '' ?>">Contact</a>
@@ -49,7 +48,6 @@ $status = get_restaurant_status();
 <div class="mobile-menu" id="mobileMenu">
   <a href="/" class="<?= $currentPage === 'index' ? 'active' : '' ?>">Home</a>
   <a href="/story" class="<?= $currentPage === 'story' ? 'active' : '' ?>">Our Story</a>
-  <a href="/buffet" class="<?= $currentPage === 'buffet' ? 'active' : '' ?>">Lunch Buffet</a>
   <a href="/menu" class="<?= $currentPage === 'menu' ? 'active' : '' ?>">Menu</a>
   <a href="/catering" class="<?= $currentPage === 'catering' ? 'active' : '' ?>">Catering</a>
   <a href="/contact" class="<?= $currentPage === 'contact' ? 'active' : '' ?>">Contact</a>

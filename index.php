@@ -7,7 +7,7 @@ require_once __DIR__ . '/config/config.php';
 $pageTitle = 'Saffron Grill — Authentic Indian Cuisine · San Ramon';
 $pageDesc = 'Saffron Grill — authentic Indian cuisine in San Ramon, CA. Daily lunch buffets, tandoori specialties, vegetarian & non-vegetarian dishes, catering & family dining.';
 $canonicalUrl = 'https://saffrongrillrestaurant.com/';
-$ogImage = 'https://saffrongrillrestaurant.com/assets/story_main.webp';
+$ogImage = 'https://saffrongrillrestaurant.com/assets/social_image.png';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 ?>
 <!DOCTYPE html>
@@ -33,6 +33,9 @@ $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 <meta property="og:title" content="<?= e($pageTitle) ?>" />
 <meta property="og:description" content="<?= e($pageDesc) ?>" />
 <meta property="og:image" content="<?= e($ogImage) ?>" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/png" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -337,7 +340,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="body-text on-dark reveal d2" style="margin-top:14px">Every day features a rotating selection of favorites, including rich curries, tandoori specialties, fresh naan, rice dishes, appetizers, salads, and desserts. The lineup changes regularly, giving you a reason to come back and try something new.</p>
         <p class="body-text on-dark reveal d2" style="margin-top:14px">Whether you're stopping by for lunch or enjoying a relaxed weekend gathering, the buffet offers the freedom to explore Indian cuisine one plate at a time.</p>
       </div>
-      <a href="buffet.php" class="btn btn-ghost reveal d2">See Today's Offerings</a>
+      <a href="menu.php" class="btn btn-ghost reveal d2">Explore Full Menu</a>
     </div>
     <div class="buffet-grid">
       <article class="buffet-card reveal d1">
@@ -553,7 +556,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Saffron Grill · Authentic Indian Cuisine</span>
-      <span>San Ramon, California · <a href="admin/login.php" style="color: inherit; opacity: 0.6;">Staff Login</a> · <a href="privacy-policy.php" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
+      <span>San Ramon, California · <a href="privacy-policy.php" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
     </div>
   </div>
 </footer>

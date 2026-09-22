@@ -39,12 +39,12 @@ function record(bool $ok, string $name, string $details = ''): void {
     }
 }
 
-function httpReq(string $url, string $method = 'GET', $data = null, array $headers = [], bool $useCookie = false): array {
+function httpReq(string $url, string $method = 'GET', $data = null, array $headers = [], bool $useCookie = false, bool $followLocation = true): array {
     global $cookieFile;
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $followLocation);
     curl_setopt($ch, CURLOPT_MAXREDIRS, 5);
     curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -91,11 +91,11 @@ echo "--- SUITE 1: Clean URLs & Page Availability ---\n";
 $routes = [
     '/'                     => 'Homepage',
     '/menu'                 => 'Menu Page',
-    '/buffet'               => 'Lunch Buffet Page',
     '/catering'             => 'Catering Page',
     '/reserve'              => 'Reservations Page',
     '/story'                => 'Our Story Page',
     '/contact'              => 'Contact Page',
+    '/sitemap.xml'          => 'XML Sitemap',
     '/privacy-policy'       => 'Privacy Policy',
     '/terms'                => 'Terms of Service',
     '/admin/login.php'      => 'Admin Staff Login',
@@ -113,6 +113,10 @@ foreach ($routes as $path => $label) {
 $res404 = httpReq($targetBase . '/non-existent-qa-path-404');
 record($res404['status'] === 404, "Unknown route returns HTTP 404 Not Found", "Got HTTP {$res404['status']}");
 
+// 301 legacy buffet route redirect
+$resBuffet = httpReq($targetBase . '/buffet', 'GET', null, [], false, false);
+record($resBuffet['status'] === 301, "Legacy /buffet route returns HTTP 301 Redirect to /menu", "Got HTTP {$resBuffet['status']}");
+
 // =================================================================
 // SUITE 2: STATIC ASSETS & MEDIA INTEGRITY
 // =================================================================
@@ -127,6 +131,7 @@ $assets = [
     '/assets/buffet_lunch.webp'      => 'Weekday Buffet Showcase',
     '/assets/buffet_weekend.webp'    => 'Weekend Buffet Showcase',
     '/assets/catering.webp'          => 'Catering Banner',
+    '/assets/social_image.png'       => 'High-Res OpenGraph Social Card',
     '/assets/styles.css'             => 'Primary Stylesheet',
     '/assets/app.js'                 => 'Client Application Script',
     '/assets/popup.js'               => 'Popup Manager Script',

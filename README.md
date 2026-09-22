@@ -55,7 +55,7 @@ Featuring luxury visual aesthetics, 100% GSAP animations, a dual-driver database
 ├── router.php                  # Local development CLI server router & security firewall
 ├── index.php                   # Homepage with live buffet status & dish highlights
 ├── story.php                   # Heritage, three pillars & culinary philosophy
-├── buffet.php                  # Lunch buffet pricing & schedule
+├── reserve.php                 # Dedicated table reservation page
 ├── menu.php                    # Database-driven menu with dietary filters & search
 ├── catering.php                # Catering packages & custom event inquiry form
 ├── contact.php                 # Directions, location map, hours & contact form

@@ -7,7 +7,7 @@ require_once __DIR__ . '/config/config.php';
 $pageTitle = 'Menu — Saffron Grill · Authentic Indian Cuisine';
 $pageDesc = 'Explore Saffron Grill\'s full menu of authentic Indian dishes in San Ramon, CA. From tandoori specialties and rich curries to vegetarian classics and desserts.';
 $canonicalUrl = 'https://saffrongrillrestaurant.com/menu.php';
-$ogImage = 'https://saffrongrillrestaurant.com/assets/hero2-first-frame.jpg';
+$ogImage = 'https://saffrongrillrestaurant.com/assets/social_image.png';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 ?>
 <!DOCTYPE html>
@@ -33,6 +33,9 @@ $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 <meta property="og:title" content="<?= e($pageTitle) ?>" />
 <meta property="og:description" content="<?= e($pageDesc) ?>" />
 <meta property="og:image" content="<?= e($ogImage) ?>" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/png" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -900,7 +903,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Saffron Grill · Authentic Indian Cuisine</span>
-      <span>San Ramon, California · <a href="admin/login.php" style="color: inherit; opacity: 0.6;">Staff Login</a> · <a href="privacy-policy.php" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
+      <span>San Ramon, California · <a href="privacy-policy.php" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
     </div>
   </div>
 </footer>

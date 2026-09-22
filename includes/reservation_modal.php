@@ -3,9 +3,9 @@
  * Saffron Grill - Reusable Table Reservation Modal Component
  */
 ?>
-<div class="modal-backdrop" id="reserveModal" aria-hidden="true" role="dialog" aria-label="Table Reservation">
-  <div class="modal-panel">
-    <button class="modal-close js-close-reserve" type="button" aria-label="Close modal">&times;</button>
+<div class="modal-backdrop" id="reserveModal" aria-hidden="true" role="dialog" aria-label="Table Reservation" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(14, 5, 13, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none;">
+  <div class="modal-panel" style="background: radial-gradient(circle at top, #2d0e28, #180616); border: 1px solid rgba(234, 179, 8, 0.4); border-radius: 12px; max-width: 580px; width: 100%; padding: 32px; position: relative; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85); max-height: 90vh; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none;">
+    <button class="modal-close js-close-reserve" type="button" aria-label="Close modal" style="position: absolute; top: 14px; right: 18px; background: none; border: none; font-size: 28px; color: #f5d485; cursor: pointer; line-height: 1;">&times;</button>
     
     <div class="modal-header">
       <span class="eyebrow" style="color: #eab308; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">Instant Booking</span>
@@ -109,7 +109,7 @@
 
         <div class="form-group" style="grid-column: span 2;">
           <label for="res_requests" style="display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; color: #e5e5e5;">Special Requests / High Chair / Dietary Needs</label>
-          <textarea name="special_requests" id="res_requests" rows="2" placeholder="e.g. High chair needed, celebrating anniversary, mild spice preference..." style="width: 100%; padding: 8px 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: #fff;"></textarea>
+          <textarea name="special_requests" id="res_requests" rows="2" placeholder="e.g. High chair needed, celebrating anniversary, mild spice preference..." style="width: 100%; padding: 8px 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: #fff; scrollbar-width: none; -ms-overflow-style: none;"></textarea>
         </div>
       </div>
 

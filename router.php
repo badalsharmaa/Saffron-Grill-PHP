@@ -31,6 +31,16 @@ if (is_dir($filePath) && file_exists($filePath . '/index.php')) {
     exit;
 }
 
+// Clean URL redirects
+if ($uri === '/buffet' || $uri === '/buffet.php') {
+    header('Location: /menu', true, 301);
+    exit;
+}
+if ($uri === '/sitemap') {
+    header('Location: /sitemap.xml', true, 301);
+    exit;
+}
+
 // 5. Clean URL without extension (e.g. /story -> story.php, /admin/login -> admin/login.php)
 $cleanPhp = __DIR__ . rtrim($uri, '/') . '.php';
 if ($uri !== '/' && file_exists($cleanPhp)) {

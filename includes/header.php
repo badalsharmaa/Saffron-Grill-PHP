@@ -9,7 +9,7 @@ $pageTitle = $pageTitle ?? APP_NAME . ' — ' . APP_TAGLINE;
 $pageDesc = $pageDesc ?? 'Authentic Indian Cuisine & Lunch Buffet in San Ramon, CA. Savor tandoori specialties, rich curries, daily lunch buffets ($19.99 weekday / $21.99 weekend), and luxury catering across the East Bay.';
 $pageKeywords = $pageKeywords ?? 'Indian restaurant San Ramon, lunch buffet San Ramon, Indian food catering Tri-Valley, tandoori chicken, butter chicken, biryani San Ramon, Halal Indian food Dublin CA, Danville Indian restaurant';
 $canonicalUrl = $canonicalUrl ?? (BASE_URL . '/' . ltrim($_SERVER['REQUEST_URI'] ?? '', '/'));
-$ogImage = $ogImage ?? (BASE_URL . '/assets/story_main.webp');
+$ogImage = $ogImage ?? (BASE_URL . '/assets/social_image.png');
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 $currentStatus = get_restaurant_status();
 ?>
@@ -39,6 +39,9 @@ $currentStatus = get_restaurant_status();
 <meta property="og:title" content="<?= e($pageTitle) ?>" />
 <meta property="og:description" content="<?= e($pageDesc) ?>" />
 <meta property="og:image" content="<?= e($ogImage) ?>" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/png" />
 <meta property="og:site_name" content="<?= e(APP_NAME) ?>" />
 <meta property="og:locale" content="en_US" />
 

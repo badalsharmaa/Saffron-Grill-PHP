@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://saffrongrillrestaurant.com/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://saffrongrillrestaurant.com/assets/story_main.webp</image:loc>
-      <image:title>Saffron Grill San Ramon Dining &amp; Lunch Buffet</image:title>
-      <image:caption>Authentic Indian Cuisine, Daily Lunch Buffet and Tandoori Sizzlers in San Ramon, CA</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://saffrongrillrestaurant.com/buffet</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://saffrongrillrestaurant.com/assets/buffet-feast.webp</image:loc>
-      <image:title>Saffron Grill Daily Lunch Buffet</image:title>
+      <image:loc>https://saffrongrillrestaurant.com/assets/social_image.png</image:loc>
+      <image:title>Saffron Grill San Ramon Authentic Indian Cuisine</image:title>
+      <image:caption>Authentic Indian Cuisine, Tandoori Sizzlers, and Royal Dining in San Ramon, CA</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://saffrongrillrestaurant.com/menu</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://saffrongrillrestaurant.com/assets/butter-chicken.webp</image:loc>
-      <image:title>Authentic Indian Restaurant Menu</image:title>
+      <image:title>Authentic Indian Restaurant Menu — Saffron Grill</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://saffrongrillrestaurant.com/catering</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://saffrongrillrestaurant.com/assets/catering.webp</image:loc>
-      <image:title>Indian Food Catering Tri-Valley</image:title>
+      <image:title>Indian Food Catering Tri-Valley &amp; Bay Area</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://saffrongrillrestaurant.com/reserve</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://saffrongrillrestaurant.com/assets/ambiance-1.webp</image:loc>
+      <image:title>Reserve Your Table — Saffron Grill San Ramon</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://saffrongrillrestaurant.com/story</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://saffrongrillrestaurant.com/assets/story_main.webp</image:loc>
+      <image:title>Our Heritage, Pillars &amp; Philosophy — Saffron Grill</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://saffrongrillrestaurant.com/contact</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://saffrongrillrestaurant.com/reserve</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://saffrongrillrestaurant.com/assets/storefront.jpeg</image:loc>
+      <image:title>Saffron Grill Location &amp; Directions — San Ramon, CA</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://saffrongrillrestaurant.com/privacy-policy</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://saffrongrillrestaurant.com/terms</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

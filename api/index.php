@@ -118,7 +118,19 @@ try {
         }
     }
 
-    // 5. Clean URLs for Public Pages (e.g. /menu, /buffet, /catering, /contact, /reserve, /story, /privacy-policy, /terms, /consent-sync, /send-mail)
+    // Buffet redirect to menu
+    if ($trimmed === 'buffet' || $trimmed === 'buffet.php') {
+        header('Location: /menu', true, 301);
+        exit;
+    }
+
+    // Sitemap clean URL redirect
+    if ($trimmed === 'sitemap') {
+        header('Location: /sitemap.xml', true, 301);
+        exit;
+    }
+
+    // 5. Clean URLs for Public Pages (e.g. /menu, /catering, /contact, /reserve, /story, /privacy-policy, /terms, /consent-sync, /send-mail)
     $directPhp = $rootDir . '/' . $trimmed . '.php';
     if (file_exists($directPhp) && is_file($directPhp)) {
         require $directPhp;

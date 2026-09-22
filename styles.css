@@ -1368,7 +1368,7 @@ image-slot img {
 .sgp-inner {
   position: relative;
   z-index: 1;
-  padding: clamp(36px, 6vw, 56px) clamp(28px, 5vw, 50px) clamp(40px, 5.5vw, 54px);
+  padding: clamp(28px, 5vw, 38px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1376,36 +1376,56 @@ image-slot img {
 }
 
 .sgp-eyebrow {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 .sgp-title {
-  font-size: clamp(28px, 5.5vw, 46px);
-  line-height: 1.06;
+  font-size: clamp(26px, 5.2vw, 38px);
+  line-height: 1.1;
   margin-bottom: 0;
 }
 .sgp-divider {
-  margin: 14px auto 18px;
+  margin: 12px auto 16px;
 }
 .sgp-divider img {
-  width: 110px;
+  width: 100px;
   opacity: 0.65;
   margin: 0 auto;
   display: block;
 }
 .sgp-body {
-  font-size: clamp(16px, 1.9vw, 21px);
+  font-size: clamp(14.5px, 1.8vw, 17.5px);
+  line-height: 1.5;
   margin-bottom: 6px;
 }
 .sgp-note {
-  font-size: clamp(13px, 1.1vw, 15px);
-  margin-bottom: 30px;
-  opacity: 0.8;
+  font-size: clamp(12.5px, 1.2vw, 14px);
+  line-height: 1.45;
+  margin-bottom: 24px;
+  opacity: 0.85;
 }
 .sgp-actions {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: stretch;
   justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+.sgp-actions .btn {
+  flex: 1 1 0;
+  width: 50%;
+  min-width: 0;
+  height: 48px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 /* Close button */
@@ -1439,9 +1459,16 @@ image-slot img {
 
 /* Responsive */
 @media (max-width: 520px) {
-  .sgp-inner { padding: 38px 22px 44px; }
-  .sgp-actions { flex-direction: column; width: 100%; }
-  .sgp-actions .btn { width: 100%; justify-content: center; }
+  .sgp-inner { padding: 26px 18px; }
+  .sgp-actions { flex-direction: row; gap: 8px; width: 100%; }
+  .sgp-actions .btn {
+    flex: 1 1 0;
+    width: 50%;
+    height: 44px;
+    padding: 0 6px;
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+  }
 }
 
 /* Respect reduced motion */
@@ -1838,4 +1865,167 @@ image-slot img {
 .faq-item.active .faq-trigger-icon {
   transform: rotate(135deg);
 }
+
+/* =========================================================
+   RESERVATION FORM & MODAL — DESKTOP SCROLLBAR HIDING
+   ========================================================= */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(14, 5, 13, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.modal-backdrop::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.modal-backdrop.active {
+  display: flex !important;
+}
+.modal-panel {
+  background: radial-gradient(circle at top, #2d0e28, #180616);
+  border: 1px solid rgba(234, 179, 8, 0.4);
+  border-radius: 12px;
+  max-width: 580px;
+  width: 100%;
+  padding: 32px;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.modal-panel::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #f5d485;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s, transform 0.2s;
+}
+.modal-close:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* Hide scrollbars across all reservation form views & inputs on desktop */
+@media (min-width: 768px) {
+  #reserveModal,
+  .modal-backdrop,
+  .modal-panel,
+  .reserve-form,
+  #ajaxReserveForm,
+  #pageReserveForm,
+  .reserve-card,
+  #reserve,
+  #contact-form-section,
+  .form-grid {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  #reserveModal::-webkit-scrollbar,
+  .modal-backdrop::-webkit-scrollbar,
+  .modal-panel::-webkit-scrollbar,
+  .reserve-form::-webkit-scrollbar,
+  #ajaxReserveForm::-webkit-scrollbar,
+  #pageReserveForm::-webkit-scrollbar,
+  .reserve-card::-webkit-scrollbar,
+  #reserve::-webkit-scrollbar,
+  #contact-form-section::-webkit-scrollbar,
+  .form-grid::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+}
+
+/* Ensure textareas in all forms never show browser scrollbars */
+.reserve-form textarea,
+#ajaxReserveForm textarea,
+#pageReserveForm textarea,
+.reserve-card textarea,
+.field textarea {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.reserve-form textarea::-webkit-scrollbar,
+#ajaxReserveForm textarea::-webkit-scrollbar,
+#pageReserveForm textarea::-webkit-scrollbar,
+.reserve-card textarea::-webkit-scrollbar,
+.field textarea::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* =========================================================
+   CONTACT PAGE — SEND A MESSAGE FORM OPACITY & CLARITY
+   ========================================================= */
+#contact-form-section .hero-mandala {
+  opacity: 0.015 !important;
+  pointer-events: none;
+}
+#contact-form-section .reserve-card,
+.reserve-card.high-contrast {
+  background: rgba(22, 7, 20, 0.96) !important;
+  border: 1px solid rgba(227, 189, 118, 0.4) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(227, 189, 118, 0.08) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+#contact-form-section .field label,
+.reserve-card .field label {
+  color: #f5d485 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+#contact-form-section .field input,
+#contact-form-section .field select,
+#contact-form-section .field textarea,
+.reserve-card .field input,
+.reserve-card .field select,
+.reserve-card .field textarea {
+  background: rgba(14, 4, 13, 0.94) !important;
+  border: 1px solid rgba(227, 189, 118, 0.35) !important;
+  color: #ffffff !important;
+}
+#contact-form-section .field input::placeholder,
+#contact-form-section .field textarea::placeholder,
+.reserve-card .field input::placeholder,
+.reserve-card .field textarea::placeholder {
+  color: rgba(240, 225, 210, 0.65) !important;
+}
+#contact-form-section .field input:focus,
+#contact-form-section .field select:focus,
+#contact-form-section .field textarea:focus,
+.reserve-card .field input:focus,
+.reserve-card .field select:focus,
+.reserve-card .field textarea:focus {
+  border-color: #f5d485 !important;
+  box-shadow: 0 0 0 3px rgba(227, 189, 118, 0.25) !important;
+  background: rgba(20, 6, 18, 0.98) !important;
+}
+
 

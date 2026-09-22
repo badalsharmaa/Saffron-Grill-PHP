@@ -7,7 +7,7 @@ require_once __DIR__ . '/config/config.php';
 $pageTitle = 'Contact & Reservations — Saffron Grill · San Ramon';
 $pageDesc = 'Get in touch with Saffron Grill in San Ramon, CA. Find our hours, location, and make table reservations or inquiries online.';
 $canonicalUrl = 'https://saffrongrillrestaurant.com/contact.php';
-$ogImage = 'https://saffrongrillrestaurant.com/assets/story_main.webp';
+$ogImage = 'https://saffrongrillrestaurant.com/assets/social_image.png';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 ?>
 <!DOCTYPE html>
@@ -33,6 +33,9 @@ $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 <meta property="og:title" content="<?= e($pageTitle) ?>" />
 <meta property="og:description" content="<?= e($pageDesc) ?>" />
 <meta property="og:image" content="<?= e($ogImage) ?>" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/png" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -396,7 +399,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- ============== CONTACT FORM SECTION ============== -->
 <section class="section surface-leather" id="contact-form-section" data-screen-label="Contact Us">
   <!-- Mandala Background Effect -->
-  <img class="hero-mandala" src="assets/mandala.png" alt="" style="opacity:.04; width:min(90vh,760px); animation-duration:220s" />
+  <img class="hero-mandala" src="assets/mandala.png" alt="" style="opacity:.015; width:min(90vh,760px); animation-duration:220s; pointer-events:none;" />
   
   <div class="wrap" style="position:relative; z-index:2">
     <div class="sec-head center">
@@ -405,7 +408,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <p class="lede on-dark reveal d2" style="margin-top:14px">Have a question, feedback, or special request? We'd love to hear from you.</p>
     </div>
     
-    <div class="reserve-card reveal d2">
+    <div class="reserve-card high-contrast reveal d2" style="background: rgba(22, 7, 20, 0.96); border: 1px solid rgba(227, 189, 118, 0.4); backdrop-filter: blur(16px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);">
       <form id="contactForm" novalidate action="send-mail.php" method="POST">
         <input type="hidden" name="form_type" value="contact_message" />
         <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>" />
@@ -633,7 +636,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Saffron Grill · Authentic Indian Cuisine</span>
-      <span>San Ramon, California · <a href="admin/login.php" style="color: inherit; opacity: 0.6;">Staff Login</a> · <a href="privacy-policy.php" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
+      <span>San Ramon, California · <a href="privacy-policy.php" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
     </div>
   </div>
 </footer>
