@@ -2,23 +2,45 @@
 /**
  * CLI Worker: Scheduled Database Backup Runner
  * Runs via crontab:
- * 0 2 * * * /usr/bin/php /path/to/cli/db_backup.php >> /path/to/private/logs/backup.log 2>&1
+ * 0 2 * * * /usr/bin/php /home/u603392249/domains/saffrongrillrestaurant.com/cli/db_backup.php >> /home/u603392249/domains/saffrongrillrestaurant.com/private/logs/backup.log 2>&1
  */
 
-require_once __DIR__ . '/../admin/includes/db.php';
+$dbPath = file_exists(__DIR__ . '/../admin/includes/db.php')
+    ? __DIR__ . '/../admin/includes/db.php'
+    : (file_exists(__DIR__ . '/../public_html/admin/includes/db.php')
+        ? __DIR__ . '/../public_html/admin/includes/db.php'
+        : dirname(__DIR__) . '/public_html/admin/includes/db.php');
+
+require_once $dbPath;
 
 $now = date('Y-m-d_His');
-$backupDir = dirname(__DIR__) . '/private/backups';
-if (!is_dir($backupDir)) mkdir($backupDir, 0755, true);
+$rootDir = dirname(__DIR__);
+$privateDir = file_exists($rootDir . '/private') ? $rootDir . '/private' : (file_exists($rootDir . '/public_html/private') ? $rootDir . '/public_html/private' : $rootDir . '/private');
+$backupDir = $privateDir . '/backups';
+if (!is_dir($backupDir)) {
+    @mkdir($backupDir, 0775, true);
+}
 
 $driver = getenv('DB_DRIVER') ?: 'sqlite';
 
 if ($driver === 'sqlite') {
-    $dbPath = dirname(__DIR__) . '/' . (getenv('DB_SQLITE_PATH') ?: 'admin/data/saffron_crm.db');
-    if (file_exists($dbPath)) {
+    $relPath = getenv('DB_SQLITE_PATH') ?: 'admin/data/saffron_crm.db';
+    if (str_starts_with($relPath, '/')) {
+        $sourceDb = $relPath;
+    } else {
+        $sourceDb = file_exists($rootDir . '/' . ltrim($relPath, '/'))
+            ? $rootDir . '/' . ltrim($relPath, '/')
+            : (file_exists($rootDir . '/public_html/' . ltrim($relPath, '/'))
+                ? $rootDir . '/public_html/' . ltrim($relPath, '/')
+                : $rootDir . '/' . ltrim($relPath, '/'));
+    }
+
+    if (file_exists($sourceDb)) {
         $dest = "{$backupDir}/saffron_crm_{$now}.db";
-        copy($dbPath, $dest);
+        copy($sourceDb, $dest);
         echo "[{$now}] SQLite backup created: {$dest}\n";
+    } else {
+        echo "[{$now}] Warning: SQLite source database not found at {$sourceDb}\n";
     }
 } else {
     $host = getenv('DB_HOST') ?: '127.0.0.1';

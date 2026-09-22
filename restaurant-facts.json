@@ -4,7 +4,7 @@
   "name": "Saffron Grill",
   "legalName": "Saffron Grill San Ramon",
   "description": "Authentic Indian Restaurant, Daily Lunch Buffet, Tandoori Sizzlers and Catering in San Ramon, CA.",
-  "url": "https://saffrongrillsanramon.com",
+  "url": "https://saffrongrillrestaurant.com",
   "telephone": "+19258463077",
   "telephoneAlt": "+19253694696",
   "email": "gosaffrongrill@gmail.com",
@@ -66,7 +66,7 @@
       "weekend_grand": "$21.99"
     }
   },
-  "hasMenu": "https://saffrongrillsanramon.com/menu",
+  "hasMenu": "https://saffrongrillrestaurant.com/menu",
   "acceptsReservations": true,
   "makesOffer": [
     {

@@ -6,8 +6,8 @@ require_once __DIR__ . '/config/config.php';
 
 $pageTitle = 'Menu — Saffron Grill · Authentic Indian Cuisine';
 $pageDesc = 'Explore Saffron Grill\'s full menu of authentic Indian dishes in San Ramon, CA. From tandoori specialties and rich curries to vegetarian classics and desserts.';
-$canonicalUrl = 'https://saffrongrillsanramon.com/menu.php';
-$ogImage = 'https://saffrongrillsanramon.com/assets/hero2-first-frame.jpg';
+$canonicalUrl = 'https://saffrongrillrestaurant.com/menu.php';
+$ogImage = 'https://saffrongrillrestaurant.com/assets/hero2-first-frame.jpg';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 ?>
 <!DOCTYPE html>
@@ -79,9 +79,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {
   "@context": "https://schema.org",
   "@type": "Menu",
-  "@id": "https://saffrongrillsanramon.com/menu.php#menu",
+  "@id": "https://saffrongrillrestaurant.com/menu.php#menu",
   "name": "Saffron Grill Menu",
-  "mainEntityOfPage": "https://saffrongrillsanramon.com/menu.php",
+  "mainEntityOfPage": "https://saffrongrillrestaurant.com/menu.php",
   "inLanguage": "en",
   "offers": {
     "@type": "Offer",

@@ -6,8 +6,8 @@ require_once __DIR__ . '/config/config.php';
 
 $pageTitle = 'Catering & Private Events — Saffron Grill · San Ramon';
 $pageDesc = 'Saffron Grill catering services in San Ramon, CA. Custom menus, full-service setups, and premium Indian cuisine for corporate events, weddings, and family parties.';
-$canonicalUrl = 'https://saffrongrillsanramon.com/catering.php';
-$ogImage = 'https://saffrongrillsanramon.com/assets/catering.webp';
+$canonicalUrl = 'https://saffrongrillrestaurant.com/catering.php';
+$ogImage = 'https://saffrongrillrestaurant.com/assets/catering.webp';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 ?>
 <!DOCTYPE html>
@@ -84,7 +84,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "provider": {
     "@type": "Restaurant",
     "name": "Saffron Grill",
-    "image": "https://saffrongrillsanramon.com/assets/story_main.webp",
+    "image": "https://saffrongrillrestaurant.com/assets/story_main.webp",
     "telephone": "+19258463077",
     "priceRange": "$$",
     "address": {

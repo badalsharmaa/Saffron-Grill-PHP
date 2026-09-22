@@ -1,15 +1,26 @@
 <?php
 /**
  * Saffron Grill - Multi-Driver PDO Database Connector & Migration Runner
- * Supports SQLite (Local/Dev) and MySQL (Production)
+ * Supports SQLite (Local/Dev/Production Default) and MySQL (Production Enterprise)
  */
 
 if (!function_exists('load_env')) {
     function load_env($filePath = null) {
         if ($filePath === null) {
-            $filePath = dirname(dirname(__DIR__)) . '/.env';
+            $candidates = [
+                dirname(dirname(__DIR__)) . '/.env',
+                dirname(dirname(__DIR__)) . '/.env.production',
+                dirname(dirname(dirname(__DIR__))) . '/.env',
+                dirname(dirname(dirname(__DIR__))) . '/.env.production',
+            ];
+            foreach ($candidates as $c) {
+                if (file_exists($c)) {
+                    $filePath = $c;
+                    break;
+                }
+            }
         }
-        if (!file_exists($filePath)) {
+        if (!$filePath || !file_exists($filePath)) {
             return;
         }
 
@@ -61,10 +72,14 @@ if (!function_exists('get_db')) {
             ]);
         } else {
             $relPath = getenv('DB_SQLITE_PATH') ?: 'admin/data/saffron_crm.db';
-            $dbFile = dirname(dirname(__DIR__)) . '/' . ltrim($relPath, '/');
+            if (str_starts_with($relPath, '/')) {
+                $dbFile = $relPath;
+            } else {
+                $dbFile = dirname(dirname(__DIR__)) . '/' . ltrim($relPath, '/');
+            }
             $dbDir = dirname($dbFile);
             if (!is_dir($dbDir)) {
-                mkdir($dbDir, 0755, true);
+                @mkdir($dbDir, 0775, true);
             }
             $dsn = 'sqlite:' . $dbFile;
             $pdo = new PDO($dsn, null, null, [

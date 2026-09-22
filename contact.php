@@ -6,8 +6,8 @@ require_once __DIR__ . '/config/config.php';
 
 $pageTitle = 'Contact & Reservations — Saffron Grill · San Ramon';
 $pageDesc = 'Get in touch with Saffron Grill in San Ramon, CA. Find our hours, location, and make table reservations or inquiries online.';
-$canonicalUrl = 'https://saffrongrillsanramon.com/contact.php';
-$ogImage = 'https://saffrongrillsanramon.com/assets/story_main.webp';
+$canonicalUrl = 'https://saffrongrillrestaurant.com/contact.php';
+$ogImage = 'https://saffrongrillrestaurant.com/assets/story_main.webp';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 ?>
 <!DOCTYPE html>
@@ -82,9 +82,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "Saffron Grill",
-  "image": "https://saffrongrillsanramon.com/assets/story_main.webp",
-  "@id": "https://saffrongrillsanramon.com/#restaurant",
-  "url": "https://saffrongrillsanramon.com",
+  "image": "https://saffrongrillrestaurant.com/assets/story_main.webp",
+  "@id": "https://saffrongrillrestaurant.com/#restaurant",
+  "url": "https://saffrongrillrestaurant.com",
   "telephone": "+19258463077",
   "priceRange": "$$",
   "servesCuisine": "Indian",

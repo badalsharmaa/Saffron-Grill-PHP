@@ -11,6 +11,6 @@ return [
     'username' => getenv('SMTP_USER') ?: 'gosaffrongrill@gmail.com',
     'password' => getenv('SMTP_PASS') ?: '',
     'encryption' => getenv('SMTP_SECURE') ?: 'tls',
-    'from_email' => 'no-reply@saffrongrillsanramon.com',
+    'from_email' => 'no-reply@saffrongrillrestaurant.com',
     'from_name' => 'Saffron Grill Notifications',
 ];

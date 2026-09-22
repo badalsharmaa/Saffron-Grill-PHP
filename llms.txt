@@ -3,7 +3,7 @@
 > Saffron Grill is a premier Indian restaurant located in San Ramon, California, serving authentic North and South Indian culinary specialties, daily grand lunch buffets, tandoori grills, and full-service event catering across the San Francisco East Bay / Tri-Valley area.
 
 ## Key Information
-- **Website**: https://saffrongrillsanramon.com
+- **Website**: https://saffrongrillrestaurant.com
 - **Address**: 3191 Crow Canyon Pl, Ste D, San Ramon, CA 94583
 - **Primary Phone**: (925) 846-3077
 - **Secondary Phone**: (925) 369-4696
@@ -28,9 +28,9 @@
 San Ramon, Danville, Dublin, Pleasanton, Blackhawk, Alamo, Livermore, Walnut Creek, and the greater Tri-Valley / East Bay region.
 
 ## Endpoints & Resources
-- Full Knowledge Base: https://saffrongrillsanramon.com/llms-full.txt
-- Machine-Readable API: https://saffrongrillsanramon.com/restaurant-facts.json
-- Menu: https://saffrongrillsanramon.com/menu
-- Buffet: https://saffrongrillsanramon.com/buffet
-- Catering Inquiries: https://saffrongrillsanramon.com/catering
-- Table Reservations: https://saffrongrillsanramon.com/reserve
+- Full Knowledge Base: https://saffrongrillrestaurant.com/llms-full.txt
+- Machine-Readable API: https://saffrongrillrestaurant.com/restaurant-facts.json
+- Menu: https://saffrongrillrestaurant.com/menu
+- Buffet: https://saffrongrillrestaurant.com/buffet
+- Catering Inquiries: https://saffrongrillrestaurant.com/catering
+- Table Reservations: https://saffrongrillrestaurant.com/reserve

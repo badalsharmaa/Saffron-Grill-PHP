@@ -102,8 +102,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@type": "Restaurant",
   "name": "<?= e(APP_NAME) ?>",
   "image": "<?= e($ogImage) ?>",
-  "@id": "https://saffrongrillsanramon.com/#restaurant",
-  "url": "https://saffrongrillsanramon.com",
+  "@id": "https://saffrongrillrestaurant.com/#restaurant",
+  "url": "https://saffrongrillrestaurant.com",
   "telephone": "<?= e(PHONE_TEL) ?>",
   "priceRange": "$$",
   "servesCuisine": ["Indian", "North Indian", "Tandoori", "Vegetarian", "Halal"],
@@ -146,7 +146,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "closes": "22:00"
     }
   ],
-  "menu": "https://saffrongrillsanramon.com/menu",
+  "menu": "https://saffrongrillrestaurant.com/menu",
   "acceptsReservations": "True",
   "sameAs": [
     "https://www.facebook.com/profile.php?id=61590010434038",

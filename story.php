@@ -6,8 +6,8 @@ require_once __DIR__ . '/config/config.php';
 
 $pageTitle = 'Our Story & Philosophy — Saffron Grill · San Ramon';
 $pageDesc = 'Discover the culinary philosophy and rich heritage of Saffron Grill in San Ramon, CA. Learn about our traditional clay tandoor cooking, hand-selected spices, and fresh daily ingredients.';
-$canonicalUrl = 'https://saffrongrillsanramon.com/story.php';
-$ogImage = 'https://saffrongrillsanramon.com/assets/story_main.webp';
+$canonicalUrl = 'https://saffrongrillrestaurant.com/story.php';
+$ogImage = 'https://saffrongrillrestaurant.com/assets/story_main.webp';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 ?>
 <!DOCTYPE html>
@@ -84,7 +84,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "mainEntity": {
     "@type": "Restaurant",
     "name": "Saffron Grill",
-    "image": "https://saffrongrillsanramon.com/assets/story_main.webp",
+    "image": "https://saffrongrillrestaurant.com/assets/story_main.webp",
     "telephone": "+19258463077",
     "address": {
       "@type": "PostalAddress",

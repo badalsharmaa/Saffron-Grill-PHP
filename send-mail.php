@@ -77,7 +77,7 @@ if ($formType === 'table_reservation') {
                 "Special Requests: {$specialRequests}\n" .
                 "Source: " . ($utmSource ?: 'Direct') . "\n";
 
-        @mail($adminEmail, $subject, $body, "From: no-reply@saffrongrillsanramon.com\r\nReply-To: " . ($email ?: $adminEmail));
+        @mail($adminEmail, $subject, $body, "From: no-reply@saffrongrillrestaurant.com\r\nReply-To: " . ($email ?: $adminEmail));
 
         echo json_encode([
             'success' => true,
@@ -147,7 +147,7 @@ if ($formType === 'table_reservation') {
                 "Notes: {$notes}\n" .
                 "Campaign: " . ($utmCampaign ?: 'Direct') . "\n";
 
-        @mail($adminEmail, $subject, $body, "From: no-reply@saffrongrillsanramon.com\r\nReply-To: " . $email);
+        @mail($adminEmail, $subject, $body, "From: no-reply@saffrongrillrestaurant.com\r\nReply-To: " . $email);
 
         echo json_encode([
             'success' => true,

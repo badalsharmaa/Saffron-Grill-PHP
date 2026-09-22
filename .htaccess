@@ -1,10 +1,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # 1. Force HTTPS and canonical non-www domain (for live production)
-    # RewriteCond %{HTTPS} !=on [OR]
-    # RewriteCond %{HTTP_HOST} ^www\. [NC]
-    # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
+    # 1. Force HTTPS and canonical non-www domain
+    RewriteCond %{HTTPS} !=on [OR]
+    RewriteCond %{HTTP_HOST} ^www\.saffrongrillrestaurant\.com$ [NC]
+    RewriteRule ^ https://saffrongrillrestaurant.com%{REQUEST_URI} [R=301,L,NE]
 
     # 2. Whitelist static assets & SEO/AI metadata files
     RewriteCond %{REQUEST_URI} ^/assets/ [OR]
@@ -15,15 +15,13 @@
     RewriteRule ^(\.env|\.git|composer\.(json|lock)|package\.json|.*\.db)$ - [F,L,NC]
     RewriteRule ^(private|cli|tests)/ - [F,L,NC]
 
-    # 4. Map clean extensionless URLs to .php files
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME}\.php -f
-    RewriteRule ^([^/]+)/?$ $1.php [L,QSA]
+    # 4. Explicit routing for /menu clean URL
+    RewriteRule ^menu/?$ menu.php [L,QSA]
 
-    # 5. Universal API clean URL routing fallback
+    # 5. Universal clean URL routing to api/index.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+    RewriteRule ^(.*)$ api/index.php [QSA,L]
 </IfModule>
 
 # Disable directory browsing

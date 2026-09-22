@@ -35,4 +35,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://saffrongrillsanramon.com/sitemap.xml
+Sitemap: https://saffrongrillrestaurant.com/sitemap.xml
