@@ -64,11 +64,16 @@ if (!defined('BASE_URL')) {
     define('BASE_URL', $base);
 }
 
-// Asset helper
+// Asset helper with automatic cache-busting
 if (!function_exists('asset')) {
     function asset($path) {
-        $path = ltrim($path, '/');
-        return '/assets/' . $path;
+        $clean = ltrim($path, '/');
+        $fullPath = __DIR__ . '/../assets/' . $clean;
+        if (!file_exists($fullPath)) {
+            $fullPath = __DIR__ . '/../' . $clean;
+        }
+        $v = file_exists($fullPath) ? filemtime($fullPath) : '1.0';
+        return '/assets/' . $clean . '?v=' . $v;
     }
 }
 

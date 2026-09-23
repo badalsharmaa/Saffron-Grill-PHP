@@ -160,7 +160,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=<?= filemtime(__DIR__ . '/styles.css') ?>" />
 <style>
   /* Custom subpage hero */
   .hero-subpage {
@@ -676,7 +676,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <!-- ============== SCRIPTS ============== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
 <script src="assets/image-slot.js"></script>
-<script src="app.js"></script>
-<script src="popup.js"></script>
+<script src="app.js?v=<?= filemtime(__DIR__ . '/app.js') ?>"></script>
+<script src="popup.js?v=<?= filemtime(__DIR__ . '/popup.js') ?>"></script>
 </body>
 </html>

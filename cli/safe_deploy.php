@@ -98,12 +98,13 @@ chmod 0775 "{$remoteWebRoot}/admin/data"
 chmod 0775 "{$remotePrivateDir}/backups"
 chmod 0775 "{$remotePrivateDir}/logs"
 rm -f "{$remoteWebRoot}/buffet.php"
+rm -f "{$remoteWebRoot}/index.html"
 BASH;
 
 $hardenCmd = "{$sshCmd} " . escapeshellarg($hardenScript);
 $hardenOutput = shell_exec($hardenCmd);
 echo "  ✓ File permissions hardened (chmod 0600 on .env, chmod 0775 on data/)\n";
-echo "  ✓ Deprecated buffet.php removed from remote webroot\n";
+echo "  ✓ Deprecated buffet.php & index.html removed from remote webroot\n";
 
 // Run Remote Schema Migration
 echo "  -> Executing schema migration on server...\n";
