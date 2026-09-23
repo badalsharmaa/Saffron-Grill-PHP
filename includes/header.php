@@ -11,6 +11,7 @@ $pageKeywords = $pageKeywords ?? 'Indian restaurant San Ramon, lunch buffet San 
 $canonicalUrl = $canonicalUrl ?? (BASE_URL . '/' . ltrim($_SERVER['REQUEST_URI'] ?? '', '/'));
 $ogImage = $ogImage ?? (BASE_URL . '/assets/social_image.png');
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
+$gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 $currentStatus = get_restaurant_status();
 ?>
 <!DOCTYPE html>
@@ -87,6 +88,18 @@ $currentStatus = get_restaurant_status();
     }
   })();
 </script>
+
+<?php if (!empty($gaId)): ?>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?= e($gaId) ?>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<?= e($gaId) ?>');
+</script>
+<?php endif; ?>
 
 <?php if (!empty($gtmId)): ?>
 <!-- Google Tag Manager -->

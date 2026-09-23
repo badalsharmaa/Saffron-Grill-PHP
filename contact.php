@@ -9,6 +9,7 @@ $pageDesc = 'Get in touch with Saffron Grill in San Ramon, CA. Find our hours, l
 $canonicalUrl = 'https://saffrongrillrestaurant.com/contact.php';
 $ogImage = 'https://saffrongrillrestaurant.com/assets/social_image.png';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
+$gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,6 +69,18 @@ $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
     }
   })();
 </script>
+
+<?php if (!empty($gaId)): ?>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?= e($gaId) ?>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<?= e($gaId) ?>');
+</script>
+<?php endif; ?>
 
 <?php if (!empty($gtmId)): ?>
 <!-- Google Tag Manager -->
