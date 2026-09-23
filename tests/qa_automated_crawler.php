@@ -71,6 +71,11 @@ function httpReq(string $url, string $method = 'GET', $data = null, array $heade
 
     $body = curl_exec($ch);
     $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    if ($status === 0) {
+        usleep(300000);
+        $body = curl_exec($ch);
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    }
     $finalUrl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
     $err = curl_error($ch);
     curl_close($ch);

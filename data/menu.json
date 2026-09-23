@@ -1,0 +1,1571 @@
+{
+  "restaurant": {
+    "name": "Saffron Grill",
+    "tagline": "Authentic Indian Cuisine · Tradition. Flavor. Excellence.",
+    "address": {
+      "street": "3191 Crow Canyon Pl, Unit D",
+      "city": "San Ramon",
+      "state": "CA",
+      "country": "US"
+    },
+    "phone": [
+      "(925) 369-4696",
+      "(925) 846-3077"
+    ],
+    "email": "gosaffrongrill@gmail.com",
+    "website": "https://saffrongrillrestaurant.com",
+    "ordering_url": "https://order.boons.io/site/saffron-grill/390/y",
+    "hours": {
+      "monday_to_friday": {
+        "lunch": "11:30 AM - 3:00 PM",
+        "dinner": "5:00 PM - 10:00 PM"
+      },
+      "saturday_to_sunday": {
+        "lunch": "12:00 PM - 3:30 PM",
+        "dinner": "5:00 PM - 10:00 PM"
+      }
+    },
+    "dietary_legend": {
+      "GF": "Gluten Free",
+      "V": "Vegan",
+      "N": "Contains Nuts",
+      "DF": "Dairy Free"
+    }
+  },
+  "categories": [
+    {
+      "id": 1,
+      "name": "Salads & Appetizers",
+      "slug": "salads-appetizers",
+      "description": "Crisp chaats, flavorful starters, and traditional street-food inspired delicacies.",
+      "items": [
+        {
+          "id": "sweet-potato-peanut-chaat",
+          "name": "Sweet Potato and Peanut Chaat",
+          "price": 11.99,
+          "description": "Mint and tamarind chutneys, yogurt, gram flour vermicelli",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": true
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free",
+            "Nuts"
+          ]
+        },
+        {
+          "id": "malai-soya-chap",
+          "name": "Malai Soya Chap",
+          "price": 12.99,
+          "description": "Roasted soya chap tossed with mild malai sauce",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian"
+          ]
+        },
+        {
+          "id": "aloo-tikki-chaat",
+          "name": "Aloo Tikki Chaat",
+          "price": 10.99,
+          "description": "Cottage cheese stuffed potato patties served with tamarind, mint, and yogurt",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "lemon-pepper-chicken",
+          "name": "Lemon Pepper Chicken",
+          "price": 13.99,
+          "description": "Tender chicken tossed with zesty lemon, cracked black pepper, and aromatic spices.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Dairy Free",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "three-cheese-asparagus-kabab",
+          "name": "Three Cheese and Asparagus Kabab",
+          "price": 12.99,
+          "description": "Deep fried cottage cheese, mozzarella, cheddar, and asparagus patties",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian"
+          ]
+        },
+        {
+          "id": "five-spice-calamari",
+          "name": "Five Spice Calamari",
+          "price": 12.99,
+          "description": "Crispy calamari seasoned with aromatic five-spice seasoning and served golden and tender.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Seafood",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "potato-peas-samosa",
+          "name": "Potato and Peas Samosa",
+          "price": 8.99,
+          "description": "Crispy pastry filled with spiced potatoes and peas, served with traditional chutneys.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": false,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "fish-amritsari",
+          "name": "Fish Amritsari",
+          "price": 13.99,
+          "description": "Crispy batter-fried basa seasoned with gram flour, carom seeds, cumin, coriander, ginger, and garlic.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Seafood",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "gobi-manchurian",
+          "name": "Gobi Manchurian",
+          "price": 11.99,
+          "description": "Crispy cauliflower tossed in garlic, ginger, green onion, and tangy tomato sauce",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": false,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "tawa-masala-lamb-chops",
+          "name": "Tawa Masala Lamb Chops",
+          "price": 21.99,
+          "description": "Pan fried lamb chop with onion, tomato, ginger, and cilantro",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Tandoor Clay Oven Appetizers",
+      "slug": "tandoor-appetizers",
+      "description": "Marinated meats, seafood, paneer, and veggies roasted over live clay oven flames.",
+      "items": [
+        {
+          "id": "panch-pooran-paneer-tikka",
+          "name": "Panch Pooran Paneer Tikka",
+          "price": 14.99,
+          "description": "Toasted five spice cottage cheese kabab",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "tandoori-chicken",
+          "name": "Tandoori Chicken",
+          "price": 14.99,
+          "pricing": {
+            "half": 14.99,
+            "full": 23.99
+          },
+          "description": "Bone-in chicken marinated in hung yogurt and homemade spices",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "tandoori-gobi",
+          "name": "Tandoori Gobi",
+          "price": 14.99,
+          "description": "Skewer roasted cauliflower with yogurt, cilantro, and cumin",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "cajun-spiced-salmon-tikka",
+          "name": "Cajun Spiced Salmon Tikka",
+          "price": 21.99,
+          "description": "Tender salmon marinated in aromatic Cajun spices, yogurt, and herbs, then roasted to perfection in the tandoor.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Seafood",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "lahori-chicken-tikka",
+          "name": "Lahori Chicken Tikka",
+          "price": 18.99,
+          "description": "Tandoor roasted chicken marinated in yogurt, ginger, garlic, and Lahori spices.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "lal-mirch-shrimp-tikka",
+          "name": "Lal Mirch Shrimp Tikka",
+          "price": 20.99,
+          "description": "Juicy shrimp marinated with red chilies, yogurt, and aromatic spices, then roasted in the tandoor.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Seafood",
+            "Gluten Free",
+            "Spicy"
+          ]
+        },
+        {
+          "id": "banjara-chicken-tikka",
+          "name": "Banjara Chicken Tikka",
+          "price": 18.99,
+          "description": "Boneless chicken thigh marinated in hung yogurt, fresh cilantro mint toasted cumin and crushed black peppercorns",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "kalmi-fish",
+          "name": "Kalmi Fish",
+          "price": 21.99,
+          "description": "Tandoor roasted whole golden pompano fish with chef’s special spices",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Seafood",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "kastoori-malai-tikka",
+          "name": "Kastoori Malai Tikka",
+          "price": 19.99,
+          "description": "Tender chicken marinated in creamy yogurt, aromatic spices, and kasoori methi, then chargrilled to perfection.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Non-Veg Entrées",
+      "slug": "non-veg-entrees",
+      "description": "Slow-cooked curries, rich gravies, and coastal seafood masterpieces.",
+      "items": [
+        {
+          "id": "butter-chicken",
+          "name": "Butter Chicken",
+          "price": 17.99,
+          "description": "Roasted and shredded chicken thigh in creamy tomato sauce",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free",
+            "Popular"
+          ]
+        },
+        {
+          "id": "rogan-josh",
+          "name": "Rogan Josh",
+          "price": 18.99,
+          "description": "Tender slow-braised lamb cooked with aromatic fennel, onions, and traditional Kashmiri spices.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "achari-chicken-curry",
+          "name": "Achari Chicken Curry",
+          "price": 17.99,
+          "description": "Tender chicken thigh pieces cooked with onion, tomato, and pickle spices",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "bunnah-gosht",
+          "name": "Bunnah Gosht",
+          "price": 18.99,
+          "description": "Tender goat slow cooked with caramelized onions, tomatoes, and aromatic spices.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "malai-methi-chicken-korma",
+          "name": "Malai Methi Chicken Korma",
+          "price": 17.99,
+          "description": "Tender chicken thigh pieces cooked in creamy cashew nut and fenugreek sauce",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": true
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free",
+            "Nuts"
+          ]
+        },
+        {
+          "id": "lamb-vindalu",
+          "name": "Lamb Vindalu",
+          "price": 18.99,
+          "description": "Tender lamb simmered in a tangy, spicy vindaloo sauce with aromatic spices.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free",
+            "Dairy Free",
+            "Spicy"
+          ]
+        },
+        {
+          "id": "chicken-tikka-masala",
+          "name": "Chicken Tikka Masala",
+          "price": 17.99,
+          "description": "Tandoor roasted chicken thigh with onion, ginger, garlic, green pepper, and fresh tomato sauce",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free",
+            "Popular"
+          ]
+        },
+        {
+          "id": "nalli-nihari-gosht",
+          "name": "Nalli Nihari Gosht",
+          "price": 22.99,
+          "description": "Slow-cooked lamb shank simmered in a rich, aromatic nihari gravy with traditional spices until tender.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free",
+            "Dairy Free",
+            "Chef Special"
+          ]
+        },
+        {
+          "id": "karavali-shrimp",
+          "name": "Karavali Shrimp",
+          "price": 19.99,
+          "description": "Juicy shrimp cooked in a flavorful coastal-style sauce with aromatic spices and fresh herbs.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Seafood",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "kadhai-fish-masala",
+          "name": "Kadhai Fish Masala",
+          "price": 21.99,
+          "description": "Tender fish cooked with bell peppers, onions, tomatoes, and aromatic kadhai spices.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Seafood",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "kadhai-shrimp-masala",
+          "name": "Kadhai Shrimp Masala",
+          "price": 19.99,
+          "description": "Juicy shrimp cooked with onions, bell peppers, tomatoes, and freshly ground kadhai spices.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Seafood",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "goat-curry",
+          "name": "Goat Curry",
+          "price": 19.99,
+          "description": "Bone-in goat cubes cooked with onion, tomato, and yogurt",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Veg Entrées",
+      "slug": "veg-entrees",
+      "description": "Traditional vegetarian curries, slow-simmered lentils, and artisan paneer dishes.",
+      "items": [
+        {
+          "id": "yellow-dal-tadka",
+          "name": "Yellow Dal Tadka",
+          "price": 14.99,
+          "description": "Yellow lentils tempered with cumin, garlic, and aromatic spices for a comforting and flavorful dish.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "malai-paneer",
+          "name": "Malai Paneer",
+          "price": 15.99,
+          "description": "Cottage cheese cubes in onion and cashew nut creamy sauce",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": true
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free",
+            "Nuts"
+          ]
+        },
+        {
+          "id": "dal-makhni",
+          "name": "Dal Makhni",
+          "price": 16.99,
+          "description": "Black lentils and red kidney beans slow cooked in a creamy tomato based gravy",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free",
+            "Popular"
+          ]
+        },
+        {
+          "id": "paneer-lababdar",
+          "name": "Paneer Lababdar",
+          "price": 15.99,
+          "description": "Cottage cheese cubes simmered in a rich, creamy tomato gravy with aromatic spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "peshawari-chana",
+          "name": "Peshawari Chana",
+          "price": 15.99,
+          "description": "Chickpeas slow cooked with tomatoes, onions, and aromatic Peshawari spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "kadhai-paneer",
+          "name": "Kadhai Paneer",
+          "price": 15.99,
+          "description": "Cottage cheese cooked with bell peppers, onions, tomatoes, and freshly ground kadhai spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "dumpukht-gobi",
+          "name": "Dumpukht Gobi",
+          "price": 16.99,
+          "description": "Cauliflower slow-cooked in a rich, aromatic masala for deep and flavorful taste.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "palak-paneer",
+          "name": "Palak Paneer",
+          "price": 15.99,
+          "description": "Cottage cheese cubes in spinach and garlic",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "badami-baingan",
+          "name": "Badami Baingan",
+          "price": 16.99,
+          "description": "Tender eggplant cooked in a rich almond-based gravy with aromatic spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": true
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free",
+            "Nuts"
+          ]
+        },
+        {
+          "id": "baingan-bharta",
+          "name": "Baingan Bharta",
+          "price": 15.99,
+          "description": "Fire roasted eggplant with onion, tomato, and homemade spices",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "masaledar-bhindi",
+          "name": "Masaledar Bhindi",
+          "price": 14.99,
+          "description": "Fresh okra sautéed with caramelized onion, tangy tomato, ginger, and garlic",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "mushroom-amchuri",
+          "name": "Mushroom Amchuri",
+          "price": 15.99,
+          "description": "Button mushrooms sautéed with caramelized onion, cumin, green chili, ginger, and amchur spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "panchratan-veg-korma",
+          "name": "Panchratan Veg Korma",
+          "price": 15.99,
+          "description": "A rich medley of vegetables simmered in a creamy, aromatic korma sauce with traditional Indian spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "corn-saag",
+          "name": "Corn Saag",
+          "price": 13.99,
+          "description": "Sweet corn simmered with creamy spinach, garlic, and aromatic Indian spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Sides",
+      "slug": "sides",
+      "description": "Refreshing raitas, crisp salads, and crunchy wafers.",
+      "items": [
+        {
+          "id": "plain-yogurt-8oz",
+          "name": "Plain Yogurt (8oz)",
+          "price": 3.99,
+          "description": "Cool and creamy plain yogurt, perfect alongside spicy dishes.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "green-salad",
+          "name": "Green Salad (Tomato, Onion, Cucumber)",
+          "price": 6.99,
+          "description": "Freshly sliced tomato, onion, and cucumber served crisp and refreshing.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "cucumber-mint-raita-8oz",
+          "name": "Cucumber, Mint Raita (8oz)",
+          "price": 4.99,
+          "description": "Creamy yogurt blended with refreshing cucumber, mint, and aromatic spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "papad-3-pcs",
+          "name": "Papad (3 pcs)",
+          "price": 3.99,
+          "description": "Crisp, thin lentil wafers, lightly roasted or fried for a crunchy accompaniment.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Desserts",
+      "slug": "desserts",
+      "description": "Authentic Indian sweets, halwas, kheer, and artisanal delicacies.",
+      "items": [
+        {
+          "id": "rasmalai",
+          "name": "Rasmalai",
+          "price": 6.99,
+          "description": "Soft cottage cheese dumplings soaked in sweet, creamy saffron milk.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free",
+            "Dessert"
+          ]
+        },
+        {
+          "id": "gajar-ka-halwa",
+          "name": "Gajar Ka Halwa",
+          "price": 8.99,
+          "description": "Slow-cooked carrots simmered with milk, sugar, and cardamom, finished with nuts.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": true
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free",
+            "Nuts",
+            "Dessert"
+          ]
+        },
+        {
+          "id": "gulab-jamun",
+          "name": "Gulab Jamun",
+          "price": 6.99,
+          "description": "Soft milk dumplings soaked in warm, fragrant sugar syrup.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Dessert"
+          ]
+        },
+        {
+          "id": "lychee-panna-cotta",
+          "name": "Lychee Panna Cotta",
+          "price": 8.99,
+          "description": "Silky panna cotta infused with refreshing lychee and delicate floral notes.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free",
+            "Dessert"
+          ]
+        },
+        {
+          "id": "moong-dal-halwa",
+          "name": "Moong Dal Halwa",
+          "price": 8.99,
+          "description": "Rich and indulgent moong lentil pudding slow cooked with ghee, sugar, and aromatic spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free",
+            "Dessert"
+          ]
+        },
+        {
+          "id": "falooda-ice-cream",
+          "name": "Falooda Ice Cream",
+          "price": 8.99,
+          "description": "Creamy ice cream layered with sweet falooda, fragrant rose syrup, and refreshing toppings.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Dessert"
+          ]
+        },
+        {
+          "id": "kesari-rice-kheer",
+          "name": "Kesari Rice Kheer",
+          "price": 6.99,
+          "description": "Creamy rice pudding infused with saffron, cardamom, and delicate sweetness.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free",
+            "Dessert"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Drinks",
+      "slug": "drinks",
+      "description": "Traditional lassis, spiced chai, herbal refreshments, and chilled beverages.",
+      "items": [
+        {
+          "id": "mango-lassi",
+          "name": "Mango Lassi",
+          "price": 6.99,
+          "description": "Creamy yogurt blended with ripe mango for a refreshing and naturally sweet drink.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free",
+            "Beverage"
+          ]
+        },
+        {
+          "id": "chai",
+          "name": "Chai",
+          "price": 2.99,
+          "description": "Traditional Indian tea brewed with milk and aromatic spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free",
+            "Hot Beverage"
+          ]
+        },
+        {
+          "id": "sweet-lassi",
+          "name": "Sweet Lassi",
+          "price": 5.99,
+          "description": "Smooth, creamy yogurt drink lightly sweetened for a refreshing finish.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free",
+            "Beverage"
+          ]
+        },
+        {
+          "id": "coke",
+          "name": "Coke",
+          "price": 2.99,
+          "description": "Chilled classic Coca-Cola.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free",
+            "Soda"
+          ]
+        },
+        {
+          "id": "diet-coke",
+          "name": "Diet Coke",
+          "price": 2.99,
+          "description": "Zero calorie Diet Coke.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free",
+            "Soda"
+          ]
+        },
+        {
+          "id": "fresh-lime-soda",
+          "name": "Fresh Lime Soda",
+          "price": 7.99,
+          "description": "Refreshing lime juice blended with chilled soda for a zesty, sparkling drink.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free",
+            "Specialty Drink"
+          ]
+        },
+        {
+          "id": "sprite",
+          "name": "Sprite",
+          "price": 2.99,
+          "description": "Crisp, refreshing lemon-lime sparkling soda.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free",
+            "Soda"
+          ]
+        },
+        {
+          "id": "thums-up-limca",
+          "name": "Thums Up / Limca",
+          "price": 2.99,
+          "description": "Popular Indian bottled sodas — bold spiced Thums Up or zesty cloudy lemon Limca.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free",
+            "Indian Specialty"
+          ]
+        },
+        {
+          "id": "rose-sharbat",
+          "name": "Rose Sharbat",
+          "price": 7.99,
+          "description": "Refreshing rose-flavored drink with delicate floral sweetness.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free",
+            "Specialty Drink"
+          ]
+        },
+        {
+          "id": "coke-zero",
+          "name": "Coke Zero",
+          "price": 2.99,
+          "description": "Zero sugar Coca-Cola.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free",
+            "Soda"
+          ]
+        },
+        {
+          "id": "lemonade",
+          "name": "Lemonade",
+          "price": 2.99,
+          "description": "Refreshing sweetened chilled lemonade.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free",
+            "Beverage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Rice & Biryani",
+      "slug": "rice-biryani",
+      "description": "Fragrant slow-dum cooked basmati rice layered with herbs and spices.",
+      "items": [
+        {
+          "id": "saffron-basmati-rice",
+          "name": "Saffron Basmati Rice",
+          "price": 6.99,
+          "description": "Fragrant basmati rice delicately infused with saffron and aromatic spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "chicken-dum-biryani",
+          "name": "Chicken Dum Biryani",
+          "price": 17.99,
+          "description": "Fragrant basmati rice layered with tender chicken, herbs, and aromatic spices, slow cooked to perfection.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free",
+            "Popular"
+          ]
+        },
+        {
+          "id": "haryali-subz-pulao",
+          "name": "Haryali Subz Pulao",
+          "price": 12.99,
+          "description": "Fragrant basmati rice cooked with fresh vegetables, herbs, and aromatic spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": true,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Gluten Free",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "goat-dum-biryani",
+          "name": "Goat Dum Biryani",
+          "price": 19.99,
+          "description": "Fragrant basmati rice layered with tender goat, herbs, and aromatic spices, slow cooked to perfection.",
+          "dietary": {
+            "vegetarian": false,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Non-Vegetarian",
+            "Gluten Free"
+          ]
+        },
+        {
+          "id": "vegetable-dum-biryani",
+          "name": "Vegetable Dum Biryani",
+          "price": 15.99,
+          "description": "Fragrant basmati rice layered with seasoned vegetables and aromatic spices, slow cooked to perfection.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": true,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Gluten Free"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Breads from Tandoor",
+      "slug": "breads-from-tandoor",
+      "description": "Fresh artisan flatbreads, stuffed kulchas, and naans baked inside the clay tandoor.",
+      "items": [
+        {
+          "id": "plain-naan",
+          "name": "Plain Naan",
+          "price": 3.99,
+          "description": "Soft and fluffy traditional naan baked fresh in the tandoor.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian"
+          ]
+        },
+        {
+          "id": "lacha-paratha",
+          "name": "Lacha Paratha",
+          "price": 6.99,
+          "description": "Flaky, layered Indian flatbread baked to golden perfection.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian"
+          ]
+        },
+        {
+          "id": "tandoori-roti",
+          "name": "Tandoori Roti",
+          "price": 3.99,
+          "description": "Whole wheat flatbread freshly baked in the tandoor.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": true,
+            "gluten_free": false,
+            "dairy_free": true,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Vegan",
+            "Dairy Free"
+          ]
+        },
+        {
+          "id": "stuffed-potato-kulcha",
+          "name": "Stuffed Potato Kulcha",
+          "price": 6.99,
+          "description": "Tandoor-baked leavened bread stuffed with seasoned potatoes and aromatic spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian"
+          ]
+        },
+        {
+          "id": "garlic-naan",
+          "name": "Garlic Naan",
+          "price": 4.99,
+          "description": "Soft tandoor-baked naan topped with fragrant garlic and herbs.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Popular"
+          ]
+        },
+        {
+          "id": "stuffed-onion-cilantro-kulcha",
+          "name": "Stuffed Onion Cilantro Kulcha",
+          "price": 6.99,
+          "description": "Tandoor-baked kulcha stuffed with flavorful onion, fresh cilantro, and aromatic spices.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian"
+          ]
+        },
+        {
+          "id": "garlic-pesto-naan",
+          "name": "Garlic Pesto Naan",
+          "price": 5.99,
+          "description": "Soft naan topped with aromatic garlic and flavorful pesto, baked in the tandoor.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian"
+          ]
+        },
+        {
+          "id": "stuffed-cheese-kulcha",
+          "name": "Stuffed Cheese Kulcha",
+          "price": 7.99,
+          "description": "Soft tandoor-baked kulcha generously stuffed with melted cheese.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian"
+          ]
+        },
+        {
+          "id": "butter-naan",
+          "name": "Butter Naan",
+          "price": 7.99,
+          "description": "Soft, fluffy naan brushed generously with melted butter.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian"
+          ]
+        },
+        {
+          "id": "bread-basket",
+          "name": "Bread Basket",
+          "price": 14.99,
+          "description": "Assortment of freshly baked Indian breads, perfect for sharing.",
+          "dietary": {
+            "vegetarian": true,
+            "vegan": false,
+            "gluten_free": false,
+            "dairy_free": false,
+            "nuts": false
+          },
+          "tags": [
+            "Vegetarian",
+            "Popular"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -252,153 +252,440 @@
   /* ---------- menu ---------- */
   var MENU = [
     ["Salads &amp; Appetizers", [
-      ["Amritsari Fish", "$12.99", "Crispy batter fried basa with gram flour, carom seeds, cumin, ginger, and garlic"],
-      ["Gobi Manchurian", "$10.99", "Crispy cauliflower tossed in garlic, ginger, green onion, and tangy tomato sauce"],
-      ["Potato and Peas Samosa", "$8.99", "Cumin flavored potato and peas filled in flaky pastry"]
+      ["Sweet Potato and Peanut Chaat", ".99", "Mint and tamarind chutneys, yogurt, gram flour vermicelli"],
+      ["Fish Amritsari", ".99", "Crispy batter-fried basa seasoned with gram flour, carom seeds, cumin, coriander, ginger, and garlic."],
+      ["Potato and Peas Samosa", ".99", "Crispy pastry filled with spiced potatoes and peas, served with traditional chutneys."]
     ]],
     ["Tandoor Clay Oven", [
-      ["Panch Pooran Paneer Tikka", "$14.99", "Toasted five spice cottage cheese kabab"],
-      ["Lemongrass Chicken Tikka", "$17.99", "Boneless chicken breast marinated in mild creamy sauce and lemongrass flavor"],
-      ["Mustard Shrimp", "$19.99", "Jumbo shrimp marinated in yogurt, mustard, ginger, and garlic"]
+      ["Panch Pooran Paneer Tikka", ".99", "Toasted five spice cottage cheese kabab"],
+      ["Tandoori Chicken", ".99 / .99", "Bone-in chicken marinated in hung yogurt and homemade spices"],
+      ["Lahori Chicken Tikka", ".99", "Tandoor roasted chicken marinated in yogurt, ginger, garlic, and Lahori spices."]
     ]],
     ["Vegetable Entrees", [
-      ["Palak Paneer", "$13.99", "Cottage cheese cubes in spinach and garlic"],
-      ["Dal Makhni", "$14.99", "Black lentils and red kidney beans slow cooked in a creamy tomato-based gravy"],
-      ["Kadhi Paneer", "$13.99", "Cottage cheese cubes cooked with onion, bell peppers, cumin, and coriander seeds"]
+      ["Palak Paneer", ".99", "Cottage cheese cubes in spinach and garlic"],
+      ["Dal Makhni", ".99", "Black lentils and red kidney beans slow cooked in a creamy tomato based gravy"],
+      ["Paneer Lababdar", ".99", "Cottage cheese cubes simmered in a rich, creamy tomato gravy with aromatic spices."]
     ]],
     ["Non-Vegetarian Entrees", [
-      ["Butter Chicken", "$15.99", "Roasted and shredded chicken thigh in creamy tomato sauce"],
-      ["Chicken Tikka Masala", "$16.99", "Tandoor roasted chicken thigh with onion, ginger, garlic, green pepper, and fresh tomato sauce"],
-      ["Lamb Rogan Josh", "$17.99", "Tender slow-braised lamb chunks with fennel seeds, brown onion, and fresh tomato sauce"]
+      ["Butter Chicken", ".99", "Roasted and shredded chicken thigh in creamy tomato sauce"],
+      ["Chicken Tikka Masala", ".99", "Tandoor roasted chicken thigh with onion, ginger, garlic, green pepper, and fresh tomato sauce"],
+      ["Rogan Josh", ".99", "Tender slow-braised lamb cooked with aromatic fennel, onions, and traditional Kashmiri spices."]
     ]],
     ["Rice &amp; Biryani", [
-      ["Chicken Biryani", "$16.99", "Boneless chicken thigh pieces blended with aromatic sauce and cooked with aged basmati rice"],
-      ["Mutton (Goat) Biryani", "$18.99", "Traditionally spiced bone-in mutton with saffron-scented basmati rice, slow steamed to perfection"],
-      ["Vegetable Biryani", "$14.99", "Aged basmati rice cooked with spices and seasonal vegetables"]
+      ["Chicken Dum Biryani", ".99", "Fragrant basmati rice layered with tender chicken, herbs, and aromatic spices, slow cooked to perfection."],
+      ["Goat Dum Biryani", ".99", "Fragrant basmati rice layered with tender goat, herbs, and aromatic spices, slow cooked to perfection."],
+      ["Saffron Basmati Rice", ".99", "Fragrant basmati rice delicately infused with saffron and aromatic spices."]
     ]],
     ["Breads From Tandoor", [
-      ["Garlic Naan", "$4.99", "All-purpose flour bread with garlic and cilantro"],
-      ["Plain Naan", "$3.99", "All-purpose flour bread"],
-      ["Pesto Naan", "$5.99", "Naan topped with pesto"]
+      ["Garlic Naan", ".99", "Soft tandoor-baked naan topped with fragrant garlic and herbs."],
+      ["Plain Naan", ".99", "Soft and fluffy traditional naan baked fresh in the tandoor."],
+      ["Garlic Pesto Naan", ".99", "Soft naan topped with aromatic garlic and flavorful pesto, baked in the tandoor."]
     ]],
     ["Desserts &amp; Sides", [
-      ["Gulab Jamun", "$7.99", "Soft golden brown sweet milk dumplings"],
-      ["Rasmalai", "$5.99", "Velvety cottage cheese discs poached in delicate sweetened saffron milk"],
-      ["Gajjar Halwa", "$7.99", "Decadent carrot pudding with sweetened milk, clarified butter, cardamom, and nuts"]
+      ["Rasmalai", ".99", "Soft cottage cheese dumplings soaked in sweet, creamy saffron milk."],
+      ["Gulab Jamun", ".99", "Soft milk dumplings soaked in warm, fragrant sugar syrup."],
+      ["Gajar Ka Halwa", ".99", "Slow-cooked carrots simmered with milk, sugar, and cardamom, finished with nuts."]
     ]],
     ["Drinks", [
-      ["Mango Lassi", "$5.99", "Mango-flavored yogurt drink"],
-      ["Chai", "$2.99", "Indian spiced tea"],
-      ["Strawberry Lassi", "$5.99", "Strawberry-flavored yogurt drink"]
+      ["Mango Lassi", ".99", "Creamy yogurt blended with ripe mango for a refreshing and naturally sweet drink."],
+      ["Sweet Lassi", ".99", "Smooth, creamy yogurt drink lightly sweetened for a refreshing finish."],
+      ["Chai", ".99", "Traditional Indian tea brewed with milk and aromatic spices."]
     ]]
   ];
+
   /* ---------- menu tags mapping ---------- */
   var ITEM_TAGS = {
-    "amritsari fish": ["nonveg"],
-    "salt and pepper calamari": ["nonveg"],
-    "ginger crab": ["nonveg"],
-    "nimbu chicken": ["nonveg"],
-    "malai soya chop": ["veg"],
-    "three cheese and asparagus kabab": ["nonveg"],
-    "tofu and sago kabab": ["veg", "spice"],
-    "aloo tikki chaat": ["veg"],
-    "roasted sweet potato and peanut chaat": ["veg"],
-    "gobi manchurian": ["veg", "spice"],
-    "cauliflower kurchan": ["veg"],
-    "potato and peas samosa": ["veg"],
-    "arugula salad": ["veg"],
-    "panch pooran paneer tikka": ["nonveg"],
-    "tandoori cauliflower": ["veg"],
-    "lemongrass chicken tikka": ["nonveg"],
-    "tandoori chicken (full)": ["nonveg"],
-    "tawa masala chap": ["nonveg"],
-    "apricot and walnut chicken kabab": ["nonveg"],
-    "lime and olive oil salmon": ["nonveg"],
-    "kalmi fish": ["nonveg"],
-    "mustard shrimp": ["nonveg"],
-    "tandoori chicken (half)": ["nonveg"],
-    "trio of chicken": ["nonveg"],
-    "banjara chicken tikka": ["nonveg"],
-    "anari (pomegranate) chicken tikka": ["nonveg"],
-    "yellow dal palak": ["veg"],
-    "palak paneer": ["veg"],
-    "chana masala": ["veg"],
-    "mushroom amchuri": ["veg", "spice"],
-    "mirch or baingan ka salan": ["veg", "spice"],
-    "masaledar bhindi": ["veg"],
-    "baingan bhartha": ["veg"],
-    "subz korma": ["veg"],
-    "subz malabar": ["veg"],
-    "handi subz": ["veg"],
-    "gobi musallam": ["veg"],
-    "sun dried tomato kofta": ["veg"],
-    "kadhi paneer": ["veg", "spice"],
-    "malai paneer": ["veg"],
-    "dal makhni": ["veg"],
-    "karavali shrimp": ["nonveg"],
-    "butter chicken": ["nonveg"],
-    "bombay fish masala": ["nonveg", "spice"],
-    "kolhapuri chicken curry": ["nonveg", "spice"],
-    "achari chicken curry": ["nonveg", "spice"],
-    "malai methi chicken korma": ["nonveg"],
-    "chicken tikka masala": ["nonveg"],
-    "kadhi chicken": ["nonveg", "spice"],
-    "lamb rogan josh": ["nonveg", "spice"],
-    "rara gosht": ["nonveg"],
-    "lamb vindaloo": ["nonveg", "spice"],
-    "nalli nihari gosht": ["nonveg"],
-    "mutton (goat) curry": ["nonveg", "spice"],
-    "shrimp ambotik": ["nonveg", "spice"],
-    "basmati rice": ["veg"],
-    "tarkari pulao": ["veg"],
-    "vegetable biryani": ["veg"],
-    "chicken biryani": ["nonveg"],
-    "lamb biryani": ["nonveg"],
-    "mutton (goat) biryani": ["nonveg", "spice"],
-    "pesto naan": ["veg"],
-    "bread basket": ["veg"],
-    "paratha": ["veg"],
-    "stuffed naan": ["veg"],
-    "garlic naan": ["veg"],
-    "roti": ["veg"],
-    "plain naan": ["veg"],
-    "butter naan": ["veg"],
-    "gulab jamun": ["veg"],
-    "rasmalai": ["veg"],
-    "moong dal halwa": ["veg"],
-    "ginger brulee": ["veg"],
-    "lychee panna cotta": ["veg"],
-    "gajjar halwa": ["veg"],
-    "plain yogurt": ["veg"],
-    "raita": ["veg"],
-    "green salad": ["veg"],
-    "papad": ["veg"],
-    "mango lassi": ["veg"],
-    "strawberry lassi": ["veg"],
-    "chai": ["veg"],
-    "soda": [],
-    "iced tea": ["veg"]
-  };
+    "sweet potato and peanut chaat": [
+        "veg",
+        "gf",
+        "nuts"
+    ],
+    "malai soya chap": [
+        "veg"
+    ],
+    "aloo tikki chaat": [
+        "veg",
+        "gf"
+    ],
+    "lemon pepper chicken": [
+        "nonveg",
+        "gf",
+        "df"
+    ],
+    "three cheese and asparagus kabab": [
+        "veg"
+    ],
+    "five spice calamari": [
+        "nonveg",
+        "df"
+    ],
+    "potato and peas samosa": [
+        "vegan",
+        "df"
+    ],
+    "fish amritsari": [
+        "nonveg",
+        "gf",
+        "df"
+    ],
+    "gobi manchurian": [
+        "vegan",
+        "df"
+    ],
+    "tawa masala lamb chops": [
+        "nonveg",
+        "gf",
+        "df"
+    ],
+    "panch pooran paneer tikka": [
+        "veg",
+        "gf"
+    ],
+    "tandoori chicken": [
+        "nonveg",
+        "gf"
+    ],
+    "tandoori chicken (half)": [
+        "nonveg",
+        "gf"
+    ],
+    "tandoori chicken (full)": [
+        "nonveg",
+        "gf"
+    ],
+    "tandoori gobi": [
+        "veg",
+        "gf"
+    ],
+    "cajun spiced salmon tikka": [
+        "nonveg",
+        "gf"
+    ],
+    "lahori chicken tikka": [
+        "nonveg",
+        "gf"
+    ],
+    "lal mirch shrimp tikka": [
+        "nonveg",
+        "gf",
+        "spice"
+    ],
+    "banjara chicken tikka": [
+        "nonveg",
+        "gf"
+    ],
+    "kalmi fish": [
+        "nonveg",
+        "gf",
+        "df"
+    ],
+    "kastoori malai tikka": [
+        "nonveg",
+        "gf"
+    ],
+    "butter chicken": [
+        "nonveg",
+        "gf",
+        "popular"
+    ],
+    "rogan josh": [
+        "nonveg",
+        "gf",
+        "df"
+    ],
+    "achari chicken curry": [
+        "nonveg",
+        "gf",
+        "df"
+    ],
+    "bunnah gosht": [
+        "nonveg",
+        "gf",
+        "df"
+    ],
+    "malai methi chicken korma": [
+        "nonveg",
+        "gf",
+        "nuts"
+    ],
+    "lamb vindalu": [
+        "nonveg",
+        "gf",
+        "df",
+        "spice"
+    ],
+    "chicken tikka masala": [
+        "nonveg",
+        "gf",
+        "popular"
+    ],
+    "nalli nihari gosht": [
+        "nonveg",
+        "gf",
+        "df"
+    ],
+    "karavali shrimp": [
+        "nonveg",
+        "gf",
+        "df"
+    ],
+    "kadhai fish masala": [
+        "nonveg",
+        "gf",
+        "df"
+    ],
+    "kadhai shrimp masala": [
+        "nonveg",
+        "gf",
+        "df"
+    ],
+    "goat curry": [
+        "nonveg",
+        "gf"
+    ],
+    "yellow dal tadka": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "malai paneer": [
+        "veg",
+        "gf",
+        "nuts"
+    ],
+    "dal makhni": [
+        "veg",
+        "gf",
+        "popular"
+    ],
+    "paneer lababdar": [
+        "veg",
+        "gf"
+    ],
+    "peshawari chana": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "kadhai paneer": [
+        "veg",
+        "gf"
+    ],
+    "dumpukht gobi": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "palak paneer": [
+        "veg",
+        "gf"
+    ],
+    "badami baingan": [
+        "vegan",
+        "gf",
+        "nuts",
+        "df"
+    ],
+    "baingan bharta": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "masaledar bhindi": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "mushroom amchuri": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "panchratan veg korma": [
+        "veg",
+        "gf"
+    ],
+    "corn saag": [
+        "veg",
+        "gf"
+    ],
+    "plain yogurt (8oz)": [
+        "veg",
+        "gf"
+    ],
+    "green salad (tomato, onion, cucumber)": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "cucumber, mint raita (8oz)": [
+        "veg",
+        "gf"
+    ],
+    "papad (3 pcs)": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "rasmalai": [
+        "veg",
+        "gf"
+    ],
+    "gajar ka halwa": [
+        "veg",
+        "gf",
+        "nuts"
+    ],
+    "gulab jamun": [
+        "veg"
+    ],
+    "lychee panna cotta": [
+        "veg",
+        "gf"
+    ],
+    "moong dal halwa": [
+        "veg",
+        "gf"
+    ],
+    "falooda ice cream": [
+        "veg"
+    ],
+    "kesari rice kheer": [
+        "veg",
+        "gf"
+    ],
+    "mango lassi": [
+        "veg",
+        "gf"
+    ],
+    "chai": [
+        "veg",
+        "gf"
+    ],
+    "sweet lassi": [
+        "veg",
+        "gf"
+    ],
+    "coke": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "diet coke": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "fresh lime soda": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "sprite": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "thums up / limca": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "rose sharbat": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "coke zero": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "lemonade": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "saffron basmati rice": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "chicken dum biryani": [
+        "nonveg",
+        "gf",
+        "popular"
+    ],
+    "haryali subz pulao": [
+        "vegan",
+        "gf",
+        "df"
+    ],
+    "goat dum biryani": [
+        "nonveg",
+        "gf"
+    ],
+    "vegetable dum biryani": [
+        "veg",
+        "gf"
+    ],
+    "plain naan": [
+        "veg"
+    ],
+    "lacha paratha": [
+        "veg"
+    ],
+    "tandoori roti": [
+        "vegan",
+        "df"
+    ],
+    "stuffed potato kulcha": [
+        "veg"
+    ],
+    "garlic naan": [
+        "veg",
+        "popular"
+    ],
+    "stuffed onion cilantro kulcha": [
+        "veg"
+    ],
+    "garlic pesto naan": [
+        "veg"
+    ],
+    "stuffed cheese kulcha": [
+        "veg"
+    ],
+    "butter naan": [
+        "veg"
+    ],
+    "bread basket": [
+        "veg",
+        "popular"
+    ]
+};
 
   function renderTags(tags) {
     if (!tags) return "";
     return tags.map(function (t) {
+      if (t === "vegan") return '<span class="tag tag-vegan">Vegan</span>';
       if (t === "veg") return '<span class="tag tag-veg">Veg</span>';
       if (t === "nonveg") return '<span class="tag tag-nonveg">Non-Veg</span>';
+      if (t === "gf") return '<span class="tag tag-gf">GF</span>';
+      if (t === "nuts") return '<span class="tag tag-nuts">Nuts</span>';
       if (t === "spice") return '<span class="tag tag-spice">Spicy</span>';
       return "";
     }).join("");
   }
 
   var HIGHLIGHT_NAMES = [
-    "amritsari fish", "gobi manchurian", "potato and peas samosa",
-    "panch pooran paneer tikka", "lemongrass chicken tikka", "mustard shrimp",
-    "palak paneer", "dal makhni", "kadhai paneer", "kadhi paneer", "kadhi chicken", "kadhai chicken",
-    "butter chicken", "chicken tikka masala", "lamb rogan josh",
-    "chicken biryani", "mutton (goat) biryani", "vegetable biryani",
-    "garlic naan", "plain naan", "pesto naan",
-    "gulab jamun", "rasmalai", "gajjar halwa", "gajar ka halwa",
-    "mango lassi", "chai", "strawberry lassi"
+    "fish amritsari", "gobi manchurian", "potato and peas samosa", "sweet potato and peanut chaat",
+    "panch pooran paneer tikka", "tandoori chicken", "lahori chicken tikka", "lal mirch shrimp tikka",
+    "palak paneer", "dal makhni", "kadhai paneer", "yellow dal tadka", "paneer lababdar",
+    "butter chicken", "chicken tikka masala", "rogan josh", "nalli nihari gosht", "karavali shrimp",
+    "chicken dum biryani", "goat dum biryani", "vegetable dum biryani", "saffron basmati rice",
+    "garlic naan", "plain naan", "garlic pesto naan", "butter naan", "bread basket",
+    "gulab jamun", "rasmalai", "gajar ka halwa", "moong dal halwa",
+    "mango lassi", "chai", "fresh lime soda", "sweet lassi"
   ];
 
   var HIGHLIGHT_CAT_MAP = {

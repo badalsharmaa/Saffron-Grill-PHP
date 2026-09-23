@@ -923,6 +923,10 @@ image-slot { width: 100%; height: auto; box-shadow: var(--shadow-soft); }
 .tag-veg { color: #2f7d3a; border: 1px solid #2f7d3a; }
 .tag-nonveg { color: var(--crimson); border: 1px solid var(--crimson); }
 .tag-spice { color: var(--gold-dp); border: 1px solid var(--gold-dp); }
+.tag-vegan { color: #10b981; border: 1px solid #10b981; }
+.tag-gf { color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.6); }
+.tag-nuts { color: #d97706; border: 1px solid rgba(217, 119, 6, 0.6); }
+.tag-df { color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.6); }
 .dish p { font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); margin-top: 10px; }
 
 /* =========================================================

@@ -265,63 +265,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Salads & Appetizers</h3>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Amritsari Fish <span class="tag tag-nonveg">Non-Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$12.99</span>
-          </div>
-          <div class="desc">Crispy batter fried basa with gram flour, carom seeds, cumin, coriander, ginger, and garlic</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Salt and Pepper Calamari <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Sweet Potato and Peanut Chaat <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span> <span class="tag tag-nuts">Nuts</span></span>
             <span class="leader"></span>
             <span class="price">$11.99</span>
           </div>
-          <div class="desc">Deep fried calamari with salt and pepper</div>
+          <div class="desc">Mint and tamarind chutneys, yogurt, gram flour vermicelli</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Ginger Crab <span class="tag tag-nonveg">Non-Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$13.99</span>
-          </div>
-          <div class="desc">Blue crab meat with onion, ginger, and coconut milk</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Nimbu Chicken <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Malai Soya Chap <span class="tag tag-veg">Veg</span></span>
             <span class="leader"></span>
             <span class="price">$12.99</span>
           </div>
-          <div class="desc">Roasted chicken breast with ginger and fresh lime juice</div>
+          <div class="desc">Roasted soya chap tossed with mild malai sauce</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Malai Soya Chop <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$11.99</span>
-          </div>
-          <div class="desc">Roasted soya chop tossed with mild malai sauce</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Three Cheese and Asparagus Kabab <span class="tag tag-nonveg">Non-Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$10.99</span>
-          </div>
-          <div class="desc">Deep fried cottage cheese, mozzarella, cheddar, and asparagus patties</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Tofu and Sago Kabab <span class="tag tag-veg">Veg</span> <span class="tag tag-spice">Spicy</span></span>
-            <span class="leader"></span>
-            <span class="price">$10.99</span>
-          </div>
-          <div class="desc">Deep fried tofu, sago, royal cumin, and green chili patties</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Aloo Tikki Chaat <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Aloo Tikki Chaat <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
             <span class="price">$10.99</span>
           </div>
@@ -329,43 +289,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Roasted Sweet Potato and Peanut Chaat <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Lemon Pepper Chicken <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$10.99</span>
+            <span class="price">$13.99</span>
           </div>
-          <div class="desc">Mint and tamarind chutneys, yogurt, gram flour vermicelli</div>
+          <div class="desc">Tender chicken tossed with zesty lemon, cracked black pepper, and aromatic spices.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Gobi Manchurian <span class="tag tag-veg">Veg</span> <span class="tag tag-spice">Spicy</span></span>
+            <span class="name">Three Cheese and Asparagus Kabab <span class="tag tag-veg">Veg</span></span>
             <span class="leader"></span>
-            <span class="price">$10.99</span>
+            <span class="price">$12.99</span>
+          </div>
+          <div class="desc">Deep fried cottage cheese, mozzarella, cheddar, and asparagus patties</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Five Spice Calamari <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="leader"></span>
+            <span class="price">$12.99</span>
+          </div>
+          <div class="desc">Crispy calamari seasoned with aromatic five-spice seasoning and served golden and tender.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Potato and Peas Samosa <span class="tag tag-vegan">Vegan</span></span>
+            <span class="leader"></span>
+            <span class="price">$8.99</span>
+          </div>
+          <div class="desc">Crispy pastry filled with spiced potatoes and peas, served with traditional chutneys.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Fish Amritsari <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$13.99</span>
+          </div>
+          <div class="desc">Crispy batter-fried basa seasoned with gram flour, carom seeds, cumin, coriander, ginger, and garlic.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Gobi Manchurian <span class="tag tag-vegan">Vegan</span></span>
+            <span class="leader"></span>
+            <span class="price">$11.99</span>
           </div>
           <div class="desc">Crispy cauliflower tossed in garlic, ginger, green onion, and tangy tomato sauce</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Cauliflower Kurchan <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Tawa Masala Lamb Chops <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$10.99</span>
+            <span class="price">$21.99</span>
           </div>
-          <div class="desc">Crispy cauliflower tossed in mild creamy coconut sauce</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Potato and Peas Samosa <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$8.99</span>
-          </div>
-          <div class="desc">Cumin flavored potato and peas filled in flaky pastry</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Arugula Salad <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$9.99</span>
-          </div>
-          <div class="desc">Green olives, cherry tomato, sprouts, cucumber, cranberry, and feta cheese</div>
+          <div class="desc">Pan fried lamb chop with onion, tomato, ginger, and cilantro</div>
         </div>
       </div>
 
@@ -374,7 +350,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Tandoor Clay Oven Appetizers</h3>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Panch Pooran Paneer Tikka <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Panch Pooran Paneer Tikka <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
             <span class="price">$14.99</span>
           </div>
@@ -382,7 +358,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Tandoori Cauliflower <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Tandoori Chicken (Half) <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$14.99</span>
+          </div>
+          <div class="desc">Bone-in chicken marinated in hung yogurt and homemade spices</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Tandoori Chicken (Full) <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$23.99</span>
+          </div>
+          <div class="desc">Bone-in chicken marinated in hung yogurt and homemade spices</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Tandoori Gobi <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
             <span class="price">$14.99</span>
           </div>
@@ -390,478 +382,590 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Lemongrass Chicken Tikka <span class="tag tag-nonveg">Non-Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$17.99</span>
-          </div>
-          <div class="desc">Boneless chicken breast marinated in mild creamy sauce and lemongrass flavor</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Tandoori Chicken (Full) <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Cajun Spiced Salmon Tikka <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
             <span class="price">$21.99</span>
           </div>
-          <div class="desc">Chicken on the bone marinated in hung yogurt and homemade spices</div>
+          <div class="desc">Tender salmon marinated in aromatic Cajun spices, yogurt, and herbs, then roasted to perfection in the tandoor.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Tawa Masala Chap <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Lahori Chicken Tikka <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$18.99</span>
+          </div>
+          <div class="desc">Tandoor roasted chicken marinated in yogurt, ginger, garlic, and Lahori spices.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Lal Mirch Shrimp Tikka <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span> <span class="tag tag-spice">Spicy</span></span>
             <span class="leader"></span>
             <span class="price">$20.99</span>
           </div>
-          <div class="desc">Pan fried lamb chop with onion, tomato, ginger, and cilantro</div>
+          <div class="desc">Juicy shrimp marinated with red chilies, yogurt, and aromatic spices, then roasted in the tandoor.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Apricot and Walnut Chicken Kabab <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Banjara Chicken Tikka <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$14.99</span>
+            <span class="price">$18.99</span>
           </div>
-          <div class="desc">Minced chicken with mint, cashew nuts, apricots, walnuts, pepper, cilantro, and green cardamom</div>
+          <div class="desc">Boneless chicken thigh marinated in hung yogurt, fresh cilantro mint toasted cumin and crushed black peppercorns</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Lime and Olive Oil Salmon <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Kalmi Fish <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$19.99</span>
+            <span class="price">$21.99</span>
           </div>
-          <div class="desc">Atlantic salmon marinated in citrus and olive oil</div>
+          <div class="desc">Tandoor roasted whole golden pompano fish with chef’s special spices</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Kalmi Fish <span class="tag tag-nonveg">Non-Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$19.99</span>
-          </div>
-          <div class="desc">Tandoor roasted whole golden pompano fish with chef's special spices</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Mustard Shrimp <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Kastoori Malai Tikka <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
             <span class="price">$19.99</span>
           </div>
-          <div class="desc">Jumbo shrimp marinated in yogurt, mustard, ginger, and garlic</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Tandoori Chicken (Half) <span class="tag tag-nonveg">Non-Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$14.99</span>
-          </div>
-          <div class="desc">Chicken on the bone marinated in hung yogurt and homemade spices</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Kasturi Chicken Tikka <span class="tag tag-nonveg">Non-Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$14.99</span>
-          </div>
-          <div class="desc">Boneless chicken thigh marinated in yogurt, fenugreek, and home-ground spices</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Tandoori Lamb Seekh Kabab <span class="tag tag-nonveg">Non-Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$15.99</span>
-          </div>
-          <div class="desc">Minced lamb seasoned with herbs, mint, and spices, skewered and char-grilled in the tandoor</div>
+          <div class="desc">Tender chicken marinated in creamy yogurt, aromatic spices, and kasoori methi, then chargrilled to perfection.</div>
         </div>
       </div>
 
-      <!-- Vegetarian Entrees -->
+      <!-- Non-Veg Entrées -->
       <div class="menu-col reveal d2">
-        <h3>Vegetarian Entrees</h3>
+        <h3>Non-Veg Entrées</h3>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Avocado and Paneer Curry <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Butter Chicken <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$15.99</span>
+            <span class="price">$17.99</span>
           </div>
-          <div class="desc">Fresh avocado and cottage cheese cooked with ginger, garlic, and coconut cream</div>
+          <div class="desc">Roasted and shredded chicken thigh in creamy tomato sauce</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Smoked Eggplant <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Rogan Josh <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$15.99</span>
+            <span class="price">$18.99</span>
           </div>
-          <div class="desc">Clay oven roasted eggplant cooked with fresh green peas, onion, tomato, and ginger</div>
+          <div class="desc">Tender slow-braised lamb cooked with aromatic fennel, onions, and traditional Kashmiri spices.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Jackfruit Masala <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Achari Chicken Curry <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$15.99</span>
+            <span class="price">$17.99</span>
           </div>
-          <div class="desc">Baby jackfruit cooked with onion, tomato, and ground spices</div>
+          <div class="desc">Tender chicken thigh pieces cooked with onion, tomato, and pickle spices</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Kale & Cauliflower Bhurji <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Bunnah Gosht <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$14.99</span>
+            <span class="price">$18.99</span>
           </div>
-          <div class="desc">Grated cauliflower and kale tossed with cumin, turmeric, and ginger</div>
+          <div class="desc">Tender goat slow cooked with caramelized onions, tomatoes, and aromatic spices.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Chana Masala <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Malai Methi Chicken Korma <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span> <span class="tag tag-nuts">Nuts</span></span>
             <span class="leader"></span>
-            <span class="price">$13.99</span>
+            <span class="price">$17.99</span>
           </div>
-          <div class="desc">Garbanzo beans cooked with onion, tomato, pomegranate seeds, and ground spices</div>
+          <div class="desc">Tender chicken thigh pieces cooked in creamy cashew nut and fenugreek sauce</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Paneer Tikka Masala <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Lamb Vindalu <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span> <span class="tag tag-spice">Spicy</span></span>
             <span class="leader"></span>
-            <span class="price">$14.99</span>
+            <span class="price">$18.99</span>
           </div>
-          <div class="desc">Cottage cheese cooked in tomato cream sauce with fenugreek</div>
+          <div class="desc">Tender lamb simmered in a tangy, spicy vindaloo sauce with aromatic spices.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Yellow Dal Tadka <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Chicken Tikka Masala <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$12.99</span>
+            <span class="price">$17.99</span>
           </div>
-          <div class="desc">Yellow lentils tempered with cumin, garlic, and green chilies</div>
+          <div class="desc">Tandoor roasted chicken thigh with onion, ginger, garlic, green pepper, and fresh tomato sauce</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Dal Makhani <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Nalli Nihari Gosht <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$13.99</span>
+            <span class="price">$22.99</span>
           </div>
-          <div class="desc">Slow-cooked black lentils with cream, butter, and mild spices</div>
+          <div class="desc">Slow-cooked lamb shank simmered in a rich, aromatic nihari gravy with traditional spices until tender.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Malai Kofta <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Karavali Shrimp <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$15.99</span>
+            <span class="price">$19.99</span>
           </div>
-          <div class="desc">Cottage cheese and potato dumplings in a rich, creamy cashew and saffron gravy</div>
+          <div class="desc">Juicy shrimp cooked in a flavorful coastal-style sauce with aromatic spices and fresh herbs.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Saag Paneer <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Kadhai Fish Masala <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$14.99</span>
+            <span class="price">$21.99</span>
           </div>
-          <div class="desc">Fresh spinach puree simmered with cottage cheese cubes, garlic, and a hint of cream</div>
+          <div class="desc">Tender fish cooked with bell peppers, onions, tomatoes, and aromatic kadhai spices.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Kadhai Shrimp Masala <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$19.99</span>
+          </div>
+          <div class="desc">Juicy shrimp cooked with onions, bell peppers, tomatoes, and freshly ground kadhai spices.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Goat Curry <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$19.99</span>
+          </div>
+          <div class="desc">Bone-in goat cubes cooked with onion, tomato, and yogurt</div>
         </div>
       </div>
 
-      <!-- Chicken Entrees -->
+      <!-- Veg Entrées -->
       <div class="menu-col reveal">
-        <h3>Chicken Entrees</h3>
+        <h3>Veg Entrées</h3>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Butter Chicken <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Yellow Dal Tadka <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$16.99</span>
+            <span class="price">$14.99</span>
           </div>
-          <div class="desc">Tender chicken simmered in buttery tomato sauce with fenugreek</div>
+          <div class="desc">Yellow lentils tempered with cumin, garlic, and aromatic spices for a comforting and flavorful dish.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Chicken Tikka Masala <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Malai Paneer <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span> <span class="tag tag-nuts">Nuts</span></span>
             <span class="leader"></span>
-            <span class="price">$16.99</span>
+            <span class="price">$15.99</span>
           </div>
-          <div class="desc">Boneless chicken cooked in creamy tomato onion sauce</div>
+          <div class="desc">Cottage cheese cubes in onion and cashew nut creamy sauce</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Chicken Korma <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Dal Makhni <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
             <span class="price">$16.99</span>
           </div>
-          <div class="desc">Chicken cooked in mild cashew nut and saffron sauce</div>
+          <div class="desc">Black lentils and red kidney beans slow cooked in a creamy tomato based gravy</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Chicken Vindaloo <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-spice">Spicy</span></span>
+            <span class="name">Paneer Lababdar <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$16.99</span>
+            <span class="price">$15.99</span>
           </div>
-          <div class="desc">Fiery Goan curry with potatoes, vinegar, and hot chilies</div>
+          <div class="desc">Cottage cheese cubes simmered in a rich, creamy tomato gravy with aromatic spices.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Chicken Saag <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Peshawari Chana <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$16.99</span>
+            <span class="price">$15.99</span>
           </div>
-          <div class="desc">Chicken pieces cooked with fresh spinach puree, garlic, and subtle spices</div>
+          <div class="desc">Chickpeas slow cooked with tomatoes, onions, and aromatic Peshawari spices.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Chicken Chettinad <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-spice">Spicy</span></span>
+            <span class="name">Kadhai Paneer <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$15.99</span>
+          </div>
+          <div class="desc">Cottage cheese cooked with bell peppers, onions, tomatoes, and freshly ground kadhai spices.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Dumpukht Gobi <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
             <span class="price">$16.99</span>
           </div>
-          <div class="desc">South Indian style spicy chicken with roasted coconut, black pepper, and curry leaves</div>
+          <div class="desc">Cauliflower slow-cooked in a rich, aromatic masala for deep and flavorful taste.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Palak Paneer <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$15.99</span>
+          </div>
+          <div class="desc">Cottage cheese cubes in spinach and garlic</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Badami Baingan <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span> <span class="tag tag-nuts">Nuts</span></span>
+            <span class="leader"></span>
+            <span class="price">$16.99</span>
+          </div>
+          <div class="desc">Tender eggplant cooked in a rich almond-based gravy with aromatic spices.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Baingan Bharta <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$15.99</span>
+          </div>
+          <div class="desc">Fire roasted eggplant with onion, tomato, and homemade spices</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Masaledar Bhindi <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$14.99</span>
+          </div>
+          <div class="desc">Fresh okra sautéed with caramelized onion, tangy tomato, ginger, and garlic</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Mushroom Amchuri <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$15.99</span>
+          </div>
+          <div class="desc">Button mushrooms sautéed with caramelized onion, cumin, green chili, ginger, and amchur spices.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Panchratan Veg Korma <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$15.99</span>
+          </div>
+          <div class="desc">A rich medley of vegetables simmered in a creamy, aromatic korma sauce with traditional Indian spices.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Corn Saag <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$13.99</span>
+          </div>
+          <div class="desc">Sweet corn simmered with creamy spinach, garlic, and aromatic Indian spices.</div>
         </div>
       </div>
 
-      <!-- Lamb & Goat Entrees -->
+      <!-- Sides -->
       <div class="menu-col reveal d1">
-        <h3>Lamb & Goat Entrees</h3>
+        <h3>Sides</h3>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Goat Curry <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Plain Yogurt (8oz) <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$17.99</span>
+            <span class="price">$3.99</span>
           </div>
-          <div class="desc">Slow-cooked bone-in goat in traditional onion and tomato gravy</div>
+          <div class="desc">Cool and creamy plain yogurt, perfect alongside spicy dishes.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Lamb Rogan Josh <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Green Salad (Tomato, Onion, Cucumber) <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$17.99</span>
+            <span class="price">$6.99</span>
           </div>
-          <div class="desc">Kashmiri style lamb curry with aromatic spices and yogurt</div>
+          <div class="desc">Freshly sliced tomato, onion, and cucumber served crisp and refreshing.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Lamb Korma <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Cucumber, Mint Raita (8oz) <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$17.99</span>
+            <span class="price">$4.99</span>
           </div>
-          <div class="desc">Tender lamb in rich and creamy cashew nut sauce</div>
+          <div class="desc">Creamy yogurt blended with refreshing cucumber, mint, and aromatic spices.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Lamb Vindaloo <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-spice">Spicy</span></span>
+            <span class="name">Papad (3 pcs) <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$17.99</span>
+            <span class="price">$3.99</span>
           </div>
-          <div class="desc">Spicy lamb curry with potatoes and tangy vinegar sauce</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Lamb Saag <span class="tag tag-nonveg">Non-Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$17.99</span>
-          </div>
-          <div class="desc">Tender boneless lamb simmered in spiced fresh spinach and herb gravy</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Goat Bhuna Masala <span class="tag tag-nonveg">Non-Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$18.99</span>
-          </div>
-          <div class="desc">Bone-in goat pan-roasted with thick caramelized onions, ginger, and crushed whole spices</div>
+          <div class="desc">Crisp, thin lentil wafers, lightly roasted or fried for a crunchy accompaniment.</div>
         </div>
       </div>
 
-      <!-- Seafood Entrees -->
+      <!-- Desserts -->
       <div class="menu-col reveal d2">
-        <h3>Seafood Entrees</h3>
+        <h3>Desserts</h3>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Goan Fish Curry <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Rasmalai <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$18.99</span>
+            <span class="price">$6.99</span>
           </div>
-          <div class="desc">Fish cooked with coconut milk, kokum, and Goan spices</div>
+          <div class="desc">Soft cottage cheese dumplings soaked in sweet, creamy saffron milk.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Shrimp Tikka Masala <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Gajar Ka Halwa <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span> <span class="tag tag-nuts">Nuts</span></span>
             <span class="leader"></span>
-            <span class="price">$19.99</span>
+            <span class="price">$8.99</span>
           </div>
-          <div class="desc">Jumbo shrimp in creamy tomato fenugreek sauce</div>
+          <div class="desc">Slow-cooked carrots simmered with milk, sugar, and cardamom, finished with nuts.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Kerala Coconut Shrimp <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Gulab Jamun <span class="tag tag-veg">Veg</span></span>
             <span class="leader"></span>
-            <span class="price">$19.99</span>
+            <span class="price">$6.99</span>
           </div>
-          <div class="desc">Shrimp simmered with mustard seeds, curry leaves, and coconut cream</div>
+          <div class="desc">Soft milk dumplings soaked in warm, fragrant sugar syrup.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Salmon Malabar Curry <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Lychee Panna Cotta <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$20.99</span>
+            <span class="price">$8.99</span>
           </div>
-          <div class="desc">Pan-seared Atlantic salmon in a velvety South Indian coastal gravy infused with tamarind and coconut</div>
+          <div class="desc">Silky panna cotta infused with refreshing lychee and delicate floral notes.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Shrimp Vindaloo <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-spice">Spicy</span></span>
+            <span class="name">Moong Dal Halwa <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$19.99</span>
+            <span class="price">$8.99</span>
           </div>
-          <div class="desc">Jumbo shrimp cooked with diced russet potatoes in a hot, tangy chili-vinegar reduction</div>
+          <div class="desc">Rich and indulgent moong lentil pudding slow cooked with ghee, sugar, and aromatic spices.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Falooda Ice Cream <span class="tag tag-veg">Veg</span></span>
+            <span class="leader"></span>
+            <span class="price">$8.99</span>
+          </div>
+          <div class="desc">Creamy ice cream layered with sweet falooda, fragrant rose syrup, and refreshing toppings.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Kesari Rice Kheer <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$6.99</span>
+          </div>
+          <div class="desc">Creamy rice pudding infused with saffron, cardamom, and delicate sweetness.</div>
+        </div>
+      </div>
+
+      <!-- Drinks -->
+      <div class="menu-col reveal">
+        <h3>Drinks</h3>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Mango Lassi <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$6.99</span>
+          </div>
+          <div class="desc">Creamy yogurt blended with ripe mango for a refreshing and naturally sweet drink.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Chai <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$2.99</span>
+          </div>
+          <div class="desc">Traditional Indian tea brewed with milk and aromatic spices.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Sweet Lassi <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$5.99</span>
+          </div>
+          <div class="desc">Smooth, creamy yogurt drink lightly sweetened for a refreshing finish.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Coke <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$2.99</span>
+          </div>
+          <div class="desc">Chilled classic Coca-Cola.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Diet Coke <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$2.99</span>
+          </div>
+          <div class="desc">Zero calorie Diet Coke.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Fresh Lime Soda <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$7.99</span>
+          </div>
+          <div class="desc">Refreshing lime juice blended with chilled soda for a zesty, sparkling drink.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Sprite <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$2.99</span>
+          </div>
+          <div class="desc">Crisp, refreshing lemon-lime sparkling soda.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Thums Up / Limca <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$2.99</span>
+          </div>
+          <div class="desc">Popular Indian bottled sodas — bold spiced Thums Up or zesty cloudy lemon Limca.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Rose Sharbat <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$7.99</span>
+          </div>
+          <div class="desc">Refreshing rose-flavored drink with delicate floral sweetness.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Coke Zero <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$2.99</span>
+          </div>
+          <div class="desc">Zero sugar Coca-Cola.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Lemonade <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$2.99</span>
+          </div>
+          <div class="desc">Refreshing sweetened chilled lemonade.</div>
         </div>
       </div>
 
       <!-- Rice & Biryani -->
-      <div class="menu-col reveal">
+      <div class="menu-col reveal d1">
         <h3>Rice & Biryani</h3>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Chicken Biryani <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Saffron Basmati Rice <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$15.99</span>
+            <span class="price">$6.99</span>
           </div>
-          <div class="desc">Aromatic basmati rice cooked with spiced chicken and herbs</div>
+          <div class="desc">Fragrant basmati rice delicately infused with saffron and aromatic spices.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Lamb Biryani <span class="tag tag-nonveg">Non-Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$17.99</span>
-          </div>
-          <div class="desc">Basmati rice layered with tender lamb, saffron, and mint</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Goat Biryani <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Chicken Dum Biryani <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
             <span class="price">$17.99</span>
           </div>
-          <div class="desc">Bone-in goat cooked dum style with fragrant basmati rice</div>
+          <div class="desc">Fragrant basmati rice layered with tender chicken, herbs, and aromatic spices, slow cooked to perfection.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Vegetable Biryani <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Haryali Subz Pulao <span class="tag tag-vegan">Vegan</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
-            <span class="price">$13.99</span>
+            <span class="price">$12.99</span>
           </div>
-          <div class="desc">Basmati rice cooked with fresh seasonal vegetables and spices</div>
+          <div class="desc">Fragrant basmati rice cooked with fresh vegetables, herbs, and aromatic spices.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Jeera Rice <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$5.99</span>
-          </div>
-          <div class="desc">Fragrant basmati rice tempered with toasted cumin seeds</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Shrimp Dum Biryani <span class="tag tag-nonveg">Non-Veg</span></span>
+            <span class="name">Goat Dum Biryani <span class="tag tag-nonveg">Non-Veg</span> <span class="tag tag-gf">GF</span></span>
             <span class="leader"></span>
             <span class="price">$19.99</span>
           </div>
-          <div class="desc">Succulent jumbo prawns slow-cooked with aged basmati rice, caramelized shallots, mint, and kewra water</div>
+          <div class="desc">Fragrant basmati rice layered with tender goat, herbs, and aromatic spices, slow cooked to perfection.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Vegetable Dum Biryani <span class="tag tag-veg">Veg</span> <span class="tag tag-gf">GF</span></span>
+            <span class="leader"></span>
+            <span class="price">$15.99</span>
+          </div>
+          <div class="desc">Fragrant basmati rice layered with seasoned vegetables and aromatic spices, slow cooked to perfection.</div>
         </div>
       </div>
 
-      <!-- Tandoori Breads -->
-      <div class="menu-col reveal d1">
-        <h3>Tandoori Breads</h3>
+      <!-- Breads from Tandoor -->
+      <div class="menu-col reveal d2">
+        <h3>Breads from Tandoor</h3>
         <div class="menu-item">
           <div class="top">
             <span class="name">Plain Naan <span class="tag tag-veg">Veg</span></span>
             <span class="leader"></span>
-            <span class="price">$3.49</span>
+            <span class="price">$3.99</span>
           </div>
-          <div class="desc">Traditional clay oven baked flatbread</div>
+          <div class="desc">Soft and fluffy traditional naan baked fresh in the tandoor.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Lacha Paratha <span class="tag tag-veg">Veg</span></span>
+            <span class="leader"></span>
+            <span class="price">$6.99</span>
+          </div>
+          <div class="desc">Flaky, layered Indian flatbread baked to golden perfection.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Tandoori Roti <span class="tag tag-vegan">Vegan</span></span>
+            <span class="leader"></span>
+            <span class="price">$3.99</span>
+          </div>
+          <div class="desc">Whole wheat flatbread freshly baked in the tandoor.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Stuffed Potato Kulcha <span class="tag tag-veg">Veg</span></span>
+            <span class="leader"></span>
+            <span class="price">$6.99</span>
+          </div>
+          <div class="desc">Tandoor-baked leavened bread stuffed with seasoned potatoes and aromatic spices.</div>
         </div>
         <div class="menu-item">
           <div class="top">
             <span class="name">Garlic Naan <span class="tag tag-veg">Veg</span></span>
             <span class="leader"></span>
-            <span class="price">$3.99</span>
+            <span class="price">$4.99</span>
           </div>
-          <div class="desc">Naan topped with fresh garlic and cilantro</div>
+          <div class="desc">Soft tandoor-baked naan topped with fragrant garlic and herbs.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Stuffed Onion Cilantro Kulcha <span class="tag tag-veg">Veg</span></span>
+            <span class="leader"></span>
+            <span class="price">$6.99</span>
+          </div>
+          <div class="desc">Tandoor-baked kulcha stuffed with flavorful onion, fresh cilantro, and aromatic spices.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Garlic Pesto Naan <span class="tag tag-veg">Veg</span></span>
+            <span class="leader"></span>
+            <span class="price">$5.99</span>
+          </div>
+          <div class="desc">Soft naan topped with aromatic garlic and flavorful pesto, baked in the tandoor.</div>
+        </div>
+        <div class="menu-item">
+          <div class="top">
+            <span class="name">Stuffed Cheese Kulcha <span class="tag tag-veg">Veg</span></span>
+            <span class="leader"></span>
+            <span class="price">$7.99</span>
+          </div>
+          <div class="desc">Soft tandoor-baked kulcha generously stuffed with melted cheese.</div>
         </div>
         <div class="menu-item">
           <div class="top">
             <span class="name">Butter Naan <span class="tag tag-veg">Veg</span></span>
             <span class="leader"></span>
-            <span class="price">$3.99</span>
+            <span class="price">$7.99</span>
           </div>
-          <div class="desc">Layered naan brushed with melted butter</div>
+          <div class="desc">Soft, fluffy naan brushed generously with melted butter.</div>
         </div>
         <div class="menu-item">
           <div class="top">
-            <span class="name">Cheese Naan <span class="tag tag-veg">Veg</span></span>
+            <span class="name">Bread Basket <span class="tag tag-veg">Veg</span></span>
             <span class="leader"></span>
-            <span class="price">$4.99</span>
+            <span class="price">$14.99</span>
           </div>
-          <div class="desc">Naan stuffed with melted mozzarella cheese</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Tandoori Roti <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$3.49</span>
-          </div>
-          <div class="desc">Whole wheat flatbread baked in the tandoor</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Kashmiri Peshawari Naan <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$5.99</span>
-          </div>
-          <div class="desc">Artisanal naan stuffed with crushed almonds, golden raisins, shredded coconut, and cardamom</div>
-        </div>
-      </div>
-
-      <!-- Desserts & Beverages -->
-      <div class="menu-col reveal d2">
-        <h3>Desserts & Beverages</h3>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Gulab Jamun <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$5.99</span>
-          </div>
-          <div class="desc">Warm milk dumplings in cardamom-rose sugar syrup</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Rasmalai <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$6.99</span>
-          </div>
-          <div class="desc">Soft cheese patties in sweetened saffron-cardamom milk</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Mango Kulfi <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$5.99</span>
-          </div>
-          <div class="desc">Traditional Indian ice cream with mango and pistachios</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Mango Lassi <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$4.99</span>
-          </div>
-          <div class="desc">Chilled sweet yogurt drink blended with mango pulp</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Masala Chai <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$3.99</span>
-          </div>
-          <div class="desc">Traditional spiced Indian tea brewed with milk and herbs</div>
-        </div>
-        <div class="menu-item">
-          <div class="top">
-            <span class="name">Sweet or Salted Lassi <span class="tag tag-veg">Veg</span></span>
-            <span class="leader"></span>
-            <span class="price">$4.49</span>
-          </div>
-          <div class="desc">Refreshing traditional hand-churned yogurt beverage seasoned with roasted cumin or fragrant rose water</div>
+          <div class="desc">Assortment of freshly baked Indian breads, perfect for sharing.</div>
         </div>
       </div>
     </div>
