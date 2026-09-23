@@ -11,11 +11,12 @@
 | **Production Domain** | `https://saffrongrillrestaurant.com` |
 | **Hosting Infrastructure** | Hostinger Cloud (Apache 2.4, PHP 8.2+) |
 | **SSH Host Alias** | `calcuttacb` (`77.37.61.237:65002`) |
-| **Remote Webroot** | `domains/saffrongrillrestaurant.com/public_html` |
+| **Remote Webroot** | `domains/saffrongrillrestaurant.com/public_html` *(Note: default `~/public_html` upon SSH points to `hiraya.digital`)* |
 | **Remote Private Dir** | `domains/saffrongrillrestaurant.com/private` |
 | **Backup Storage** | `domains/saffrongrillrestaurant.com/deploy-backups` |
 | **Git Repository** | `https://github.com/badalsharmaa/Saffron-Grill-PHP.git` (`origin/main`) |
-| **Database** | SQLite 3 (`admin/data/saffron_crm.db`), schema migrated via `admin/data/schema.sql` |
+| **Database** | SQLite 3 (`admin/data/saffron_crm.db`), seeded via `admin/includes/schema.php` & `cli/sync_menu_from_json.php` |
+| **Menu Dataset** | `data/menu.json` (mirrored in `assets/menu.json` & `menu/Saffron_Grill_Menu.json`, 82 items / 9 categories) |
 
 ---
 
@@ -86,6 +87,35 @@ The codebase maintains scripts and styles in **both** root and `/assets`:
 - **Contact Page Form Contrast:** `#contact-form-section .reserve-card` uses `rgba(22, 7, 20, 0.96)` background with `backdrop-filter: blur(16px)` and subtle background mandala opacity (`0.015`) to ensure effortless text legibility.
 - **Desktop Scrollbar Suppression:** Desktop scrollbars in reservation modal/forms are hidden using `scrollbar-width: none;` and `::-webkit-scrollbar { display: none; }` to maintain smooth, uncluttered aesthetics.
 
+### Dynamic Asset Cache-Busting via `filemtime` (Crucial for CSS/JS Updates!)
+- Hostinger CDN (`server: hcdn`) and Apache `mod_expires` enforce a **30-day client cache** (`max-age=2592000`) on static CSS and JS.
+- Without a query parameter, browsers and CDN edge nodes will not download modified stylesheets or scripts.
+- **Rules:**
+  - Standalone pages (`index.php`, `menu.php`, `catering.php`, etc.) must link CSS/JS with `filemtime`:
+    ```html
+    <link rel="stylesheet" href="styles.css?v=<?= filemtime(__DIR__ . '/styles.css') ?>" />
+    <script src="app.js?v=<?= filemtime(__DIR__ . '/app.js') ?>"></script>
+    <script src="popup.js?v=<?= filemtime(__DIR__ . '/popup.js') ?>"></script>
+    ```
+  - The `asset()` helper in `config/config.php` automatically appends `?v=<filemtime>` to all generated asset URLs.
+
+### Obsolete Remote `index.html` Prevention
+- Never leave a static `index.html` (e.g. Under Maintenance) in `public_html`. Under default Apache `DirectoryIndex`, Apache prioritizes `index.html` over `index.php`, causing visitors to see an outdated placeholder.
+- `cli/safe_deploy.php` automatically executes `rm -f "{$remoteWebRoot}/index.html"` during every deployment.
+
+### Menu Architecture & Dietary Badges
+- **Canonical Dataset:** The master Dine-In Menu contains **82 dishes across 9 categories**, defined in `data/menu.json` and mirrored in `assets/menu.json` and `menu/Saffron_Grill_Menu.json`.
+- **Categories:** Salads & Appetizers (10), Tandoor Clay Oven Appetizers (9), Non-Veg Entrées (12), Veg Entrées (14), Sides (4), Desserts (7), Drinks (11), Rice & Biryani (5), Breads from Tandoor (10).
+- **Dietary Badges:** Standardized CSS classes for dietary tags:
+  - `.tag-veg` (Vegetarian)
+  - `.tag-nonveg` (Non-Vegetarian)
+  - `.tag-vegan` (Vegan)
+  - `.tag-gf` (Gluten Free)
+  - `.tag-nuts` (Contains Nuts)
+  - `.tag-df` (Dairy Free)
+  - `.tag-spice` (Spicy)
+- **Database Synchronization:** `cli/sync_menu_from_json.php` synchronizes `menu_categories` and `menu_items` tables in `admin/data/saffron_crm.db` locally and in production. The API endpoint `/api/menu` dynamically serves these dishes.
+
 ---
 
 ## 4. Standard Operational Workflow
@@ -113,17 +143,24 @@ php tests/qa_automated_crawler.php
 ```
 > **Expectation:** `100%` tests pass before deploying.
 
-### Step 4: XML Sitemap Maintenance
-If pages or image assets are added/modified, regenerate the sitemap:
-```bash
-php cli/generate_sitemap.php
-```
+### Step 4: XML Sitemap & Menu Synchronization
+- **Sitemap Maintenance:** If pages or image assets are added/modified, regenerate the sitemap:
+  ```bash
+  php cli/generate_sitemap.php
+  ```
+- **Menu Maintenance:** If dishes, pricing, or descriptions are updated:
+  1. Update `data/menu.json` (and mirror to `assets/menu.json` and `menu/Saffron_Grill_Menu.json`).
+  2. Sync the SQLite database locally:
+     ```bash
+     php cli/sync_menu_from_json.php
+     ```
 
 ### Step 5: Safe Production Deployment (SSH / Rsync)
 Deploy verified files to the Hostinger cloud server:
 ```bash
 php cli/safe_deploy.php --deploy
 ```
+*(If menu dataset changed, run `ssh calcuttacb "php domains/saffrongrillrestaurant.com/cli/sync_menu_from_json.php"` after deploying to update remote SQLite tables).*
 **What the deploy script does automatically:**
 1. Connects to `calcuttacb` via SSH.
 2. Creates an archive snapshot in `domains/saffrongrillrestaurant.com/deploy-backups/`.
