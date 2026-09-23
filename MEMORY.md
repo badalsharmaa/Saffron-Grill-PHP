@@ -185,3 +185,24 @@ git push origin main
 - **Admin Login Endpoint:** `https://saffrongrillrestaurant.com/admin/login.php`
 - **Session Security:** Cookie-based session validation (`auth.php`), rate limiting, CSRF protection, and honeypot spam traps on all public lead forms.
 - **Firewall Rules:** `.htaccess` blocks public web access to `.env`, `.env.production`, `.git`, `.gitignore`, `*.db`, and `/private/`.
+
+---
+
+## 6. Analytics & Search Console Tracking (48-Hour Review Checklist)
+
+| Component | Identifier / Detail | Status |
+|---|---|---|
+| **Google Analytics (GA4)** | `G-B5FSX73C4M` | Deployed live to all pages & verified |
+| **Sitemap URL** | `https://saffrongrillrestaurant.com/sitemap.xml` | Submitted in Google Search Console |
+| **GSC Verification** | DNS TXT Record via Hostinger (`aurora.dns-parking.com` / `nebula.dns-parking.com`) | Configured |
+| **Consent Mode** | Google Consent Mode v2 (Strict Default: Denied, Custom Banner update) | Active |
+
+### ⏰ 48-Hour Review Action Item (Scheduled: September 25, 2026)
+Standard reports and search crawl indexes take 24–48 hours to fully populate. After 48 hours, verify:
+1. **Google Search Console**:
+   - Check **Indexing > Sitemaps**: Confirm `sitemap.xml` status shows `Success` and all valid URLs are discovered.
+   - Check **Indexing > Pages**: Ensure no crawl errors or unintended `noindex` blocks.
+2. **Google Analytics 4 (GA4)**:
+   - Check **Reports > Lifecycle > Acquisition (Traffic Acquisition)**: Confirm organic search, direct, and referral traffic data are registering.
+   - Check **Admin > Product Links > Search Console Links**: Ensure the link to Search Console is active so Google Search queries show in GA4.
+
