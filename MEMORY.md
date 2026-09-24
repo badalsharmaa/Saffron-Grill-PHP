@@ -67,6 +67,18 @@ The codebase maintains scripts and styles in **both** root and `/assets`:
   - **Policy on Admin & Sitemap Links:** "Staff Login" (`/admin/login.php`) and "Sitemap" (`/sitemap.xml`) links are **intentionally hidden** from all public visible footers. `sitemap.xml` is exposed to search engines via `robots.txt`, and staff access `/admin/login.php` directly.
   - Whenever updating header or footer elements, update **both** `includes/` and all standalone pages to ensure site-wide parity.
 
+### Clean URL Policy for All Buttons and Internal Anchors
+- **Strict Rule:** Never link buttons (`.btn`), hero CTAs, card actions, or in-content anchor tags to `.php` script filenames (`menu.php`, `catering.php`, `contact.php#reserve`, `index.php`, `privacy-policy.php`).
+- **Standardized Clean Targets:**
+  - Homepage / Return Home: `/` (never `index.php`)
+  - Dine-In Menu: `/menu` (never `menu.php`)
+  - Table Reservations: `/reserve` (never `contact.php#reserve` or `reserve.php`)
+  - Catering Inquiry: `/catering` or `/catering#inquiry-section` (never `catering.php#inquiry-section`)
+  - Our Story: `/story` (never `story.php`)
+  - Contact & Location: `/contact` (never `contact.php`)
+  - Legal & Compliance: `/privacy-policy` and `/terms` (never `privacy-policy.php` or `terms.php`)
+
+
 ### Popup Modals (`#sgPopup` & `#promoModal`)
 - Modal markup lives at the bottom of standalone pages (`#sgPopup`) and in `includes/promo_modal.php` (`#promoModal`).
 - **Layout Requirements:**
@@ -223,7 +235,7 @@ Standard reports and search crawl indexes take 24–48 hours to fully populate. 
   - `/story` (About Us & Heritage)
   - `/reserve` (Table Reservations)
   - `/privacy-policy` & `/terms`
-- **Internal Clean Linking:** All internal links in `<header>`, `<nav>`, mobile navigation drawers, footer explore menus, reservation CTAs, and popup buttons MUST link to clean URLs without `.php` extensions.
+- **Internal Clean Linking:** All internal links in `<header>`, `<nav>`, mobile navigation drawers, footer explore menus, hero and in-page CTA buttons, card actions, reservation CTAs, and popup buttons MUST link to clean URLs without `.php` extensions. 100% of internal button and anchor links site-wide are verified to use clean URLs.
 - **Search Engine Directives:** Standardized robots meta across all pages:
   `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />` to maximize eligibility for rich media snippets and Google Discover.
 
