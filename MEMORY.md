@@ -210,12 +210,55 @@ Standard reports and search crawl indexes take 24–48 hours to fully populate. 
 
 ## 7. SEO, GEO & AI Readiness Architecture
 
-- **SEO / Clean Canonical Parity:** All public pages declare clean canonical tags (`/`, `/menu`, `/catering`, `/contact`, `/story`, `/reserve`, `/privacy-policy`, `/terms`). Never introduce `.php` extensions into `<link rel="canonical">`, OpenGraph, or internal navigation links.
-- **Central Helper (`includes/seo.php`):**
-  - `get_restaurant_schema_entity()`: Canonical Restaurant Schema.org entity.
-  - `get_full_menu_schema()`: Dynamically compiles all 82 dishes / 9 categories from `data/menu.json` with dietary attributes.
-  - `get_breadcrumbs_schema()`: Generates Schema.org `BreadcrumbList` for subpages.
-  - `get_ai_discovery_head_tags()`: Emits `<link rel="alternate">` tags for `/llms.txt`, `/llms-full.txt`, and `/restaurant-facts.json`.
-- **AI Agent Crawlers (`robots.txt`):** Explicitly whitelists `OAI-SearchBot`, `GPTBot`, `PerplexityBot`, `ClaudeBot`, `Applebot`, `Google-Extended`, `Amazonbot`, `CCBot`, `Bytespider`, and `cohere-ai`.
-- **AI Context Manifests:** `llms.txt`, `llms-full.txt`, and `restaurant-facts.json` provide authoritative, machine-readable facts and citation sources for ChatGPT Search, Perplexity, and Gemini.
+### Strict Design Constraint: Zero Visual/DOM Layout Changes
+- **Policy:** Any SEO, GEO, or AI readiness enhancement MUST be strictly confined to metadata, `<head>` tags, JSON-LD `<script type="application/ld+json">` schemas, canonical tags, clean internal link attributes, `robots.txt`, and AI context text manifests.
+- **Forbidden:** Never add visible sections, change layouts, alter CSS styling, modify visible typography, or adjust colors for SEO purposes.
+
+### Technical SEO & Clean Canonical Parity
+- **Clean Canonical Tags:** All public pages declare clean canonical tags without `.php` extensions:
+  - `/` (Homepage)
+  - `/menu` (Dine-In Menu)
+  - `/catering` (Catering Services & Packages)
+  - `/contact` (Location, Hours, Inquiries & FAQ)
+  - `/story` (About Us & Heritage)
+  - `/reserve` (Table Reservations)
+  - `/privacy-policy` & `/terms`
+- **Internal Clean Linking:** All internal links in `<header>`, `<nav>`, mobile navigation drawers, footer explore menus, reservation CTAs, and popup buttons MUST link to clean URLs without `.php` extensions.
+- **Search Engine Directives:** Standardized robots meta across all pages:
+  `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />` to maximize eligibility for rich media snippets and Google Discover.
+
+### Central SEO & Schema Engine (`includes/seo.php`)
+- `get_restaurant_schema_entity()`: Produces the canonical Schema.org `Restaurant` entity including:
+  - Exact geocoordinates (`37.7663`, `-121.9745`) and address (2005 Crow Canyon Pl, STE 144, San Ramon, CA 94583).
+  - Business hours, price range (`$$`), accepted currencies (`USD`), payment methods (`Cash`, `Credit Card`).
+  - Authoritative `sameAs` citations: Yelp, Boons ordering, Instagram, Facebook, and Google Maps CID.
+  - Complete `areaServed` coverage (San Ramon, Danville, Dublin, Pleasanton, Blackhawk, Alamo, Livermore, Walnut Creek, Tri-Valley, East Bay).
+- `get_full_menu_schema()`: Dynamically compiles all **82 dishes across 9 categories** directly from `data/menu.json` into a Schema.org `Menu` graph with individual `MenuItem` objects, pricing, descriptions, and dietary property tags (`VegetarianDiet`, `VeganDiet`, `GlutenFreeDiet`, `HalalDiet`).
+- `get_breadcrumbs_schema()`: Emits a structured `BreadcrumbList` matching the exact navigation hierarchy on every subpage.
+- `get_ai_discovery_head_tags()`: Injects `<link rel="alternate">` tags in `<head>` declaring `/llms.txt`, `/llms-full.txt`, and `/restaurant-facts.json`.
+
+### GEO & Local Search Optimization
+- **Tri-Valley Local Footprint:** Explicitly targets high-intent local queries across San Ramon, Danville, Dublin, Pleasanton, and East Bay.
+- **High-Intent FAQ Schema:** Embedded on `/contact` via `FAQPage` schema addressing the most frequent local queries:
+  - Exact restaurant location & Crow Canyon Commons parking availability.
+  - Daily lunch buffet schedule (Tue–Sun, 11:30 AM – 2:30 PM) and pricing ($19.99 weekday / $21.99 weekend).
+  - 100% Zabihah Halal certified meat sourcing.
+  - Dedicated vegetarian and vegan options.
+  - Event catering capabilities and advance reservation policies.
+
+### AI Engine Optimization (AEO / GEO) & Bot Crawlers
+- **Crawler Permissions (`robots.txt`):** Modern generative search and answer engines are explicitly granted crawl access:
+  - OpenAI: `OAI-SearchBot` (ChatGPT Search citation engine), `GPTBot`, `ChatGPT-User`
+  - Perplexity: `PerplexityBot`
+  - Anthropic: `ClaudeBot`
+  - Google: `Google-Extended`
+  - Apple: `Applebot`, `Applebot-Extended`
+  - Amazon & Meta: `Amazonbot`, `meta-externalagent`
+  - Crawl Aggregators: `CCBot`, `Bytespider`, `cohere-ai`
+- **Knowledge Manifests:**
+  - `llms.txt`: Adheres to the llmstxt.org specification, linking clean URLs and core restaurant services.
+  - `llms-full.txt`: 100-line comprehensive knowledge base detailing menu categories, signature dishes, buffet schedule, catering tiers, dietary standards, and FAQ library.
+  - `restaurant-facts.json`: Structured, machine-readable facts schema with coordinates, citations, and services for immediate AI extraction.
+- **Verification Protocol:** Verified via `tests/qa_automated_crawler.php` (50/50 tests passing) and deployed via `cli/safe_deploy.php --deploy`.
+
 
