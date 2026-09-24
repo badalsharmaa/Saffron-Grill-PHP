@@ -542,7 +542,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </button>
         <div id="faq-ans-4" class="faq-answer" role="region">
           <div class="faq-answer-inner">
-            Yes, we provide professional, full-service catering for all sizes of events including corporate lunches, weddings, family reunions, and holiday parties across San Ramon and the San Francisco Bay Area. You can browse details and request a customized menu on our <a href="catering.php">Catering page</a>.
+            Yes, we provide professional, full-service catering for all sizes of events including corporate lunches, weddings, family reunions, and holiday parties across San Ramon and the San Francisco Bay Area. You can browse details and request a customized menu on our <a href="/catering">Catering page</a>.
           </div>
         </div>
       </div>

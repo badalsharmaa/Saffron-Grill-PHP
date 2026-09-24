@@ -213,10 +213,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- CTA Buttons with Premium Sliding Transition -->
     <div class="hero-cta reveal d2">
-      <a href="contact.php#reserve" class="btn btn-gold-slide js-open-reserve">
+      <a href="/reserve" class="btn btn-gold-slide js-open-reserve">
         <span>Reserve a Table</span>
       </a>
-      <a href="menu.php" class="btn btn-ghost-slide">
+      <a href="/menu" class="btn btn-ghost-slide">
         <span>Explore the Menu</span>
       </a>
     </div>
@@ -319,7 +319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="body-text on-dark reveal d2" style="margin-top:14px">Every day features a rotating selection of favorites, including rich curries, tandoori specialties, fresh naan, rice dishes, appetizers, salads, and desserts. The lineup changes regularly, giving you a reason to come back and try something new.</p>
         <p class="body-text on-dark reveal d2" style="margin-top:14px">Whether you're stopping by for lunch or enjoying a relaxed weekend gathering, the buffet offers the freedom to explore Indian cuisine one plate at a time.</p>
       </div>
-      <a href="menu.php" class="btn btn-ghost reveal d2">Explore Full Menu</a>
+      <a href="/menu" class="btn btn-ghost reveal d2">Explore Full Menu</a>
     </div>
     <div class="buffet-grid">
       <article class="buffet-card reveal d1">
@@ -390,7 +390,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="menu-grid" id="menuGrid"></div>
     <p class="menu-note reveal">Vegetarian, vegan &amp; gluten-friendly options throughout · Spice levels to taste</p>
     <div class="center reveal" style="margin-top: 32px">
-      <a href="menu.php" class="btn btn-gold">View Full Menu</a>
+      <a href="/menu" class="btn btn-gold">View Full Menu</a>
     </div>
   </div>
 </section>
@@ -406,7 +406,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="body-text reveal d2" style="margin-top:12px">Choose from a wide range of vegetarian and non-vegetarian options, buffet-style service, party trays, and customized menus tailored to your event.</p>
       <p class="body-text reveal d2" style="margin-top:12px">Whether you're serving twenty guests or hundreds, we'll help create a menu that fits the occasion.</p>
       <div class="reveal d3" style="margin-top:30px; display:flex; gap:14px; flex-wrap:wrap">
-        <a href="catering.php#inquiry-section" class="btn btn-crimson">Request Catering Information</a>
+        <a href="/catering#inquiry-section" class="btn btn-crimson">Request Catering Information</a>
       </div>
     </div>
     <div class="reveal d1">

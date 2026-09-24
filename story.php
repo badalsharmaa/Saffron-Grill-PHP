@@ -249,7 +249,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#heritage" class="btn btn-gold-slide">
         <span>Our Heritage</span>
       </a>
-      <a href="menu.php" class="btn btn-ghost-slide">
+      <a href="/menu" class="btn btn-ghost-slide">
         <span>Explore Menu</span>
       </a>
     </div>
@@ -408,7 +408,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="reserve-card reserve-cta-card reveal d2">
       <div class="reserve-cta-actions">
-        <a href="contact.php#reserve" class="btn btn-gold js-open-reserve">Reservation</a>
+        <a href="/reserve" class="btn btn-gold js-open-reserve">Reservation</a>
         <a href="https://order.boons.io/site/saffron-grill/390/y" class="btn btn-crimson" target="_blank" rel="noopener noreferrer">Order Online</a>
       </div>
     </div>

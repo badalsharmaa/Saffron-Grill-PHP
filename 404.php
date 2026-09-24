@@ -18,8 +18,8 @@ require_once __DIR__ . '/includes/nav.php';
   <h1 style="font-family: 'Cinzel', serif; font-size: 26px; color: #260e22; margin: 8px 0 16px;">Dish or Page Not Found</h1>
   <p style="color: #666; font-size: 15px; margin-bottom: 24px;">The page you are looking for may have been moved or is no longer available.</p>
   <div style="display: flex; justify-content: center; gap: 12px;">
-    <a href="index.php" class="btn btn-gold">Return to Home</a>
-    <a href="menu.php" class="btn btn-outline">Explore Menu</a>
+    <a href="/" class="btn btn-gold">Return to Home</a>
+    <a href="/menu" class="btn btn-outline">Explore Menu</a>
   </div>
 </div>
 

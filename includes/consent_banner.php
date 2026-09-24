@@ -14,7 +14,7 @@
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         <button type="button" id="btnAcceptConsent" style="background: #eab308; color: #1a0818; font-weight: 600; border: none; border-radius: 4px; padding: 6px 14px; font-size: 12px; cursor: pointer;">Accept All</button>
         <button type="button" id="btnDeclineConsent" style="background: transparent; color: #d1c4cb; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: 6px 14px; font-size: 12px; cursor: pointer;">Essential Only</button>
-        <a href="privacy-policy.php" style="color: #eab308; font-size: 12px; align-self: center; text-decoration: underline; margin-left: auto;">Privacy Policy</a>
+        <a href="/privacy-policy" style="color: #eab308; font-size: 12px; align-self: center; text-decoration: underline; margin-left: auto;">Privacy Policy</a>
       </div>
     </div>
   </div>
