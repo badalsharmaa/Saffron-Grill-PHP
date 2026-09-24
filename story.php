@@ -3,10 +3,11 @@
  * Saffron Grill - Our Story & Philosophy · San Ramon
  */
 require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/includes/seo.php';
 
 $pageTitle = 'Our Story & Philosophy — Saffron Grill · San Ramon';
 $pageDesc = 'Discover the culinary philosophy and rich heritage of Saffron Grill in San Ramon, CA. Learn about our traditional clay tandoor cooking, hand-selected spices, and fresh daily ingredients.';
-$canonicalUrl = 'https://saffrongrillrestaurant.com/story.php';
+$canonicalUrl = 'https://saffrongrillrestaurant.com/story';
 $ogImage = 'https://saffrongrillrestaurant.com/assets/social_image.png';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
@@ -18,9 +19,13 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title><?= e($pageTitle) ?></title>
 <meta name="description" content="<?= e($pageDesc) ?>" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
 <!-- Canonical Tag -->
 <link rel="canonical" href="<?= e($canonicalUrl) ?>" />
+
+<!-- AI Discovery Link Tags -->
+<?= get_ai_discovery_head_tags() ?>
 
 <!-- Hyper-Local GEO Meta Tags -->
 <meta name="geo.region" content="US-CA" />
@@ -29,7 +34,7 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta name="ICBM" content="<?= e(GEO_LAT) ?>, <?= e(GEO_LNG) ?>" />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content="restaurant" />
 <meta property="og:url" content="<?= e($canonicalUrl) ?>" />
 <meta property="og:title" content="<?= e($pageTitle) ?>" />
 <meta property="og:description" content="<?= e($pageDesc) ?>" />
@@ -37,6 +42,8 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:type" content="image/png" />
+<meta property="og:site_name" content="<?= e(APP_NAME) ?>" />
+<meta property="og:locale" content="en_US" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -90,28 +97,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','<?= e($gtmId) ?>');</script>
 <?php endif; ?>
 
-<!-- JSON-LD Structured Data -->
+<!-- Schema.org Unified Graph (Restaurant + Breadcrumbs + AboutPage) -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "AboutPage",
-  "name": "About Saffron Grill",
-  "description": "Learn about Saffron Grill's culinary philosophy, traditional clay tandoor cooking methods, and our dedication to fresh ingredients and authentic Indian cuisine in San Ramon, CA.",
-  "mainEntity": {
-    "@type": "Restaurant",
-    "name": "Saffron Grill",
-    "image": "https://saffrongrillrestaurant.com/assets/story_main.webp",
-    "telephone": "+19258463077",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "3191 Crow Canyon Pl, Ste D",
-      "addressLocality": "San Ramon",
-      "addressRegion": "CA",
-      "postalCode": "94583",
-      "addressCountry": "US"
-    }
-  }
-}
+<?= json_encode([
+  '@context' => 'https://schema.org',
+  '@graph' => [
+    get_restaurant_schema_entity(),
+    get_breadcrumbs_schema([
+      'Home' => 'https://saffrongrillrestaurant.com/',
+      'Our Story' => 'https://saffrongrillrestaurant.com/story'
+    ]),
+    [
+      '@type' => 'AboutPage',
+      '@id' => 'https://saffrongrillrestaurant.com/story#about',
+      'name' => 'About Saffron Grill — Our Story & Philosophy',
+      'description' => 'Learn about Saffron Grill\'s culinary philosophy, traditional clay tandoor cooking methods, and our dedication to fresh ingredients and authentic Indian cuisine in San Ramon, CA.',
+      'url' => 'https://saffrongrillrestaurant.com/story',
+      'mainEntity' => [
+        '@id' => 'https://saffrongrillrestaurant.com/#restaurant'
+      ]
+    ]
+  ]
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
 </script>
 
 <link rel="icon" type="image/png" href="assets/emblem.png" />
@@ -190,7 +197,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============== NAV ============== -->
 <nav class="nav" id="nav">
-  <a class="nav-brand" href="index.php" aria-label="Saffron Grill home">
+  <a class="nav-brand" href="/" aria-label="Saffron Grill home">
     <img src="assets/emblem.png" alt="" />
     <span class="wordmark">
       <b>Saffron Grill</b>
@@ -198,20 +205,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </span>
   </a>
   <div class="nav-links">
-    <a href="story.php" class="active">Story</a>
-    <a href="menu.php">Menu</a>
-    <a href="catering.php">Catering</a>
-    <a href="contact.php">Contact</a>
+    <a href="/story" class="active">Story</a>
+    <a href="/menu">Menu</a>
+    <a href="/catering">Catering</a>
+    <a href="/contact">Contact</a>
   </div>
   <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold nav-cta" target="_blank" rel="noopener noreferrer">Order Online</a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="story.php" class="active">Story</a>
-  <a href="menu.php">Menu</a>
-  <a href="catering.php">Catering</a>
-  <a href="contact.php">Contact</a>
+  <a href="/story" class="active">Story</a>
+  <a href="/menu">Menu</a>
+  <a href="/catering">Catering</a>
+  <a href="/contact">Contact</a>
   <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="color:#3a2208">Order Online</a>
 </div>
 
@@ -424,10 +431,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="story.php">Story</a></li>
-          <li><a href="menu.php">Menu</a></li>
-          <li><a href="catering.php">Catering</a></li>
-          <li><a href="contact.php">Contact</a></li>
+          <li><a href="/story">Story</a></li>
+          <li><a href="/menu">Menu</a></li>
+          <li><a href="/catering">Catering</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -443,7 +450,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Saffron Grill · Authentic Indian Cuisine</span>
-      <span>San Ramon, California · <a href="privacy-policy.php" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
+      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
     </div>
   </div>
 </footer>
@@ -465,8 +472,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="sgp-note body-text on-dark">Reserve your table or explore the menu — we're
       open for lunch &amp; dinner daily.</p>
       <div class="sgp-actions">
-        <a href="contact.php#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
-        <a href="menu.php"    class="btn btn-ghost">Explore Menu</a>
+        <a href="/contact#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
+        <a href="/menu"    class="btn btn-ghost">Explore Menu</a>
       </div>
     </div>
     <button class="sgp-close" id="pgClose" aria-label="Close">

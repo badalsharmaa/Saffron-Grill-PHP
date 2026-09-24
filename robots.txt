@@ -10,14 +10,21 @@ Disallow: /cli/
 Disallow: /api/
 Disallow: /tests/
 
-# Search Engine & AI Crawler Access
+# Search Engine Crawlers
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
+User-agent: Applebot
+Allow: /
+
+# Generative AI & Search Answer Engine Crawlers
 User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
@@ -29,10 +36,22 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-User-agent: Applebot
+User-agent: Google-Extended
 Allow: /
 
-User-agent: Google-Extended
+User-agent: Amazonbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://saffrongrillrestaurant.com/sitemap.xml

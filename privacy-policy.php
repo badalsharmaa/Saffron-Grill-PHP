@@ -7,6 +7,10 @@ require_once __DIR__ . '/config/config.php';
 $pageTitle = 'Privacy Policy — Saffron Grill · San Ramon, CA';
 $pageDesc = 'Privacy policy and data protection practices for Saffron Grill in San Ramon, CA.';
 $canonicalUrl = BASE_URL . '/privacy-policy';
+$breadcrumbs = [
+    'Home' => 'https://saffrongrillrestaurant.com/',
+    'Privacy Policy' => 'https://saffrongrillrestaurant.com/privacy-policy'
+];
 
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/nav.php';

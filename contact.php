@@ -3,10 +3,11 @@
  * Saffron Grill - Contact & Reservations · San Ramon
  */
 require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/includes/seo.php';
 
 $pageTitle = 'Contact & Reservations — Saffron Grill · San Ramon';
 $pageDesc = 'Get in touch with Saffron Grill in San Ramon, CA. Find our hours, location, and make table reservations or inquiries online.';
-$canonicalUrl = 'https://saffrongrillrestaurant.com/contact.php';
+$canonicalUrl = 'https://saffrongrillrestaurant.com/contact';
 $ogImage = 'https://saffrongrillrestaurant.com/assets/social_image.png';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
@@ -18,9 +19,13 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title><?= e($pageTitle) ?></title>
 <meta name="description" content="<?= e($pageDesc) ?>" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
 <!-- Canonical Tag -->
 <link rel="canonical" href="<?= e($canonicalUrl) ?>" />
+
+<!-- AI Discovery Link Tags -->
+<?= get_ai_discovery_head_tags() ?>
 
 <!-- Hyper-Local GEO Meta Tags -->
 <meta name="geo.region" content="US-CA" />
@@ -29,7 +34,7 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta name="ICBM" content="<?= e(GEO_LAT) ?>, <?= e(GEO_LNG) ?>" />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content="restaurant" />
 <meta property="og:url" content="<?= e($canonicalUrl) ?>" />
 <meta property="og:title" content="<?= e($pageTitle) ?>" />
 <meta property="og:description" content="<?= e($pageDesc) ?>" />
@@ -37,6 +42,8 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:type" content="image/png" />
+<meta property="og:site_name" content="<?= e(APP_NAME) ?>" />
+<meta property="og:locale" content="en_US" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -92,81 +99,72 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <?php endif; ?>
 
-<!-- JSON-LD Structured Data -->
+<!-- Schema.org Unified Graph (Restaurant + Breadcrumbs + FAQPage) -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "Saffron Grill",
-  "image": "https://saffrongrillrestaurant.com/assets/story_main.webp",
-  "@id": "https://saffrongrillrestaurant.com/#restaurant",
-  "url": "https://saffrongrillrestaurant.com",
-  "telephone": "+19258463077",
-  "priceRange": "$$",
-  "servesCuisine": "Indian",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "3191 Crow Canyon Pl, Ste D",
-    "addressLocality": "San Ramon",
-    "addressRegion": "CA",
-    "postalCode": "94583",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 37.7663,
-    "longitude": -121.9745
-  }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Where is Saffron Grill located?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Saffron Grill is located at 3191 Crow Canyon Pl, Ste D, San Ramon, CA 94583, right next to the major Crow Canyon shopping center with ample parking."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer a buffet?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes! We serve a delicious daily buffet. Join us for our Lunch Buffet, Monday through Friday from 11:30 AM to 3:00 PM, and our Grand Weekend Buffet on Saturday and Sunday from 12:00 PM to 3:30 PM, featuring fresh tandoori meats, diverse curries, and vegetarian options."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are there vegetarian and vegan options?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, Saffron Grill is highly vegetarian-friendly. We offer a dedicated selection of traditional vegetarian dishes, from Paneer Tikka Masala to Dal Makhani, as well as several naturally vegan curries. Let your server know if you have specific dietary preferences!"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer catering services?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely! We provide premium catering for corporate events, weddings, family gatherings, and private parties in San Ramon and the wider Bay Area. Visit our Catering page or contact us to request a custom menu."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I make a reservation online?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, you can easily reserve a table through our reservation system directly on our website or by calling us. For large parties or special events, we recommend booking in advance."
-      }
-    }
+<?= json_encode([
+  '@context' => 'https://schema.org',
+  '@graph' => [
+    get_restaurant_schema_entity(),
+    get_breadcrumbs_schema([
+      'Home' => 'https://saffrongrillrestaurant.com/',
+      'Contact' => 'https://saffrongrillrestaurant.com/contact'
+    ]),
+    [
+      '@type' => 'FAQPage',
+      '@id' => 'https://saffrongrillrestaurant.com/contact#faq',
+      'mainEntity' => [
+        [
+          '@type' => 'Question',
+          'name' => 'Where is Saffron Grill located?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Saffron Grill is located at 3191 Crow Canyon Pl, Ste D, San Ramon, CA 94583, inside Crow Canyon Plaza directly off Interstate 680 (Crow Canyon Road exit) with ample free plaza parking.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'What are the lunch buffet hours and prices?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'We serve our Lunch Buffet Monday through Friday from 11:30 AM to 3:00 PM ($19.99/person) and our Grand Weekend Feast on Saturday and Sunday from 12:00 PM to 3:30 PM ($21.99/person). Piping hot naan is served directly at your table.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Is the meat at Saffron Grill Halal?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Yes, 100% of our chicken, lamb, and goat meats are Halal certified.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Are there vegetarian and vegan options available?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Yes, Saffron Grill offers an extensive variety of dedicated vegetarian dishes (such as Paneer Tikka Masala, Palak Paneer, and Dal Makhani) and naturally vegan options (such as Chana Masala, Aloo Gobi, and Yellow Dal Tadka).'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Do you offer catering services?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Yes, we provide full-service catering and drop-off packages (Silver $22, Gold $28, Platinum $36/guest) across San Ramon, Danville, Dublin, Pleasanton, and the wider San Francisco Bay Area, with optional live tandoor stations.'
+          ]
+        ],
+        [
+          '@type' => 'Question',
+          'name' => 'Can I reserve a table online?',
+          'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => 'Yes, you can reserve a table online instantly through our website at https://saffrongrillrestaurant.com/reserve or by calling us at (925) 846-3077.'
+          ]
+        ]
+      ]
+    ]
   ]
-}
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
 </script>
 
 <link rel="icon" type="image/png" href="assets/emblem.png" />
@@ -288,7 +286,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- ============== NAV ============== -->
 <nav class="nav" id="nav">
-  <a class="nav-brand" href="index.php" aria-label="Saffron Grill home">
+  <a class="nav-brand" href="/" aria-label="Saffron Grill home">
     <img src="assets/emblem.png" alt="" />
     <span class="wordmark">
       <b>Saffron Grill</b>
@@ -296,20 +294,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </span>
   </a>
   <div class="nav-links">
-    <a href="story.php">Story</a>
-    <a href="menu.php">Menu</a>
-    <a href="catering.php">Catering</a>
-    <a href="contact.php" class="active">Contact</a>
+    <a href="/story">Story</a>
+    <a href="/menu">Menu</a>
+    <a href="/catering">Catering</a>
+    <a href="/contact" class="active">Contact</a>
   </div>
   <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold nav-cta" target="_blank" rel="noopener noreferrer">Order Online</a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="story.php">Story</a>
-  <a href="menu.php">Menu</a>
-  <a href="catering.php">Catering</a>
-  <a href="contact.php" class="active">Contact</a>
+  <a href="/story">Story</a>
+  <a href="/menu">Menu</a>
+  <a href="/catering">Catering</a>
+  <a href="/contact" class="active">Contact</a>
   <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="color:#3a2208">Order Online</a>
 </div>
 
@@ -630,10 +628,10 @@ document.addEventListener("DOMContentLoaded", function() {
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="story.php">Story</a></li>
-          <li><a href="menu.php">Menu</a></li>
-          <li><a href="catering.php">Catering</a></li>
-          <li><a href="contact.php">Contact</a></li>
+          <li><a href="/story">Story</a></li>
+          <li><a href="/menu">Menu</a></li>
+          <li><a href="/catering">Catering</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -649,7 +647,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Saffron Grill · Authentic Indian Cuisine</span>
-      <span>San Ramon, California · <a href="privacy-policy.php" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
+      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
     </div>
   </div>
 </footer>
@@ -671,8 +669,8 @@ document.addEventListener("DOMContentLoaded", function() {
       <p class="sgp-note body-text on-dark">Reserve your table or explore the menu — we're
       open for lunch &amp; dinner daily.</p>
       <div class="sgp-actions">
-        <a href="contact.php#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
-        <a href="menu.php"    class="btn btn-ghost">Explore Menu</a>
+        <a href="/contact#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
+        <a href="/menu"    class="btn btn-ghost">Explore Menu</a>
       </div>
     </div>
     <button class="sgp-close" id="pgClose" aria-label="Close">

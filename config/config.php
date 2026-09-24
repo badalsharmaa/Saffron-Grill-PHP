@@ -60,8 +60,9 @@ if (!defined('APP_NAME')) {
 if (!defined('BASE_URL')) {
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    $scriptDir = dirname($_SERVER['SCRIPT_NAME'] ?? '');
-    $base = rtrim($protocol . $host . $scriptDir, '/\\');
+    $rawScriptDir = dirname($_SERVER['SCRIPT_NAME'] ?? '');
+    $scriptDir = trim($rawScriptDir, '/\\.');
+    $base = rtrim($protocol . $host . ($scriptDir !== '' ? '/' . $scriptDir : ''), '/\\');
     define('BASE_URL', $base);
 }
 

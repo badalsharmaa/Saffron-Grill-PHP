@@ -7,6 +7,10 @@ require_once __DIR__ . '/config/config.php';
 $pageTitle = 'Reserve a Table — Saffron Grill · San Ramon, CA';
 $pageDesc = 'Book your table online at Saffron Grill in San Ramon, CA. Experience authentic Indian cuisine, daily lunch buffet, and memorable dining.';
 $canonicalUrl = BASE_URL . '/reserve';
+$breadcrumbs = [
+    'Home' => 'https://saffrongrillrestaurant.com/',
+    'Reserve a Table' => 'https://saffrongrillrestaurant.com/reserve'
+];
 
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/nav.php';

@@ -1,6 +1,6 @@
 # Saffron Grill — Authentic Indian Cuisine & Grand Lunch Buffet
 
-> Saffron Grill is a premier Indian restaurant located in San Ramon, California, serving authentic North and South Indian culinary specialties, daily grand lunch buffets, tandoori grills, and full-service event catering across the San Francisco East Bay / Tri-Valley area.
+> Saffron Grill is a premier Indian restaurant located in San Ramon, California, serving authentic North and South Indian culinary specialties, daily grand lunch buffets, tandoori clay oven sizzlers, and full-service event catering across the San Francisco East Bay / Tri-Valley area.
 
 ## Key Information
 - **Website**: https://saffrongrillrestaurant.com
@@ -9,8 +9,9 @@
 - **Secondary Phone**: (925) 369-4696
 - **Email**: gosaffrongrill@gmail.com
 - **Cuisine**: Authentic North Indian, Mughlai, Tandoori, South Indian, Indo-Chinese
-- **Price Range**: $$ (Buffet: $19.99 Weekday / $21.99 Weekend, Dinner Entrees: $14 - $24)
-- **Reservations**: Accepted via website, phone, or in-person.
+- **Price Range**: $$ (Lunch Buffet: $19.99 Weekday / $21.99 Weekend; Dinner Entrées: $14 - $24)
+- **Reservations**: Accepted online, via phone, or in person.
+- **Online Ordering**: https://order.boons.io/site/saffron-grill/390/y
 
 ## Operating Hours
 - **Weekday Lunch Buffet**: Monday – Friday: 11:30 AM – 3:00 PM ($19.99/person)
@@ -30,7 +31,8 @@ San Ramon, Danville, Dublin, Pleasanton, Blackhawk, Alamo, Livermore, Walnut Cre
 ## Endpoints & Resources
 - Full Knowledge Base: https://saffrongrillrestaurant.com/llms-full.txt
 - Machine-Readable API: https://saffrongrillrestaurant.com/restaurant-facts.json
-- Menu: https://saffrongrillrestaurant.com/menu
-- Buffet: https://saffrongrillrestaurant.com/buffet
-- Catering Inquiries: https://saffrongrillrestaurant.com/catering
+- Full Menu: https://saffrongrillrestaurant.com/menu
+- Catering Services: https://saffrongrillrestaurant.com/catering
 - Table Reservations: https://saffrongrillrestaurant.com/reserve
+- Our Story & Heritage: https://saffrongrillrestaurant.com/story
+- Contact & Location: https://saffrongrillrestaurant.com/contact

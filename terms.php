@@ -7,6 +7,10 @@ require_once __DIR__ . '/config/config.php';
 $pageTitle = 'Terms of Service — Saffron Grill · San Ramon, CA';
 $pageDesc = 'Terms of service and dining policies for Saffron Grill in San Ramon, CA.';
 $canonicalUrl = BASE_URL . '/terms';
+$breadcrumbs = [
+    'Home' => 'https://saffrongrillrestaurant.com/',
+    'Terms of Service' => 'https://saffrongrillrestaurant.com/terms'
+];
 
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/nav.php';

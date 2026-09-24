@@ -206,3 +206,16 @@ Standard reports and search crawl indexes take 24–48 hours to fully populate. 
    - Check **Reports > Lifecycle > Acquisition (Traffic Acquisition)**: Confirm organic search, direct, and referral traffic data are registering.
    - Check **Admin > Product Links > Search Console Links**: Ensure the link to Search Console is active so Google Search queries show in GA4.
 
+---
+
+## 7. SEO, GEO & AI Readiness Architecture
+
+- **SEO / Clean Canonical Parity:** All public pages declare clean canonical tags (`/`, `/menu`, `/catering`, `/contact`, `/story`, `/reserve`, `/privacy-policy`, `/terms`). Never introduce `.php` extensions into `<link rel="canonical">`, OpenGraph, or internal navigation links.
+- **Central Helper (`includes/seo.php`):**
+  - `get_restaurant_schema_entity()`: Canonical Restaurant Schema.org entity.
+  - `get_full_menu_schema()`: Dynamically compiles all 82 dishes / 9 categories from `data/menu.json` with dietary attributes.
+  - `get_breadcrumbs_schema()`: Generates Schema.org `BreadcrumbList` for subpages.
+  - `get_ai_discovery_head_tags()`: Emits `<link rel="alternate">` tags for `/llms.txt`, `/llms-full.txt`, and `/restaurant-facts.json`.
+- **AI Agent Crawlers (`robots.txt`):** Explicitly whitelists `OAI-SearchBot`, `GPTBot`, `PerplexityBot`, `ClaudeBot`, `Applebot`, `Google-Extended`, `Amazonbot`, `CCBot`, `Bytespider`, and `cohere-ai`.
+- **AI Context Manifests:** `llms.txt`, `llms-full.txt`, and `restaurant-facts.json` provide authoritative, machine-readable facts and citation sources for ChatGPT Search, Perplexity, and Gemini.
+

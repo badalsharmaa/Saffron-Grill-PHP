@@ -4,6 +4,7 @@
  * SEO, GEO Hyper-local, Google Consent Mode v2 & OpenGraph
  */
 require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/seo.php';
 
 $pageTitle = $pageTitle ?? APP_NAME . ' — ' . APP_TAGLINE;
 $pageDesc = $pageDesc ?? 'Authentic Indian Cuisine & Lunch Buffet in San Ramon, CA. Savor tandoori specialties, rich curries, daily lunch buffets ($19.99 weekday / $21.99 weekend), and luxury catering across the East Bay.';
@@ -27,6 +28,9 @@ $currentStatus = get_restaurant_status();
 
 <!-- Canonical URL -->
 <link rel="canonical" href="<?= e($canonicalUrl) ?>" />
+
+<!-- AI Discovery Link Tags -->
+<?= get_ai_discovery_head_tags() ?>
 
 <!-- Hyper-Local GEO Meta Tags -->
 <meta name="geo.region" content="US-CA" />
@@ -113,62 +117,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- Schema.org JSON-LD Structured Data -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "<?= e(APP_NAME) ?>",
-  "image": "<?= e($ogImage) ?>",
-  "@id": "https://saffrongrillrestaurant.com/#restaurant",
-  "url": "https://saffrongrillrestaurant.com",
-  "telephone": "<?= e(PHONE_TEL) ?>",
-  "priceRange": "$$",
-  "servesCuisine": ["Indian", "North Indian", "Tandoori", "Vegetarian", "Halal"],
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "3191 Crow Canyon Pl, Ste D",
-    "addressLocality": "San Ramon",
-    "addressRegion": "CA",
-    "postalCode": "94583",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": <?= e(GEO_LAT) ?>,
-    "longitude": <?= e(GEO_LNG) ?>
-  },
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "11:30",
-      "closes": "15:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "17:00",
-      "closes": "22:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Saturday", "Sunday"],
-      "opens": "12:00",
-      "closes": "15:30"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Saturday", "Sunday"],
-      "opens": "17:00",
-      "closes": "22:00"
-    }
-  ],
-  "menu": "https://saffrongrillrestaurant.com/menu",
-  "acceptsReservations": "True",
-  "sameAs": [
-    "https://www.facebook.com/profile.php?id=61590010434038",
-    "https://www.instagram.com/saffrongrillrestaurant"
-  ]
-}
+<?= json_encode([
+  '@context' => 'https://schema.org',
+  '@graph' => array_filter([
+    get_restaurant_schema_entity(),
+    isset($breadcrumbs) && is_array($breadcrumbs) ? get_breadcrumbs_schema($breadcrumbs) : null
+  ])
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
 </script>
 </head>
 <body>

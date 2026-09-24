@@ -3,10 +3,11 @@
  * Saffron Grill - Full Restaurant Menu
  */
 require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/includes/seo.php';
 
 $pageTitle = 'Menu — Saffron Grill · Authentic Indian Cuisine';
 $pageDesc = 'Explore Saffron Grill\'s full menu of authentic Indian dishes in San Ramon, CA. From tandoori specialties and rich curries to vegetarian classics and desserts.';
-$canonicalUrl = 'https://saffrongrillrestaurant.com/menu.php';
+$canonicalUrl = 'https://saffrongrillrestaurant.com/menu';
 $ogImage = 'https://saffrongrillrestaurant.com/assets/social_image.png';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
@@ -18,9 +19,13 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title><?= e($pageTitle) ?></title>
 <meta name="description" content="<?= e($pageDesc) ?>" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
 <!-- Canonical Tag -->
 <link rel="canonical" href="<?= e($canonicalUrl) ?>" />
+
+<!-- AI Discovery Link Tags -->
+<?= get_ai_discovery_head_tags() ?>
 
 <!-- Hyper-Local GEO Meta Tags -->
 <meta name="geo.region" content="US-CA" />
@@ -29,7 +34,7 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta name="ICBM" content="<?= e(GEO_LAT) ?>, <?= e(GEO_LNG) ?>" />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content="restaurant" />
 <meta property="og:url" content="<?= e($canonicalUrl) ?>" />
 <meta property="og:title" content="<?= e($pageTitle) ?>" />
 <meta property="og:description" content="<?= e($pageDesc) ?>" />
@@ -37,6 +42,8 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:type" content="image/png" />
+<meta property="og:site_name" content="<?= e(APP_NAME) ?>" />
+<meta property="og:locale" content="en_US" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -90,61 +97,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','<?= e($gtmId) ?>');</script>
 <?php endif; ?>
 
-<!-- JSON-LD Menu Schema -->
+<!-- Schema.org Unified Graph (Restaurant + Breadcrumbs + Full Menu) -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Menu",
-  "@id": "https://saffrongrillrestaurant.com/menu.php#menu",
-  "name": "Saffron Grill Menu",
-  "mainEntityOfPage": "https://saffrongrillrestaurant.com/menu.php",
-  "inLanguage": "en",
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD"
-  },
-  "hasMenuSection": [
-    {
-      "@type": "MenuSection",
-      "name": "Lunch Buffet",
-      "description": "Daily Lunch Buffet (Mon-Fri 11:30 AM - 3:00 PM) & Grand Weekend Buffet (Sat-Sun 12:00 PM - 3:30 PM) featuring a rich spread of tandoori specialties, vegetarian & non-vegetarian curries, fresh naan, and desserts."
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Tandoori Specialties",
-      "description": "Traditional clay tandoor baked meats and breads, marinated in yogurt and hand-selected spices.",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Tandoori Chicken",
-          "description": "Bone-in chicken marinated in yogurt and spices, grilled to perfection in the clay tandoor."
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Paneer Tikka Masala",
-          "description": "Grilled paneer cubes cooked in a rich, creamy tomato onion sauce."
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Signature Curries",
-      "description": "Authentic recipes crafted with freshly ground spices.",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Butter Chicken",
-          "description": "Tender tandoori chicken simmered in a smooth, buttery tomato cream gravy."
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Goat Curry",
-          "description": "Tender pieces of goat slow-cooked in a robust gravy of hand-ground spices, onions, and fresh ginger."
-        }
-      ]
-    }
-  ]
-}
+<?= json_encode([
+  '@context' => 'https://schema.org',
+  '@graph' => array_filter([
+    get_restaurant_schema_entity(),
+    get_breadcrumbs_schema([
+      'Home' => 'https://saffrongrillrestaurant.com/',
+      'Menu' => 'https://saffrongrillrestaurant.com/menu'
+    ]),
+    get_full_menu_schema()
+  ])
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
 </script>
 
 <link rel="icon" type="image/png" href="assets/emblem.png" />
@@ -176,7 +141,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============== NAV ============== -->
 <nav class="nav" id="nav">
-  <a class="nav-brand" href="index.php" aria-label="Saffron Grill home">
+  <a class="nav-brand" href="/" aria-label="Saffron Grill home">
     <img src="assets/emblem.png" alt="" />
     <span class="wordmark">
       <b>Saffron Grill</b>
@@ -184,20 +149,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </span>
   </a>
   <div class="nav-links">
-    <a href="story.php">Story</a>
-    <a href="menu.php" class="active">Menu</a>
-    <a href="catering.php">Catering</a>
-    <a href="contact.php">Contact</a>
+    <a href="/story">Story</a>
+    <a href="/menu" class="active">Menu</a>
+    <a href="/catering">Catering</a>
+    <a href="/contact">Contact</a>
   </div>
   <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold nav-cta" target="_blank" rel="noopener noreferrer">Order Online</a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="story.php">Story</a>
-  <a href="menu.php" class="active">Menu</a>
-  <a href="catering.php">Catering</a>
-  <a href="contact.php">Contact</a>
+  <a href="/story">Story</a>
+  <a href="/menu" class="active">Menu</a>
+  <a href="/catering">Catering</a>
+  <a href="/contact">Contact</a>
   <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="color:#3a2208">Order Online</a>
 </div>
 
@@ -233,7 +198,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://order.boons.io/site/saffron-grill/390/y" class="btn btn-gold-slide" target="_blank" rel="noopener noreferrer">
         <span>Order Online</span>
       </a>
-      <a href="contact.php" class="btn btn-ghost-slide">
+      <a href="/contact" class="btn btn-ghost-slide">
         <span>Visit Restaurant</span>
       </a>
     </div>
@@ -1001,10 +966,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="story.php">Story</a></li>
-          <li><a href="menu.php">Menu</a></li>
-          <li><a href="catering.php">Catering</a></li>
-          <li><a href="contact.php">Contact</a></li>
+          <li><a href="/story">Story</a></li>
+          <li><a href="/menu">Menu</a></li>
+          <li><a href="/catering">Catering</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -1020,7 +985,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Saffron Grill · Authentic Indian Cuisine</span>
-      <span>San Ramon, California · <a href="privacy-policy.php" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
+      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
     </div>
   </div>
 </footer>
@@ -1042,8 +1007,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="sgp-note body-text on-dark">Reserve your table or explore the menu — we're
       open for lunch &amp; dinner daily.</p>
       <div class="sgp-actions">
-        <a href="contact.php#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
-        <a href="menu.php"    class="btn btn-ghost">Explore Menu</a>
+        <a href="/contact#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
+        <a href="/menu"    class="btn btn-ghost">Explore Menu</a>
       </div>
     </div>
     <button class="sgp-close" id="pgClose" aria-label="Close">

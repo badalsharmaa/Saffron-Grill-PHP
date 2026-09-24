@@ -3,10 +3,11 @@
  * Saffron Grill - Catering & Private Events · San Ramon
  */
 require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/includes/seo.php';
 
 $pageTitle = 'Catering & Private Events — Saffron Grill · San Ramon';
 $pageDesc = 'Saffron Grill catering services in San Ramon, CA. Custom menus, full-service setups, and premium Indian cuisine for corporate events, weddings, and family parties.';
-$canonicalUrl = 'https://saffrongrillrestaurant.com/catering.php';
+$canonicalUrl = 'https://saffrongrillrestaurant.com/catering';
 $ogImage = 'https://saffrongrillrestaurant.com/assets/social_image.png';
 $gtmId = defined('GTM_CONTAINER_ID') ? GTM_CONTAINER_ID : '';
 $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
@@ -18,9 +19,13 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title><?= e($pageTitle) ?></title>
 <meta name="description" content="<?= e($pageDesc) ?>" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
 <!-- Canonical Tag -->
 <link rel="canonical" href="<?= e($canonicalUrl) ?>" />
+
+<!-- AI Discovery Link Tags -->
+<?= get_ai_discovery_head_tags() ?>
 
 <!-- Hyper-Local GEO Meta Tags -->
 <meta name="geo.region" content="US-CA" />
@@ -29,7 +34,7 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta name="ICBM" content="<?= e(GEO_LAT) ?>, <?= e(GEO_LNG) ?>" />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content="restaurant" />
 <meta property="og:url" content="<?= e($canonicalUrl) ?>" />
 <meta property="og:title" content="<?= e($pageTitle) ?>" />
 <meta property="og:description" content="<?= e($pageDesc) ?>" />
@@ -37,6 +42,8 @@ $gaId = defined('GA_MEASUREMENT_ID') ? GA_MEASUREMENT_ID : 'G-B5FSX73C4M';
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:type" content="image/png" />
+<meta property="og:site_name" content="<?= e(APP_NAME) ?>" />
+<meta property="og:locale" content="en_US" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -90,43 +97,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','<?= e($gtmId) ?>');</script>
 <?php endif; ?>
 
-<!-- JSON-LD Structured Data -->
+<!-- Schema.org Unified Graph (Restaurant + Breadcrumbs + CateringService) -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CateringService",
-  "name": "Saffron Grill Catering Services",
-  "description": "Premium full-service Indian food catering for weddings, corporate events, and private parties in San Ramon and the wider San Francisco Bay Area.",
-  "provider": {
-    "@type": "Restaurant",
-    "name": "Saffron Grill",
-    "image": "https://saffrongrillrestaurant.com/assets/story_main.webp",
-    "telephone": "+19258463077",
-    "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "3191 Crow Canyon Pl, Ste D",
-      "addressLocality": "San Ramon",
-      "addressRegion": "CA",
-      "postalCode": "94583",
-      "addressCountry": "US"
-    }
-  },
-  "areaServed": [
-    {
-      "@type": "AdministrativeArea",
-      "name": "San Ramon"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "Contra Costa County"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "San Francisco Bay Area"
-    }
+<?= json_encode([
+  '@context' => 'https://schema.org',
+  '@graph' => [
+    get_restaurant_schema_entity(),
+    get_breadcrumbs_schema([
+      'Home' => 'https://saffrongrillrestaurant.com/',
+      'Catering' => 'https://saffrongrillrestaurant.com/catering'
+    ]),
+    [
+      '@type' => 'CateringService',
+      '@id' => 'https://saffrongrillrestaurant.com/catering#service',
+      'name' => 'Saffron Grill Catering Services',
+      'description' => 'Premium full-service Indian food catering for weddings, corporate events, and private parties in San Ramon, Danville, Dublin, Pleasanton, and the wider San Francisco Bay Area.',
+      'url' => 'https://saffrongrillrestaurant.com/catering',
+      'provider' => [
+        '@id' => 'https://saffrongrillrestaurant.com/#restaurant'
+      ],
+      'areaServed' => [
+        'San Ramon', 'Danville', 'Dublin', 'Pleasanton', 'Blackhawk',
+        'Alamo', 'Livermore', 'Walnut Creek', 'Contra Costa County', 'San Francisco Bay Area'
+      ],
+      'hasOfferCatalog' => [
+        '@type' => 'OfferCatalog',
+        'name' => 'Catering Packages',
+        'itemListElement' => [
+          [
+            '@type' => 'Offer',
+            'name' => 'Silver Feast',
+            'price' => '22.00',
+            'priceCurrency' => 'USD',
+            'description' => '2 Appetizers (1 Veg, 1 Non-Veg), 2 Main Curries, Basmati Rice & Naan, Fresh Salad & Raita, 1 Classic Dessert (Gulab Jamun). Min 25 guests.'
+          ],
+          [
+            '@type' => 'Offer',
+            'name' => 'Royal Gold Banquet',
+            'price' => '28.00',
+            'priceCurrency' => 'USD',
+            'description' => '3 Appetizers (Tandoori Chicken + Samosa + Paneer Tikka), 3 Main Curries, Hyderabadi Dum Biryani, Assorted Tandoori Naan, Salad, Raita, Chutneys, 2 Desserts. Min 40 guests.'
+          ],
+          [
+            '@type' => 'Offer',
+            'name' => 'Imperial Maharaja Extravaganza',
+            'price' => '36.00',
+            'priceCurrency' => 'USD',
+            'description' => '4 Gourmet Appetizers, 4 Gourmet Entrees, Specialty Biryani, Gourmet Breads, Full Chutney & Salad Bar, 3 Gourmet Desserts, optional live tandoor chef. Min 50 guests.'
+          ]
+        ]
+      ]
+    ]
   ]
-}
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
 </script>
 
 <link rel="icon" type="image/png" href="assets/emblem.png" />
@@ -143,7 +166,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============== NAV ============== -->
 <nav class="nav" id="nav">
-  <a class="nav-brand" href="index.php" aria-label="Saffron Grill home">
+  <a class="nav-brand" href="/" aria-label="Saffron Grill home">
     <img src="assets/emblem.png" alt="" />
     <span class="wordmark">
       <b>Saffron Grill</b>
@@ -151,20 +174,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </span>
   </a>
   <div class="nav-links">
-    <a href="story.php">Story</a>
-    <a href="menu.php">Menu</a>
-    <a href="catering.php" class="active">Catering</a>
-    <a href="contact.php">Contact</a>
+    <a href="/story">Story</a>
+    <a href="/menu">Menu</a>
+    <a href="/catering" class="active">Catering</a>
+    <a href="/contact">Contact</a>
   </div>
   <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold nav-cta" target="_blank" rel="noopener noreferrer">Order Online</a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="story.php">Story</a>
-  <a href="menu.php">Menu</a>
-  <a href="catering.php" class="active">Catering</a>
-  <a href="contact.php">Contact</a>
+  <a href="/story">Story</a>
+  <a href="/menu">Menu</a>
+  <a href="/catering" class="active">Catering</a>
+  <a href="/contact">Contact</a>
   <a href="<?= e(ORDER_ONLINE_URL) ?>" class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="color:#3a2208">Order Online</a>
 </div>
 
@@ -538,10 +561,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="story.php">Story</a></li>
-          <li><a href="menu.php">Menu</a></li>
-          <li><a href="catering.php">Catering</a></li>
-          <li><a href="contact.php">Contact</a></li>
+          <li><a href="/story">Story</a></li>
+          <li><a href="/menu">Menu</a></li>
+          <li><a href="/catering">Catering</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -557,7 +580,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Saffron Grill · Authentic Indian Cuisine</span>
-      <span>San Ramon, California · <a href="privacy-policy.php" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
+      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
     </div>
   </div>
 </footer>
@@ -579,8 +602,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="sgp-note body-text on-dark">Reserve your table or explore the menu — we're
       open for lunch &amp; dinner daily.</p>
       <div class="sgp-actions">
-        <a href="contact.php#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
-        <a href="menu.php"    class="btn btn-ghost">Explore Menu</a>
+        <a href="/contact#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
+        <a href="/menu"    class="btn btn-ghost">Explore Menu</a>
       </div>
     </div>
     <button class="sgp-close" id="pgClose" aria-label="Close">

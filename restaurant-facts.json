@@ -33,6 +33,12 @@
     "latitude": 37.7663,
     "longitude": -121.9745
   },
+  "hasMap": "https://maps.google.com/?cid=7708573752697881186",
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61590010434038",
+    "https://www.instagram.com/saffrongrillrestaurant",
+    "https://www.yelp.com/biz/saffron-grill-san-ramon"
+  ],
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -46,7 +52,7 @@
       "dayOfWeek": ["Saturday", "Sunday"],
       "opens": "12:00",
       "closes": "15:30",
-      "name": "Weekend Lunch Buffet"
+      "name": "Weekend Grand Feast Buffet"
     },
     {
       "@type": "OpeningHoursSpecification",
