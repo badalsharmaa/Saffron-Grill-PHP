@@ -130,6 +130,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <?php endif; ?>
 
+<?php 
+$announcementEnabled = (cms_get('announcement_enabled', '1') === '1');
+$announcementText = cms_get('announcement_text', '✨ Grand Lunch Buffet Served Daily · Weekdays $19.99 | Weekends $21.99 · Fresh Clay Tandoor & Curries');
+$announcementLink = cms_get('announcement_link', '/menu');
+$announcementBg = cms_get('announcement_bg_color', '#C5A059');
+if ($announcementEnabled && !empty($announcementText)): 
+?>
+<!-- Top Announcement Bar -->
+<div class="top-announcement-bar" style="background-color: <?= e($announcementBg) ?>; color: #1a0f05; text-align: center; padding: 9px 16px; font-size: 13.5px; font-weight: 600; position: relative; z-index: 1001; letter-spacing: 0.02em;">
+  <a href="<?= e($announcementLink) ?>" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+    <span><?= e($announcementText) ?></span>
+    <span style="font-size: 11px; opacity: 0.85;">→</span>
+  </a>
+</div>
+<?php endif; ?>
+
 <!-- ============== NAV ============== -->
 <nav class="nav" id="nav">
   <a class="nav-brand" href="/" aria-label="Saffron Grill home">
@@ -165,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-overlay-gradient"></div>
     
     <div class="hero-bg-slide active" data-slide="0">
-      <img class="hero-bg-img" src="assets/hero-first-frame.jpg" alt="" />
+      <img class="hero-bg-img" src="<?= e(cms_get('hero_bg_image', 'assets/hero-first-frame.jpg')) ?>" alt="Saffron Grill Hero" />
       <video class="hero-bg-video" muted playsinline preload="auto" loop></video>
     </div>
     <div class="hero-bg-slide" data-slide="1">
@@ -179,14 +195,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="hero-inner wrap">
-    <p class="hero-tag reveal">San Ramon, CA</p>
+    <p class="hero-tag reveal"><?= e(cms_get('hero_badge', 'San Ramon, CA')) ?></p>
     <h1 class="reveal d1">
-      <span class="l1">Authentic Indian</span>
-      <span class="l2 gold-text italic">Cuisine Crafted</span>
+      <span class="l1"><?= e(cms_get('hero_title_line1', 'Authentic Indian')) ?></span>
+      <span class="l2 gold-text italic"><?= e(cms_get('hero_title_line2', 'Cuisine Crafted')) ?></span>
     </h1>
     
     <!-- Decorative Divider -->
     <img class="ornament reveal d1" src="assets/divider.png" alt="" style="width: 200px; margin: 18px auto;" />
+
+    <?php $heroSub = cms_get('hero_subtitle', ''); if (!empty($heroSub)): ?>
+    <p class="lede on-dark reveal d1" style="max-width: 720px; margin: 12px auto 20px; color: #f2e6d4;"><?= e($heroSub) ?></p>
+    <?php endif; ?>
 
     <!-- Glassmorphic Trust Row -->
     <div class="hero-trust-row reveal d2">
@@ -213,11 +233,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- CTA Buttons with Premium Sliding Transition -->
     <div class="hero-cta reveal d2">
-      <a href="/reserve" class="btn btn-gold-slide js-open-reserve">
-        <span>Reserve a Table</span>
+      <a href="<?= e(cms_get('hero_btn_primary_link', '/reserve')) ?>" class="btn btn-gold-slide js-open-reserve">
+        <span><?= e(cms_get('hero_btn_primary_text', 'Reserve a Table')) ?></span>
       </a>
-      <a href="/menu" class="btn btn-ghost-slide">
-        <span>Explore the Menu</span>
+      <a href="<?= e(cms_get('hero_btn_secondary_link', '/menu')) ?>" class="btn btn-ghost-slide">
+        <span><?= e(cms_get('hero_btn_secondary_text', 'Explore the Menu')) ?></span>
       </a>
     </div>
   </div>
@@ -282,12 +302,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <image-slot id="story-float" class="frame-float" shape="rounded" radius="4" placeholder="Tandoor flame" src="assets/dishes/chatgpt_1.webp"></image-slot>
     </div>
     <div>
-      <span class="eyebrow reveal">Our Story</span>
-      <h2 class="h-section reveal d1">A Restaurant Built Around Sharing</h2>
+      <span class="eyebrow reveal"><?= e(cms_get('home_story_eyebrow', 'Our Story')) ?></span>
+      <h2 class="h-section reveal d1"><?= e(cms_get('home_story_title', 'A Restaurant Built Around Sharing')) ?></h2>
       <img class="ornament sm" style="margin-left:0" src="assets/divider.png" alt="" />
-      <p class="lede reveal d2" style="margin-top:8px">Some meals are about choosing a single dish. Ours are about bringing people together around a table filled with options.</p>
-      <p class="body-text reveal d2" style="margin-top:18px">At Saffron Grill, you'll find the dishes guests know and love, alongside new favorites waiting to be discovered. From freshly prepared curries and tandoori specialties to vegetarian classics and house-made desserts, every visit offers something different to enjoy.</p>
-      <p class="body-text reveal d2" style="margin-top:18px">Whether you're joining us for a quick lunch, a family dinner, or a celebration with friends, our goal remains the same: serve great food generously and make everyone feel welcome.</p>
+      <p class="lede reveal d2" style="margin-top:8px"><?= e(cms_get('home_story_lede', 'Some meals are about choosing a single dish. Ours are about bringing people together around a table filled with options.')) ?></p>
+      <p class="body-text reveal d2" style="margin-top:18px"><?= nl2br(e(cms_get('home_story_body', "At Saffron Grill, you'll find the dishes guests know and love, alongside new favorites waiting to be discovered. From freshly prepared curries and tandoori specialties to vegetarian classics and house-made desserts, every visit offers something different to enjoy."))) ?></p>
       <div class="story-stats reveal d3">
         <div class="stat">
           <div class="num">20+</div>
@@ -399,14 +418,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="section surface-paper" id="catering" data-screen-label="Catering">
   <div class="wrap cater-grid">
     <div>
-      <span class="eyebrow reveal">Catering</span>
-      <h2 class="h-section reveal d1" style="margin-top:16px">Bring Saffron Grill to Your Next Celebration</h2>
+      <span class="eyebrow reveal"><?= e(cms_get('home_catering_eyebrow', 'Catering')) ?></span>
+      <h2 class="h-section reveal d1" style="margin-top:16px"><?= e(cms_get('home_catering_title', 'Bring Saffron Grill to Your Next Celebration')) ?></h2>
       <img class="ornament sm" style="margin-left:0" src="assets/divider.png" alt="" />
-      <p class="body-text reveal d2" style="margin-top:16px">From office lunches and corporate gatherings to weddings, birthdays, graduations, and family events, our catering team helps bring people together through great food.</p>
-      <p class="body-text reveal d2" style="margin-top:12px">Choose from a wide range of vegetarian and non-vegetarian options, buffet-style service, party trays, and customized menus tailored to your event.</p>
-      <p class="body-text reveal d2" style="margin-top:12px">Whether you're serving twenty guests or hundreds, we'll help create a menu that fits the occasion.</p>
+      <p class="body-text reveal d2" style="margin-top:16px"><?= nl2br(e(cms_get('home_catering_desc', "From office lunches and corporate gatherings to weddings, birthdays, graduations, and family events, our catering team helps bring people together through great food. Choose from a wide range of vegetarian and non-vegetarian options, buffet-style service, party trays, and customized menus tailored to your event."))) ?></p>
       <div class="reveal d3" style="margin-top:30px; display:flex; gap:14px; flex-wrap:wrap">
-        <a href="/catering#inquiry-section" class="btn btn-crimson">Request Catering Information</a>
+        <a href="<?= e(cms_get('home_catering_btn_link', '/catering#inquiry-section')) ?>" class="btn btn-crimson"><?= e(cms_get('home_catering_btn_text', 'Request Catering Information')) ?></a>
       </div>
     </div>
     <div class="reveal d1">
@@ -540,35 +557,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<!-- ============== PREMIUM POPUP ============== -->
-<div id="sgPopup" class="sgp-overlay" role="dialog" aria-modal="true"
-     aria-labelledby="sgpTitle" aria-hidden="true">
-  <div class="sgp-backdrop"></div>
-  <div class="sgp-panel">
-    <div class="sgp-shine" aria-hidden="true"></div>
-    <div class="sgp-inner">
-      <span class="sgp-eyebrow eyebrow on-dark center">Welcome</span>
-      <h2 class="sgp-title gold-text" id="sgpTitle">A Table Awaits</h2>
-      <div class="sgp-divider" aria-hidden="true">
-        <img src="assets/divider.png" alt="" />
-      </div>
-      <p class="sgp-body lede on-dark">Authentic Indian cuisine. Daily buffets. Tandoori
-      specialties. Family feasts. All in the heart of San Ramon.</p>
-      <p class="sgp-note body-text on-dark">Reserve your table or explore the menu — we're
-      open for lunch &amp; dinner daily.</p>
-      <div class="sgp-actions">
-        <a href="/contact#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
-        <a href="/menu" class="btn btn-ghost">Explore Menu</a>
-      </div>
-    </div>
-    <button class="sgp-close" id="pgClose" aria-label="Close">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="2" y1="2" x2="12" y2="12"></line>
-        <line x1="12" y1="2" x2="2" y2="12"></line>
-      </svg>
-    </button>
-  </div>
-</div>
+<!-- ============== DYNAMIC PROMOTIONAL POPUP ============== -->
+<?php require __DIR__ . '/includes/popup.php'; ?>
 
 <?php require_once __DIR__ . '/includes/consent_banner.php'; ?>
 

@@ -205,30 +205,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="hero-inner wrap">
-    <p class="hero-tag reveal">Elevated Gatherings</p>
+    <p class="hero-tag reveal"><?= e(cms_get('catering_hero_badge', 'Elevated Gatherings')) ?></p>
     <h1 class="reveal d1">
-      <span class="l1">Exquisite Catering</span>
-      <span class="l2 gold-text italic">For Every Occasion</span>
+      <span class="l1"><?= e(cms_get('catering_hero_title', 'Exquisite Catering For Every Occasion')) ?></span>
     </h1>
     
     <!-- Decorative Divider -->
     <img class="ornament reveal d1" src="assets/divider.png" alt="" style="width: 200px; margin: 18px auto;" />
 
+    <p class="lede on-dark reveal d2" style="max-width: 780px; margin: 12px auto 24px; color: #f2e6d4;">
+      <?= e(cms_get('catering_hero_subtitle', 'From intimate dinner parties to grand galas with live tandoor stations, Saffron Grill delivers unforgettable royal feasts.')) ?>
+    </p>
+
     <!-- Glassmorphic Trust/Detail Row -->
     <div class="hero-trust-row reveal d2">
       <div class="trust-item">
         <svg class="icon star-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-        <span>Customized Menus</span>
+        <span><?= e(cms_get('catering_stat1_label', 'Events Catered')) ?> (<?= e(cms_get('catering_stat1_num', '1,200+')) ?>)</span>
       </div>
       <span class="trust-separator"></span>
       <div class="trust-item">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
-        <span>10 to 500+ Guests</span>
+        <span><?= e(cms_get('catering_stat2_num', '20–1,000+')) ?> Guests</span>
       </div>
       <span class="trust-separator"></span>
       <div class="trust-item">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        <span>Full-Service Setup</span>
+        <span><?= e(cms_get('catering_stat3_label', 'Fresh Clay Tandoor')) ?></span>
       </div>
     </div>
 
@@ -585,35 +588,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<!-- ============== PREMIUM POPUP ============== -->
-<div id="sgPopup" class="sgp-overlay" role="dialog" aria-modal="true"
-     aria-labelledby="sgpTitle" aria-hidden="true">
-  <div class="sgp-backdrop"></div>
-  <div class="sgp-panel">
-    <div class="sgp-shine" aria-hidden="true"></div>
-    <div class="sgp-inner">
-      <span class="sgp-eyebrow eyebrow on-dark center">Welcome</span>
-      <h2 class="sgp-title gold-text" id="sgpTitle">A Table Awaits</h2>
-      <div class="sgp-divider" aria-hidden="true">
-        <img src="assets/divider.png" alt="" />
-      </div>
-      <p class="sgp-body lede on-dark">Authentic Indian cuisine. Daily buffets. Tandoori
-      specialties. Family feasts. All in the heart of San Ramon.</p>
-      <p class="sgp-note body-text on-dark">Reserve your table or explore the menu — we're
-      open for lunch &amp; dinner daily.</p>
-      <div class="sgp-actions">
-        <a href="/contact#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
-        <a href="/menu"    class="btn btn-ghost">Explore Menu</a>
-      </div>
-    </div>
-    <button class="sgp-close" id="pgClose" aria-label="Close">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="2" y1="2" x2="12" y2="12"></line>
-        <line x1="12" y1="2" x2="2" y2="12"></line>
-      </svg>
-    </button>
-  </div>
-</div>
+<!-- ============== DYNAMIC PROMOTIONAL POPUP ============== -->
+<?php require __DIR__ . '/includes/popup.php'; ?>
 
 <?php require_once __DIR__ . '/includes/consent_banner.php'; ?>
 

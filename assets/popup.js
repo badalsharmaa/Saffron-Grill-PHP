@@ -187,12 +187,20 @@
 
   /* ------ boot ------ */
 
-  // Only open once per session
+  var delaySec = overlay.getAttribute("data-delay");
+  if (delaySec) {
+    CONFIG.openDelay = Math.max(500, parseFloat(delaySec) * 1000);
+  }
+  var frequency = overlay.getAttribute("data-frequency") || "session";
+
   if (typeof gsap === "undefined") return;
-  if (sessionStorage.getItem("sgp_seen")) return;
+
+  if (frequency === "session" && sessionStorage.getItem("sgp_seen")) return;
+  if (frequency === "once" && localStorage.getItem("sgp_seen_perm")) return;
 
   setTimeout(function () {
-    sessionStorage.setItem("sgp_seen", "1");
+    if (frequency === "session") sessionStorage.setItem("sgp_seen", "1");
+    if (frequency === "once") localStorage.setItem("sgp_seen_perm", "1");
     open();
   }, CONFIG.openDelay);
 

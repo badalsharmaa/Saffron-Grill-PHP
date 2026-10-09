@@ -9,10 +9,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $siteData = require __DIR__ . '/restaurant_data.php';
 
-// Bootstrap Database
+// Bootstrap Database & CMS Helpers
 $dbPath = __DIR__ . '/../admin/includes/db.php';
 if (file_exists($dbPath)) {
     require_once $dbPath;
+}
+$cmsHelper = __DIR__ . '/../api/cms_helper.php';
+if (file_exists($cmsHelper)) {
+    require_once $cmsHelper;
 }
 
 // Function to fetch dynamic settings with caching

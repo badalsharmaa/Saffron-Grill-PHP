@@ -357,11 +357,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <table class="hours-table-light">
           <tr>
             <td class="day">Mon – Fri</td>
-            <td class="time">11:30 AM – 3:00 PM<br>5:00 PM – 10:00 PM</td>
+            <td class="time"><?= e(cms_get('buffet_weekday_hours', '11:30 AM – 3:00 PM')) ?><br><?= e(cms_get('dinner_hours', '5:00 PM – 10:00 PM')) ?></td>
           </tr>
           <tr>
             <td class="day">Sat – Sun</td>
-            <td class="time">12:00 PM – 3:30 PM<br>5:00 PM – 10:00 PM</td>
+            <td class="time"><?= e(cms_get('buffet_weekend_hours', '12:00 PM – 3:30 PM')) ?><br><?= e(cms_get('dinner_hours', '5:00 PM – 10:00 PM')) ?></td>
           </tr>
         </table>
       </div>
@@ -370,26 +370,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div style="margin-bottom: 32px;">
         <h3 class="h-sub" style="color: var(--aubergine); margin-bottom: 10px; font-size: 18px; font-family: var(--ff-sans); letter-spacing: 0.1em; text-transform: uppercase;">Our Address</h3>
         <p style="font-family: var(--ff-serif); font-size: 22px; line-height: 1.5; color: var(--ink); margin-bottom: 16px;">
-          3191 Crow Canyon Pl<br>San Ramon, CA 94583
+          <?= nl2br(e(cms_get('restaurant_address', "3191 Crow Canyon Pl\nSan Ramon, CA 94583"))) ?>
         </p>
-        <a class="btn btn-ghost on-light" href="https://maps.app.goo.gl/yyEfLC6ogW2JiApg8" target="_blank" rel="noopener noreferrer">Get Directions</a>
+        <a class="btn btn-ghost on-light" href="<?= e(cms_get('google_maps_url', 'https://maps.app.goo.gl/yyEfLC6ogW2JiApg8')) ?>" target="_blank" rel="noopener noreferrer">Get Directions</a>
       </div>
 
       <!-- Contact Details -->
       <div>
         <h3 class="h-sub" style="color: var(--aubergine); margin-bottom: 16px; font-size: 18px; font-family: var(--ff-sans); letter-spacing: 0.1em; text-transform: uppercase;">Reservations &amp; Inquiries</h3>
         <div style="display: flex; flex-direction: column; gap: 14px;">
-          <a class="contact-link-btn" href="tel:+19258463077" style="display: inline-flex; align-items: center; gap: 12px; font-family: var(--ff-serif); font-size: 19px; color: var(--ink); font-weight: 500;">
+          <?php $pPhone = cms_get('restaurant_phone_primary', '(925) 846-3077'); ?>
+          <a class="contact-link-btn" href="tel:+1<?= preg_replace('/[^0-9]/', '', $pPhone) ?>" style="display: inline-flex; align-items: center; gap: 12px; font-family: var(--ff-serif); font-size: 19px; color: var(--ink); font-weight: 500;">
             <svg style="width: 20px; height: 20px; color: var(--gold-dp);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-            +1 (925) 846-3077
+            <?= e($pPhone) ?>
           </a>
-          <a class="contact-link-btn" href="tel:+19253694696" style="display: inline-flex; align-items: center; gap: 12px; font-family: var(--ff-serif); font-size: 19px; color: var(--ink); font-weight: 500;">
+          <?php $aPhone = cms_get('restaurant_phone_alt', '(925) 369-4696'); ?>
+          <a class="contact-link-btn" href="tel:+1<?= preg_replace('/[^0-9]/', '', $aPhone) ?>" style="display: inline-flex; align-items: center; gap: 12px; font-family: var(--ff-serif); font-size: 19px; color: var(--ink); font-weight: 500;">
             <svg style="width: 20px; height: 20px; color: var(--gold-dp);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-            +1 (925) 369-4696
+            <?= e($aPhone) ?>
           </a>
-          <a class="contact-link-btn" href="mailto:gosaffrongrill@gmail.com" style="display: inline-flex; align-items: center; gap: 12px; font-family: var(--ff-serif); font-size: 19px; color: var(--ink); font-weight: 500;">
+          <?php $cEmail = cms_get('contact_email', 'gosaffrongrill@gmail.com'); ?>
+          <a class="contact-link-btn" href="mailto:<?= e($cEmail) ?>" style="display: inline-flex; align-items: center; gap: 12px; font-family: var(--ff-serif); font-size: 19px; color: var(--ink); font-weight: 500;">
             <svg style="width: 20px; height: 20px; color: var(--gold-dp);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            gosaffrongrill@gmail.com
+            <?= e($cEmail) ?>
           </a>
         </div>
       </div>
@@ -401,7 +404,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         title="Saffron Grill location map"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps?q=3191+Crow+Canyon+Pl,+San+Ramon,+CA+94583&output=embed"
+        src="<?= e(cms_get('google_maps_embed_url', 'https://www.google.com/maps?q=3191+Crow+Canyon+Pl,+San+Ramon,+CA+94583&output=embed')) ?>"
       ></iframe>
     </div>
   </div>
@@ -652,35 +655,8 @@ document.addEventListener("DOMContentLoaded", function() {
   </div>
 </footer>
 
-<!-- ============== PREMIUM POPUP ============== -->
-<div id="sgPopup" class="sgp-overlay" role="dialog" aria-modal="true"
-     aria-labelledby="sgpTitle" aria-hidden="true">
-  <div class="sgp-backdrop"></div>
-  <div class="sgp-panel">
-    <div class="sgp-shine" aria-hidden="true"></div>
-    <div class="sgp-inner">
-      <span class="sgp-eyebrow eyebrow on-dark center">Welcome</span>
-      <h2 class="sgp-title gold-text" id="sgpTitle">A Table Awaits</h2>
-      <div class="sgp-divider" aria-hidden="true">
-        <img src="assets/divider.png" alt="" />
-      </div>
-      <p class="sgp-body lede on-dark">Authentic Indian cuisine. Daily buffets. Tandoori
-      specialties. Family feasts. All in the heart of San Ramon.</p>
-      <p class="sgp-note body-text on-dark">Reserve your table or explore the menu — we're
-      open for lunch &amp; dinner daily.</p>
-      <div class="sgp-actions">
-        <a href="/contact#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
-        <a href="/menu"    class="btn btn-ghost">Explore Menu</a>
-      </div>
-    </div>
-    <button class="sgp-close" id="pgClose" aria-label="Close">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="2" y1="2" x2="12" y2="12"></line>
-        <line x1="12" y1="2" x2="2" y2="12"></line>
-      </svg>
-    </button>
-  </div>
-</div>
+<!-- ============== DYNAMIC PROMOTIONAL POPUP ============== -->
+<?php require __DIR__ . '/includes/popup.php'; ?>
 
 <?php require_once __DIR__ . '/includes/consent_banner.php'; ?>
 

@@ -1,6 +1,7 @@
 <?php
 /**
- * Saffron Grill — Website Pages & Content Manager
+ * Saffron Grill — Professional Website Pages & Content Customizer
+ * Apple macOS / iOS Inspired Settings Architecture with Granular Section Controls
  */
 
 $pageTitle = 'Page Customizer';
@@ -29,7 +30,7 @@ require_once __DIR__ . '/components/header.php';
                 <?= AdminIcons::get('paint_brush', 34) ?>
             </div>
             <h1 class="apple-header-title">Website Pages &amp; Content</h1>
-            <p class="apple-header-subtitle">Customize copy, hero sections, storytelling narratives, buffet pricing, catering packages, operational restaurant hours, and legal policies across all public website pages.</p>
+            <p class="apple-header-subtitle">Customize copy, hero banners, storytelling narratives, buffet pricing, catering packages, operational restaurant hours, and legal policies across all public website pages.</p>
         </div>
 
         <!-- Grouped List Card with Hairline Dividers -->
@@ -136,33 +137,51 @@ require_once __DIR__ . '/components/header.php';
     <!-- ============================================================= -->
     <!-- SUB-VIEW: SECTION CUSTOMIZER                                  -->
     <!-- ============================================================= -->
-    <div style="max-width: 900px; margin: 0 auto; padding-bottom: 4rem;">
+    <div style="max-width: 960px; margin: 0 auto; padding-bottom: 4rem;">
         
-        <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <!-- Editor Top Navigation Bar -->
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 12px 18px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
             <a href="/admin.php?page=pages" class="btn btn-secondary btn-sm" style="font-size: 13px; gap: 6px;">
-                <?= AdminIcons::get('chevron_left', 16) ?>
-                <span>Back to Directory</span>
+                <?= AdminIcons::get('arrow_left', 16) ?>
+                <span>Back to All Pages</span>
             </a>
-            <span style="font-size: 13px; font-weight: 700; color: var(--gold); text-transform: uppercase;">
-                Editing: <?= ucfirst($editPage) ?> Section
-            </span>
+            
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <?php
+                $previewUrl = match ($editPage) {
+                    'popup' => '/',
+                    'home' => '/',
+                    'story' => '/story',
+                    'buffet' => '/menu',
+                    'catering' => '/catering',
+                    'contact' => '/contact',
+                    'reserve' => '/reserve',
+                    'policies' => '/contact',
+                    default => '/'
+                };
+                ?>
+                <a href="<?= $previewUrl ?>" target="_blank" class="btn btn-secondary btn-sm" style="font-size: 13px; gap: 6px;">
+                    <?= AdminIcons::get('eye', 16) ?>
+                    <span><?= $editPage === 'popup' ? 'Test Popup on Storefront' : 'Preview Live Page' ?></span>
+                </a>
+                <span class="badge badge-gold" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">
+                    Editing <?= ucfirst($editPage) ?>
+                </span>
+            </div>
         </div>
 
         <?php if ($editPage === 'popup'): ?>
-            <!-- POPUP FLYER CUSTOMIZER -->
-            <form method="POST" action="/admin.php?page=popup&action=save">
+            <!-- ========================================== -->
+            <!-- 0. PROMOTIONAL POPUP FLYER & SLIDES        -->
+            <!-- ========================================== -->
+            <form method="POST" action="/admin.php?page=popup&action=save" id="popupCustomizerForm">
                 <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
                 
-                <div class="apple-header-card" style="text-align: left; padding: 1.5rem 1.75rem; margin-bottom: 1.5rem;">
-                    <h2 style="font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 4px;">Promotional Popup Flyer</h2>
-                    <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Configure modal flyer shown to visitors with special offers, discounts, or buffet specials.</p>
-                </div>
-
                 <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
                         <div>
-                            <div style="font-weight: 700; font-size: 15px; color: var(--navy);">Enable Promotional Popup</div>
-                            <div style="font-size: 12.5px; color: var(--text-muted);">Toggle popup modal display on public website</div>
+                            <div style="font-weight: 800; font-size: 16px; color: var(--navy);">Enable Promotional Popup</div>
+                            <div style="font-size: 13px; color: var(--text-muted);">Toggle whether the cinematic popup flyer appears for website visitors</div>
                         </div>
                         <label class="switch">
                             <input type="checkbox" name="is_active" value="1" <?= !empty($popup['is_active']) ? 'checked' : '' ?>>
@@ -170,77 +189,152 @@ require_once __DIR__ . '/components/header.php';
                         </label>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
                         <div class="form-group">
                             <label class="form-label">Display Delay (Seconds)</label>
-                            <input type="number" step="0.5" name="delay_seconds" class="form-control" value="<?= e($popup['delay_seconds'] ?? 1.5) ?>">
+                            <input type="number" step="0.5" min="0" max="30" name="delay_seconds" class="form-control" value="<?= e($popup['delay_seconds'] ?? 1.5) ?>">
+                            <small style="color:var(--text-muted); font-size:12px;">Recommended: 1.5s to 3.0s</small>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Display Frequency</label>
                             <select name="show_frequency" class="form-control">
                                 <option value="session" <?= ($popup['show_frequency'] ?? '') === 'session' ? 'selected' : '' ?>>Once per browser session (Recommended)</option>
-                                <option value="always" <?= ($popup['show_frequency'] ?? '') === 'always' ? 'selected' : '' ?>>Every page load</option>
-                                <option value="once" <?= ($popup['show_frequency'] ?? '') === 'once' ? 'selected' : '' ?>>Once per visitor lifetime</option>
+                                <option value="always" <?= ($popup['show_frequency'] ?? '') === 'always' ? 'selected' : '' ?>>Every page reload (Testing / Aggressive)</option>
+                                <option value="once" <?= ($popup['show_frequency'] ?? '') === 'once' ? 'selected' : '' ?>>Once per visitor device lifetime</option>
                             </select>
+                            <small style="color:var(--text-muted); font-size:12px;">Controls how often repeat visitors see the popup</small>
                         </div>
                     </div>
 
-                    <h3 style="font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">Popup Slides &amp; Media Flyers</h3>
-                    
-                    <div id="popupSlidesContainer" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 1.25rem;">
+                    <!-- Inline Lead Capture Feature -->
+                    <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem; margin-top: 0.5rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <div>
+                                <span style="font-weight: 700; font-size: 14px; color: var(--navy);">Optional Inline Lead / VIP Capture</span>
+                                <p style="font-size: 12.5px; color: var(--text-muted); margin: 0;">Show a quick email/phone signup form on the popup modal for exclusive offers</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" name="enable_lead_capture" value="1" <?= !empty($popup['enable_lead_capture']) ? 'checked' : '' ?>>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Lead Offer Headline</label>
+                            <input type="text" name="lead_capture_title" value="<?= e($popup['lead_capture_title'] ?? 'Join Saffron VIP Club for Exclusive Offers & 10% Off') ?>" class="form-control" placeholder="e.g. Join VIP Club for 10% Off Your Order">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide Cards Builder -->
+                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                        <div>
+                            <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 4px;">Promotional Slides &amp; Media Flyers</h3>
+                            <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Add flyer artwork, buffet banners, or holiday specials displayed inside the popup.</p>
+                        </div>
+                        <button type="button" id="addSlideBtn" class="btn btn-secondary btn-sm" style="gap: 6px;">
+                            <?= AdminIcons::get('plus', 15) ?>
+                            <span>Add New Slide</span>
+                        </button>
+                    </div>
+
+                    <div id="popupSlidesContainer" style="display: flex; flex-direction: column; gap: 16px;">
                         <?php 
                         $slides = $popup['slides'] ?? [];
+                        if (empty($slides)) {
+                            $slides = [
+                                [
+                                    'id' => 1,
+                                    'image' => '/assets/hero2-first-frame.jpg',
+                                    'alt' => 'Daily Grand Lunch Buffet Feast',
+                                    'title' => 'Daily Grand Lunch Buffet Feast',
+                                    'link' => '/menu'
+                                ]
+                            ];
+                        }
                         foreach ($slides as $idx => $slide): 
                         ?>
-                            <div class="slide-card" style="background: #FAF7F2; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px; position: relative;">
-                                <div style="display: grid; grid-template-columns: 120px 1fr; gap: 14px;">
-                                    <div>
-                                        <img src="<?= e($slide['image']) ?>" alt="Slide Preview" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid #CBD5E1;">
-                                    </div>
-                                    <div style="display: flex; flex-direction: column; gap: 8px;">
-                                        <div style="display: flex; gap: 8px;">
-                                            <input type="text" name="slides[<?= $idx ?>][image]" value="<?= e($slide['image']) ?>" placeholder="/assets/... image path" class="form-control form-control-sm" id="slideImg_<?= $idx ?>">
-                                            <button type="button" class="btn btn-secondary btn-sm" onclick="chooseImageFor('slideImg_<?= $idx ?>')">Choose</button>
+                            <div class="slide-card" data-index="<?= $idx ?>" style="background: #FAF7F2; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px; position: relative;">
+                                <div style="display: grid; grid-template-columns: 140px 1fr 40px; gap: 16px; align-items: start;">
+                                    <!-- Image Thumbnail & Upload Column -->
+                                    <div style="display: flex; flex-direction: column; gap: 8px; text-align: center;">
+                                        <img src="<?= e($slide['image']) ?>" alt="Slide Preview" class="preview-thumb-<?= $idx ?>" style="width: 100%; height: 110px; object-fit: cover; border-radius: 8px; border: 1px solid #CBD5E1; background: #fff;" onerror="this.src='/assets/emblem.png'">
+                                        <div style="display: flex; gap: 6px;">
+                                            <button type="button" class="btn btn-secondary btn-sm" style="flex:1; font-size:11px; padding: 4px 6px;" onclick="chooseImageFor('slideImg_<?= $idx ?>', '.preview-thumb-<?= $idx ?>')">
+                                                Choose
+                                            </button>
                                         </div>
-                                        <input type="text" name="slides[<?= $idx ?>][title]" value="<?= e($slide['title'] ?? '') ?>" placeholder="Slide Title (e.g. Daily Grand Lunch Buffet)" class="form-control form-control-sm">
-                                        <input type="text" name="slides[<?= $idx ?>][link]" value="<?= e($slide['link'] ?? '/menu') ?>" placeholder="Destination Link (e.g. /menu)" class="form-control form-control-sm">
                                     </div>
+
+                                    <!-- Slide Form Inputs -->
+                                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                                        <div class="form-group" style="margin-bottom:0;">
+                                            <label class="form-label" style="font-size:12px;">Image URL / Path</label>
+                                            <input type="text" name="slides[<?= $idx ?>][image]" value="<?= e($slide['image']) ?>" placeholder="/assets/... image path" class="form-control form-control-sm" id="slideImg_<?= $idx ?>" required>
+                                        </div>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="form-label" style="font-size:12px;">Slide Title / Heading</label>
+                                                <input type="text" name="slides[<?= $idx ?>][title]" value="<?= e($slide['title'] ?? '') ?>" placeholder="e.g. Daily Grand Lunch Buffet" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="form-label" style="font-size:12px;">Button Destination Link</label>
+                                                <input type="text" name="slides[<?= $idx ?>][link]" value="<?= e($slide['link'] ?? '/menu') ?>" placeholder="e.g. /menu or /contact#reserve" class="form-control form-control-sm">
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="slides[<?= $idx ?>][id]" value="<?= e($slide['id'] ?? ($idx + 1)) ?>">
+                                        <input type="hidden" name="slides[<?= $idx ?>][alt]" value="<?= e($slide['alt'] ?? ($slide['title'] ?? 'Promotion')) ?>">
+                                    </div>
+
+                                    <!-- Delete Slide Button -->
+                                    <button type="button" class="btn btn-danger btn-sm remove-slide-btn" style="padding: 6px; width: 34px; height: 34px; justify-content: center; align-self: flex-start;" title="Delete this slide">
+                                        <?= AdminIcons::get('trash', 14) ?>
+                                    </button>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Save Popup Configuration</button>
+                <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px; font-weight: 700; gap: 8px;">
+                        <?= AdminIcons::get('save', 16) ?>
+                        <span>Save Popup Configuration</span>
+                    </button>
+                </div>
             </form>
 
         <?php elseif ($editPage === 'home'): ?>
-            <!-- HOME PAGE CUSTOMIZER -->
+            <!-- ========================================== -->
+            <!-- 1. HOME PAGE CUSTOMIZER                    -->
+            <!-- ========================================== -->
             <form method="POST" action="/admin.php?page=pages&action=save">
                 <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
                 <input type="hidden" name="active_tab" value="home">
                 <input type="hidden" name="edit_page" value="home">
 
-                <!-- Announcement Bar -->
+                <!-- 1. Top Announcement Bar -->
                 <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Top Announcement Banner</h3>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
                         <div>
-                            <span style="font-weight: 700; font-size: 13.5px;">Enable Top Announcement Bar</span>
+                            <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 2px;">Top Announcement Banner</h3>
+                            <p style="font-size: 12.5px; color: var(--text-muted); margin: 0;">High-visibility notification banner displayed across the header</p>
                         </div>
                         <label class="switch">
                             <input type="checkbox" name="announcement_enabled" value="1" <?= (CMS::getSetting('announcement_enabled', '1') === '1') ? 'checked' : '' ?>>
                             <span class="slider"></span>
                         </label>
                     </div>
+
                     <div class="form-group">
-                        <label class="form-label">Banner Text</label>
-                        <input type="text" name="announcement_text" class="form-control" value="<?= e(CMS::getSetting('announcement_text', '')) ?>">
+                        <label class="form-label">Banner Announcement Text</label>
+                        <input type="text" name="announcement_text" class="form-control" value="<?= e(CMS::getSetting('announcement_text', '✨ Grand Lunch Buffet Served Daily · Weekdays $19.99 | Weekends $21.99 · Fresh Clay Tandoor & Curries')) ?>" placeholder="Enter announcement banner message...">
                     </div>
+
                     <div style="display: grid; grid-template-columns: 1fr 140px; gap: 12px;">
                         <div class="form-group">
-                            <label class="form-label">Target Link</label>
-                            <input type="text" name="announcement_link" class="form-control" value="<?= e(CMS::getSetting('announcement_link', '/menu')) ?>">
+                            <label class="form-label">Click Target Link</label>
+                            <input type="text" name="announcement_link" class="form-control" value="<?= e(CMS::getSetting('announcement_link', '/menu')) ?>" placeholder="/menu or https://...">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Background Color</label>
@@ -249,44 +343,312 @@ require_once __DIR__ . '/components/header.php';
                     </div>
                 </div>
 
-                <!-- Hero Section Copy -->
+                <!-- 2. Homepage Hero Header -->
                 <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Homepage Hero Headlines</h3>
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Hero Banner Headlines &amp; Call to Actions</h3>
+                    
                     <div class="form-group">
-                        <label class="form-label">Eyebrow Tag / Badge</label>
-                        <input type="text" name="hero_badge" class="form-control" value="<?= e(CMS::getSetting('hero_badge', 'Regal Indian Gastronomy · San Ramon')) ?>">
+                        <label class="form-label">Eyebrow Tag / Location Badge</label>
+                        <input type="text" name="hero_badge" class="form-control" value="<?= e(CMS::getSetting('hero_badge', 'San Ramon, CA')) ?>">
                     </div>
+
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                         <div class="form-group">
-                            <label class="form-label">Hero Title Line 1</label>
-                            <input type="text" name="hero_title_line1" class="form-control" value="<?= e(CMS::getSetting('hero_title_line1', 'A Symphony of')) ?>">
+                            <label class="form-label">Hero Title Line 1 (White)</label>
+                            <input type="text" name="hero_title_line1" class="form-control" value="<?= e(CMS::getSetting('hero_title_line1', 'Authentic Indian')) ?>">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Hero Title Line 2 (Gold Accent)</label>
-                            <input type="text" name="hero_title_line2" class="form-control" value="<?= e(CMS::getSetting('hero_title_line2', 'Indian Heritage')) ?>">
+                            <input type="text" name="hero_title_line2" class="form-control" value="<?= e(CMS::getSetting('hero_title_line2', 'Cuisine Crafted')) ?>">
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label class="form-label">Hero Subtitle</label>
-                        <textarea name="hero_subtitle" class="form-control" rows="3"><?= e(CMS::getSetting('hero_subtitle', '')) ?></textarea>
+                        <label class="form-label">Hero Subtitle / Description</label>
+                        <textarea name="hero_subtitle" class="form-control" rows="2" placeholder="Optional brief paragraph below the headline..."><?= e(CMS::getSetting('hero_subtitle', '')) ?></textarea>
                     </div>
+
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                         <div class="form-group">
                             <label class="form-label">Primary Button Text</label>
-                            <input type="text" name="hero_btn_primary_text" class="form-control" value="<?= e(CMS::getSetting('hero_btn_primary_text', 'Explore Menu')) ?>">
+                            <input type="text" name="hero_btn_primary_text" class="form-control" value="<?= e(CMS::getSetting('hero_btn_primary_text', 'Reserve a Table')) ?>">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Primary Button Link</label>
-                            <input type="text" name="hero_btn_primary_link" class="form-control" value="<?= e(CMS::getSetting('hero_btn_primary_link', '/menu')) ?>">
+                            <input type="text" name="hero_btn_primary_link" class="form-control" value="<?= e(CMS::getSetting('hero_btn_primary_link', '/reserve')) ?>">
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div class="form-group">
+                            <label class="form-label">Secondary Button Text</label>
+                            <input type="text" name="hero_btn_secondary_text" class="form-control" value="<?= e(CMS::getSetting('hero_btn_secondary_text', 'Explore the Menu')) ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Secondary Button Link</label>
+                            <input type="text" name="hero_btn_secondary_link" class="form-control" value="<?= e(CMS::getSetting('hero_btn_secondary_link', '/menu')) ?>">
+                        </div>
+                    </div>
+
+                    <!-- Hero Background Image Customizer -->
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label class="form-label">Hero Slide 1 Background Image</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <img src="<?= e(CMS::getSetting('hero_bg_image', '/assets/hero-first-frame.jpg')) ?>" class="preview-thumb-hero" style="width: 60px; height: 42px; border-radius: 6px; object-fit: cover; border: 1px solid var(--border-color);" onerror="this.src='/assets/emblem.png'">
+                            <input type="text" name="hero_bg_image" id="heroBgInput" value="<?= e(CMS::getSetting('hero_bg_image', '/assets/hero-first-frame.jpg')) ?>" class="form-control" style="flex:1;">
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="chooseImageFor('heroBgInput', '.preview-thumb-hero')">Choose Media</button>
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Save Home Page Changes</button>
+                <!-- 3. Culinary Vision / Story Spotlight on Home -->
+                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Story Spotlight on Homepage</h3>
+                    <div class="form-group">
+                        <label class="form-label">Eyebrow Tag</label>
+                        <input type="text" name="home_story_eyebrow" class="form-control" value="<?= e(CMS::getSetting('home_story_eyebrow', 'Our Story')) ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Headline</label>
+                        <input type="text" name="home_story_title" class="form-control" value="<?= e(CMS::getSetting('home_story_title', 'A Restaurant Built Around Sharing')) ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Lede Intro Sentence</label>
+                        <textarea name="home_story_lede" class="form-control" rows="2"><?= e(CMS::getSetting('home_story_lede', 'Some meals are about choosing a single dish. Ours are about bringing people together around a table filled with options.')) ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Body Narrative</label>
+                        <textarea name="home_story_body" class="form-control" rows="3"><?= e(CMS::getSetting('home_story_body', "At Saffron Grill, you'll find the dishes guests know and love, alongside new favorites waiting to be discovered. From freshly prepared curries and tandoori specialties to vegetarian classics and house-made desserts, every visit offers something different to enjoy.")) ?></textarea>
+                    </div>
+                </div>
+
+                <!-- 4. Catering Spotlight Banner on Home -->
+                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Catering Spotlight Banner</h3>
+                    <div class="form-group">
+                        <label class="form-label">Section Eyebrow</label>
+                        <input type="text" name="home_catering_eyebrow" class="form-control" value="<?= e(CMS::getSetting('home_catering_eyebrow', 'Catering')) ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Catering Headline</label>
+                        <input type="text" name="home_catering_title" class="form-control" value="<?= e(CMS::getSetting('home_catering_title', 'Bring Saffron Grill to Your Next Celebration')) ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Catering Description</label>
+                        <textarea name="home_catering_desc" class="form-control" rows="3"><?= e(CMS::getSetting('home_catering_desc', 'From office lunches and corporate gatherings to weddings, birthdays, graduations, and family events, our catering team helps bring people together through great food. Choose from party trays, buffet service, and live tandoors.')) ?></textarea>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div class="form-group">
+                            <label class="form-label">CTA Button Label</label>
+                            <input type="text" name="home_catering_btn_text" class="form-control" value="<?= e(CMS::getSetting('home_catering_btn_text', 'Request Catering Information')) ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">CTA Button Link</label>
+                            <input type="text" name="home_catering_btn_link" class="form-control" value="<?= e(CMS::getSetting('home_catering_btn_link', '/catering#inquiry-section')) ?>">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Guest Testimonials / Word on the Street -->
+                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 4px;">Guest Reviews &amp; Testimonials</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Social proof reviews shown to visitors</p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                        <!-- Review 1 -->
+                        <div style="background: #FAF7F2; padding: 14px; border-radius: 10px; border: 1px solid #E2E8F0;">
+                            <div style="font-weight: 700; color: var(--navy); margin-bottom: 8px;">Review Card 1</div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Reviewer Name</label>
+                                <input type="text" name="home_review1_author" class="form-control form-control-sm" value="<?= e(CMS::getSetting('home_review1_author', 'Aman P.')) ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Platform / Location</label>
+                                <input type="text" name="home_review1_source" class="form-control form-control-sm" value="<?= e(CMS::getSetting('home_review1_source', 'Google Review · San Ramon')) ?>">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Review Quote</label>
+                                <textarea name="home_review1_text" class="form-control form-control-sm" rows="3"><?= e(CMS::getSetting('home_review1_text', 'The lunch buffet is unmatched in the Tri-Valley. Piping hot naan served straight to our table and the butter chicken is the best I have ever had.')) ?></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div style="background: #FAF7F2; padding: 14px; border-radius: 10px; border: 1px solid #E2E8F0;">
+                            <div style="font-weight: 700; color: var(--navy); margin-bottom: 8px;">Review Card 2</div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Reviewer Name</label>
+                                <input type="text" name="home_review2_author" class="form-control form-control-sm" value="<?= e(CMS::getSetting('home_review2_author', 'Sarah M.')) ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Platform / Location</label>
+                                <input type="text" name="home_review2_source" class="form-control form-control-sm" value="<?= e(CMS::getSetting('home_review2_source', 'Yelp Elite · Danville')) ?>">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Review Quote</label>
+                                <textarea name="home_review2_text" class="form-control form-control-sm" rows="3"><?= e(CMS::getSetting('home_review2_text', 'Catered our daughter’s birthday party for 80 guests. Everything arrived on time, sizzling hot, and guests could not stop raving about the tandoori kebabs.')) ?></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div style="background: #FAF7F2; padding: 14px; border-radius: 10px; border: 1px solid #E2E8F0;">
+                            <div style="font-weight: 700; color: var(--navy); margin-bottom: 8px;">Review Card 3</div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Reviewer Name</label>
+                                <input type="text" name="home_review3_author" class="form-control form-control-sm" value="<?= e(CMS::getSetting('home_review3_author', 'Raj & Meena K.')) ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Platform / Location</label>
+                                <input type="text" name="home_review3_source" class="form-control form-control-sm" value="<?= e(CMS::getSetting('home_review3_source', 'Verified Diner · Dublin')) ?>">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Review Quote</label>
+                                <textarea name="home_review3_text" class="form-control form-control-sm" rows="3"><?= e(CMS::getSetting('home_review3_text', 'Authentic flavors that remind us of royal dining in Northern India. Excellent customer service, elegant ambiance, and consistently superb food.')) ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px; font-weight: 700; gap: 8px;">
+                        <?= AdminIcons::get('save', 16) ?>
+                        <span>Save Home Page Changes</span>
+                    </button>
+                </div>
+            </form>
+
+        <?php elseif ($editPage === 'story'): ?>
+            <!-- ========================================== -->
+            <!-- 2. OUR STORY & HERITAGE CUSTOMIZER         -->
+            <!-- ========================================== -->
+            <form method="POST" action="/admin.php?page=pages&action=save">
+                <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
+                <input type="hidden" name="active_tab" value="story">
+                <input type="hidden" name="edit_page" value="story">
+
+                <!-- 1. Header Banner -->
+                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Story Page Header Banner</h3>
+                    <div class="form-group">
+                        <label class="form-label">Page Tag / Eyebrow</label>
+                        <input type="text" name="story_hero_tag" class="form-control" value="<?= e(CMS::getSetting('story_hero_tag', 'Culinary Philosophy')) ?>">
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div class="form-group">
+                            <label class="form-label">Title Line 1</label>
+                            <input type="text" name="story_hero_title1" class="form-control" value="<?= e(CMS::getSetting('story_hero_title1', 'The Art of Indian')) ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Title Line 2 (Gold Accent)</label>
+                            <input type="text" name="story_hero_title2" class="form-control" value="<?= e(CMS::getSetting('story_hero_title2', 'Culinary Harmony')) ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hero Philosophy Quote</label>
+                        <textarea name="story_hero_quote" class="form-control" rows="3"><?= e(CMS::getSetting('story_hero_quote', '"Food is more than nourishment — it is a language of warmth, an invitation to gather, and a celebration of sensory balance. At Saffron Grill, we blend tradition and craft to create meals meant for sharing."')) ?></textarea>
+                    </div>
+                </div>
+
+                <!-- 2. Heritage Narrative & Image -->
+                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Section 1: The Clay Tandoor &amp; Spices Heritage</h3>
+                    <div class="form-group">
+                        <label class="form-label">Section Eyebrow</label>
+                        <input type="text" name="story_sec1_eyebrow" class="form-control" value="<?= e(CMS::getSetting('story_sec1_eyebrow', 'Our Heritage')) ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Section Headline</label>
+                        <input type="text" name="story_sec1_title" class="form-control" value="<?= e(CMS::getSetting('story_sec1_title', 'A Legacy of Spices & Sourcing')) ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Lede Paragraph</label>
+                        <textarea name="story_sec1_lede" class="form-control" rows="2"><?= e(CMS::getSetting('story_sec1_lede', 'From hand-selected spices to daily local harvest, our dishes carry stories from kitchens of antiquity.')) ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Narrative Paragraph 1</label>
+                        <textarea name="story_sec1_p1" class="form-control" rows="3"><?= e(CMS::getSetting('story_sec1_p1', 'The story of Saffron Grill is rooted in a simple obsession: to preserve the honest, traditional flavor profiles of Indian cuisine while utilizing the exceptional bounty of California’s local farms. Every morning, our kitchen comes alive with the aroma of freshly ground coriander, turmeric, cumin, and true Kashmiri chillies, each hand-picked and imported directly to ensure absolute purity.')) ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Narrative Paragraph 2</label>
+                        <textarea name="story_sec1_p2" class="form-control" rows="3"><?= e(CMS::getSetting('story_sec1_p2', 'We believe that premium Indian cooking demands uncompromising ingredient quality. That is why our chefs source fresh vegetables and meats daily. Our chicken, lamb, and seafood are never frozen, ensuring that they absorb the complex marinades of yogurt, ginger, garlic, and home-blended masalas before entering the tandoor—our custom clay oven that burns at over 800°F.')) ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Heritage Section Main Photo</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <img src="<?= e(CMS::getSetting('story_sec1_image', '/assets/dishes/chatgpt_5.webp')) ?>" class="preview-thumb-story1" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border-color);" onerror="this.src='/assets/emblem.png'">
+                            <input type="text" name="story_sec1_image" id="storySec1Img" value="<?= e(CMS::getSetting('story_sec1_image', '/assets/dishes/chatgpt_5.webp')) ?>" class="form-control" style="flex:1;">
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="chooseImageFor('storySec1Img', '.preview-thumb-story1')">Choose Media</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Core Values / Pillars of Excellence -->
+                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Core Values &amp; Pillars of Excellence (4 Cards)</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <!-- Pillar 1 -->
+                        <div style="background: #FAF7F2; padding: 14px; border-radius: 10px; border: 1px solid #E2E8F0;">
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Pillar 1 Title</label>
+                                <input type="text" name="story_pillar1_title" class="form-control form-control-sm" value="<?= e(CMS::getSetting('story_pillar1_title', 'Authenticity')) ?>">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Pillar 1 Description</label>
+                                <textarea name="story_pillar1_desc" class="form-control form-control-sm" rows="3"><?= e(CMS::getSetting('story_pillar1_desc', 'We honor time-tested culinary traditions, using genuine clay tandoors and hand-blended spices to deliver the true heritage of Indian cooking without shortcuts.')) ?></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Pillar 2 -->
+                        <div style="background: #FAF7F2; padding: 14px; border-radius: 10px; border: 1px solid #E2E8F0;">
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Pillar 2 Title</label>
+                                <input type="text" name="story_pillar2_title" class="form-control form-control-sm" value="<?= e(CMS::getSetting('story_pillar2_title', 'Hospitality')) ?>">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Pillar 2 Description</label>
+                                <textarea name="story_pillar2_desc" class="form-control form-control-sm" rows="3"><?= e(CMS::getSetting('story_pillar2_desc', 'In accordance with the timeless philosophy of Atithi Devo Bhava (The Guest is God), we welcome everyone as family, serving with warmth, grace, and generosity.')) ?></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Pillar 3 -->
+                        <div style="background: #FAF7F2; padding: 14px; border-radius: 10px; border: 1px solid #E2E8F0;">
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Pillar 3 Title</label>
+                                <input type="text" name="story_pillar3_title" class="form-control form-control-sm" value="<?= e(CMS::getSetting('story_pillar3_title', 'Quality')) ?>">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Pillar 3 Description</label>
+                                <textarea name="story_pillar3_desc" class="form-control form-control-sm" rows="3"><?= e(CMS::getSetting('story_pillar3_desc', 'We source only the finest local vegetables, fresh dairy, and never-frozen premium meats, matching them with authentic spices to ensure excellence on every single plate.')) ?></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Pillar 4 -->
+                        <div style="background: #FAF7F2; padding: 14px; border-radius: 10px; border: 1px solid #E2E8F0;">
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Pillar 4 Title</label>
+                                <input type="text" name="story_pillar4_title" class="form-control form-control-sm" value="<?= e(CMS::getSetting('story_pillar4_title', 'Community')) ?>">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Pillar 4 Description</label>
+                                <textarea name="story_pillar4_desc" class="form-control form-control-sm" rows="3"><?= e(CMS::getSetting('story_pillar4_desc', 'Food is the ultimate gatherer. We are proud to foster connection, laughter, and community around our sharing tables here in the heart of San Ramon.')) ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px; font-weight: 700; gap: 8px;">
+                        <?= AdminIcons::get('save', 16) ?>
+                        <span>Save Heritage &amp; Story Changes</span>
+                    </button>
+                </div>
             </form>
 
         <?php elseif ($editPage === 'buffet'): ?>
-            <!-- BUFFET & OPERATIONAL HOURS -->
+            <!-- ========================================== -->
+            <!-- 3. BUFFET & DINING HOURS CUSTOMIZER        -->
+            <!-- ========================================== -->
             <form method="POST" action="/admin.php?page=pages&action=save">
                 <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
                 <input type="hidden" name="active_tab" value="buffet">
@@ -294,13 +656,14 @@ require_once __DIR__ . '/components/header.php';
 
                 <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Daily Grand Lunch Buffet Pricing &amp; Hours</h3>
+                    
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
                         <div class="form-group">
                             <label class="form-label">Weekday Lunch Buffet Price</label>
                             <input type="text" name="buffet_weekday_price" class="form-control" value="<?= e(CMS::getSetting('buffet_weekday_price', '$19.99')) ?>">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Weekday Hours</label>
+                            <label class="form-label">Weekday Lunch Hours</label>
                             <input type="text" name="buffet_weekday_hours" class="form-control" value="<?= e(CMS::getSetting('buffet_weekday_hours', 'Mon–Fri: 11:30 AM – 3:00 PM')) ?>">
                         </div>
                         <div class="form-group">
@@ -308,7 +671,7 @@ require_once __DIR__ . '/components/header.php';
                             <input type="text" name="buffet_weekend_price" class="form-control" value="<?= e(CMS::getSetting('buffet_weekend_price', '$21.99')) ?>">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Weekend Hours</label>
+                            <label class="form-label">Weekend Lunch Hours</label>
                             <input type="text" name="buffet_weekend_hours" class="form-control" value="<?= e(CMS::getSetting('buffet_weekend_hours', 'Sat–Sun: 12:00 PM – 3:30 PM')) ?>">
                         </div>
                     </div>
@@ -317,13 +680,162 @@ require_once __DIR__ . '/components/header.php';
                         <label class="form-label">Daily Dinner Service Hours</label>
                         <input type="text" name="dinner_hours" class="form-control" value="<?= e(CMS::getSetting('dinner_hours', 'Daily: 5:00 PM – 10:00 PM')) ?>">
                     </div>
+
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label class="form-label">Buffet Special Dietary Advisory Notice</label>
+                        <input type="text" name="buffet_dietary_notice" class="form-control" value="<?= e(CMS::getSetting('buffet_dietary_notice', 'All meats are 100% Zabiha Halal. Vegetarian, vegan, and gluten-free items labeled daily.')) ?>">
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Save Buffet Settings</button>
+                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Buffet Inclusions &amp; Experience Highlights</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div class="form-group">
+                            <label class="form-label">Highlight 1</label>
+                            <input type="text" name="buffet_feat1" class="form-control" value="<?= e(CMS::getSetting('buffet_feat1', 'Piping hot butter & garlic naan served directly to your table')) ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Highlight 2</label>
+                            <input type="text" name="buffet_feat2" class="form-control" value="<?= e(CMS::getSetting('buffet_feat2', '14+ rotating authentic meat & vegetarian curries')) ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Highlight 3</label>
+                            <input type="text" name="buffet_feat3" class="form-control" value="<?= e(CMS::getSetting('buffet_feat3', 'Fresh tandoori chicken sizzlers straight from our 800°F clay oven')) ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Highlight 4</label>
+                            <input type="text" name="buffet_feat4" class="form-control" value="<?= e(CMS::getSetting('buffet_feat4', 'Crisp salad bar, house-made raita, chutneys, and royal Indian desserts')) ?>">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px; font-weight: 700; gap: 8px;">
+                        <?= AdminIcons::get('save', 16) ?>
+                        <span>Save Buffet Settings</span>
+                    </button>
+                </div>
+            </form>
+
+        <?php elseif ($editPage === 'catering'): ?>
+            <!-- ========================================== -->
+            <!-- 4. CATERING & PACKAGES CUSTOMIZER          -->
+            <!-- ========================================== -->
+            <form method="POST" action="/admin.php?page=pages&action=save">
+                <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
+                <input type="hidden" name="active_tab" value="catering">
+                <input type="hidden" name="edit_page" value="catering">
+
+                <!-- 1. Hero & Intro -->
+                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Catering Hero Header</h3>
+                    <div class="form-group">
+                        <label class="form-label">Hero Badge</label>
+                        <input type="text" name="catering_hero_badge" class="form-control" value="<?= e(CMS::getSetting('catering_hero_badge', 'Elevated Gatherings')) ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Catering Title Line 1</label>
+                        <input type="text" name="catering_hero_title" class="form-control" value="<?= e(CMS::getSetting('catering_hero_title', 'Exquisite Catering For Every Occasion')) ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Catering Subtitle</label>
+                        <textarea name="catering_hero_subtitle" class="form-control" rows="2"><?= e(CMS::getSetting('catering_hero_subtitle', 'From intimate dinner parties to grand galas with live tandoor stations, Saffron Grill delivers unforgettable royal feasts.')) ?></textarea>
+                    </div>
+
+                    <!-- 3 Proof-point Stats -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 14px;">
+                        <div class="form-group">
+                            <label class="form-label">Stat 1</label>
+                            <input type="text" name="catering_stat1_num" class="form-control" value="<?= e(CMS::getSetting('catering_stat1_num', '1,200+')) ?>" style="margin-bottom:6px;">
+                            <input type="text" name="catering_stat1_label" class="form-control" value="<?= e(CMS::getSetting('catering_stat1_label', 'Events Catered')) ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Stat 2</label>
+                            <input type="text" name="catering_stat2_num" class="form-control" value="<?= e(CMS::getSetting('catering_stat2_num', '20–1,000+')) ?>" style="margin-bottom:6px;">
+                            <input type="text" name="catering_stat2_label" class="form-control" value="<?= e(CMS::getSetting('catering_stat2_label', 'Guests Accommodated')) ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Stat 3</label>
+                            <input type="text" name="catering_stat3_num" class="form-control" value="<?= e(CMS::getSetting('catering_stat3_num', '100%')) ?>" style="margin-bottom:6px;">
+                            <input type="text" name="catering_stat3_label" class="form-control" value="<?= e(CMS::getSetting('catering_stat3_label', 'Fresh Clay Tandoor')) ?>">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Catering Package Tiers Customizer (Bronze, Silver, Gold) -->
+                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 4px;">Catering Package Tiers (Bronze, Silver, Gold)</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Customize package pricing and inclusions shown on the Catering page.</p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                        <!-- Package 1: Bronze -->
+                        <div style="background: #FAF7F2; padding: 14px; border-radius: 10px; border: 1px solid #E2E8F0;">
+                            <div style="font-weight: 700; color: var(--navy); margin-bottom: 8px;">Bronze Package</div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Price Indicator / Per Person</label>
+                                <input type="text" name="catering_pkg1_price" class="form-control form-control-sm" value="<?= e(CMS::getSetting('catering_pkg1_price', '$22 / Person')) ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Subtitle / Min Guests</label>
+                                <input type="text" name="catering_pkg1_sub" class="form-control form-control-sm" value="<?= e(CMS::getSetting('catering_pkg1_sub', 'Classic Buffet · Min. 20 Guests')) ?>">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Inclusions Summary</label>
+                                <textarea name="catering_pkg1_inclusions" class="form-control form-control-sm" rows="4"><?= e(CMS::getSetting('catering_pkg1_inclusions', "1 Gourmet Appetizer (Veg/Non-Veg)\n2 Vegetarian Curries\n1 Chicken Curry\nSaffron Basmati Rice & Naan\n1 Classic Dessert\nRaita, Chutneys")) ?></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Package 2: Silver (Featured) -->
+                        <div style="background: #FFFBEB; padding: 14px; border-radius: 10px; border: 2px solid var(--gold);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <div style="font-weight: 800; color: #92400E;">Silver Package</div>
+                                <span class="badge badge-gold" style="font-size: 10.5px;">Most Popular</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Price Indicator / Per Person</label>
+                                <input type="text" name="catering_pkg2_price" class="form-control form-control-sm" value="<?= e(CMS::getSetting('catering_pkg2_price', '$28 / Person')) ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Subtitle / Min Guests</label>
+                                <input type="text" name="catering_pkg2_sub" class="form-control form-control-sm" value="<?= e(CMS::getSetting('catering_pkg2_sub', 'Royal Feast Buffet · Min. 30 Guests')) ?>">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Inclusions Summary</label>
+                                <textarea name="catering_pkg2_inclusions" class="form-control form-control-sm" rows="4"><?= e(CMS::getSetting('catering_pkg2_inclusions', "2 Appetizers (1 Veg, 1 Non-Veg)\n2 Premium Vegetarian Curries\n2 Meat Curries (Chicken/Lamb)\nAromatic Biryani or Saffron Rice\nAssorted Naan Basket\n2 Desserts & Accompaniments")) ?></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Package 3: Gold -->
+                        <div style="background: #FAF7F2; padding: 14px; border-radius: 10px; border: 1px solid #E2E8F0;">
+                            <div style="font-weight: 700; color: var(--navy); margin-bottom: 8px;">Gold Package</div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Price Indicator / Per Person</label>
+                                <input type="text" name="catering_pkg3_price" class="form-control form-control-sm" value="<?= e(CMS::getSetting('catering_pkg3_price', '$36 / Person')) ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size:12px;">Subtitle / Min Guests</label>
+                                <input type="text" name="catering_pkg3_sub" class="form-control form-control-sm" value="<?= e(CMS::getSetting('catering_pkg3_sub', 'Imperial Banquet · Min. 50 Guests')) ?>">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Inclusions Summary</label>
+                                <textarea name="catering_pkg3_inclusions" class="form-control form-control-sm" rows="4"><?= e(CMS::getSetting('catering_pkg3_inclusions', "3 Gourmet Appetizers (2 Veg, 1 Non-Veg)\n3 Premium Vegetarian Curries\n2 Imperial Meat/Lamb/Seafood Curries\nSpecialty Dum Biryani\nLive Clay Oven Bread Station\n3 Desserts & Hot Masala Chai")) ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px; font-weight: 700; gap: 8px;">
+                        <?= AdminIcons::get('save', 16) ?>
+                        <span>Save Catering Settings</span>
+                    </button>
+                </div>
             </form>
 
         <?php elseif ($editPage === 'contact'): ?>
-            <!-- CONTACT DETAILS & LOCATIONS -->
+            <!-- ========================================== -->
+            <!-- 5. CONTACT US & STORE DETAILS              -->
+            <!-- ========================================== -->
             <form method="POST" action="/admin.php?page=pages&action=save">
                 <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
                 <input type="hidden" name="active_tab" value="contact">
@@ -331,18 +843,19 @@ require_once __DIR__ . '/components/header.php';
 
                 <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Restaurant Location &amp; Contact Details</h3>
+                    
                     <div class="form-group">
-                        <label class="form-label">Street Address &amp; Suite</label>
-                        <input type="text" name="restaurant_address" class="form-control" value="<?= e(CMS::getSetting('restaurant_address', '3191 Crow Canyon Pl, Ste D, San Ramon, CA 94583')) ?>">
+                        <label class="form-label">Full Street Address &amp; Suite</label>
+                        <input type="text" name="restaurant_address" class="form-control" value="<?= e(CMS::getSetting('restaurant_address', '3191 Crow Canyon Pl, San Ramon, CA 94583')) ?>">
                     </div>
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                         <div class="form-group">
-                            <label class="form-label">Primary Phone</label>
+                            <label class="form-label">Primary Phone (Reservations &amp; Orders)</label>
                             <input type="text" name="restaurant_phone_primary" class="form-control" value="<?= e(CMS::getSetting('restaurant_phone_primary', '(925) 846-3077')) ?>">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Alternate Phone</label>
+                            <label class="form-label">Alternate Phone (Catering &amp; Events)</label>
                             <input type="text" name="restaurant_phone_alt" class="form-control" value="<?= e(CMS::getSetting('restaurant_phone_alt', '(925) 369-4696')) ?>">
                         </div>
                     </div>
@@ -353,17 +866,23 @@ require_once __DIR__ . '/components/header.php';
                             <input type="email" name="contact_email" class="form-control" value="<?= e(CMS::getSetting('contact_email', 'gosaffrongrill@gmail.com')) ?>">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Catering Quote Email</label>
+                            <label class="form-label">Catering Inquiries Email</label>
                             <input type="email" name="catering_email" class="form-control" value="<?= e(CMS::getSetting('catering_email', 'gosaffrongrill@gmail.com')) ?>">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Google Maps Directions URL</label>
-                        <input type="url" name="google_maps_url" class="form-control" value="<?= e(CMS::getSetting('google_maps_url', 'https://maps.google.com/?cid=7708573752697881186')) ?>">
+                        <label class="form-label">Google Maps Directions Share URL</label>
+                        <input type="url" name="google_maps_url" class="form-control" value="<?= e(CMS::getSetting('google_maps_url', 'https://maps.app.goo.gl/yyEfLC6ogW2JiApg8')) ?>">
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 10px;">
+                    <div class="form-group">
+                        <label class="form-label">Google Maps Live Embed Iframe URL</label>
+                        <input type="text" name="google_maps_embed_url" class="form-control" value="<?= e(CMS::getSetting('google_maps_embed_url', 'https://www.google.com/maps?q=3191+Crow+Canyon+Pl,+San+Ramon,+CA+94583&output=embed')) ?>" placeholder="https://www.google.com/maps/embed?... or ?q=...&output=embed">
+                        <small style="color:var(--text-muted); font-size:12px;">This URL feeds directly into the interactive map displayed on <code>/contact</code>.</small>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 14px;">
                         <div class="form-group">
                             <label class="form-label">Instagram URL</label>
                             <input type="url" name="instagram_url" class="form-control" value="<?= e(CMS::getSetting('instagram_url', 'https://www.instagram.com/saffrongrillrestaurant')) ?>">
@@ -379,88 +898,174 @@ require_once __DIR__ . '/components/header.php';
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Save Contact Details</button>
+                <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px; font-weight: 700; gap: 8px;">
+                        <?= AdminIcons::get('save', 16) ?>
+                        <span>Save Contact Details</span>
+                    </button>
+                </div>
             </form>
 
-        <?php elseif ($editPage === 'catering'): ?>
-            <!-- CATERING PAGE CUSTOMIZER -->
+        <?php elseif ($editPage === 'reserve'): ?>
+            <!-- ========================================== -->
+            <!-- 6. TABLE RESERVATIONS POLICY CUSTOMIZER    -->
+            <!-- ========================================== -->
             <form method="POST" action="/admin.php?page=pages&action=save">
                 <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
-                <input type="hidden" name="active_tab" value="catering">
-                <input type="hidden" name="edit_page" value="catering">
+                <input type="hidden" name="active_tab" value="reserve">
+                <input type="hidden" name="edit_page" value="reserve">
 
                 <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Catering Headings &amp; Statistics</h3>
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Dining Room Reservations &amp; Table Policies</h3>
+                    
                     <div class="form-group">
-                        <label class="form-label">Catering Headline</label>
-                        <input type="text" name="catering_hero_title" class="form-control" value="<?= e(CMS::getSetting('catering_hero_title', 'Royal Feasts for Unforgettable Celebrations')) ?>">
+                        <label class="form-label">Reservation Banner Title</label>
+                        <input type="text" name="reserve_hero_title" class="form-control" value="<?= e(CMS::getSetting('reserve_hero_title', 'Your Table Is Waiting')) ?>">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Catering Subtitle</label>
-                        <textarea name="catering_hero_subtitle" class="form-control" rows="2"><?= e(CMS::getSetting('catering_hero_subtitle', '')) ?></textarea>
+                        <label class="form-label">Reservation Description</label>
+                        <textarea name="reserve_hero_desc" class="form-control" rows="2"><?= e(CMS::getSetting('reserve_hero_desc', 'Join generations of memories around food made for sharing. Reserve online or call us directly for parties of 6 or more.')) ?></textarea>
                     </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 14px;">
-                        <div class="form-group">
-                            <label class="form-label">Stat 1 Number</label>
-                            <input type="text" name="catering_stat1_num" class="form-control" value="<?= e(CMS::getSetting('catering_stat1_num', '500+')) ?>">
-                            <label class="form-label" style="margin-top:6px;">Stat 1 Label</label>
-                            <input type="text" name="catering_stat1_label" class="form-control" value="<?= e(CMS::getSetting('catering_stat1_label', 'Events Catered')) ?>">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Stat 2 Number</label>
-                            <input type="text" name="catering_stat2_num" class="form-control" value="<?= e(CMS::getSetting('catering_stat2_num', '20+')) ?>">
-                            <label class="form-label" style="margin-top:6px;">Stat 2 Label</label>
-                            <input type="text" name="catering_stat2_label" class="form-control" value="<?= e(CMS::getSetting('catering_stat2_label', 'Signature Curries')) ?>">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Stat 3 Number</label>
-                            <input type="text" name="catering_stat3_num" class="form-control" value="<?= e(CMS::getSetting('catering_stat3_num', '100%')) ?>">
-                            <label class="form-label" style="margin-top:6px;">Stat 3 Label</label>
-                            <input type="text" name="catering_stat3_label" class="form-control" value="<?= e(CMS::getSetting('catering_stat3_label', 'Fresh Clay Tandoor')) ?>">
-                        </div>
+                    <div class="form-group">
+                        <label class="form-label">Large Party &amp; Grace Period Policy (Shown on booking modal)</label>
+                        <textarea name="reserve_policy_text" class="form-control" rows="5"><?= e(CMS::getSetting('reserve_policy_text', "Reservations are held for up to 15 minutes past scheduled time before release to waiting guests.\nFor parties larger than 8 guests, please contact our dining room directly at (925) 846-3077 to ensure dedicated family seating.\nSpecial dietary requirements (vegan, halal, nut allergies) can be accommodated with advance notice.")) ?></textarea>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Save Catering Settings</button>
+                <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px; font-weight: 700; gap: 8px;">
+                        <?= AdminIcons::get('save', 16) ?>
+                        <span>Save Reservation Settings</span>
+                    </button>
+                </div>
             </form>
 
-        <?php elseif ($editPage === 'story' || $editPage === 'reserve' || $editPage === 'policies'): ?>
-            <!-- STORY / POLICIES -->
+        <?php elseif ($editPage === 'policies'): ?>
+            <!-- ========================================== -->
+            <!-- 7. PRIVACY POLICY & LEGAL TERMS CUSTOMIZER -->
+            <!-- ========================================== -->
             <form method="POST" action="/admin.php?page=pages&action=save">
                 <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
-                <input type="hidden" name="active_tab" value="<?= e($editPage) ?>">
-                <input type="hidden" name="edit_page" value="<?= e($editPage) ?>">
+                <input type="hidden" name="active_tab" value="policies">
+                <input type="hidden" name="edit_page" value="policies">
 
                 <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;"><?= ucfirst($editPage) ?> Content &amp; Policies</h3>
+                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Website Privacy Policy &amp; CCPA Notice</h3>
                     <div class="form-group">
                         <label class="form-label">Last Revision Date</label>
-                        <input type="text" name="<?= e($editPage) ?>_updated" class="form-control" value="<?= e(CMS::getSetting($editPage . '_updated', 'September 2026')) ?>">
+                        <input type="text" name="policies_updated" class="form-control" value="<?= e(CMS::getSetting('policies_updated', 'September 2026')) ?>">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Narrative / Policy Content Notes</label>
-                        <textarea name="<?= e($editPage) ?>_content" class="form-control" rows="8"><?= e(CMS::getSetting($editPage . '_content', '')) ?></textarea>
+                        <label class="form-label">Privacy Policy Content</label>
+                        <textarea name="policies_content" class="form-control" rows="10"><?= e(CMS::getSetting('policies_content', "Saffron Grill is dedicated to safeguarding guest privacy and complying with California Consumer Privacy Act (CCPA) standards.\n\nInformation We Collect:\nWe collect basic contact details provided voluntarily through reservation inquiries, catering requests, and order forms.\n\nHow We Use Your Information:\nInformation is exclusively used to coordinate your reservations, prepare catering quotes, and communicate regarding restaurant services. We do not sell or monetize personal guest information.\n\nYour Rights:\nCalifornia residents have the right to request access to or deletion of collected personal data by contacting gosaffrongrill@gmail.com.")) ?></textarea>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Save Changes</button>
+                <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px; font-weight: 700; gap: 8px;">
+                        <?= AdminIcons::get('save', 16) ?>
+                        <span>Save Policy Changes</span>
+                    </button>
+                </div>
             </form>
+
         <?php endif; ?>
     </div>
 <?php endif; ?>
 
+<!-- Client-side helper scripts for Image Pickers & Dynamic Slide Builder -->
 <script>
-function chooseImageFor(inputId) {
+function chooseImageFor(inputId, previewSelector) {
     if (window.MediaPicker) {
         window.MediaPicker.open(function(asset) {
             var el = document.getElementById(inputId);
             if (el) {
                 el.value = asset.url;
             }
+            if (previewSelector) {
+                var preview = document.querySelector(previewSelector);
+                if (preview) {
+                    preview.src = asset.url;
+                }
+            }
         });
+    } else {
+        alert("Media Picker is initializing. Please wait a moment or enter the image path directly.");
     }
 }
+
+// Dynamic Slide Row Addition for Popup Builder
+document.addEventListener('DOMContentLoaded', function() {
+    var addSlideBtn = document.getElementById('addSlideBtn');
+    var slidesContainer = document.getElementById('popupSlidesContainer');
+
+    if (addSlideBtn && slidesContainer) {
+        addSlideBtn.addEventListener('click', function() {
+            var existingCards = slidesContainer.querySelectorAll('.slide-card');
+            var nextIdx = existingCards.length;
+            var nextId = nextIdx + 1;
+
+            var cardDiv = document.createElement('div');
+            cardDiv.className = 'slide-card';
+            cardDiv.setAttribute('data-index', nextIdx);
+            cardDiv.style.cssText = 'background: #FAF7F2; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px; position: relative; animation: fadeIn 0.3s ease;';
+
+            cardDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: 140px 1fr 40px; gap: 16px; align-items: start;">
+                    <div style="display: flex; flex-direction: column; gap: 8px; text-align: center;">
+                        <img src="/assets/hero-first-frame.jpg" alt="Slide Preview" class="preview-thumb-${nextIdx}" style="width: 100%; height: 110px; object-fit: cover; border-radius: 8px; border: 1px solid #CBD5E1; background: #fff;">
+                        <button type="button" class="btn btn-secondary btn-sm" style="font-size:11px; padding: 4px 6px;" onclick="chooseImageFor('slideImg_${nextIdx}', '.preview-thumb-${nextIdx}')">
+                            Choose
+                        </button>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label class="form-label" style="font-size:12px;">Image URL / Path</label>
+                            <input type="text" name="slides[${nextIdx}][image]" value="/assets/hero-first-frame.jpg" placeholder="/assets/... image path" class="form-control form-control-sm" id="slideImg_${nextIdx}" required>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Slide Title / Heading</label>
+                                <input type="text" name="slides[${nextIdx}][title]" value="Special Offer" placeholder="e.g. Daily Grand Lunch Buffet" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="form-label" style="font-size:12px;">Button Destination Link</label>
+                                <input type="text" name="slides[${nextIdx}][link]" value="/menu" placeholder="e.g. /menu or /contact#reserve" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <input type="hidden" name="slides[${nextIdx}][id]" value="${nextId}">
+                        <input type="hidden" name="slides[${nextIdx}][alt]" value="Special Offer">
+                    </div>
+                    <button type="button" class="btn btn-danger btn-sm remove-slide-btn" style="padding: 6px; width: 34px; height: 34px; justify-content: center; align-self: flex-start;" title="Delete this slide">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                </div>
+            `;
+
+            slidesContainer.appendChild(cardDiv);
+        });
+    }
+
+    // Event Delegation for Slide Deletion
+    if (slidesContainer) {
+        slidesContainer.addEventListener('click', function(e) {
+            var delBtn = e.target.closest('.remove-slide-btn');
+            if (delBtn) {
+                var card = delBtn.closest('.slide-card');
+                if (card) {
+                    var allCards = slidesContainer.querySelectorAll('.slide-card');
+                    if (allCards.length <= 1) {
+                        alert("You must keep at least one slide in the promotional flyer.");
+                        return;
+                    }
+                    if (confirm("Are you sure you want to remove this promotion slide?")) {
+                        card.remove();
+                    }
+                }
+            }
+        });
+    }
+});
 </script>
 
 <?php require_once __DIR__ . '/components/footer.php'; ?>

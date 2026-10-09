@@ -231,17 +231,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-overlay-gradient"></div>
 
   <div class="hero-inner wrap">
-    <p class="hero-tag reveal">Culinary Philosophy</p>
+    <p class="hero-tag reveal"><?= e(cms_get('story_hero_tag', 'Culinary Philosophy')) ?></p>
     <h1 class="reveal d1">
-      <span class="l1">The Art of Indian</span>
-      <span class="l2 gold-text italic">Culinary Harmony</span>
+      <span class="l1"><?= e(cms_get('story_hero_title1', 'The Art of Indian')) ?></span>
+      <span class="l2 gold-text italic"><?= e(cms_get('story_hero_title2', 'Culinary Harmony')) ?></span>
     </h1>
     
     <!-- Decorative Divider -->
     <img class="ornament reveal d1" src="assets/divider.png" alt="" style="width: 200px; margin: 18px auto;" />
 
     <p class="lede on-dark reveal d2" style="max-width: 820px; margin-inline: auto; margin-top: 24px; font-size: clamp(20px, 2.5vw, 26px); color: #f2e6d4;">
-      "Food is more than nourishment — it is a language of warmth, an invitation to gather, and a celebration of sensory balance. At Saffron Grill, we blend tradition and craft to create meals meant for sharing."
+      <?= e(cms_get('story_hero_quote', '"Food is more than nourishment — it is a language of warmth, an invitation to gather, and a celebration of sensory balance. At Saffron Grill, we blend tradition and craft to create meals meant for sharing."')) ?>
     </p>
 
     <!-- CTA Buttons with Premium Sliding Transition -->
@@ -265,17 +265,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="section surface-cream" id="heritage" data-screen-label="Heritage">
   <div class="wrap story-grid">
     <div class="story-figure reveal">
-      <image-slot id="heritage-main" class="frame-main frame-gold" shape="rounded" radius="6" placeholder="Fresh spices and ingredients" src="assets/dishes/chatgpt_5.webp"></image-slot>
+      <image-slot id="heritage-main" class="frame-main frame-gold" shape="rounded" radius="6" placeholder="Fresh spices and ingredients" src="<?= e(cms_get('story_sec1_image', 'assets/dishes/chatgpt_5.webp')) ?>"></image-slot>
       <image-slot id="heritage-float" class="frame-float" shape="rounded" radius="4" placeholder="Freshly baked hot naan" src="assets/dishes/garlic_naan.webp"></image-slot>
     </div>
     <div>
-      <span class="eyebrow reveal">Our Heritage</span>
-      <h2 class="h-section reveal d1">A Legacy of Spices &amp; Sourcing</h2>
+      <span class="eyebrow reveal"><?= e(cms_get('story_sec1_eyebrow', 'Our Heritage')) ?></span>
+      <h2 class="h-section reveal d1"><?= e(cms_get('story_sec1_title', 'A Legacy of Spices & Sourcing')) ?></h2>
       <img class="ornament sm" style="margin-left:0" src="assets/divider.png" alt="" />
-      <p class="lede reveal d2" style="margin-top:8px">From hand-selected spices to daily local harvest, our dishes carry stories from kitchens of antiquity.</p>
-      <p class="body-text reveal d2" style="margin-top:18px">The story of Saffron Grill is rooted in a simple obsession: to preserve the honest, traditional flavor profiles of Indian cuisine while utilizing the exceptional bounty of California's local farms. Every morning, our kitchen comes alive with the aroma of freshly ground coriander, turmeric, cumin, and true Kashmiri chillies, each hand-picked and imported directly to ensure absolute purity.</p>
-      <p class="body-text reveal d2" style="margin-top:18px">We believe that premium Indian cooking demands uncompromising ingredient quality. That is why our chefs source fresh vegetables and meats daily. Our chicken, lamb, and seafood are never frozen, ensuring that they absorb the complex marinades of yogurt, ginger, garlic, and home-blended masalas before entering the tandoor—our custom clay oven that burns at over 800°F.</p>
-      <p class="body-text reveal d2" style="margin-top:18px">From our house-simmered Dal Makhani, which cooks slowly for over sixteen hours, to the fresh paneer pressed daily, we take no shortcuts. This balance of local sourcing and historic recipes is what defines the unique Saffron Grill experience.</p>
+      <p class="lede reveal d2" style="margin-top:8px"><?= e(cms_get('story_sec1_lede', 'From hand-selected spices to daily local harvest, our dishes carry stories from kitchens of antiquity.')) ?></p>
+      <p class="body-text reveal d2" style="margin-top:18px"><?= nl2br(e(cms_get('story_sec1_p1', 'The story of Saffron Grill is rooted in a simple obsession: to preserve the honest, traditional flavor profiles of Indian cuisine while utilizing the exceptional bounty of California’s local farms. Every morning, our kitchen comes alive with the aroma of freshly ground coriander, turmeric, cumin, and true Kashmiri chillies, each hand-picked and imported directly to ensure absolute purity.'))) ?></p>
+      <p class="body-text reveal d2" style="margin-top:18px"><?= nl2br(e(cms_get('story_sec1_p2', 'We believe that premium Indian cooking demands uncompromising ingredient quality. That is why our chefs source fresh vegetables and meats daily. Our chicken, lamb, and seafood are never frozen, ensuring that they absorb the complex marinades of yogurt, ginger, garlic, and home-blended masalas before entering the tandoor—our custom clay oven that burns at over 800°F.'))) ?></p>
+      <?php $storyCustom = cms_get('story_content', ''); if (!empty($storyCustom)): ?>
+      <p class="body-text reveal d2" style="margin-top:18px"><?= nl2br(e($storyCustom)) ?></p>
+      <?php endif; ?>
     </div>
   </div>
 </section>
@@ -325,8 +327,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <circle cx="12" cy="9" r="3"/>
           </svg>
         </div>
-        <h3>Authenticity</h3>
-        <p>We honor time-tested culinary traditions, using genuine clay tandoors and hand-blended spices to deliver the true heritage of Indian cooking without shortcuts.</p>
+        <h3><?= e(cms_get('story_pillar1_title', 'Authenticity')) ?></h3>
+        <p><?= e(cms_get('story_pillar1_desc', 'We honor time-tested culinary traditions, using genuine clay tandoors and hand-blended spices to deliver the true heritage of Indian cooking without shortcuts.')) ?></p>
       </article>
 
       <!-- Card 2: Hospitality -->
@@ -339,8 +341,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <circle cx="12" cy="3" r="1"/>
           </svg>
         </div>
-        <h3>Hospitality</h3>
-        <p>In accordance with the timeless philosophy of <em>Atithi Devo Bhava</em> (The Guest is God), we welcome everyone as family, serving with warmth, grace, and generosity.</p>
+        <h3><?= e(cms_get('story_pillar2_title', 'Hospitality')) ?></h3>
+        <p><?= e(cms_get('story_pillar2_desc', 'In accordance with the timeless philosophy of Atithi Devo Bhava (The Guest is God), we welcome everyone as family, serving with warmth, grace, and generosity.')) ?></p>
       </article>
 
       <!-- Card 3: Quality -->
@@ -351,8 +353,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <path d="M9 22a5 5 0 0 1-5-5c0-4.5 5-7 5-7"/>
           </svg>
         </div>
-        <h3>Quality</h3>
-        <p>We source only the finest local vegetables, fresh dairy, and never-frozen premium meats, matching them with authentic spices to ensure excellence on every single plate.</p>
+        <h3><?= e(cms_get('story_pillar3_title', 'Quality')) ?></h3>
+        <p><?= e(cms_get('story_pillar3_desc', 'We source only the finest local vegetables, fresh dairy, and never-frozen premium meats, matching them with authentic spices to ensure excellence on every single plate.')) ?></p>
       </article>
 
       <!-- Card 4: Community -->
@@ -364,8 +366,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <path d="M12 2v6M12 16v6M2 12h6M16 12h6"/>
           </svg>
         </div>
-        <h3>Community</h3>
-        <p>Food is the ultimate gatherer. We are proud to foster connection, laughter, and community around our sharing tables here in the heart of San Ramon.</p>
+        <h3><?= e(cms_get('story_pillar4_title', 'Community')) ?></h3>
+        <p><?= e(cms_get('story_pillar4_desc', 'Food is the ultimate gatherer. We are proud to foster connection, laughter, and community around our sharing tables here in the heart of San Ramon.')) ?></p>
       </article>
     </div>
   </div>
@@ -455,35 +457,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<!-- ============== PREMIUM POPUP ============== -->
-<div id="sgPopup" class="sgp-overlay" role="dialog" aria-modal="true"
-     aria-labelledby="sgpTitle" aria-hidden="true">
-  <div class="sgp-backdrop"></div>
-  <div class="sgp-panel">
-    <div class="sgp-shine" aria-hidden="true"></div>
-    <div class="sgp-inner">
-      <span class="sgp-eyebrow eyebrow on-dark center">Welcome</span>
-      <h2 class="sgp-title gold-text" id="sgpTitle">A Table Awaits</h2>
-      <div class="sgp-divider" aria-hidden="true">
-        <img src="assets/divider.png" alt="" />
-      </div>
-      <p class="sgp-body lede on-dark">Authentic Indian cuisine. Daily buffets. Tandoori
-      specialties. Family feasts. All in the heart of San Ramon.</p>
-      <p class="sgp-note body-text on-dark">Reserve your table or explore the menu — we're
-      open for lunch &amp; dinner daily.</p>
-      <div class="sgp-actions">
-        <a href="/contact#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
-        <a href="/menu"    class="btn btn-ghost">Explore Menu</a>
-      </div>
-    </div>
-    <button class="sgp-close" id="pgClose" aria-label="Close">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="2" y1="2" x2="12" y2="12"></line>
-        <line x1="12" y1="2" x2="2" y2="12"></line>
-      </svg>
-    </button>
-  </div>
-</div>
+<!-- ============== DYNAMIC PROMOTIONAL POPUP ============== -->
+<?php require __DIR__ . '/includes/popup.php'; ?>
 
 <?php require_once __DIR__ . '/includes/consent_banner.php'; ?>
 

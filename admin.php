@@ -370,57 +370,28 @@ switch ($page) {
                 cms_redirect('/admin.php?page=pages&edit=' . urlencode($activeTab));
             }
 
-            // Announcement
-            if (isset($_POST['announcement_enabled']) || $activeTab === 'home') {
-                CMS::setSetting('announcement_enabled', !empty($_POST['announcement_enabled']) ? '1' : '0', 'announcement');
+            // General & Section Settings - Dynamic & Secure Persistence
+            $ignoreKeys = ['csrf_token', 'active_tab', 'edit_page', 'action'];
+
+            // Explicit checkbox toggles that might be absent from $_POST if unchecked
+            if ($activeTab === 'home') {
+                CMS::setSetting('announcement_enabled', !empty($_POST['announcement_enabled']) ? '1' : '0', 'home');
             }
-            if (isset($_POST['announcement_text'])) CMS::setSetting('announcement_text', $_POST['announcement_text'], 'announcement');
-            if (isset($_POST['announcement_link'])) CMS::setSetting('announcement_link', $_POST['announcement_link'], 'announcement');
-            if (isset($_POST['announcement_bg_color'])) CMS::setSetting('announcement_bg_color', $_POST['announcement_bg_color'], 'announcement');
+            if ($activeTab === 'buffet') {
+                CMS::setSetting('buffet_active', !empty($_POST['buffet_active']) ? '1' : '0', 'buffet');
+            }
 
-            // Hero
-            if (isset($_POST['hero_badge'])) CMS::setSetting('hero_badge', $_POST['hero_badge'], 'hero');
-            if (isset($_POST['hero_title_line1'])) CMS::setSetting('hero_title_line1', $_POST['hero_title_line1'], 'hero');
-            if (isset($_POST['hero_title_line2'])) CMS::setSetting('hero_title_line2', $_POST['hero_title_line2'], 'hero');
-            if (isset($_POST['hero_subtitle'])) CMS::setSetting('hero_subtitle', $_POST['hero_subtitle'], 'hero');
-            if (isset($_POST['hero_btn_primary_text'])) CMS::setSetting('hero_btn_primary_text', $_POST['hero_btn_primary_text'], 'hero');
-            if (isset($_POST['hero_btn_primary_link'])) CMS::setSetting('hero_btn_primary_link', $_POST['hero_btn_primary_link'], 'hero');
+            foreach ($_POST as $k => $v) {
+                if (in_array($k, $ignoreKeys, true)) continue;
+                if (is_array($v)) {
+                    // JSON encode structured arrays (e.g. packages, complex items)
+                    CMS::setSetting($k, json_encode($v, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), $activeTab);
+                } else {
+                    CMS::setSetting($k, (string)$v, $activeTab);
+                }
+            }
 
-            // Buffet
-            if (isset($_POST['buffet_weekday_price'])) CMS::setSetting('buffet_weekday_price', $_POST['buffet_weekday_price'], 'buffet');
-            if (isset($_POST['buffet_weekday_hours'])) CMS::setSetting('buffet_weekday_hours', $_POST['buffet_weekday_hours'], 'buffet');
-            if (isset($_POST['buffet_weekend_price'])) CMS::setSetting('buffet_weekend_price', $_POST['buffet_weekend_price'], 'buffet');
-            if (isset($_POST['buffet_weekend_hours'])) CMS::setSetting('buffet_weekend_hours', $_POST['buffet_weekend_hours'], 'buffet');
-            if (isset($_POST['dinner_hours'])) CMS::setSetting('dinner_hours', $_POST['dinner_hours'], 'buffet');
-
-            // Catering
-            if (isset($_POST['catering_hero_title'])) CMS::setSetting('catering_hero_title', $_POST['catering_hero_title'], 'catering');
-            if (isset($_POST['catering_hero_subtitle'])) CMS::setSetting('catering_hero_subtitle', $_POST['catering_hero_subtitle'], 'catering');
-            if (isset($_POST['catering_stat1_num'])) CMS::setSetting('catering_stat1_num', $_POST['catering_stat1_num'], 'catering');
-            if (isset($_POST['catering_stat1_label'])) CMS::setSetting('catering_stat1_label', $_POST['catering_stat1_label'], 'catering');
-            if (isset($_POST['catering_stat2_num'])) CMS::setSetting('catering_stat2_num', $_POST['catering_stat2_num'], 'catering');
-            if (isset($_POST['catering_stat2_label'])) CMS::setSetting('catering_stat2_label', $_POST['catering_stat2_label'], 'catering');
-            if (isset($_POST['catering_stat3_num'])) CMS::setSetting('catering_stat3_num', $_POST['catering_stat3_num'], 'catering');
-            if (isset($_POST['catering_stat3_label'])) CMS::setSetting('catering_stat3_label', $_POST['catering_stat3_label'], 'catering');
-
-            // Contact & Locations
-            if (isset($_POST['restaurant_address'])) CMS::setSetting('restaurant_address', $_POST['restaurant_address'], 'locations');
-            if (isset($_POST['restaurant_phone_primary'])) CMS::setSetting('restaurant_phone_primary', $_POST['restaurant_phone_primary'], 'locations');
-            if (isset($_POST['restaurant_phone_alt'])) CMS::setSetting('restaurant_phone_alt', $_POST['restaurant_phone_alt'], 'locations');
-            if (isset($_POST['contact_email'])) CMS::setSetting('contact_email', $_POST['contact_email'], 'contact');
-            if (isset($_POST['catering_email'])) CMS::setSetting('catering_email', $_POST['catering_email'], 'contact');
-            if (isset($_POST['google_maps_url'])) CMS::setSetting('google_maps_url', $_POST['google_maps_url'], 'locations');
-            if (isset($_POST['instagram_url'])) CMS::setSetting('instagram_url', $_POST['instagram_url'], 'social');
-            if (isset($_POST['facebook_url'])) CMS::setSetting('facebook_url', $_POST['facebook_url'], 'social');
-            if (isset($_POST['yelp_url'])) CMS::setSetting('yelp_url', $_POST['yelp_url'], 'social');
-
-            // Policies & Story
-            if (isset($_POST['story_updated'])) CMS::setSetting('story_updated', $_POST['story_updated'], 'story');
-            if (isset($_POST['story_content'])) CMS::setSetting('story_content', $_POST['story_content'], 'story');
-            if (isset($_POST['policies_updated'])) CMS::setSetting('policies_updated', $_POST['policies_updated'], 'policies');
-            if (isset($_POST['policies_content'])) CMS::setSetting('policies_content', $_POST['policies_content'], 'policies');
-
-            cms_set_flash('success', 'Page content updated successfully!');
+            cms_set_flash('success', 'Page settings updated and synchronized successfully!');
             cms_redirect('/admin.php?page=pages&edit=' . urlencode($activeTab));
         }
         require __DIR__ . '/admin/views/pages.php';

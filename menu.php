@@ -990,35 +990,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<!-- ============== PREMIUM POPUP ============== -->
-<div id="sgPopup" class="sgp-overlay" role="dialog" aria-modal="true"
-     aria-labelledby="sgpTitle" aria-hidden="true">
-  <div class="sgp-backdrop"></div>
-  <div class="sgp-panel">
-    <div class="sgp-shine" aria-hidden="true"></div>
-    <div class="sgp-inner">
-      <span class="sgp-eyebrow eyebrow on-dark center">Welcome</span>
-      <h2 class="sgp-title gold-text" id="sgpTitle">A Table Awaits</h2>
-      <div class="sgp-divider" aria-hidden="true">
-        <img src="assets/divider.png" alt="" />
-      </div>
-      <p class="sgp-body lede on-dark">Authentic Indian cuisine. Daily buffets. Tandoori
-      specialties. Family feasts. All in the heart of San Ramon.</p>
-      <p class="sgp-note body-text on-dark">Reserve your table or explore the menu — we're
-      open for lunch &amp; dinner daily.</p>
-      <div class="sgp-actions">
-        <a href="/contact#reserve" class="btn btn-gold js-open-reserve">Reserve a Table</a>
-        <a href="/menu"    class="btn btn-ghost">Explore Menu</a>
-      </div>
-    </div>
-    <button class="sgp-close" id="pgClose" aria-label="Close">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="2" y1="2" x2="12" y2="12"></line>
-        <line x1="12" y1="2" x2="2" y2="12"></line>
-      </svg>
-    </button>
-  </div>
-</div>
+<!-- ============== DYNAMIC PROMOTIONAL POPUP ============== -->
+<?php require __DIR__ . '/includes/popup.php'; ?>
 
 <?php require_once __DIR__ . '/includes/consent_banner.php'; ?>
 
