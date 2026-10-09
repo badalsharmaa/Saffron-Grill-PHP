@@ -5,6 +5,8 @@
 
 # SQLite Databases
 admin/data/*.db
+*.db-shm
+*.db-wal
 !admin/data/.gitkeep
 
 # Protected Backups and Logs
