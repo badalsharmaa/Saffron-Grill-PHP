@@ -37,17 +37,17 @@ require_once __DIR__ . '/includes/nav.php';
 </header>
 
 <!-- ============== RESERVATION SECTION ============== -->
-<section class="section surface-cream" style="padding: 50px 0 80px;">
-  <div class="wrap" style="max-width: 680px; margin: 0 auto;">
-    <div style="background: #fff; border: 1px solid #e5dcd3; border-radius: 12px; padding: 36px; box-shadow: 0 10px 30px rgba(0,0,0,0.06);">
+<section class="section surface-cream" style="padding: 60px 0 90px;">
+  <div class="wrap" style="max-width: 720px; margin: 0 auto;">
+    <div style="background: #FFFFFF; border: 1px solid rgba(227, 189, 118, 0.35); border-radius: 16px; padding: clamp(26px, 4vw, 44px); box-shadow: 0 16px 45px rgba(38, 14, 34, 0.08), 0 2px 10px rgba(0, 0, 0, 0.03);">
       
-      <div style="text-align: center; margin-bottom: 24px;">
-        <span class="eyebrow">Instant Confirmation</span>
-        <h2 style="font-family: 'Cinzel', serif; font-size: 24px; color: #260e22; margin: 4px 0 8px;">Book Your Dining Experience</h2>
-        <p style="color: #666; font-size: 14px; margin: 0;">Fill out the details below and we will hold your table with royal hospitality.</p>
+      <div style="text-align: center; margin-bottom: 28px;">
+        <span class="eyebrow" style="color: var(--gold-dp, #c5a059); font-size: 11px; letter-spacing: 0.16em;">Instant Confirmation</span>
+        <h2 style="font-family: 'Cinzel', serif; font-size: clamp(22px, 3.2vw, 28px); color: #260e22; margin: 6px 0 10px; font-weight: 700;">Book Your Dining Experience</h2>
+        <p style="color: #64748b; font-size: 14.5px; max-width: 480px; margin: 0 auto; line-height: 1.5;">Fill out the details below and we will reserve your table with royal hospitality.</p>
       </div>
 
-      <div id="pageReserveAlert" style="display: none; padding: 12px; border-radius: 6px; margin-bottom: 16px; font-size: 13.5px;"></div>
+      <div id="pageReserveAlert" style="display: none; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; font-size: 13.5px; font-weight: 500;"></div>
 
       <form id="pageReserveForm" method="POST" action="send-mail.php">
         <input type="hidden" name="form_type" value="table_reservation" />
@@ -67,30 +67,30 @@ require_once __DIR__ . '/includes/nav.php';
         <input type="hidden" name="utm_medium" value="" />
         <input type="hidden" name="utm_campaign" value="" />
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
           <div style="grid-column: span 2;">
-            <label style="display: block; font-size: 12px; text-transform: uppercase; color: #333; margin-bottom: 4px; font-weight: 600;">Full Name *</label>
-            <input type="text" name="name" required placeholder="e.g. Ananya Rao" style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px;" />
+            <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; margin-bottom: 6px; font-weight: 700;">Full Name *</label>
+            <input type="text" name="name" required placeholder="e.g. Ananya Rao" style="width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14.5px; font-family: inherit; background: #fafafa; transition: all 0.2s;" onfocus="this.style.borderColor='#c5a059'; this.style.boxShadow='0 0 0 3px rgba(197,160,89,0.18)'; this.style.background='#fff';" onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none'; this.style.background='#fafafa';" />
           </div>
 
           <div>
-            <label style="display: block; font-size: 12px; text-transform: uppercase; color: #333; margin-bottom: 4px; font-weight: 600;">Phone Number *</label>
-            <input type="tel" name="phone" required placeholder="(925) 000-0000" style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px;" />
+            <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; margin-bottom: 6px; font-weight: 700;">Phone Number *</label>
+            <input type="tel" name="phone" required placeholder="(925) 000-0000" style="width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14.5px; font-family: inherit; background: #fafafa; transition: all 0.2s;" onfocus="this.style.borderColor='#c5a059'; this.style.boxShadow='0 0 0 3px rgba(197,160,89,0.18)'; this.style.background='#fff';" onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none'; this.style.background='#fafafa';" />
           </div>
 
           <div>
-            <label style="display: block; font-size: 12px; text-transform: uppercase; color: #333; margin-bottom: 4px; font-weight: 600;">Email Address</label>
-            <input type="email" name="email" placeholder="name@example.com" style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px;" />
+            <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; margin-bottom: 6px; font-weight: 700;">Email Address</label>
+            <input type="email" name="email" placeholder="name@example.com" style="width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14.5px; font-family: inherit; background: #fafafa; transition: all 0.2s;" onfocus="this.style.borderColor='#c5a059'; this.style.boxShadow='0 0 0 3px rgba(197,160,89,0.18)'; this.style.background='#fff';" onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none'; this.style.background='#fafafa';" />
           </div>
 
           <div>
-            <label style="display: block; font-size: 12px; text-transform: uppercase; color: #333; margin-bottom: 4px; font-weight: 600;">Reservation Date *</label>
-            <input type="date" name="reservation_date" required style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px;" />
+            <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; margin-bottom: 6px; font-weight: 700;">Reservation Date *</label>
+            <input type="date" name="reservation_date" required style="width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14.5px; font-family: inherit; background: #fafafa; transition: all 0.2s;" onfocus="this.style.borderColor='#c5a059'; this.style.boxShadow='0 0 0 3px rgba(197,160,89,0.18)'; this.style.background='#fff';" onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none'; this.style.background='#fafafa';" />
           </div>
 
           <div>
-            <label style="display: block; font-size: 12px; text-transform: uppercase; color: #333; margin-bottom: 4px; font-weight: 600;">Preferred Time *</label>
-            <select name="reservation_time" required style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px;">
+            <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; margin-bottom: 6px; font-weight: 700;">Preferred Time *</label>
+            <select name="reservation_time" required style="width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14.5px; font-family: inherit; background: #fafafa; transition: all 0.2s;" onfocus="this.style.borderColor='#c5a059'; this.style.boxShadow='0 0 0 3px rgba(197,160,89,0.18)'; this.style.background='#fff';" onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none'; this.style.background='#fafafa';">
               <optgroup label="Lunch Buffet">
                 <option value="11:30 AM">11:30 AM</option>
                 <option value="12:00 PM">12:00 PM</option>
@@ -114,8 +114,8 @@ require_once __DIR__ . '/includes/nav.php';
           </div>
 
           <div>
-            <label style="display: block; font-size: 12px; text-transform: uppercase; color: #333; margin-bottom: 4px; font-weight: 600;">Party Size *</label>
-            <select name="party_size" required style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px;">
+            <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; margin-bottom: 6px; font-weight: 700;">Party Size *</label>
+            <select name="party_size" required style="width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14.5px; font-family: inherit; background: #fafafa; transition: all 0.2s;" onfocus="this.style.borderColor='#c5a059'; this.style.boxShadow='0 0 0 3px rgba(197,160,89,0.18)'; this.style.background='#fff';" onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none'; this.style.background='#fafafa';">
               <option value="1">1 Guest</option>
               <option value="2" selected>2 Guests</option>
               <option value="3">3 Guests</option>
@@ -128,8 +128,8 @@ require_once __DIR__ . '/includes/nav.php';
           </div>
 
           <div>
-            <label style="display: block; font-size: 12px; text-transform: uppercase; color: #333; margin-bottom: 4px; font-weight: 600;">Seating Preference</label>
-            <select name="seating_area" style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px;">
+            <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; margin-bottom: 6px; font-weight: 700;">Seating Preference</label>
+            <select name="seating_area" style="width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14.5px; font-family: inherit; background: #fafafa; transition: all 0.2s;" onfocus="this.style.borderColor='#c5a059'; this.style.boxShadow='0 0 0 3px rgba(197,160,89,0.18)'; this.style.background='#fff';" onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none'; this.style.background='#fafafa';">
               <option value="Main Dining">Main Dining</option>
               <option value="Near Buffet">Near Buffet</option>
               <option value="Window Booth">Window Booth</option>
@@ -138,25 +138,29 @@ require_once __DIR__ . '/includes/nav.php';
           </div>
 
           <div style="grid-column: span 2;">
-            <label style="display: block; font-size: 12px; text-transform: uppercase; color: #333; margin-bottom: 4px; font-weight: 600;">Special Requests / High Chair</label>
-            <textarea name="special_requests" rows="2" placeholder="e.g. Anniversary celebration, booster seat..." style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; scrollbar-width: none; -ms-overflow-style: none;"></textarea>
+            <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; margin-bottom: 6px; font-weight: 700;">Special Requests / High Chair</label>
+            <textarea name="special_requests" rows="2" placeholder="e.g. Anniversary celebration, booster seat, quiet area..." style="width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14.5px; font-family: inherit; background: #fafafa; scrollbar-width: none; -ms-overflow-style: none; transition: all 0.2s;" onfocus="this.style.borderColor='#c5a059'; this.style.boxShadow='0 0 0 3px rgba(197,160,89,0.18)'; this.style.background='#fff';" onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none'; this.style.background='#fafafa';"></textarea>
           </div>
         </div>
 
-        <div style="margin-top: 20px;">
-          <button type="submit" id="pReserveSubmitBtn" class="btn btn-gold" style="width: 100%; padding: 14px;">
+        <div style="margin-top: 24px;">
+          <button type="submit" id="pReserveSubmitBtn" class="btn btn-gold" style="width: 100%; padding: 15px; font-size: 15px; font-weight: 700; border-radius: 8px; box-shadow: 0 4px 18px rgba(197, 160, 89, 0.35);">
             <span>Confirm Reservation</span>
           </button>
         </div>
       </form>
 
-      <div id="pReserveSuccessView" style="display: none; text-align: center; padding: 20px;">
-        <div style="font-size: 44px; color: #eab308; margin-bottom: 8px;">✓</div>
-        <h3 style="font-family: 'Cinzel', serif; color: #260e22; margin-bottom: 6px;">Reservation Confirmed!</h3>
-        <p style="color: #666; font-size: 14px; margin-bottom: 16px;">We look forward to hosting you at Saffron Grill San Ramon.</p>
-        <div style="background: rgba(234,179,8,0.15); border: 1px dashed #eab308; border-radius: 8px; padding: 12px; display: inline-block;">
-          <span style="font-size: 11px; color: #666; text-transform: uppercase;">Booking Code: </span>
-          <strong id="pBookingCode" style="font-size: 18px; color: #260e22;">SG-0000</strong>
+      <div id="pReserveSuccessView" style="display: none; text-align: center; padding: 32px 16px; animation: formSuccessFadeIn 0.4s ease forwards;">
+        <div style="width: 70px; height: 70px; border-radius: 50%; margin: 0 auto 18px; display: grid; place-items: center; background: linear-gradient(135deg, #F5D485, #C5A059); color: #260E22; font-size: 32px; font-weight: 800; box-shadow: 0 10px 25px rgba(197, 160, 89, 0.35);">✓</div>
+        <span class="eyebrow" style="color: var(--gold-dp, #c5a059); font-size: 11px; letter-spacing: 0.16em;">Confirmed</span>
+        <h3 style="font-family: 'Cinzel', serif; color: #260e22; margin: 6px 0 8px; font-size: 26px;">Table Reserved!</h3>
+        <p style="color: #64748b; font-size: 15px; margin-bottom: 20px; line-height: 1.5; max-width: 440px; margin-left: auto; margin-right: auto;">We look forward to hosting you at Saffron Grill San Ramon with regal hospitality.</p>
+        <div style="background: rgba(197, 160, 89, 0.12); border: 1px dashed rgba(197, 160, 89, 0.6); border-radius: 10px; padding: 12px 24px; display: inline-block;">
+          <span style="font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; display: block;">Booking Code</span>
+          <strong id="pBookingCode" style="font-size: 20px; color: #260e22; font-family: monospace; letter-spacing: 0.05em;">SG-0000</strong>
+        </div>
+        <div style="margin-top: 24px;">
+          <a href="/" class="btn btn-secondary" style="padding: 10px 20px; font-size: 13px;">Return to Home</a>
         </div>
       </div>
 

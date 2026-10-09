@@ -122,16 +122,17 @@
     </form>
 
     <!-- Success Confirmation View -->
-    <div id="reserveSuccessView" style="display: none; text-align: center; padding: 20px 10px;">
-      <div style="font-size: 44px; color: #eab308; margin-bottom: 8px;">✓</div>
-      <h3 style="font-family: 'Cinzel', serif; color: #fff; margin-bottom: 6px;">Reservation Confirmed!</h3>
-      <p style="color: #d1c4cb; font-size: 14px; margin-bottom: 16px;">We look forward to hosting you at Saffron Grill San Ramon.</p>
-      <div style="background: rgba(234, 179, 8, 0.1); border: 1px dashed #eab308; border-radius: 8px; padding: 12px; margin-bottom: 18px; display: inline-block;">
-        <span style="font-size: 12px; color: #e5e5e5; display: block; text-transform: uppercase;">Booking Reference</span>
-        <strong id="confirmedBookingCode" style="font-size: 18px; color: #eab308; letter-spacing: 0.1em;">SG-0000</strong>
+    <div id="reserveSuccessView" style="display: none; text-align: center; padding: 28px 12px; animation: formSuccessFadeIn 0.35s ease forwards;">
+      <div style="width: 68px; height: 68px; border-radius: 50%; margin: 0 auto 16px; display: grid; place-items: center; background: linear-gradient(135deg, #F5D485, #C5A059); color: #260E22; font-size: 30px; font-weight: 800; box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);">✓</div>
+      <span class="eyebrow on-dark center" style="letter-spacing: 0.16em; font-size: 11px;">Booking Confirmed</span>
+      <h3 style="font-family: 'Cinzel', serif; color: #fff; margin: 4px 0 8px; font-size: 24px;">Table Reserved!</h3>
+      <p style="color: #d1c4cb; font-size: 14.5px; margin-bottom: 20px; line-height: 1.5; max-width: 420px; margin-left: auto; margin-right: auto;">We look forward to hosting you at Saffron Grill San Ramon with regal hospitality.</p>
+      <div style="background: rgba(234, 179, 8, 0.12); border: 1px dashed rgba(234, 179, 8, 0.55); border-radius: 10px; padding: 12px 22px; margin-bottom: 22px; display: inline-block;">
+        <span style="font-size: 11px; color: #e5e5e5; display: block; text-transform: uppercase; letter-spacing: 0.08em;">Booking Reference Code</span>
+        <strong id="confirmedBookingCode" style="font-size: 20px; color: #F5D485; letter-spacing: 0.1em; font-family: monospace;">SG-0000</strong>
       </div>
       <div>
-        <button type="button" class="btn btn-outline js-close-reserve">Close</button>
+        <button type="button" class="btn btn-gold js-close-reserve" style="padding: 10px 24px; font-size: 13px;">Done</button>
       </div>
     </div>
 

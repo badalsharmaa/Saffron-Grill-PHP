@@ -120,12 +120,12 @@ require_once __DIR__ . '/components/header.php';
     </div>
 
     <!-- Filter Bar & Search Toolbar -->
-    <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid var(--border-color); padding: 1.25rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+    <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid var(--border-color); padding: 1.1rem 1.25rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
         <form method="GET" action="/admin.php" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;">
             <input type="hidden" name="page" value="submissions">
 
-            <!-- Source Filter Buttons -->
-            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <!-- Source Filter Segmented Control -->
+            <div style="display: inline-flex; background: #F1F5F9; padding: 4px; border-radius: 10px; gap: 3px; flex-wrap: wrap;">
                 <?php 
                 $tabs = [
                     'all' => 'All Inquiries',
@@ -138,8 +138,7 @@ require_once __DIR__ . '/components/header.php';
                     $isActive = ($sourceFilter === $k);
                 ?>
                     <a href="/admin.php?page=submissions&source=<?= $k ?>&status=<?= urlencode($statusFilter) ?>&q=<?= urlencode($searchQuery) ?>" 
-                       class="btn btn-sm <?= $isActive ? 'btn-primary' : 'btn-secondary' ?>" 
-                       style="font-size: 12.5px; padding: 5px 12px; border-radius: 8px;">
+                       style="font-size: 12.5px; font-weight: <?= $isActive ? '700' : '600' ?>; padding: 6px 14px; border-radius: 7px; text-decoration: none; transition: all 0.2s ease; <?= $isActive ? 'background: #FFFFFF; color: var(--navy); box-shadow: 0 1px 3px rgba(0,0,0,0.08);' : 'color: #64748B;' ?>">
                         <?= e($label) ?>
                     </a>
                 <?php endforeach; ?>
@@ -147,7 +146,7 @@ require_once __DIR__ . '/components/header.php';
 
             <!-- Status Dropdown, Search Input, and CSV Export -->
             <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-                <select name="status" class="form-control form-control-sm" style="width: auto; font-size: 12.5px; height: 34px;" onchange="this.form.submit()">
+                <select name="status" class="form-control form-control-sm" style="width: auto; font-size: 12.5px; height: 36px; border-radius: 8px;" onchange="this.form.submit()">
                     <option value="all" <?= $statusFilter === 'all' ? 'selected' : '' ?>>All Statuses</option>
                     <option value="new" <?= $statusFilter === 'new' ? 'selected' : '' ?>>New</option>
                     <option value="contacted" <?= $statusFilter === 'contacted' ? 'selected' : '' ?>>Contacted</option>
@@ -156,15 +155,15 @@ require_once __DIR__ . '/components/header.php';
                 </select>
 
                 <div style="position: relative;">
-                    <input type="text" name="q" value="<?= e($searchQuery) ?>" placeholder="Search guest name, phone..." class="form-control form-control-sm" style="padding-left: 28px; width: 200px; height: 34px; font-size: 12.5px;">
-                    <span style="position: absolute; left: 8px; top: 50%; transform: translateY(-50%); color: #94A3B8; pointer-events: none;">
+                    <input type="text" name="q" value="<?= e($searchQuery) ?>" placeholder="Search name, phone..." class="form-control form-control-sm" style="padding-left: 30px; width: 190px; height: 36px; font-size: 12.5px; border-radius: 8px;">
+                    <span style="position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #94A3B8; pointer-events: none;">
                         <?= AdminIcons::get('search', 14) ?>
                     </span>
                 </div>
 
-                <button type="submit" class="btn btn-secondary btn-sm" style="height: 34px; padding: 0 10px;">Filter</button>
+                <button type="submit" class="btn btn-secondary btn-sm" style="height: 36px; padding: 0 12px; border-radius: 8px;">Filter</button>
 
-                <a href="/admin.php?page=submissions&action=export_csv&source=<?= urlencode($sourceFilter) ?>&status=<?= urlencode($statusFilter) ?>" class="btn btn-secondary btn-sm" style="height: 34px; padding: 0 12px; gap: 6px;" title="Export filtered records to spreadsheet">
+                <a href="/admin.php?page=submissions&action=export_csv&source=<?= urlencode($sourceFilter) ?>&status=<?= urlencode($statusFilter) ?>" class="btn btn-secondary btn-sm" style="height: 36px; padding: 0 14px; gap: 6px; border-radius: 8px;" title="Export filtered records to spreadsheet">
                     <?= AdminIcons::get('download', 14) ?>
                     <span>Export CSV</span>
                 </a>
@@ -175,12 +174,12 @@ require_once __DIR__ . '/components/header.php';
     <!-- Data Table & Submissions List -->
     <div style="background: #FFFFFF; border-radius: 14px; border: 1px solid var(--border-color); box-shadow: 0 1px 3px rgba(0,0,0,0.03); overflow: hidden;">
         <?php if (empty($leads)): ?>
-            <div style="text-align: center; padding: 4rem 1.5rem; color: var(--text-muted);">
-                <div style="width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 14px; background: #FAF7F2; display: flex; align-items: center; justify-content: center; color: #CBD5E1;">
+            <div style="text-align: center; padding: 4.5rem 1.5rem; color: var(--text-muted);">
+                <div style="width: 60px; height: 60px; margin: 0 auto 16px; border-radius: 16px; background: #FAF7F2; display: flex; align-items: center; justify-content: center; color: #CBD5E1;">
                     <?= AdminIcons::get('inbox', 28) ?>
                 </div>
                 <h3 style="font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 4px;">No Submissions Found</h3>
-                <p style="font-size: 13.5px; max-width: 400px; margin: 0 auto;">No records matched your active filter criteria. Try clearing search or status filters.</p>
+                <p style="font-size: 13.5px; max-width: 400px; margin: 0 auto; line-height: 1.5;">No records matched your active filter criteria. Try clearing search or status filters.</p>
             </div>
         <?php else: ?>
             <div class="table-responsive">
@@ -188,12 +187,12 @@ require_once __DIR__ . '/components/header.php';
                     <thead>
                         <tr>
                             <th>Guest / Client</th>
-                            <th>Type / Channel</th>
+                            <th>Channel</th>
                             <th>Party / Guests</th>
-                            <th>Date / Schedule</th>
-                            <th>Key Details</th>
+                            <th>Date / Time</th>
+                            <th>Summary Details</th>
                             <th>Status</th>
-                            <th style="text-align: right;">Action</th>
+                            <th style="text-align: right; min-width: 140px;">Quick Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -208,15 +207,15 @@ require_once __DIR__ . '/components/header.php';
                                 default => ucfirst($src)
                             };
                             $srcBadgeBg = match($src) {
-                                'reservation', 'table_reservation' => 'rgba(2, 132, 199, 0.12)',
-                                'catering', 'catering_inquiry' => 'rgba(217, 119, 6, 0.12)',
-                                'contact', 'contact_message' => 'rgba(139, 92, 246, 0.12)',
-                                default => 'rgba(100, 116, 139, 0.12)'
+                                'reservation', 'table_reservation' => '#EFF6FF',
+                                'catering', 'catering_inquiry' => '#FFFBEB',
+                                'contact', 'contact_message' => '#F5F3FF',
+                                default => '#F8FAFC'
                             };
                             $srcBadgeColor = match($src) {
                                 'reservation', 'table_reservation' => '#0284C7',
                                 'catering', 'catering_inquiry' => '#D97706',
-                                'contact', 'contact_message' => '#8B5CF6',
+                                'contact', 'contact_message' => '#7C3AED',
                                 default => '#64748B'
                             };
 
@@ -224,34 +223,46 @@ require_once __DIR__ . '/components/header.php';
                             $targetDate = $d['Reservation Date'] ?? $d['Event Date'] ?? date('M j, Y', strtotime($lead['created_at']));
                             $targetTime = $d['Reservation Time'] ?? '';
                             $leadJson = htmlspecialchars(json_encode($lead, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8');
+                            
+                            $firstLetter = strtoupper(substr($lead['name'] ?: 'G', 0, 1));
                         ?>
                             <tr class="lead-table-row" onclick="openLeadModal(<?= $leadJson ?>)" style="cursor: pointer;">
                                 <td>
-                                    <div style="font-weight: 700; color: var(--navy); font-size: 14px;">
-                                        <?= e($lead['name'] ?: 'Guest') ?>
-                                    </div>
-                                    <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">
-                                        <?php if (!empty($lead['phone'])): ?>
-                                            <span><?= e($lead['phone']) ?></span>
-                                        <?php endif; ?>
-                                        <?php if (!empty($lead['email'])): ?>
-                                            <span style="margin-left: 6px; color: var(--text-muted);">&bull; <?= e($lead['email']) ?></span>
-                                        <?php endif; ?>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 34px; height: 34px; border-radius: 9px; background: #F1F5F9; color: var(--navy); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex-shrink: 0;">
+                                            <?= e($firstLetter) ?>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 700; color: var(--navy); font-size: 14px;">
+                                                <?= e($lead['name'] ?: 'Guest') ?>
+                                            </div>
+                                            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 1px;">
+                                                <?php if (!empty($lead['phone'])): ?>
+                                                    <span><?= e($lead['phone']) ?></span>
+                                                <?php endif; ?>
+                                                <?php if (!empty($lead['email'])): ?>
+                                                    <span style="margin-left: 6px; color: var(--text-muted);">&bull; <?= e($lead['email']) ?></span>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; background: <?= $srcBadgeBg ?>; color: <?= $srcBadgeColor ?>;">
+                                    <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 9px; border-radius: 6px; background: <?= $srcBadgeBg ?>; color: <?= $srcBadgeColor ?>; border: 1px solid <?= $srcBadgeColor ?>25;">
                                         <?= $srcLabel ?>
                                     </span>
                                 </td>
                                 <td>
-                                    <strong><?= e($guests) ?></strong>
-                                    <?= is_numeric($guests) ? ' <small style="color:var(--text-muted)">guests</small>' : '' ?>
+                                    <div style="display: inline-flex; align-items: center; gap: 6px; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 3px 8px; border-radius: 6px;">
+                                        <?= AdminIcons::get('users', 12) ?>
+                                        <strong style="color: var(--navy); font-size: 12.5px;"><?= e($guests) ?></strong>
+                                        <?= is_numeric($guests) ? '<small style="color:var(--text-muted); font-size:11px;">guests</small>' : '' ?>
+                                    </div>
                                 </td>
                                 <td>
                                     <div style="font-size: 13px; font-weight: 600; color: var(--navy);"><?= e($targetDate) ?></div>
                                     <?php if ($targetTime): ?>
-                                        <div style="font-size: 11.5px; color: var(--gold); font-weight: 700;"><?= e($targetTime) ?></div>
+                                        <div style="font-size: 11.5px; color: var(--gold); font-weight: 700; margin-top: 1px;"><?= e($targetTime) ?></div>
                                     <?php endif; ?>
                                 </td>
                                 <td>
@@ -260,24 +271,37 @@ require_once __DIR__ . '/components/header.php';
                                         $summaryParts = [];
                                         if (!empty($d['Booking Code'])) $summaryParts[] = '#' . $d['Booking Code'];
                                         if (!empty($d['Lead Code'])) $summaryParts[] = '#' . $d['Lead Code'];
+                                        if (!empty($d['Reference Code'])) $summaryParts[] = '#' . $d['Reference Code'];
                                         if (!empty($d['Event Type'])) $summaryParts[] = $d['Event Type'];
                                         if (!empty($d['Package'])) $summaryParts[] = $d['Package'];
                                         if (!empty($d['Seating Area'])) $summaryParts[] = $d['Seating Area'];
                                         if (!empty($d['Notes'])) $summaryParts[] = $d['Notes'];
-                                        if (!empty($lead['notes'])) $summaryParts[] = 'Staff note: ' . $lead['notes'];
+                                        if (!empty($lead['notes'])) $summaryParts[] = 'Staff: ' . $lead['notes'];
                                         echo e(implode(' · ', $summaryParts) ?: 'Inquiry received');
                                         ?>
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="badge-status status-<?= strtolower($lead['status']) ?>" style="font-size: 11px;">
+                                    <span class="badge-status status-<?= strtolower($lead['status']) ?>" style="font-size: 11px; padding: 3px 8px; border-radius: 6px;">
                                         <?= ucfirst($lead['status']) ?>
                                     </span>
                                 </td>
                                 <td style="text-align: right;" onclick="event.stopPropagation();">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="openLeadModal(<?= $leadJson ?>)" style="padding: 4px 10px; font-size: 12px;">
-                                        View Details
-                                    </button>
+                                    <div style="display: inline-flex; align-items: center; gap: 6px;">
+                                        <?php if (!empty($lead['phone'])): ?>
+                                            <a href="tel:<?= e($lead['phone']) ?>" class="btn btn-secondary btn-sm" style="padding: 5px 8px; border-radius: 7px; color: #059669;" title="Call Guest">
+                                                <?= AdminIcons::get('phone', 13) ?>
+                                            </a>
+                                        <?php endif; ?>
+                                        <?php if (!empty($lead['email'])): ?>
+                                            <a href="mailto:<?= e($lead['email']) ?>" class="btn btn-secondary btn-sm" style="padding: 5px 8px; border-radius: 7px; color: #2563EB;" title="Email Guest">
+                                                <?= AdminIcons::get('mail', 13) ?>
+                                            </a>
+                                        <?php endif; ?>
+                                        <button type="button" class="btn btn-secondary btn-sm" onclick="openLeadModal(<?= $leadJson ?>)" style="padding: 5px 10px; font-size: 12px; border-radius: 7px; font-weight: 600;">
+                                            Details
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -291,36 +315,39 @@ require_once __DIR__ . '/components/header.php';
 <!-- ======================================================================
      INTERACTIVE SUBMISSION DETAIL & CRM MODAL
      ====================================================================== -->
-<div id="leadDetailModal" class="modal-backdrop" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px;">
-    <div class="modal-panel" style="background: #FFFFFF; border-radius: 16px; max-width: 620px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
+<div id="leadDetailModal" class="modal-backdrop" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px;">
+    <div class="modal-panel" style="background: #FFFFFF; border-radius: 18px; max-width: 620px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2.25rem; position: relative; box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3); border: 1px solid #E2E8F0;">
         
         <!-- Close button -->
-        <button type="button" onclick="closeLeadModal()" style="position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 24px; color: #94A3B8; cursor: pointer;">&times;</button>
+        <button type="button" onclick="closeLeadModal()" style="position: absolute; top: 16px; right: 18px; width: 32px; height: 32px; border-radius: 50%; background: #F1F5F9; border: none; font-size: 20px; color: #64748B; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;" onmouseover="this.style.background='#E2E8F0'" onmouseout="this.style.background='#F1F5F9'">&times;</button>
 
         <!-- Header -->
-        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem;">
-            <div id="modalSourceBadge" style="font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 6px;"></div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem;">
+            <div id="modalSourceBadge" style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 10px; border-radius: 6px;"></div>
             <div style="font-size: 12px; color: var(--text-muted);" id="modalCreatedAt"></div>
         </div>
 
-        <h2 id="modalGuestName" style="font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 4px;"></h2>
+        <h2 id="modalGuestName" style="font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 6px;"></h2>
 
         <!-- Quick 1-tap contact buttons -->
         <div style="display: flex; gap: 10px; margin-bottom: 1.5rem; flex-wrap: wrap;">
-            <a id="modalCallBtn" href="#" class="btn btn-secondary btn-sm" style="font-size: 12.5px; gap: 6px;">
+            <a id="modalCallBtn" href="#" class="btn btn-secondary btn-sm" style="font-size: 13px; gap: 7px; border-radius: 8px; padding: 7px 14px;">
                 <?= AdminIcons::get('phone', 14) ?>
                 <span id="modalPhoneText">Call Guest</span>
             </a>
-            <a id="modalEmailBtn" href="#" class="btn btn-secondary btn-sm" style="font-size: 12.5px; gap: 6px;">
+            <a id="modalEmailBtn" href="#" class="btn btn-secondary btn-sm" style="font-size: 13px; gap: 7px; border-radius: 8px; padding: 7px 14px;">
                 <?= AdminIcons::get('mail', 14) ?>
                 <span id="modalEmailText">Email Guest</span>
             </a>
         </div>
 
-        <!-- Details Grid -->
+        <!-- Details Grid (macOS Grouped Aesthetic) -->
         <div style="background: #FAF7F2; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem;">
-            <h4 style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold); margin-bottom: 12px;">Submission Attributes</h4>
-            <div id="modalDetailsContainer" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 13px;"></div>
+            <h4 style="font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                <?= AdminIcons::get('file-text', 13) ?>
+                <span>Submission Attributes</span>
+            </h4>
+            <div id="modalDetailsContainer" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 13px;"></div>
         </div>
 
         <!-- Status update form -->
@@ -328,15 +355,15 @@ require_once __DIR__ . '/components/header.php';
             <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
             <input type="hidden" name="lead_id" id="statusLeadId" value="">
 
-            <label class="form-label" style="font-size: 12.5px; margin-bottom: 6px;">Update Lead Processing Status</label>
+            <label class="form-label" style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #475569; margin-bottom: 6px;">Update Lead Processing Status</label>
             <div style="display: flex; gap: 10px;">
-                <select name="status" id="modalStatusSelect" class="form-control" style="font-size: 13px; height: 40px;">
+                <select name="status" id="modalStatusSelect" class="form-control" style="font-size: 13px; height: 42px; border-radius: 8px;">
                     <option value="new">New (Unaddressed)</option>
                     <option value="contacted">Contacted / In Discussion</option>
                     <option value="completed">Completed / Confirmed</option>
                     <option value="archived">Archived / Cancelled</option>
                 </select>
-                <button type="submit" class="btn btn-primary btn-sm" style="padding: 0 16px; white-space: nowrap;">Update Status</button>
+                <button type="submit" class="btn btn-primary btn-sm" style="padding: 0 18px; white-space: nowrap; height: 42px; border-radius: 8px; font-weight: 700;">Update Status</button>
             </div>
         </form>
 
@@ -345,10 +372,10 @@ require_once __DIR__ . '/components/header.php';
             <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
             <input type="hidden" name="lead_id" id="notesLeadId" value="">
 
-            <label class="form-label" style="font-size: 12.5px; margin-bottom: 6px;">Internal Staff &amp; Follow-up Notes</label>
-            <textarea name="notes" id="modalNotesTextarea" class="form-control" rows="3" placeholder="Add private notes on table seating, dietary preferences, catering pricing discussions..." style="font-size: 13px;"></textarea>
+            <label class="form-label" style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #475569; margin-bottom: 6px;">Internal Staff &amp; Follow-up Notes</label>
+            <textarea name="notes" id="modalNotesTextarea" class="form-control" rows="3" placeholder="Add private notes on table seating, dietary preferences, catering pricing discussions..." style="font-size: 13px; border-radius: 8px; line-height: 1.5;"></textarea>
             <div style="margin-top: 8px; text-align: right;">
-                <button type="submit" class="btn btn-secondary btn-sm" style="font-size: 12.5px;">Save Staff Notes</button>
+                <button type="submit" class="btn btn-secondary btn-sm" style="font-size: 12.5px; border-radius: 7px; padding: 6px 14px; font-weight: 600;">Save Staff Notes</button>
             </div>
         </form>
 
@@ -357,7 +384,7 @@ require_once __DIR__ . '/components/header.php';
             <form method="POST" action="/admin.php?page=submissions&action=delete" onsubmit="return confirm('Permanently remove this submission record? This cannot be undone.');">
                 <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
                 <input type="hidden" name="lead_id" id="deleteLeadId" value="">
-                <button type="submit" class="btn btn-danger btn-sm" style="font-size: 12px; padding: 6px 12px; gap: 4px;">
+                <button type="submit" class="btn btn-danger btn-sm" style="font-size: 12px; padding: 6px 12px; gap: 4px; border-radius: 7px;">
                     <?= AdminIcons::get('trash', 14) ?>
                     <span>Delete Record</span>
                 </button>

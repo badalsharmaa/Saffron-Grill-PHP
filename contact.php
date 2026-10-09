@@ -473,11 +473,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </form>
       
-      <div class="reserve-success hidden" id="contactSuccess" style="text-align: center; padding-block: 20px;">
+      <div class="reserve-success hidden" id="contactSuccess">
         <div class="check">✓</div>
-        <h3 class="h-sub gold-text">Message Sent</h3>
-        <p class="body-text on-dark" style="margin:12px auto 0; max-width: 400px;">Thank you, <span id="contactSuccessName">friend</span>. Your message has been sent successfully. We will get back to you shortly.</p>
-        <button class="btn btn-ghost" style="margin-top:24px" id="contactReset">Send another message</button>
+        <span class="eyebrow on-dark center" style="letter-spacing: 0.18em; font-size: 11px;">Message Delivered</span>
+        <h3 class="h-sub gold-text" style="margin-top: 6px;">Thank You, <span id="contactSuccessName">Friend</span></h3>
+        <p class="body-text on-dark" style="margin: 12px auto 0; max-width: 480px; font-size: 15.5px; line-height: 1.6;">
+          Your inquiry has been received by our hospitality team. We typically review all messages and get back to you within 2–4 hours.
+        </p>
+        
+        <div style="background: rgba(197, 160, 89, 0.1); border: 1px dashed rgba(227, 189, 118, 0.5); border-radius: 10px; padding: 14px 20px; display: inline-flex; align-items: center; gap: 14px; margin: 24px auto 0;">
+          <span style="font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-lt, #e3bd76);">Need Urgent Assistance?</span>
+          <a href="tel:+19258463077" style="color: #FFFFFF; font-weight: 700; text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +1 (925) 846-3077
+          </a>
+        </div>
+
+        <div style="margin-top: 28px;">
+          <button class="btn btn-ghost" id="contactReset" style="padding: 10px 22px; font-size: 13px;">Send Another Message</button>
+        </div>
       </div>
     </div>
   </div>

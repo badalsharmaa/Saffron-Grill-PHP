@@ -108,12 +108,12 @@ if ($formType === 'table_reservation') {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
-    $eventType = trim($_POST['event_type'] ?? 'Catering');
-    $eventDate = trim($_POST['event_date'] ?? '');
-    $guestCount = (int)($_POST['guest_count'] ?? 50);
-    $packageType = trim($_POST['package_type'] ?? 'Royal Gold Banquet ($28/pp)');
+    $eventType = trim($_POST['event_type'] ?? $_POST['occasion'] ?? 'Catering');
+    $eventDate = trim($_POST['event_date'] ?? $_POST['date'] ?? '');
+    $guestCount = (int)($_POST['guest_count'] ?? $_POST['guests'] ?? 50);
+    $packageType = trim($_POST['package_type'] ?? $_POST['package'] ?? 'Royal Gold Banquet ($28/pp)');
     $venueLocation = trim($_POST['venue_location'] ?? 'San Ramon / Tri-Valley');
-    $notes = trim($_POST['message'] ?? '');
+    $notes = trim($_POST['message'] ?? $_POST['notes'] ?? '');
 
     $gclid = trim($_POST['gclid'] ?? '');
     $gbraid = trim($_POST['gbraid'] ?? '');

@@ -540,9 +540,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="reserve-success hidden" id="cateringSuccess">
         <div class="check">✓</div>
-        <h3 class="h-sub gold-text">Inquiry Received</h3>
-        <p class="body-text on-dark" style="margin:12px auto 0; ">Thank you, <span id="cSuccessName">friend</span>. Your catering inquiry has been received. Our team will review your details and contact you at <span id="cSuccessPhone">your phone</span> or write to <span id="cSuccessEmail">your email</span> to design your customized feast.</p>
-        <button class="btn btn-ghost" style="margin-top:24px" id="cateringReset">Submit another inquiry</button>
+        <span class="eyebrow on-dark center" style="letter-spacing: 0.18em; font-size: 11px;">Catering Request Submitted</span>
+        <h3 class="h-sub gold-text" style="margin-top: 6px;">We Look Forward to Catering for You, <span id="cSuccessName">Friend</span></h3>
+        <p class="body-text on-dark" style="margin: 12px auto 0; max-width: 520px; font-size: 15.5px; line-height: 1.6;">
+          Thank you for choosing Saffron Grill. Our catering coordinator is reviewing your banquet preferences and will reach out to you shortly via phone (<strong id="cSuccessPhone" style="color:#FFFFFF">your phone</strong>) or email (<strong id="cSuccessEmail" style="color:#FFFFFF">your email</strong>).
+        </p>
+
+        <div id="cSuccessLeadCodeWrap" style="display: none; margin-top: 20px;">
+          <div style="background: rgba(197, 160, 89, 0.12); border: 1px dashed rgba(227, 189, 118, 0.5); border-radius: 8px; padding: 10px 18px; display: inline-block;">
+            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-lt, #e3bd76); display: block;">Inquiry Reference Code</span>
+            <strong id="cSuccessLeadCode" style="font-size: 18px; color: #FFFFFF; letter-spacing: 0.08em; font-family: monospace;">CAT-000000</strong>
+          </div>
+        </div>
+
+        <div style="margin-top: 28px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+          <button class="btn btn-ghost" id="cateringReset" style="padding: 10px 22px; font-size: 13px;">Submit Another Inquiry</button>
+          <a href="tel:+19253694696" class="btn btn-gold" style="padding: 10px 22px; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;">
+            <span>Speak with Chef Directly</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

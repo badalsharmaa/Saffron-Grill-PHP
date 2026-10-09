@@ -1327,7 +1327,12 @@
           var phoneSpan = document.getElementById("cSuccessPhone");
           if (phoneSpan && phone) phoneSpan.textContent = phone.value.trim();
           var emailSpan = document.getElementById("cSuccessEmail");
-          if (emailSpan && email) emailSpan.textContent = email.value.trim();
+          var leadCodeWrap = document.getElementById("cSuccessLeadCodeWrap");
+          var leadCodeEl = document.getElementById("cSuccessLeadCode");
+          if (data.lead_code && leadCodeWrap && leadCodeEl) {
+            leadCodeEl.textContent = data.lead_code;
+            leadCodeWrap.style.display = "block";
+          }
 
           catForm.classList.add("hidden");
           if (successCard) successCard.classList.remove("hidden");
