@@ -62,6 +62,20 @@ if ($formType === 'table_reservation') {
             $gclid, $utmSource, $utmMedium, $utmCampaign, $ip
         ]);
 
+        // Record in CMS captured_leads
+        require_once __DIR__ . '/admin/helpers/CMS.php';
+        CMS::saveLeadSilently('reservation', $name, $email, $phone, [
+            'Booking Code' => $bookingCode,
+            'Guests' => $partySize,
+            'Reservation Date' => $resDate,
+            'Reservation Time' => $resTime,
+            'Seating Area' => $seating,
+            'Special Requests' => $specialRequests,
+            'UTM Source' => $utmSource,
+            'UTM Campaign' => $utmCampaign,
+            'GCLID' => $gclid
+        ], $ip);
+
         // Email Notification to Restaurant
         $adminEmail = get_setting('contact_email', 'gosaffrongrill@gmail.com');
         $subject = "🍽️ New Table Reservation: {$bookingCode} ({$name} - Party of {$partySize})";
@@ -131,6 +145,20 @@ if ($formType === 'table_reservation') {
             $leadCode, $name, $email, $phone, $eventType, $eventDate, $guestCount, $packageType, $venueLocation, $notes,
             $gclid, $gbraid, $wbraid, $utmSource, $utmMedium, $utmCampaign, $ip
         ]);
+
+        // Record in CMS captured_leads
+        require_once __DIR__ . '/admin/helpers/CMS.php';
+        CMS::saveLeadSilently('catering', $name, $email, $phone, [
+            'Lead Code' => $leadCode,
+            'Event Type' => $eventType,
+            'Event Date' => $eventDate,
+            'Guests' => $guestCount,
+            'Package' => $packageType,
+            'Venue Location' => $venueLocation,
+            'Notes' => $notes,
+            'UTM Campaign' => $utmCampaign,
+            'GCLID' => $gclid
+        ], $ip);
 
         // Email Notification to Catering Team
         $adminEmail = get_setting('contact_email', 'gosaffrongrill@gmail.com');
@@ -207,6 +235,16 @@ if ($formType === 'table_reservation') {
             $leadCode, $name, $email, $phone, $today, $subject, $notes,
             $gclid, $gbraid, $wbraid, $utmSource, $utmMedium, $utmCampaign, $ip
         ]);
+
+        // Record in CMS captured_leads
+        require_once __DIR__ . '/admin/helpers/CMS.php';
+        CMS::saveLeadSilently('contact', $name, $email, $phone, [
+            'Reference Code' => $leadCode,
+            'Subject' => $subject,
+            'Message' => $message,
+            'UTM Campaign' => $utmCampaign,
+            'GCLID' => $gclid
+        ], $ip);
 
         // Email Notification to Restaurant
         $adminEmail = get_setting('contact_email', 'gosaffrongrill@gmail.com');

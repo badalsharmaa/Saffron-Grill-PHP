@@ -5,6 +5,7 @@
 
 # SQLite Databases
 admin/data/*.db
+private/*.db
 *.db-shm
 *.db-wal
 !admin/data/.gitkeep
