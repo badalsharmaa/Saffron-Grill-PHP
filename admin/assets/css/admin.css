@@ -503,6 +503,25 @@ body {
 }
 
 /* Grid & Bento Snapshot Cards */
+.crm-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .crm-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .crm-grid-4 {
+        grid-template-columns: 1fr;
+    }
+}
+
 .crm-grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -3120,6 +3139,22 @@ input[type="checkbox"]:checked + .toggle-switch-blue {
 }
 
 /* Attachment Details Modal (WordPress Style Inspector) */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
 .attachment-modal-card {
     background: #FFFFFF;
     width: 94%;

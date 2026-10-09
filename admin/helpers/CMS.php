@@ -782,6 +782,7 @@ class CMS {
             foreach ($items as &$item) {
                 $item['formatted_size'] = self::formatBytes((int)$item['file_size']);
                 $item['url'] = $item['file_path'];
+                $item['is_image'] = str_starts_with((string)$item['mime_type'], 'image/');
             }
             unset($item);
 
