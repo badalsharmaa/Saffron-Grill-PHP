@@ -16,6 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim($_POST['password'] ?? '');
 
     if (attempt_admin_login($username, $password)) {
+        // Also synchronize CMS session cookie if different
+        setcookie('saffron_admin_session', session_id(), [
+            'expires' => time() + 7200,
+            'path' => '/',
+            'httponly' => true,
+            'samesite' => 'Lax'
+        ]);
         $redirect = $_SESSION['admin_login_redirect'] ?? '/admin/index.php';
         unset($_SESSION['admin_login_redirect']);
         if (empty($redirect) || strpos($redirect, 'login') !== false) {

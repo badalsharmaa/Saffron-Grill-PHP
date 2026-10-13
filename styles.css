@@ -2211,4 +2211,14 @@ image-slot img {
   }
 }
 
+/* ============================================================
+   CMS Live Preview Highlights
+   ============================================================ */
+.sg-section-highlight {
+  outline: 3px solid #C5A059 !important;
+  outline-offset: -3px;
+  box-shadow: 0 0 35px rgba(197, 160, 89, 0.45), inset 0 0 20px rgba(197, 160, 89, 0.2) !important;
+  transition: outline 0.3s ease, box-shadow 0.3s ease !important;
+}
+
 

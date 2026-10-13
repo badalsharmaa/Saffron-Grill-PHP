@@ -28,7 +28,7 @@
 
   function resolveItems() {
     ITEMS = Array.prototype.slice.call(
-      inner.querySelectorAll(".sgp-eyebrow, .sgp-title, .sgp-divider, .sgp-body, .sgp-note, .sgp-actions")
+      inner.querySelectorAll(".sgp-eyebrow, .sgp-title, .sgp-divider, .sgp-flyer-wrap, .sgp-body, .sgp-note, .sgp-lead-box, .sgp-actions")
     );
   }
 

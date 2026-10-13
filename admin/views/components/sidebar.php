@@ -17,6 +17,9 @@ $user = CMSAuth::user();
                     <div class="brand-sub">Restaurant CMS</div>
                 </div>
             </a>
+            <button type="button" class="sidebar-collapse-desktop-btn" id="sidebarCollapseDesktop" aria-label="Collapse Sidebar" title="Collapse Sidebar (⌘[)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg>
+            </button>
             <button type="button" class="sidebar-close-btn" id="sidebarClose" aria-label="Close Navigation" title="Close Navigation">
                 <?= AdminIcons::get('x', 18) ?>
             </button>
@@ -36,40 +39,40 @@ $user = CMSAuth::user();
     <nav class="sidebar-nav">
         <div class="nav-section-title">Overview</div>
 
-        <a href="/admin.php?page=dashboard" class="nav-item <?= $currentPage === 'dashboard' ? 'active' : '' ?>">
+        <a href="/admin.php?page=dashboard" class="nav-item <?= $currentPage === 'dashboard' ? 'active' : '' ?>" title="Dashboard">
             <span class="nav-squircle squircle-blue">
                 <?= AdminIcons::get('dashboard', 16) ?>
             </span>
             <span class="nav-text">Dashboard</span>
         </a>
 
-        <a href="/admin.php?page=submissions" class="nav-item <?= in_array($currentPage, ['submissions', 'leads']) ? 'active' : '' ?>">
+        <a href="/admin.php?page=submissions" class="nav-item <?= in_array($currentPage, ['submissions', 'leads']) ? 'active' : '' ?>" title="Form Submissions">
             <span class="nav-squircle squircle-amber" style="background: rgba(217, 119, 6, 0.15); color: #D97706;">
                 <?= AdminIcons::get('inbox', 16) ?>
             </span>
             <span class="nav-text">Form Submissions</span>
             <?php $newCount = CMS::getNewLeadsCount(); if ($newCount > 0): ?>
-                <span style="margin-left: auto; font-size: 11px; padding: 2px 7px; border-radius: 9999px; background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; font-weight: 700;"><?= $newCount ?></span>
+                <span class="nav-count-badge" style="margin-left: auto; font-size: 11px; padding: 2px 7px; border-radius: 9999px; background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; font-weight: 700;"><?= $newCount ?></span>
             <?php endif; ?>
         </a>
 
         <div class="nav-section-title">Website Management</div>
 
-        <a href="/admin.php?page=media" class="nav-item <?= $currentPage === 'media' ? 'active' : '' ?>">
+        <a href="/admin.php?page=media" class="nav-item <?= $currentPage === 'media' ? 'active' : '' ?>" title="Media Library">
             <span class="nav-squircle" style="background: rgba(14, 165, 233, 0.15); color: #0284C7;">
                 <?= AdminIcons::get('media_library', 16) ?>
             </span>
             <span class="nav-text">Media Library</span>
         </a>
 
-        <a href="/admin.php?page=pages" class="nav-item <?= in_array($currentPage, ['pages', 'elements', 'popup']) ? 'active' : '' ?>">
+        <a href="/admin.php?page=pages" class="nav-item <?= in_array($currentPage, ['pages', 'elements', 'popup']) ? 'active' : '' ?>" title="Page Customizer">
             <span class="nav-squircle squircle-purple">
                 <?= AdminIcons::get('paint_brush', 16) ?>
             </span>
             <span class="nav-text">Page Customizer</span>
         </a>
 
-        <a href="/admin.php?page=menu" class="nav-item <?= $currentPage === 'menu' ? 'active' : '' ?>">
+        <a href="/admin.php?page=menu" class="nav-item <?= $currentPage === 'menu' ? 'active' : '' ?>" title="Menu & Pricing">
             <span class="nav-squircle squircle-green">
                 <?= AdminIcons::get('menu', 16) ?>
             </span>
@@ -78,7 +81,7 @@ $user = CMSAuth::user();
 
         <div class="nav-section-title">System</div>
 
-        <a href="/admin.php?page=settings" class="nav-item <?= $currentPage === 'settings' ? 'active' : '' ?>">
+        <a href="/admin.php?page=settings" class="nav-item <?= $currentPage === 'settings' ? 'active' : '' ?>" title="Settings & Profile">
             <span class="nav-squircle squircle-gray">
                 <?= AdminIcons::get('settings', 16) ?>
             </span>

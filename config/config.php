@@ -4,6 +4,9 @@
  */
 
 if (session_status() === PHP_SESSION_NONE) {
+    if (!headers_sent()) {
+        session_name('saffron_admin_session');
+    }
     session_start();
 }
 

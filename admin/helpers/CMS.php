@@ -92,6 +92,7 @@ class CMS {
                     'is_active' => (bool)$cfg['is_active'],
                     'delay_seconds' => (float)$cfg['delay_seconds'],
                     'show_frequency' => (string)($cfg['show_frequency'] ?? 'session'),
+                    'disable_image' => (bool)($cfg['disable_image'] ?? 0),
                     'enable_lead_capture' => (bool)($cfg['enable_lead_capture'] ?? 0),
                     'lead_capture_title' => (string)($cfg['lead_capture_title'] ?? 'Get Special Offers & 10% Off'),
                     'slides' => $slides
@@ -106,6 +107,7 @@ class CMS {
             'is_active' => true,
             'delay_seconds' => 1.5,
             'show_frequency' => 'session',
+            'disable_image' => false,
             'enable_lead_capture' => false,
             'lead_capture_title' => 'Join Saffron VIP Club for Exclusive Offers',
             'slides' => [
@@ -124,6 +126,15 @@ class CMS {
         try {
             $pdo = CMSDatabase::getConnection();
             $isActive = !empty($data['is_active']) ? 1 : 0;
+            if (isset($data['has_image_setting'])) {
+                $disableImage = !empty($data['show_image']) ? 0 : 1;
+            } elseif (isset($data['disable_image'])) {
+                $disableImage = !empty($data['disable_image']) ? 1 : 0;
+            } elseif (isset($data['show_image'])) {
+                $disableImage = !empty($data['show_image']) ? 0 : 1;
+            } else {
+                $disableImage = 0;
+            }
             $delay = (float)($data['delay_seconds'] ?? 1.5);
             $frequency = in_array($data['show_frequency'] ?? '', ['always', 'session', 'once']) ? $data['show_frequency'] : 'session';
             $enableLeadCapture = !empty($data['enable_lead_capture']) ? 1 : 0;
@@ -132,10 +143,10 @@ class CMS {
             $slides = [];
             if (!empty($data['slides']) && is_array($data['slides'])) {
                 foreach ($data['slides'] as $s) {
-                    if (!empty($s['image'])) {
+                    if (!empty($s['image']) || !empty($s['title'])) {
                         $slides[] = [
                             'id' => !empty($s['id']) ? (int)$s['id'] : count($slides) + 1,
-                            'image' => trim((string)$s['image']),
+                            'image' => trim((string)($s['image'] ?? '')),
                             'alt' => trim((string)($s['alt'] ?? '')),
                             'title' => trim((string)($s['title'] ?? '')),
                             'link' => trim((string)($s['link'] ?? '/menu'))
@@ -144,28 +155,16 @@ class CMS {
                 }
             }
 
-            if (empty($slides)) {
-                $slides = [
-                    [
-                        'id' => 1,
-                        'image' => '/assets/hero2-first-frame.jpg',
-                        'alt' => 'Daily Grand Lunch Buffet',
-                        'title' => 'Daily Grand Lunch Buffet',
-                        'link' => '/menu'
-                    ]
-                ];
-            }
-
             $slidesJson = json_encode($slides, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
             $now = date('Y-m-d H:i:s');
 
             $count = (int)$pdo->query("SELECT COUNT(*) FROM cms_popups")->fetchColumn();
             if ($count === 0) {
-                $stmt = $pdo->prepare("INSERT INTO cms_popups (is_active, delay_seconds, show_frequency, slides_json, enable_lead_capture, lead_capture_title, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                return $stmt->execute([$isActive, $delay, $frequency, $slidesJson, $enableLeadCapture, $leadTitle, $now]);
+                $stmt = $pdo->prepare("INSERT INTO cms_popups (is_active, delay_seconds, show_frequency, slides_json, disable_image, enable_lead_capture, lead_capture_title, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                return $stmt->execute([$isActive, $delay, $frequency, $slidesJson, $disableImage, $enableLeadCapture, $leadTitle, $now]);
             } else {
-                $stmt = $pdo->prepare("UPDATE cms_popups SET is_active = ?, delay_seconds = ?, show_frequency = ?, slides_json = ?, enable_lead_capture = ?, lead_capture_title = ?, updated_at = ? WHERE id = (SELECT id FROM cms_popups ORDER BY id ASC LIMIT 1)");
-                return $stmt->execute([$isActive, $delay, $frequency, $slidesJson, $enableLeadCapture, $leadTitle, $now]);
+                $stmt = $pdo->prepare("UPDATE cms_popups SET is_active = ?, delay_seconds = ?, show_frequency = ?, slides_json = ?, disable_image = ?, enable_lead_capture = ?, lead_capture_title = ?, updated_at = ? WHERE id = (SELECT id FROM cms_popups ORDER BY id ASC LIMIT 1)");
+                return $stmt->execute([$isActive, $delay, $frequency, $slidesJson, $disableImage, $enableLeadCapture, $leadTitle, $now]);
             }
         } catch (Exception $e) {
             error_log('CMS::savePopupConfig error: ' . $e->getMessage());
@@ -553,7 +552,7 @@ class CMS {
 
         fputcsv($out, [
             'ID', 'Date', 'Type/Source', 'Status', 'Client Name', 'Email', 'Phone', 'Guests', 'Key Details', 'Internal Staff Notes', 'IP Address'
-        ]);
+        ], ',', '"', "\\");
 
         foreach ($leads as $l) {
             $d = $l['details'] ?? [];
@@ -578,7 +577,7 @@ class CMS {
                 implode(' | ', $detailsFormatted),
                 $l['notes'] ?? '',
                 $l['ip_address'] ?? ''
-            ]);
+            ], ',', '"', "\\");
         }
 
         fclose($out);
@@ -647,7 +646,7 @@ class CMS {
         $out = fopen('php://output', 'w');
         fprintf($out, chr(0xEF).chr(0xBB).chr(0xBF));
 
-        fputcsv($out, ['ID', 'Name', 'Category', 'Price', 'Description', 'Image', 'Available', 'Spicy', 'Vegetarian', 'Gluten Free', 'Buffet Item']);
+        fputcsv($out, ['ID', 'Name', 'Category', 'Price', 'Description', 'Image', 'Available', 'Spicy', 'Vegetarian', 'Gluten Free', 'Buffet Item'], ',', '"', "\\");
 
         $items = $MENU_ITEMS ?? [];
         foreach ($items as $it) {
@@ -663,7 +662,7 @@ class CMS {
                 !empty($it['veg']) ? '1' : '0',
                 !empty($it['gluten_free']) ? '1' : '0',
                 !empty($it['is_buffet_item']) ? '1' : '0',
-            ]);
+            ], ',', '"', "\\");
         }
 
         fclose($out);

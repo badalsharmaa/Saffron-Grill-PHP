@@ -240,9 +240,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Decorative Divider -->
     <img class="ornament reveal d1" src="assets/divider.png" alt="" style="width: 200px; margin: 18px auto;" />
 
+    <?php $storyQuote = cms_get('story_hero_quote', '"Food is more than nourishment — it is a language of warmth, an invitation to gather, and a celebration of sensory balance. At Saffron Grill, we blend tradition and craft to create meals meant for sharing."'); ?>
+    <?php if (trim((string)$storyQuote) !== ''): ?>
     <p class="lede on-dark reveal d2" style="max-width: 820px; margin-inline: auto; margin-top: 24px; font-size: clamp(20px, 2.5vw, 26px); color: #f2e6d4;">
-      <?= e(cms_get('story_hero_quote', '"Food is more than nourishment — it is a language of warmth, an invitation to gather, and a celebration of sensory balance. At Saffron Grill, we blend tradition and craft to create meals meant for sharing."')) ?>
+      <?= e($storyQuote) ?>
     </p>
+    <?php endif; ?>
 
     <!-- CTA Buttons with Premium Sliding Transition -->
     <div class="hero-cta reveal d2" style="margin-top: 36px;">
@@ -272,10 +275,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="eyebrow reveal"><?= e(cms_get('story_sec1_eyebrow', 'Our Heritage')) ?></span>
       <h2 class="h-section reveal d1"><?= e(cms_get('story_sec1_title', 'A Legacy of Spices & Sourcing')) ?></h2>
       <img class="ornament sm" style="margin-left:0" src="assets/divider.png" alt="" />
-      <p class="lede reveal d2" style="margin-top:8px"><?= e(cms_get('story_sec1_lede', 'From hand-selected spices to daily local harvest, our dishes carry stories from kitchens of antiquity.')) ?></p>
-      <p class="body-text reveal d2" style="margin-top:18px"><?= nl2br(e(cms_get('story_sec1_p1', 'The story of Saffron Grill is rooted in a simple obsession: to preserve the honest, traditional flavor profiles of Indian cuisine while utilizing the exceptional bounty of California’s local farms. Every morning, our kitchen comes alive with the aroma of freshly ground coriander, turmeric, cumin, and true Kashmiri chillies, each hand-picked and imported directly to ensure absolute purity.'))) ?></p>
-      <p class="body-text reveal d2" style="margin-top:18px"><?= nl2br(e(cms_get('story_sec1_p2', 'We believe that premium Indian cooking demands uncompromising ingredient quality. That is why our chefs source fresh vegetables and meats daily. Our chicken, lamb, and seafood are never frozen, ensuring that they absorb the complex marinades of yogurt, ginger, garlic, and home-blended masalas before entering the tandoor—our custom clay oven that burns at over 800°F.'))) ?></p>
-      <?php $storyCustom = cms_get('story_content', ''); if (!empty($storyCustom)): ?>
+      <?php $sec1Lede = cms_get('story_sec1_lede', 'From hand-selected spices to daily local harvest, our dishes carry stories from kitchens of antiquity.'); ?>
+      <?php if (trim((string)$sec1Lede) !== ''): ?>
+      <p class="lede reveal d2" style="margin-top:8px"><?= e($sec1Lede) ?></p>
+      <?php endif; ?>
+      <?php $sec1P1 = cms_get('story_sec1_p1', 'The story of Saffron Grill is rooted in a simple obsession: to preserve the honest, traditional flavor profiles of Indian cuisine while utilizing the exceptional bounty of California’s local farms. Every morning, our kitchen comes alive with the aroma of freshly ground coriander, turmeric, cumin, and true Kashmiri chillies, each hand-picked and imported directly to ensure absolute purity.'); ?>
+      <?php if (trim((string)$sec1P1) !== ''): ?>
+      <p class="body-text reveal d2" style="margin-top:18px"><?= nl2br(e($sec1P1)) ?></p>
+      <?php endif; ?>
+      <?php $sec1P2 = cms_get('story_sec1_p2', 'We believe that premium Indian cooking demands uncompromising ingredient quality. That is why our chefs source fresh vegetables and meats daily. Our chicken, lamb, and seafood are never frozen, ensuring that they absorb the complex marinades of yogurt, ginger, garlic, and home-blended masalas before entering the tandoor—our custom clay oven that burns at over 800°F.'); ?>
+      <?php if (trim((string)$sec1P2) !== ''): ?>
+      <p class="body-text reveal d2" style="margin-top:18px"><?= nl2br(e($sec1P2)) ?></p>
+      <?php endif; ?>
+      <?php $storyCustom = cms_get('story_content', ''); if (trim((string)$storyCustom) !== ''): ?>
       <p class="body-text reveal d2" style="margin-top:18px"><?= nl2br(e($storyCustom)) ?></p>
       <?php endif; ?>
     </div>
@@ -452,7 +464,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Saffron Grill · Authentic Indian Cuisine</span>
-      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
+      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a> · <a href="/admin.php" rel="nofollow" style="color: inherit; opacity: 0.6;">Admin Login</a></span>
     </div>
   </div>
 </footer>

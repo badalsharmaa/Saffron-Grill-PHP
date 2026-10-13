@@ -30,6 +30,9 @@ if (!function_exists('loadSaffronMenu')) {
                             $isGf = !empty($dietary['gluten_free']) || in_array('Gluten Free', $tags);
                             $isSpicy = in_array('Spicy', $tags);
 
+                            $isVegan = !empty($dietary['vegan']) || in_array('Vegan', $tags);
+                            $hasNuts = !empty($dietary['nuts']) || in_array('Nuts', $tags);
+
                             $baseItems[] = [
                                 'id' => (string)($it['id'] ?? $counter),
                                 'name' => $it['name'] ?? '',
@@ -39,6 +42,8 @@ if (!function_exists('loadSaffronMenu')) {
                                 'description' => $it['description'] ?? '',
                                 'image' => $it['image'] ?? '',
                                 'veg' => $isVeg ? 1 : 0,
+                                'vegan' => $isVegan ? 1 : 0,
+                                'nuts' => $hasNuts ? 1 : 0,
                                 'spicy' => $isSpicy ? 1 : 0,
                                 'gluten_free' => $isGf ? 1 : 0,
                                 'is_buffet_item' => 0,

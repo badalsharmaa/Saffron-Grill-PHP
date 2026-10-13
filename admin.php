@@ -363,6 +363,52 @@ switch ($page) {
 
     case 'pages':
     case 'elements':
+        // AJAX: Save Page Settings without page reload
+        if ($action === 'ajax_save' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            header('Content-Type: application/json');
+            $token = $_POST['csrf_token'] ?? $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+            if (!cms_verify_csrf($token)) {
+                echo json_encode(['success' => false, 'error' => 'Security token expired. Please refresh.']);
+                exit;
+            }
+
+            $activeTab = $_POST['active_tab'] ?? 'home';
+            $ignoreKeys = ['csrf_token', 'active_tab', 'edit_page', 'action'];
+
+            if ($activeTab === 'popup') {
+                CMS::savePopupConfig($_POST);
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Promotional popup saved successfully!',
+                    'updated_at' => date('g:i:s A')
+                ]);
+                exit;
+            }
+
+            if ($activeTab === 'home') {
+                CMS::setSetting('announcement_enabled', !empty($_POST['announcement_enabled']) ? '1' : '0', 'home');
+            }
+            if ($activeTab === 'buffet') {
+                CMS::setSetting('buffet_active', !empty($_POST['buffet_active']) ? '1' : '0', 'buffet');
+            }
+
+            foreach ($_POST as $k => $v) {
+                if (in_array($k, $ignoreKeys, true)) continue;
+                if (is_array($v)) {
+                    CMS::setSetting($k, json_encode($v, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), $activeTab);
+                } else {
+                    CMS::setSetting($k, (string)$v, $activeTab);
+                }
+            }
+
+            echo json_encode([
+                'success' => true,
+                'message' => 'Settings saved successfully!',
+                'updated_at' => date('g:i:s A')
+            ]);
+            exit;
+        }
+
         if ($action === 'save' && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $activeTab = $_POST['active_tab'] ?? 'home';
             if (!cms_verify_csrf($_POST['csrf_token'] ?? '')) {

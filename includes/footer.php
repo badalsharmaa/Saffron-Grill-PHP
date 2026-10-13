@@ -88,7 +88,7 @@ require_once __DIR__ . '/consent_banner.php';
         <a href="/privacy-policy">Privacy Policy</a>
         <a href="/terms">Terms of Service</a>
         <a href="llms.txt" target="_blank">AI Context (llms.txt)</a>
-        <a href="/admin/" rel="nofollow" style="opacity: 0.85;">Admin Portal</a>
+        <a href="/admin.php" rel="nofollow" style="opacity: 0.85;">Admin Login</a>
       </div>
     </div>
   </div>

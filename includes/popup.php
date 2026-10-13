@@ -13,6 +13,7 @@ $popupCfg = function_exists('cms_popup_config') ? cms_popup_config() : [
     'is_active' => true,
     'delay_seconds' => 1.5,
     'show_frequency' => 'session',
+    'disable_image' => false,
     'enable_lead_capture' => false,
     'lead_capture_title' => 'Join Saffron VIP Club for Exclusive Offers',
     'slides' => [
@@ -32,7 +33,7 @@ if (empty($popupCfg['is_active'])) {
 
 $slides = !empty($popupCfg['slides']) ? $popupCfg['slides'] : [];
 $firstSlide = $slides[0] ?? [
-    'image' => '/assets/hero2-first-frame.jpg',
+    'image' => '',
     'title' => 'Daily Grand Lunch Buffet',
     'link' => '/menu'
 ];
@@ -54,7 +55,7 @@ $firstSlide = $slides[0] ?? [
         <img src="/assets/divider.png" alt="" />
       </div>
 
-      <?php if (!empty($firstSlide['image'])): ?>
+      <?php if (empty($popupCfg['disable_image']) && !empty($firstSlide['image'])): ?>
       <div class="sgp-flyer-wrap" style="margin: 12px auto 16px; max-width: 320px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(227, 189, 118, 0.3); box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
         <img src="<?= e($firstSlide['image']) ?>" alt="<?= e($firstSlide['title'] ?? 'Special Offer') ?>" style="width: 100%; height: auto; display: block; object-fit: cover;">
       </div>

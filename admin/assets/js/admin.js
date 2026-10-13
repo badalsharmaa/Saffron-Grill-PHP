@@ -3,12 +3,55 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-    // 1. Mobile Sidebar Drawer Toggle & Overlay
+    // 1. Sidebar Toggle (Desktop Collapse & Mobile Drawer)
+    const adminLayout = document.getElementById('adminLayout') || document.querySelector('.admin-layout');
     const sidebarToggle = document.getElementById('sidebarToggle');
     const adminSidebar = document.getElementById('adminSidebar');
     const sidebarClose = document.getElementById('sidebarClose');
     const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const sidebarCollapseDesktop = document.getElementById('sidebarCollapseDesktop');
 
+    // Desktop Collapse Toggle Logic
+    function toggleDesktopSidebar(forceState) {
+        if (!adminLayout) return;
+        const isCurrentlyCollapsed = adminLayout.classList.contains('sidebar-collapsed') || document.documentElement.classList.contains('sidebar-is-collapsed');
+        const shouldCollapse = (typeof forceState === 'boolean') ? forceState : !isCurrentlyCollapsed;
+
+        if (shouldCollapse) {
+            adminLayout.classList.add('sidebar-collapsed');
+            document.documentElement.classList.add('sidebar-is-collapsed');
+            localStorage.setItem('sg_sidebar_collapsed', 'true');
+            if (sidebarToggle) sidebarToggle.setAttribute('title', 'Expand Sidebar (⌘[)');
+        } else {
+            adminLayout.classList.remove('sidebar-collapsed');
+            document.documentElement.classList.remove('sidebar-is-collapsed');
+            localStorage.setItem('sg_sidebar_collapsed', 'false');
+            if (sidebarToggle) sidebarToggle.setAttribute('title', 'Collapse Sidebar (⌘[)');
+        }
+
+        // Trigger resize event for charts/customizer canvas
+        window.dispatchEvent(new Event('resize'));
+    }
+
+    // Initialize desktop collapsed state from localStorage
+    if (window.innerWidth > 900) {
+        const savedCollapsed = localStorage.getItem('sg_sidebar_collapsed') === 'true';
+        if (savedCollapsed) {
+            if (adminLayout) adminLayout.classList.add('sidebar-collapsed');
+            document.documentElement.classList.add('sidebar-is-collapsed');
+            if (sidebarToggle) sidebarToggle.setAttribute('title', 'Expand Sidebar (⌘[)');
+        }
+    }
+
+    // Dedicated Desktop Collapse Button inside Sidebar Header
+    if (sidebarCollapseDesktop) {
+        sidebarCollapseDesktop.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggleDesktopSidebar(true);
+        });
+    }
+
+    // Mobile Sidebar Drawer Toggle & Overlay
     function openMobileSidebar() {
         if (adminSidebar) adminSidebar.classList.add('open');
         if (sidebarOverlay) sidebarOverlay.classList.add('active');
@@ -21,13 +64,19 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.remove('sidebar-locked');
     }
 
-    if (sidebarToggle && adminSidebar) {
+    if (sidebarToggle) {
         sidebarToggle.addEventListener('click', function (e) {
             e.stopPropagation();
-            if (adminSidebar.classList.contains('open')) {
-                closeMobileSidebar();
+            if (window.innerWidth > 900) {
+                // Desktop: Toggle between full rail and mini icon-only rail
+                toggleDesktopSidebar();
             } else {
-                openMobileSidebar();
+                // Mobile/Tablet: Open or close drawer
+                if (adminSidebar && adminSidebar.classList.contains('open')) {
+                    closeMobileSidebar();
+                } else {
+                    openMobileSidebar();
+                }
             }
         });
     }
@@ -43,10 +92,17 @@ document.addEventListener('DOMContentLoaded', function () {
         sidebarOverlay.addEventListener('click', closeMobileSidebar);
     }
 
-    // Close on Escape key press
+    // Close on Escape key press or Toggle on Cmd + [
     window.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && adminSidebar && adminSidebar.classList.contains('open')) {
             closeMobileSidebar();
+        }
+        // Keyboard shortcut: Cmd+[ or Ctrl+[ toggles desktop sidebar
+        if ((e.metaKey || e.ctrlKey) && (e.key === '[' || e.key === 'b')) {
+            if (window.innerWidth > 900) {
+                e.preventDefault();
+                toggleDesktopSidebar();
+            }
         }
     });
 

@@ -713,58 +713,15 @@
 
   var menuGrid = document.getElementById("menuGrid");
   if (menuGrid) {
-    fetch("menu/Saffron_Grill_Menu.json")
-      .then(function (res) { return res.json(); })
-      .then(function (data) {
-        if (menuGrid.getAttribute("data-static") === "true") {
-          // Render full menu dynamically
-          menuGrid.innerHTML = data.categories.map(function (cat, i) {
-            var itemsHtml = [];
-            cat.items.forEach(function (item) {
-              var nameLower = item.name.toLowerCase();
-              if (typeof item.price === 'object') {
-                // Split Tandoori Chicken half/full
-                var tagsHalf = ITEM_TAGS[nameLower + ' (half)'] || ITEM_TAGS[nameLower] || [];
-                itemsHtml.push(
-                  '<div class="menu-item">' +
-                    '<div class="top">' +
-                      '<span class="name">' + item.name + ' (Half) ' + renderTags(tagsHalf) + '</span>' +
-                      '<span class="leader"></span>' +
-                      '<span class="price">$' + item.price.half + '</span>' +
-                    '</div>' +
-                    (item.description ? '<div class="desc">' + item.description + '</div>' : '') +
-                  '</div>'
-                );
-                var tagsFull = ITEM_TAGS[nameLower + ' (full)'] || ITEM_TAGS[nameLower] || [];
-                itemsHtml.push(
-                  '<div class="menu-item">' +
-                    '<div class="top">' +
-                      '<span class="name">' + item.name + ' (Full) ' + renderTags(tagsFull) + '</span>' +
-                      '<span class="leader"></span>' +
-                      '<span class="price">$' + item.price.full + '</span>' +
-                    '</div>' +
-                    (item.description ? '<div class="desc">' + item.description + '</div>' : '') +
-                  '</div>'
-                );
-              } else {
-                var tags = ITEM_TAGS[nameLower] || [];
-                itemsHtml.push(
-                  '<div class="menu-item">' +
-                    '<div class="top">' +
-                      '<span class="name">' + item.name + ' ' + renderTags(tags) + '</span>' +
-                      '<span class="leader"></span>' +
-                      '<span class="price">$' + item.price + '</span>' +
-                    '</div>' +
-                    (item.description ? '<div class="desc">' + item.description + '</div>' : '') +
-                  '</div>'
-                );
-              }
-            });
-            return '<div class="menu-col reveal' + (i % 2 ? " d1" : "") + '"><h3>' + cat.name + '</h3>' + itemsHtml.join('') + '</div>';
-          }).join("");
-          menuGrid.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
-        } else {
-          // Render highlights dynamically
+    if (menuGrid.getAttribute("data-static") === "true") {
+      // Full menu (/menu) is rendered dynamically by PHP with live CMS categories & dishes.
+      // Observe elements for scroll animations.
+      menuGrid.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+    } else {
+      // Homepage menu highlights
+      fetch("menu/Saffron_Grill_Menu.json")
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
           var highlightsMap = {};
           TARGET_COLS.forEach(function (col) { highlightsMap[col] = []; });
           
@@ -796,12 +753,9 @@
             return '<div class="menu-col reveal' + (i % 2 ? " d1" : "") + '"><h3>' + col + '</h3>' + rows + '</div>';
           }).join("");
           menuGrid.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
-        }
-      })
-      .catch(function (err) {
-        console.warn("Could not fetch menu JSON, falling back to static/hardcoded menu:", err);
-        if (!menuGrid.getAttribute("data-static")) {
-          // Fallback highlights rendering
+        })
+        .catch(function (err) {
+          console.warn("Could not fetch menu JSON, falling back to static/hardcoded menu:", err);
           menuGrid.innerHTML = MENU.map(function (col, i) {
             var rows = col[1].map(function (it) {
               return '' +
@@ -813,8 +767,8 @@
             return '<div class="menu-col reveal' + (i % 2 ? " d1" : "") + '"><h3>' + col[0] + '</h3>' + rows + '</div>';
           }).join("");
           menuGrid.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
-        }
-      });
+        });
+    }
   }
 
   /* ---------- text stagger splitting ---------- */
@@ -1327,7 +1281,12 @@
           var phoneSpan = document.getElementById("cSuccessPhone");
           if (phoneSpan && phone) phoneSpan.textContent = phone.value.trim();
           var emailSpan = document.getElementById("cSuccessEmail");
-          if (emailSpan && email) emailSpan.textContent = email.value.trim();
+          var leadCodeWrap = document.getElementById("cSuccessLeadCodeWrap");
+          var leadCodeEl = document.getElementById("cSuccessLeadCode");
+          if (data.lead_code && leadCodeWrap && leadCodeEl) {
+            leadCodeEl.textContent = data.lead_code;
+            leadCodeWrap.style.display = "block";
+          }
 
           catForm.classList.add("hidden");
           if (successCard) successCard.classList.remove("hidden");
@@ -1358,4 +1317,36 @@
       });
     }
   })();
+
+  /* ============================================================
+     CMS Live Preview Bridge (for iframe embedded customizer)
+     ============================================================ */
+  (function initCmsPreviewBridge() {
+    window.addEventListener("message", function(e) {
+      if (!e.data || typeof e.data !== "object") return;
+      if (e.data.type === "sg-editor") {
+        if (e.data.action === "scrollTo" && e.data.section) {
+          var targetId = e.data.section;
+          var target = document.getElementById(targetId) ||
+                       document.querySelector('[data-screen-label="' + targetId + '"]') ||
+                       document.querySelector('.' + targetId + '-section') ||
+                       document.querySelector(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            target.classList.add("sg-section-highlight");
+            setTimeout(function() {
+              target.classList.remove("sg-section-highlight");
+            }, 2000);
+          }
+        }
+      }
+    });
+
+    try {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: "sg-preview-ready" }, "*");
+      }
+    } catch (err) {}
+  })();
 })();
+

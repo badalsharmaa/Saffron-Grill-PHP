@@ -5,9 +5,9 @@
  */
 
 if (!function_exists('cms_get')) {
-    function cms_get(string $key, $default = null) {
+    function cms_get(string $key, $default = null, bool $refresh = false) {
         static $settingsCache = null;
-        if ($settingsCache === null) {
+        if ($settingsCache === null || $refresh) {
             $helperFile = __DIR__ . '/../admin/helpers/CMS.php';
             if (file_exists($helperFile)) {
                 require_once $helperFile;
@@ -17,7 +17,7 @@ if (!function_exists('cms_get')) {
             }
         }
 
-        return isset($settingsCache[$key]) && $settingsCache[$key] !== '' ? $settingsCache[$key] : $default;
+        return (array_key_exists($key, $settingsCache) && $settingsCache[$key] !== null) ? (string)$settingsCache[$key] : $default;
     }
 }
 
@@ -34,6 +34,7 @@ if (!function_exists('cms_popup_config')) {
                     'is_active' => true,
                     'delay_seconds' => 1.5,
                     'show_frequency' => 'session',
+                    'disable_image' => false,
                     'enable_lead_capture' => false,
                     'lead_capture_title' => 'Join Saffron VIP Club for Exclusive Offers',
                     'slides' => [

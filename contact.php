@@ -664,7 +664,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Saffron Grill · Authentic Indian Cuisine</span>
-      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
+      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a> · <a href="/admin.php" rel="nofollow" style="color: inherit; opacity: 0.6;">Admin Login</a></span>
     </div>
   </div>
 </footer>

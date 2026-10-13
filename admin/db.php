@@ -83,10 +83,17 @@ class CMSDatabase {
             delay_seconds REAL DEFAULT 1.5,
             show_frequency TEXT DEFAULT 'session',
             slides_json TEXT NOT NULL,
+            disable_image INTEGER DEFAULT 0,
             enable_lead_capture INTEGER DEFAULT 0,
             lead_capture_title TEXT DEFAULT 'Get Special Offers & 10% Off',
             updated_at TEXT NOT NULL
         )");
+
+        try {
+            $pdo->exec("ALTER TABLE cms_popups ADD COLUMN disable_image INTEGER DEFAULT 0");
+        } catch (Exception $e) {
+            // Column already exists
+        }
 
         // 4. Menu overrides table
         $pdo->exec("CREATE TABLE IF NOT EXISTS cms_menu_overrides (
@@ -255,12 +262,13 @@ class CMSDatabase {
                 ]
             ];
             $now = date('Y-m-d H:i:s');
-            $ins = $pdo->prepare("INSERT INTO cms_popups (is_active, delay_seconds, show_frequency, slides_json, enable_lead_capture, lead_capture_title, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $ins = $pdo->prepare("INSERT INTO cms_popups (is_active, delay_seconds, show_frequency, slides_json, disable_image, enable_lead_capture, lead_capture_title, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $ins->execute([
                 1,
                 1.5,
                 'session',
                 json_encode($defaultSlides, JSON_UNESCAPED_SLASHES),
+                0,
                 0,
                 'Join Saffron VIP Club for Exclusive Offers',
                 $now

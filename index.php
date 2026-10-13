@@ -305,8 +305,14 @@ if ($announcementEnabled && !empty($announcementText)):
       <span class="eyebrow reveal"><?= e(cms_get('home_story_eyebrow', 'Our Story')) ?></span>
       <h2 class="h-section reveal d1"><?= e(cms_get('home_story_title', 'A Restaurant Built Around Sharing')) ?></h2>
       <img class="ornament sm" style="margin-left:0" src="assets/divider.png" alt="" />
-      <p class="lede reveal d2" style="margin-top:8px"><?= e(cms_get('home_story_lede', 'Some meals are about choosing a single dish. Ours are about bringing people together around a table filled with options.')) ?></p>
-      <p class="body-text reveal d2" style="margin-top:18px"><?= nl2br(e(cms_get('home_story_body', "At Saffron Grill, you'll find the dishes guests know and love, alongside new favorites waiting to be discovered. From freshly prepared curries and tandoori specialties to vegetarian classics and house-made desserts, every visit offers something different to enjoy."))) ?></p>
+      <?php $homeStoryLede = cms_get('home_story_lede', 'Some meals are about choosing a single dish. Ours are about bringing people together around a table filled with options.'); ?>
+      <?php if (trim((string)$homeStoryLede) !== ''): ?>
+      <p class="lede reveal d2" style="margin-top:8px"><?= e($homeStoryLede) ?></p>
+      <?php endif; ?>
+      <?php $homeStoryBody = cms_get('home_story_body', "At Saffron Grill, you'll find the dishes guests know and love, alongside new favorites waiting to be discovered. From freshly prepared curries and tandoori specialties to vegetarian classics and house-made desserts, every visit offers something different to enjoy."); ?>
+      <?php if (trim((string)$homeStoryBody) !== ''): ?>
+      <p class="body-text reveal d2" style="margin-top:18px"><?= nl2br(e($homeStoryBody)) ?></p>
+      <?php endif; ?>
       <div class="story-stats reveal d3">
         <div class="stat">
           <div class="num">20+</div>
@@ -420,8 +426,10 @@ if ($announcementEnabled && !empty($announcementText)):
     <div>
       <span class="eyebrow reveal"><?= e(cms_get('home_catering_eyebrow', 'Catering')) ?></span>
       <h2 class="h-section reveal d1" style="margin-top:16px"><?= e(cms_get('home_catering_title', 'Bring Saffron Grill to Your Next Celebration')) ?></h2>
-      <img class="ornament sm" style="margin-left:0" src="assets/divider.png" alt="" />
-      <p class="body-text reveal d2" style="margin-top:16px"><?= nl2br(e(cms_get('home_catering_desc', "From office lunches and corporate gatherings to weddings, birthdays, graduations, and family events, our catering team helps bring people together through great food. Choose from a wide range of vegetarian and non-vegetarian options, buffet-style service, party trays, and customized menus tailored to your event."))) ?></p>
+      <?php $caterDesc = cms_get('home_catering_desc', "From office lunches and corporate gatherings to weddings, birthdays, graduations, and family events, our catering team helps bring people together through great food. Choose from a wide range of vegetarian and non-vegetarian options, buffet-style service, party trays, and customized menus tailored to your event."); ?>
+      <?php if (trim((string)$caterDesc) !== ''): ?>
+      <p class="body-text reveal d2" style="margin-top:16px"><?= nl2br(e($caterDesc)) ?></p>
+      <?php endif; ?>
       <div class="reveal d3" style="margin-top:30px; display:flex; gap:14px; flex-wrap:wrap">
         <a href="<?= e(cms_get('home_catering_btn_link', '/catering#inquiry-section')) ?>" class="btn btn-crimson"><?= e(cms_get('home_catering_btn_text', 'Request Catering Information')) ?></a>
       </div>
@@ -552,7 +560,7 @@ if ($announcementEnabled && !empty($announcementText)):
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Saffron Grill · Authentic Indian Cuisine</span>
-      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
+      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a> · <a href="/admin.php" rel="nofollow" style="color: inherit; opacity: 0.6;">Admin Login</a></span>
     </div>
   </div>
 </footer>

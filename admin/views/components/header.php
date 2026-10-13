@@ -17,10 +17,16 @@ $user = CMSAuth::user();
     <link rel="stylesheet" href="/admin/assets/css/admin.css?v=<?= time() ?>">
     <script>
         window.CMS_CSRF = '<?= cms_generate_csrf() ?>';
+        // Immediate pre-hydration check for desktop sidebar collapsed state to prevent layout flash
+        try {
+            if (window.innerWidth >= 992 && localStorage.getItem('sg_sidebar_collapsed') === 'true') {
+                document.documentElement.classList.add('sidebar-is-collapsed');
+            }
+        } catch (e) {}
     </script>
 </head>
 <body>
-    <div class="admin-layout">
+    <div class="admin-layout" id="adminLayout">
         <!-- Sidebar -->
         <?php require __DIR__ . '/sidebar.php'; ?>
 

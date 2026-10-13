@@ -213,9 +213,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Decorative Divider -->
     <img class="ornament reveal d1" src="assets/divider.png" alt="" style="width: 200px; margin: 18px auto;" />
 
+    <?php $cateringSub = cms_get('catering_hero_subtitle', 'From intimate dinner parties to grand galas with live tandoor stations, Saffron Grill delivers unforgettable royal feasts.'); ?>
+    <?php if (trim((string)$cateringSub) !== ''): ?>
     <p class="lede on-dark reveal d2" style="max-width: 780px; margin: 12px auto 24px; color: #f2e6d4;">
-      <?= e(cms_get('catering_hero_subtitle', 'From intimate dinner parties to grand galas with live tandoor stations, Saffron Grill delivers unforgettable royal feasts.')) ?>
+      <?= e($cateringSub) ?>
     </p>
+    <?php endif; ?>
 
     <!-- Glassmorphic Trust/Detail Row -->
     <div class="hero-trust-row reveal d2">
@@ -599,7 +602,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Saffron Grill · Authentic Indian Cuisine</span>
-      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a></span>
+      <span>San Ramon, California · <a href="/privacy-policy" style="color: inherit; opacity: 0.6;">Privacy Policy</a> · <a href="/admin.php" rel="nofollow" style="color: inherit; opacity: 0.6;">Admin Login</a></span>
     </div>
   </div>
 </footer>

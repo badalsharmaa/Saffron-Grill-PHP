@@ -7,7 +7,16 @@ require_once __DIR__ . '/../../config/config.php';
 
 if (!function_exists('is_admin_logged_in')) {
     function is_admin_logged_in(): bool {
-        return !empty($_SESSION['saffron_admin_id']) && !empty($_SESSION['saffron_admin_user']);
+        if (!empty($_SESSION['saffron_admin_id']) && !empty($_SESSION['saffron_admin_user'])) {
+            return true;
+        }
+        if (!empty($_SESSION['cms_user_id']) && !empty($_SESSION['cms_logged_in'])) {
+            $_SESSION['saffron_admin_id'] = $_SESSION['cms_user_id'];
+            $_SESSION['saffron_admin_user'] = $_SESSION['cms_username'] ?? 'admin';
+            $_SESSION['saffron_admin_role'] = $_SESSION['cms_role'] ?? 'super_admin';
+            return true;
+        }
+        return false;
     }
 }
 
@@ -56,6 +65,15 @@ if (!function_exists('attempt_admin_login')) {
             $_SESSION['saffron_admin_user'] = $admin['username'];
             $_SESSION['saffron_admin_role'] = $admin['role'];
 
+            // Populate unified CMS session keys so both legacy CRM and unified CMS are active
+            $_SESSION['cms_logged_in'] = true;
+            $_SESSION['cms_user_id'] = (int)$admin['id'];
+            $_SESSION['cms_username'] = $admin['username'];
+            $_SESSION['cms_role'] = ($admin['role'] === 'admin') ? 'super_admin' : $admin['role'];
+            $_SESSION['cms_status'] = 'active';
+            $_SESSION['cms_initiated'] = true;
+            $_SESSION['cms_last_activity'] = time();
+
             $update = $pdo->prepare("UPDATE admins SET last_login = CURRENT_TIMESTAMP WHERE id = ?");
             $update->execute([$admin['id']]);
             return true;
@@ -69,6 +87,13 @@ if (!function_exists('admin_logout')) {
         unset($_SESSION['saffron_admin_id']);
         unset($_SESSION['saffron_admin_user']);
         unset($_SESSION['saffron_admin_role']);
-        session_destroy();
+        unset($_SESSION['cms_logged_in']);
+        unset($_SESSION['cms_user_id']);
+        unset($_SESSION['cms_username']);
+        unset($_SESSION['cms_role']);
+        unset($_SESSION['cms_status']);
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_destroy();
+        }
     }
 }

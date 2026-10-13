@@ -9,7 +9,7 @@ $currentPage = 'pages';
 
 $settings = CMS::getAllSettings();
 $editPage = $_GET['edit'] ?? null;
-$validPages = ['popup', 'home', 'story', 'buffet', 'catering', 'reserve', 'contact', 'policies'];
+$validPages = ['popup', 'home', 'story', 'buffet', 'catering', 'contact', 'policies'];
 
 if ($editPage !== null && !in_array($editPage, $validPages, true)) {
     $editPage = null;
@@ -95,19 +95,7 @@ require_once __DIR__ . '/components/header.php';
                 <div class="apple-setting-chevron"><?= AdminIcons::get('chevron_right', 20) ?></div>
             </a>
 
-            <!-- 5. Table Reservations -->
-            <a href="/admin.php?page=pages&edit=reserve" class="apple-setting-row">
-                <div class="apple-squircle-icon" style="background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);">
-                    <?= AdminIcons::get('calendar', 22) ?>
-                </div>
-                <div class="apple-setting-info">
-                    <div class="apple-setting-name">Table Reservations Policy</div>
-                    <div class="apple-setting-desc">Dining room capacity advisory, booking policies, party size rules &amp; confirmation notice</div>
-                </div>
-                <div class="apple-setting-chevron"><?= AdminIcons::get('chevron_right', 20) ?></div>
-            </a>
-
-            <!-- 6. Contact Us & Store Details -->
+            <!-- 5. Contact Us & Store Details -->
             <a href="/admin.php?page=pages&edit=contact" class="apple-setting-row">
                 <div class="apple-squircle-icon" style="background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);">
                     <?= AdminIcons::get('phone', 22) ?>
@@ -134,41 +122,131 @@ require_once __DIR__ . '/components/header.php';
     </div>
 
 <?php else: ?>
+    <?php
+    $previewUrl = match ($editPage) {
+        'popup' => '/?preview_popup=1',
+        'home' => '/',
+        'story' => '/story',
+        'buffet' => '/menu',
+        'catering' => '/catering',
+        'contact' => '/contact',
+        'policies' => '/privacy-policy',
+        default => '/'
+    };
+
+    $pageSections = match ($editPage) {
+        'home' => [
+            ['card_id' => 'card-announcement', 'preview_id' => 'top', 'title' => 'Announcement Banner', 'icon' => 'announcement'],
+            ['card_id' => 'card-hero', 'preview_id' => 'top', 'title' => 'Hero Banner & CTAs', 'icon' => 'elements'],
+            ['card_id' => 'card-story', 'preview_id' => 'story', 'title' => 'Story Spotlight', 'icon' => 'sparkles'],
+            ['card_id' => 'card-catering', 'preview_id' => 'catering', 'title' => 'Catering Teaser', 'icon' => 'utensils'],
+            ['card_id' => 'card-reviews', 'preview_id' => 'signatures', 'title' => 'Chef Signatures & Reviews', 'icon' => 'sparkles'],
+        ],
+        'popup' => [
+            ['card_id' => 'card-popup-general', 'preview_id' => 'top', 'title' => 'Popup Rules & Timing', 'icon' => 'settings'],
+            ['card_id' => 'card-popup-slides', 'preview_id' => 'top', 'title' => 'Flyer Slides & Media', 'icon' => 'image'],
+            ['card_id' => 'card-popup-actions', 'preview_id' => 'top', 'title' => 'Action Buttons', 'icon' => 'elements'],
+        ],
+        'story' => [
+            ['card_id' => 'card-story-hero', 'preview_id' => 'top', 'title' => 'Story Hero Header', 'icon' => 'elements'],
+            ['card_id' => 'card-story-roots', 'preview_id' => 'heritage', 'title' => 'Clay Tandoor & Heritage', 'icon' => 'sparkles'],
+            ['card_id' => 'card-story-phil', 'preview_id' => 'values', 'title' => 'Core Values & Pillars', 'icon' => 'utensils'],
+        ],
+        'buffet' => [
+            ['card_id' => 'card-buffet-pricing', 'preview_id' => 'buffet', 'title' => 'Buffet Rates & Schedule', 'icon' => 'dollar'],
+            ['card_id' => 'card-buffet-features', 'preview_id' => 'buffet', 'title' => 'Included Specialties', 'icon' => 'check_circle'],
+        ],
+        'catering' => [
+            ['card_id' => 'card-catering-hero', 'preview_id' => 'top', 'title' => 'Catering Hero Banner', 'icon' => 'elements'],
+            ['card_id' => 'card-catering-packages', 'preview_id' => 'packages', 'title' => 'Party Packages Tier List', 'icon' => 'tag'],
+        ],
+        'contact' => [
+            ['card_id' => 'card-contact-info', 'preview_id' => 'location', 'title' => 'Address, Hours & Map', 'icon' => 'phone'],
+        ],
+        'policies' => [
+            ['card_id' => 'card-policy-privacy', 'preview_id' => 'top', 'title' => 'Privacy Policy Terms', 'icon' => 'file_text'],
+        ],
+        default => [
+            ['card_id' => 'card-general', 'preview_id' => 'top', 'title' => 'General Settings', 'icon' => 'settings']
+        ]
+    };
+    ?>
+
     <!-- ============================================================= -->
-    <!-- SUB-VIEW: SECTION CUSTOMIZER                                  -->
+    <!-- SUB-VIEW: STREETBEAT-STYLE 3-PANEL LIVE VISUAL CUSTOMIZER     -->
     <!-- ============================================================= -->
-    <div style="max-width: 960px; margin: 0 auto; padding-bottom: 4rem;">
-        
-        <!-- Editor Top Navigation Bar -->
-        <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 12px 18px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-            <a href="/admin.php?page=pages" class="btn btn-secondary btn-sm" style="font-size: 13px; gap: 6px;">
-                <?= AdminIcons::get('arrow_left', 16) ?>
-                <span>Back to All Pages</span>
-            </a>
-            
-            <div style="display: flex; gap: 12px; align-items: center;">
-                <?php
-                $previewUrl = match ($editPage) {
-                    'popup' => '/',
-                    'home' => '/',
-                    'story' => '/story',
-                    'buffet' => '/menu',
-                    'catering' => '/catering',
-                    'contact' => '/contact',
-                    'reserve' => '/reserve',
-                    'policies' => '/contact',
-                    default => '/'
-                };
-                ?>
-                <a href="<?= $previewUrl ?>" target="_blank" class="btn btn-secondary btn-sm" style="font-size: 13px; gap: 6px;">
-                    <?= AdminIcons::get('eye', 16) ?>
-                    <span><?= $editPage === 'popup' ? 'Test Popup on Storefront' : 'Preview Live Page' ?></span>
+    <div class="sg-wc" id="sgWcEditor" data-preview-url="<?= e($previewUrl) ?>">
+        <!-- ============ TOP TOOLBAR ============ -->
+        <div class="sg-wc-toolbar">
+            <div class="sg-wc-toolbar-left">
+                <a href="/admin.php?page=pages" class="btn btn-secondary btn-sm" style="font-size: 13px; gap: 6px;" title="Back to All Pages Directory">
+                    <?= AdminIcons::get('arrow_left', 15) ?>
+                    <span>Directory</span>
                 </a>
-                <span class="badge badge-gold" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">
-                    Editing <?= ucfirst($editPage) ?>
-                </span>
+                <select class="sg-wc-page-select" id="sgPageSelect" onchange="window.location.href='/admin.php?page=pages&edit=' + this.value">
+                    <option value="home" <?= $editPage === 'home' ? 'selected' : '' ?>>🏠 Homepage (/)</option>
+                    <option value="popup" <?= $editPage === 'popup' ? 'selected' : '' ?>>🎉 Promotional Popup</option>
+                    <option value="story" <?= $editPage === 'story' ? 'selected' : '' ?>>📖 Our Story (/story)</option>
+                    <option value="buffet" <?= $editPage === 'buffet' ? 'selected' : '' ?>>🍛 Lunch Buffet (/menu)</option>
+                    <option value="catering" <?= $editPage === 'catering' ? 'selected' : '' ?>>🎪 Party Catering (/catering)</option>
+                    <option value="contact" <?= $editPage === 'contact' ? 'selected' : '' ?>>📍 Contact &amp; Hours (/contact)</option>
+                    <option value="policies" <?= $editPage === 'policies' ? 'selected' : '' ?>>📜 Legal Policies</option>
+                </select>
+            </div>
+
+            <div class="sg-wc-devices" role="group" aria-label="Preview viewport device">
+                <button type="button" class="sg-wc-device is-active" data-device="desktop">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                    Desktop
+                </button>
+                <button type="button" class="sg-wc-device" data-device="tablet">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                    Tablet
+                </button>
+                <button type="button" class="sg-wc-device" data-device="mobile">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M12 18h.01"/></svg>
+                    Mobile
+                </button>
+            </div>
+
+            <div class="sg-wc-toolbar-actions">
+                <button type="button" class="btn btn-secondary btn-sm" id="sgTogglePreviewBtn" title="Toggle Split Preview">
+                    <?= AdminIcons::get('eye', 14) ?>
+                    <span id="sgTogglePreviewLabel">Hide Preview</span>
+                </button>
+                <a class="btn btn-secondary btn-sm" id="sgPreviewTab" href="<?= e($previewUrl) ?>" target="_blank" rel="noopener">
+                    <?= AdminIcons::get('external_link', 14) ?>
+                    <span>New Tab</span>
+                </a>
+                <button type="button" class="btn btn-primary btn-sm" id="sgSaveTopBtn" style="gap:6px;">
+                    <?= AdminIcons::get('check', 14) ?>
+                    <span>Save</span>
+                </button>
             </div>
         </div>
+
+        <!-- ============ BODY ============ -->
+        <div class="sg-wc-body">
+            <!-- 1. LEFT SECTION NAV -->
+            <aside class="sg-wc-panel-nav" id="sgWcNavPanel">
+                <div class="sg-wc-nav-header"><?= ucfirst($editPage) ?> Sections</div>
+                <ul class="sg-wc-nav-list" id="sgWcNavList">
+                    <?php foreach ($pageSections as $idx => $sec): ?>
+                        <li>
+                            <button type="button" class="sg-wc-nav-item<?= $idx === 0 ? ' is-active' : '' ?>"
+                                    data-target-card="<?= e($sec['card_id']) ?>"
+                                    data-preview-section="<?= e($sec['preview_id']) ?>"
+                                    data-name="<?= e($sec['title']) ?>">
+                                <span class="sg-wc-nav-icon"><?= AdminIcons::get($sec['icon'], 16) ?></span>
+                                <span><?= e($sec['title']) ?></span>
+                            </button>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </aside>
+
+            <!-- 2. MIDDLE CONTEXTUAL FIELDS -->
+            <div class="sg-wc-panel-fields" id="sgWcFieldsPanel">
 
         <?php if ($editPage === 'popup'): ?>
             <!-- ========================================== -->
@@ -176,8 +254,10 @@ require_once __DIR__ . '/components/header.php';
             <!-- ========================================== -->
             <form method="POST" action="/admin.php?page=popup&action=save" id="popupCustomizerForm">
                 <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
+                <input type="hidden" name="active_tab" value="popup">
+                <input type="hidden" name="edit_page" value="popup">
                 
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-popup-general" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
                         <div>
                             <div style="font-weight: 800; font-size: 16px; color: var(--navy);">Enable Promotional Popup</div>
@@ -185,6 +265,19 @@ require_once __DIR__ . '/components/header.php';
                         </div>
                         <label class="switch">
                             <input type="checkbox" name="is_active" value="1" <?= !empty($popup['is_active']) ? 'checked' : '' ?>>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- Promotional Image Option -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                        <div>
+                            <div style="font-weight: 800; font-size: 15px; color: var(--navy);">Show Image in Popup</div>
+                            <div style="font-size: 13px; color: var(--text-muted);">Display promotional flyer artwork (switch off to disable images and show a sleek text-only popup)</div>
+                        </div>
+                        <label class="switch">
+                            <input type="hidden" name="has_image_setting" value="1">
+                            <input type="checkbox" name="show_image" id="showImageSwitch" value="1" <?= empty($popup['disable_image']) ? 'checked' : '' ?>>
                             <span class="slider"></span>
                         </label>
                     </div>
@@ -226,7 +319,7 @@ require_once __DIR__ . '/components/header.php';
                 </div>
 
                 <!-- Slide Cards Builder -->
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-popup-slides" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
                         <div>
                             <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 4px;">Promotional Slides &amp; Media Flyers</h3>
@@ -239,29 +332,26 @@ require_once __DIR__ . '/components/header.php';
                     </div>
 
                     <div id="popupSlidesContainer" style="display: flex; flex-direction: column; gap: 16px;">
+                        <div id="noSlidesNotice" style="display: <?= empty($popup['slides']) ? 'block' : 'none' ?>; padding: 24px; text-align: center; background: #FAF7F2; border: 2px dashed #CBD5E1; border-radius: 12px; color: var(--text-muted);">
+                            <p style="margin: 0 0 6px; font-weight: 700; color: var(--navy);">No Promotional Slides</p>
+                            <p style="margin: 0; font-size: 13px;">The popup will display a sleek text-focused card without slides. Click <strong>&quot;+ Add New Slide&quot;</strong> above if you wish to add flyer slides.</p>
+                        </div>
+
                         <?php 
                         $slides = $popup['slides'] ?? [];
-                        if (empty($slides)) {
-                            $slides = [
-                                [
-                                    'id' => 1,
-                                    'image' => '/assets/hero2-first-frame.jpg',
-                                    'alt' => 'Daily Grand Lunch Buffet Feast',
-                                    'title' => 'Daily Grand Lunch Buffet Feast',
-                                    'link' => '/menu'
-                                ]
-                            ];
-                        }
                         foreach ($slides as $idx => $slide): 
                         ?>
                             <div class="slide-card" data-index="<?= $idx ?>" style="background: #FAF7F2; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px; position: relative;">
                                 <div style="display: grid; grid-template-columns: 140px 1fr 40px; gap: 16px; align-items: start;">
                                     <!-- Image Thumbnail & Upload Column -->
                                     <div style="display: flex; flex-direction: column; gap: 8px; text-align: center;">
-                                        <img src="<?= e($slide['image']) ?>" alt="Slide Preview" class="preview-thumb-<?= $idx ?>" style="width: 100%; height: 110px; object-fit: cover; border-radius: 8px; border: 1px solid #CBD5E1; background: #fff;" onerror="this.src='/assets/emblem.png'">
+                                        <img src="<?= !empty($slide['image']) ? e($slide['image']) : '/assets/emblem.png' ?>" alt="Slide Preview" class="preview-thumb-<?= $idx ?>" style="width: 100%; height: 110px; object-fit: cover; border-radius: 8px; border: 1px solid #CBD5E1; background: #fff;" onerror="this.src='/assets/emblem.png'">
                                         <div style="display: flex; gap: 6px;">
                                             <button type="button" class="btn btn-secondary btn-sm" style="flex:1; font-size:11px; padding: 4px 6px;" onclick="chooseImageFor('slideImg_<?= $idx ?>', '.preview-thumb-<?= $idx ?>')">
                                                 Choose
+                                            </button>
+                                            <button type="button" class="btn btn-secondary btn-sm" style="font-size:11px; padding: 4px 6px; color: #DC2626;" onclick="clearImageFor('slideImg_<?= $idx ?>', '.preview-thumb-<?= $idx ?>')" title="Remove image from this slide">
+                                                Clear
                                             </button>
                                         </div>
                                     </div>
@@ -269,8 +359,8 @@ require_once __DIR__ . '/components/header.php';
                                     <!-- Slide Form Inputs -->
                                     <div style="display: flex; flex-direction: column; gap: 10px;">
                                         <div class="form-group" style="margin-bottom:0;">
-                                            <label class="form-label" style="font-size:12px;">Image URL / Path</label>
-                                            <input type="text" name="slides[<?= $idx ?>][image]" value="<?= e($slide['image']) ?>" placeholder="/assets/... image path" class="form-control form-control-sm" id="slideImg_<?= $idx ?>" required>
+                                            <label class="form-label" style="font-size:12px;">Image URL / Path <span style="font-weight: normal; color: var(--text-muted);">(Optional)</span></label>
+                                            <input type="text" name="slides[<?= $idx ?>][image]" value="<?= e($slide['image']) ?>" placeholder="/assets/... image path" class="form-control form-control-sm" id="slideImg_<?= $idx ?>">
                                         </div>
                                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                                             <div class="form-group" style="margin-bottom:0;">
@@ -314,7 +404,7 @@ require_once __DIR__ . '/components/header.php';
                 <input type="hidden" name="edit_page" value="home">
 
                 <!-- 1. Top Announcement Bar -->
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-announcement" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
                         <div>
                             <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 2px;">Top Announcement Banner</h3>
@@ -331,7 +421,7 @@ require_once __DIR__ . '/components/header.php';
                         <input type="text" name="announcement_text" class="form-control" value="<?= e(CMS::getSetting('announcement_text', '✨ Grand Lunch Buffet Served Daily · Weekdays $19.99 | Weekends $21.99 · Fresh Clay Tandoor & Curries')) ?>" placeholder="Enter announcement banner message...">
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 140px; gap: 12px;">
+                    <div style="grid-template-columns: 1fr 140px; display: grid; gap: 12px;">
                         <div class="form-group">
                             <label class="form-label">Click Target Link</label>
                             <input type="text" name="announcement_link" class="form-control" value="<?= e(CMS::getSetting('announcement_link', '/menu')) ?>" placeholder="/menu or https://...">
@@ -344,7 +434,7 @@ require_once __DIR__ . '/components/header.php';
                 </div>
 
                 <!-- 2. Homepage Hero Header -->
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-hero" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Hero Banner Headlines &amp; Call to Actions</h3>
                     
                     <div class="form-group">
@@ -402,7 +492,7 @@ require_once __DIR__ . '/components/header.php';
                 </div>
 
                 <!-- 3. Culinary Vision / Story Spotlight on Home -->
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-story" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Story Spotlight on Homepage</h3>
                     <div class="form-group">
                         <label class="form-label">Eyebrow Tag</label>
@@ -423,7 +513,7 @@ require_once __DIR__ . '/components/header.php';
                 </div>
 
                 <!-- 4. Catering Spotlight Banner on Home -->
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-catering" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Catering Spotlight Banner</h3>
                     <div class="form-group">
                         <label class="form-label">Section Eyebrow</label>
@@ -450,7 +540,7 @@ require_once __DIR__ . '/components/header.php';
                 </div>
 
                 <!-- 5. Guest Testimonials / Word on the Street -->
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-reviews" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 4px;">Guest Reviews &amp; Testimonials</h3>
                     <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Social proof reviews shown to visitors</p>
 
@@ -526,7 +616,7 @@ require_once __DIR__ . '/components/header.php';
                 <input type="hidden" name="edit_page" value="story">
 
                 <!-- 1. Header Banner -->
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-story-hero" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Story Page Header Banner</h3>
                     <div class="form-group">
                         <label class="form-label">Page Tag / Eyebrow</label>
@@ -549,7 +639,7 @@ require_once __DIR__ . '/components/header.php';
                 </div>
 
                 <!-- 2. Heritage Narrative & Image -->
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-story-roots" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Section 1: The Clay Tandoor &amp; Spices Heritage</h3>
                     <div class="form-group">
                         <label class="form-label">Section Eyebrow</label>
@@ -583,7 +673,7 @@ require_once __DIR__ . '/components/header.php';
                 </div>
 
                 <!-- 3. Core Values / Pillars of Excellence -->
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-story-phil" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Core Values &amp; Pillars of Excellence (4 Cards)</h3>
                     
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
@@ -654,7 +744,7 @@ require_once __DIR__ . '/components/header.php';
                 <input type="hidden" name="active_tab" value="buffet">
                 <input type="hidden" name="edit_page" value="buffet">
 
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-buffet-pricing" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Daily Grand Lunch Buffet Pricing &amp; Hours</h3>
                     
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
@@ -687,7 +777,7 @@ require_once __DIR__ . '/components/header.php';
                     </div>
                 </div>
 
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-buffet-features" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Buffet Inclusions &amp; Experience Highlights</h3>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                         <div class="form-group">
@@ -727,7 +817,7 @@ require_once __DIR__ . '/components/header.php';
                 <input type="hidden" name="edit_page" value="catering">
 
                 <!-- 1. Hero & Intro -->
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-catering-hero" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Catering Hero Header</h3>
                     <div class="form-group">
                         <label class="form-label">Hero Badge</label>
@@ -763,7 +853,7 @@ require_once __DIR__ . '/components/header.php';
                 </div>
 
                 <!-- 2. Catering Package Tiers Customizer (Bronze, Silver, Gold) -->
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-catering-packages" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 4px;">Catering Package Tiers (Bronze, Silver, Gold)</h3>
                     <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Customize package pricing and inclusions shown on the Catering page.</p>
 
@@ -841,7 +931,7 @@ require_once __DIR__ . '/components/header.php';
                 <input type="hidden" name="active_tab" value="contact">
                 <input type="hidden" name="edit_page" value="contact">
 
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-contact-info" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Restaurant Location &amp; Contact Details</h3>
                     
                     <div class="form-group">
@@ -906,39 +996,6 @@ require_once __DIR__ . '/components/header.php';
                 </div>
             </form>
 
-        <?php elseif ($editPage === 'reserve'): ?>
-            <!-- ========================================== -->
-            <!-- 6. TABLE RESERVATIONS POLICY CUSTOMIZER    -->
-            <!-- ========================================== -->
-            <form method="POST" action="/admin.php?page=pages&action=save">
-                <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
-                <input type="hidden" name="active_tab" value="reserve">
-                <input type="hidden" name="edit_page" value="reserve">
-
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
-                    <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Dining Room Reservations &amp; Table Policies</h3>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Reservation Banner Title</label>
-                        <input type="text" name="reserve_hero_title" class="form-control" value="<?= e(CMS::getSetting('reserve_hero_title', 'Your Table Is Waiting')) ?>">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Reservation Description</label>
-                        <textarea name="reserve_hero_desc" class="form-control" rows="2"><?= e(CMS::getSetting('reserve_hero_desc', 'Join generations of memories around food made for sharing. Reserve online or call us directly for parties of 6 or more.')) ?></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Large Party &amp; Grace Period Policy (Shown on booking modal)</label>
-                        <textarea name="reserve_policy_text" class="form-control" rows="5"><?= e(CMS::getSetting('reserve_policy_text', "Reservations are held for up to 15 minutes past scheduled time before release to waiting guests.\nFor parties larger than 8 guests, please contact our dining room directly at (925) 846-3077 to ensure dedicated family seating.\nSpecial dietary requirements (vegan, halal, nut allergies) can be accommodated with advance notice.")) ?></textarea>
-                    </div>
-                </div>
-
-                <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
-                    <button type="submit" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px; font-weight: 700; gap: 8px;">
-                        <?= AdminIcons::get('save', 16) ?>
-                        <span>Save Reservation Settings</span>
-                    </button>
-                </div>
-            </form>
 
         <?php elseif ($editPage === 'policies'): ?>
             <!-- ========================================== -->
@@ -949,7 +1006,7 @@ require_once __DIR__ . '/components/header.php';
                 <input type="hidden" name="active_tab" value="policies">
                 <input type="hidden" name="edit_page" value="policies">
 
-                <div class="card" style="padding: 1.75rem; margin-bottom: 1.5rem;">
+                <div class="card" id="card-policy-privacy" style="padding: 1.75rem; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px;">Website Privacy Policy &amp; CCPA Notice</h3>
                     <div class="form-group">
                         <label class="form-label">Last Revision Date</label>
@@ -970,6 +1027,36 @@ require_once __DIR__ . '/components/header.php';
             </form>
 
         <?php endif; ?>
+            </div>
+
+            <!-- 3. RIGHT INTERACTIVE LIVE STOREFRONT PREVIEW -->
+            <section class="sg-wc-preview" id="sgWcPreview" data-device="desktop">
+                <div class="sg-wc-stage" id="sgWcStage">
+                    <div class="sg-wc-frame" id="sgWcFrame">
+                        <iframe id="sgLivePreview" src="<?= e($previewUrl) ?>?preview=1"
+                                title="Saffron Grill Live Storefront Preview"
+                                loading="eager"></iframe>
+                    </div>
+                    <div class="sg-wc-device-caption" id="sgWcDeviceCaption" hidden></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============ STICKY BOTTOM STATUS BAR ============ -->
+        <div class="sg-wc-statusbar">
+            <div class="sg-wc-status-left">
+                <span class="sg-wc-status-editing">
+                    You’re editing: <strong><?= ucfirst($editPage) ?></strong> <?= AdminIcons::get('chevron_right', 12) ?>
+                    <strong id="sgStatusSection"><?= !empty($pageSections[0]['title']) ? e($pageSections[0]['title']) : 'General' ?></strong>
+                </span>
+                <span class="sg-wc-live-badge" id="sgLiveBadge"><span class="sg-wc-live-dot"></span> Live</span>
+            </div>
+            <div class="sg-wc-status-right">
+                <span class="sg-wc-saved-time" id="sgSavedTime"><?= AdminIcons::get('check_circle', 14) ?> Last saved: just now</span>
+                <button type="button" class="btn btn-secondary btn-sm" id="sgDiscardBtn" disabled>Discard Changes</button>
+                <button type="button" class="btn btn-primary btn-sm" id="sgSaveBtn">Save Changes</button>
+            </div>
+        </div>
     </div>
 <?php endif; ?>
 
@@ -994,6 +1081,19 @@ function chooseImageFor(inputId, previewSelector) {
     }
 }
 
+function clearImageFor(inputId, previewSelector) {
+    var el = document.getElementById(inputId);
+    if (el) {
+        el.value = '';
+    }
+    if (previewSelector) {
+        var preview = document.querySelector(previewSelector);
+        if (preview) {
+            preview.src = '/assets/emblem.png';
+        }
+    }
+}
+
 // Dynamic Slide Row Addition for Popup Builder
 document.addEventListener('DOMContentLoaded', function() {
     var addSlideBtn = document.getElementById('addSlideBtn');
@@ -1001,6 +1101,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (addSlideBtn && slidesContainer) {
         addSlideBtn.addEventListener('click', function() {
+            var noNotice = document.getElementById('noSlidesNotice');
+            if (noNotice) noNotice.style.display = 'none';
+
             var existingCards = slidesContainer.querySelectorAll('.slide-card');
             var nextIdx = existingCards.length;
             var nextId = nextIdx + 1;
@@ -1014,14 +1117,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div style="display: grid; grid-template-columns: 140px 1fr 40px; gap: 16px; align-items: start;">
                     <div style="display: flex; flex-direction: column; gap: 8px; text-align: center;">
                         <img src="/assets/hero-first-frame.jpg" alt="Slide Preview" class="preview-thumb-${nextIdx}" style="width: 100%; height: 110px; object-fit: cover; border-radius: 8px; border: 1px solid #CBD5E1; background: #fff;">
-                        <button type="button" class="btn btn-secondary btn-sm" style="font-size:11px; padding: 4px 6px;" onclick="chooseImageFor('slideImg_${nextIdx}', '.preview-thumb-${nextIdx}')">
-                            Choose
-                        </button>
+                        <div style="display: flex; gap: 6px;">
+                            <button type="button" class="btn btn-secondary btn-sm" style="flex:1; font-size:11px; padding: 4px 6px;" onclick="chooseImageFor('slideImg_${nextIdx}', '.preview-thumb-${nextIdx}')">
+                                Choose
+                            </button>
+                            <button type="button" class="btn btn-secondary btn-sm" style="font-size:11px; padding: 4px 6px; color: #DC2626;" onclick="clearImageFor('slideImg_${nextIdx}', '.preview-thumb-${nextIdx}')" title="Remove image from this slide">
+                                Clear
+                            </button>
+                        </div>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 10px;">
                         <div class="form-group" style="margin-bottom:0;">
-                            <label class="form-label" style="font-size:12px;">Image URL / Path</label>
-                            <input type="text" name="slides[${nextIdx}][image]" value="/assets/hero-first-frame.jpg" placeholder="/assets/... image path" class="form-control form-control-sm" id="slideImg_${nextIdx}" required>
+                            <label class="form-label" style="font-size:12px;">Image URL / Path <span style="font-weight: normal; color: var(--text-muted);">(Optional)</span></label>
+                            <input type="text" name="slides[${nextIdx}][image]" value="/assets/hero-first-frame.jpg" placeholder="/assets/... image path" class="form-control form-control-sm" id="slideImg_${nextIdx}">
                         </div>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                             <div class="form-group" style="margin-bottom:0;">
@@ -1053,19 +1161,274 @@ document.addEventListener('DOMContentLoaded', function() {
             if (delBtn) {
                 var card = delBtn.closest('.slide-card');
                 if (card) {
-                    var allCards = slidesContainer.querySelectorAll('.slide-card');
-                    if (allCards.length <= 1) {
-                        alert("You must keep at least one slide in the promotional flyer.");
-                        return;
-                    }
                     if (confirm("Are you sure you want to remove this promotion slide?")) {
                         card.remove();
+                        var remaining = slidesContainer.querySelectorAll('.slide-card');
+                        var noNotice = document.getElementById('noSlidesNotice');
+                        if (noNotice && remaining.length === 0) {
+                            noNotice.style.display = 'block';
+                        }
                     }
                 }
             }
         });
     }
 });
+
+// ============================================================
+// Saffron Grill — Live Visual Customizer Script (StreetBeat Architecture)
+// ============================================================
+(function initVisualCustomizer() {
+    var editor = document.getElementById('sgWcEditor');
+    if (!editor) return;
+
+    var iframe = document.getElementById('sgLivePreview');
+    var preview = document.getElementById('sgWcPreview');
+    var navItems = Array.prototype.slice.call(editor.querySelectorAll('.sg-wc-nav-item'));
+    var fieldsPanel = document.getElementById('sgWcFieldsPanel');
+    var statusSection = document.getElementById('sgStatusSection');
+    var liveBadge = document.getElementById('sgLiveBadge');
+    var savedTime = document.getElementById('sgSavedTime');
+    var btnSave = document.getElementById('sgSaveBtn');
+    var btnSaveTop = document.getElementById('sgSaveTopBtn');
+    var btnDiscard = document.getElementById('sgDiscardBtn');
+    var btnTogglePreview = document.getElementById('sgTogglePreviewBtn');
+    var labelTogglePreview = document.getElementById('sgTogglePreviewLabel');
+    var caption = document.getElementById('sgWcDeviceCaption');
+
+    var previewReady = false;
+    var pendingSection = null;
+    var dirty = false;
+
+    // Toast Notification Helper
+    function showToast(msg, isSuccess) {
+        var existing = document.getElementById('sgToastNotice');
+        if (existing) existing.remove();
+
+        var toast = document.createElement('div');
+        toast.id = 'sgToastNotice';
+        toast.style.cssText = 'position:fixed;bottom:64px;right:24px;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:700;z-index:99999;box-shadow:0 10px 25px rgba(0,0,0,0.18);display:flex;align-items:center;gap:8px;animation:fadeIn 0.2s ease;' +
+            (isSuccess ? 'background:#1B1834;color:#C5A059;border:1px solid #C5A059;' : 'background:#DC2626;color:#FFF;');
+        toast.innerHTML = '<span>' + msg + '</span>';
+        document.body.appendChild(toast);
+        setTimeout(function() {
+            toast.style.transition = 'opacity 0.4s ease';
+            toast.style.opacity = '0';
+            setTimeout(function() { toast.remove(); }, 400);
+        }, 3200);
+    }
+
+    // Preview messaging (postMessage to iframe)
+    function postToPreview(section) {
+        if (!iframe || !iframe.contentWindow || !section) return;
+        iframe.contentWindow.postMessage(
+            { type: 'sg-editor', action: 'scrollTo', section: section },
+            '*'
+        );
+    }
+
+    window.addEventListener('message', function(ev) {
+        if (ev.data && ev.data.type === 'sg-preview-ready') {
+            previewReady = true;
+            if (pendingSection) {
+                postToPreview(pendingSection);
+                pendingSection = null;
+            }
+        }
+    });
+
+    // Section selection
+    function selectSection(item) {
+        var cardId = item.getAttribute('data-target-card');
+        var previewSec = item.getAttribute('data-preview-section');
+        var secName = item.getAttribute('data-name');
+
+        navItems.forEach(function(n) { n.classList.toggle('is-active', n === item); });
+        if (statusSection) statusSection.textContent = secName;
+
+        if (cardId && fieldsPanel) {
+            var targetCard = document.getElementById(cardId);
+            if (targetCard) {
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        if (previewSec) {
+            if (previewReady) {
+                postToPreview(previewSec);
+            } else {
+                pendingSection = previewSec;
+                postToPreview(previewSec);
+            }
+        }
+    }
+
+    navItems.forEach(function(item) {
+        item.addEventListener('click', function() { selectSection(item); });
+    });
+
+    // Device Viewports (Desktop, Tablet, Mobile)
+    var DEVICE_CAPS = {
+        desktop: '',
+        tablet: 'iPad Tablet · 768px Bezel',
+        mobile: 'iPhone Mobile · 390px Bezel'
+    };
+    editor.querySelectorAll('.sg-wc-device').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var device = btn.getAttribute('data-device');
+            editor.querySelectorAll('.sg-wc-device').forEach(function(b) {
+                b.classList.toggle('is-active', b === btn);
+            });
+            if (preview) {
+                preview.setAttribute('data-device', device);
+                if (preview.style.display === 'none') {
+                    preview.style.display = 'flex';
+                    if (labelTogglePreview) labelTogglePreview.textContent = 'Hide Preview';
+                }
+            }
+            if (caption) {
+                caption.textContent = DEVICE_CAPS[device] || '';
+                caption.hidden = !DEVICE_CAPS[device];
+            }
+        });
+    });
+
+    // Toggle Preview split visibility
+    if (btnTogglePreview && preview) {
+        btnTogglePreview.addEventListener('click', function() {
+            if (preview.style.display === 'none') {
+                preview.style.display = 'flex';
+                if (labelTogglePreview) labelTogglePreview.textContent = 'Hide Preview';
+            } else {
+                preview.style.display = 'none';
+                if (labelTogglePreview) labelTogglePreview.textContent = 'Show Preview';
+            }
+        });
+    }
+
+    // Character counters & original value snapshots
+    var inputs = Array.prototype.slice.call(fieldsPanel.querySelectorAll('input, textarea, select'));
+    inputs.forEach(function(el) {
+        el.dataset.orig = el.value;
+    });
+
+    function updateCounter(input) {
+        var max = input.getAttribute('maxlength') || input.getAttribute('data-max');
+        if (!max) return;
+        var wrap = input.closest('.sg-wc-input-wrap');
+        var counter = wrap ? wrap.querySelector('.sg-wc-count') : null;
+        if (!counter && wrap) {
+            counter = document.createElement('span');
+            counter.className = 'sg-wc-count' + (input.tagName.toLowerCase() === 'textarea' ? ' sg-wc-count-ta' : '');
+            wrap.appendChild(counter);
+        }
+        if (counter) {
+            counter.textContent = input.value.length + '/' + max;
+        }
+    }
+
+    editor.querySelectorAll('[data-count]').forEach(function(input) {
+        updateCounter(input);
+        input.addEventListener('input', function() { updateCounter(input); });
+    });
+
+    // Dirty state tracking
+    function setDirty(on) {
+        if (dirty === on) return;
+        dirty = on;
+        if (btnSave) btnSave.disabled = !on;
+        if (btnSaveTop) btnSaveTop.disabled = !on;
+        if (btnDiscard) btnDiscard.disabled = !on;
+
+        if (liveBadge) {
+            liveBadge.classList.toggle('is-dirty', on);
+            var dot = liveBadge.querySelector('.sg-wc-live-dot');
+            liveBadge.innerHTML = '';
+            if (dot) liveBadge.appendChild(dot);
+            liveBadge.appendChild(document.createTextNode(on ? ' Unsaved Changes' : ' Live'));
+        }
+    }
+
+    fieldsPanel.addEventListener('input', function() { setDirty(true); });
+    fieldsPanel.addEventListener('change', function() { setDirty(true); });
+
+    // Discard Changes
+    if (btnDiscard) {
+        btnDiscard.addEventListener('click', function() {
+            if (!dirty) return;
+            inputs.forEach(function(el) {
+                if (typeof el.dataset.orig !== 'undefined') {
+                    if (el.type === 'checkbox') {
+                        el.checked = (el.dataset.orig === '1' || el.dataset.orig === 'true');
+                    } else {
+                        el.value = el.dataset.orig;
+                    }
+                    if (el.hasAttribute('data-count')) updateCounter(el);
+                }
+            });
+            setDirty(false);
+            showToast('Changes discarded — restored original settings.', true);
+        });
+    }
+
+    // AJAX Save Form Handler
+    function saveChangesAjax() {
+        var form = fieldsPanel.querySelector('form');
+        if (!form) return;
+
+        var btnText = btnSave ? btnSave.innerText : 'Save';
+        if (btnSave) { btnSave.disabled = true; btnSave.innerText = 'Saving...'; }
+        if (btnSaveTop) { btnSaveTop.disabled = true; btnSaveTop.innerText = 'Saving...'; }
+
+        var formData = new FormData(form);
+        formData.append('csrf_token', window.CMS_CSRF || '');
+
+        fetch('/admin.php?page=pages&action=ajax_save', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            if (data.success) {
+                setDirty(false);
+                inputs.forEach(function(el) { el.dataset.orig = el.value; });
+                if (savedTime) {
+                    savedTime.innerHTML = 'Last saved: ' + (data.updated_at || 'just now');
+                }
+                showToast('✓ ' + (data.message || 'Page settings saved successfully!'), true);
+                if (iframe && iframe.contentWindow) {
+                    try { iframe.contentWindow.location.reload(); } catch (e) {}
+                }
+            } else {
+                showToast('Error: ' + (data.error || 'Failed to save settings.'), false);
+                setDirty(true);
+            }
+        })
+        .catch(function(err) {
+            showToast('Network error while saving. Please check connection.', false);
+            setDirty(true);
+        })
+        .finally(function() {
+            if (btnSave) { btnSave.disabled = false; btnSave.innerText = 'Save Changes'; }
+            if (btnSaveTop) { btnSaveTop.disabled = false; btnSaveTop.innerText = 'Save'; }
+        });
+    }
+
+    // Enable Save buttons from start
+    if (btnSave) btnSave.disabled = false;
+    if (btnSaveTop) btnSaveTop.disabled = false;
+
+    // Hook up both button clicks and form submit
+    if (btnSave) btnSave.addEventListener('click', saveChangesAjax);
+    if (btnSaveTop) btnSaveTop.addEventListener('click', saveChangesAjax);
+    var mainForm = fieldsPanel.querySelector('form');
+    if (mainForm) {
+        mainForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            saveChangesAjax();
+        });
+    }
+})();
 </script>
 
 <?php require_once __DIR__ . '/components/footer.php'; ?>

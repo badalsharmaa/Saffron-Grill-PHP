@@ -147,6 +147,52 @@ require_once __DIR__ . '/components/header.php';
         </div>
     </div>
 
+    <?php
+    $needsAttentionCount = $leadStats['new'] + ($buffetPaused ? 1 : 0) + ($dinnerClosed ? 1 : 0);
+    ?>
+    <!-- ======================================================================
+         2.5. NEEDS ATTENTION ACTION CENTER (StreetBeat Architecture)
+         ====================================================================== -->
+    <div class="dash-attention-card">
+        <div class="dash-attention-left">
+            <div class="dash-attention-icon">
+                <?= AdminIcons::get('alert_triangle', 20) ?>
+            </div>
+            <div>
+                <div class="dash-attention-title">Needs Attention (<?= $needsAttentionCount ?> items)</div>
+                <div class="dash-attention-sub">
+                    <?= $leadStats['new'] > 0 ? "You have <strong>{$leadStats['new']} new customer inquiries</strong> awaiting response." : "All guest leads reviewed. Keep operational switches synchronized." ?>
+                </div>
+            </div>
+        </div>
+        <div class="dash-attention-chips">
+            <?php if ($leadStats['new'] > 0): ?>
+                <a href="/admin.php?page=submissions&status=new" class="dash-attention-chip" style="background: #FEF3C7; color: #B45309; border-color: #FDE68A;">
+                    <?= AdminIcons::get('inbox', 14) ?>
+                    <span><?= $leadStats['new'] ?> New Leads</span>
+                </a>
+            <?php endif; ?>
+            <a href="/admin.php?page=submissions&source=reservation" class="dash-attention-chip">
+                <?= AdminIcons::get('calendar', 14) ?>
+                <span>Bookings (<?= $leadStats['reservations'] ?>)</span>
+            </a>
+            <a href="/admin.php?page=submissions&source=catering" class="dash-attention-chip">
+                <?= AdminIcons::get('utensils', 14) ?>
+                <span>Catering (<?= $leadStats['catering'] ?>)</span>
+            </a>
+            <?php if ($buffetPaused): ?>
+                <a href="/admin.php?page=menu&section=outlets" class="dash-attention-chip" style="background: #FEE2E2; color: #B91C1C; border-color: #FECACA;">
+                    <span class="pulse-dot" style="background:#EF4444;"></span>
+                    <span>Buffet Paused</span>
+                </a>
+            <?php endif; ?>
+            <a href="/admin.php?page=pages&edit=home" class="dash-attention-chip" style="background: rgba(197, 160, 89, 0.15); color: #B45309; border-color: rgba(197, 160, 89, 0.3);">
+                <?= AdminIcons::get('paint_brush', 14) ?>
+                <span>Live Customizer</span>
+            </a>
+        </div>
+    </div>
+
     <!-- ======================================================================
          3. 2x2 BENTO METRIC TILES ROW (Responsive grid)
          ====================================================================== -->

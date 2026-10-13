@@ -198,20 +198,33 @@ require_once __DIR__ . '/components/header.php';
 
         <?php elseif ($section === 'categories'): ?>
             <!-- CATEGORIES MANAGER -->
-            <form method="POST" action="/admin.php?page=menu&action=save_categories">
+            <form method="POST" action="/admin.php?page=menu&action=save_categories" id="categoriesForm">
                 <input type="hidden" name="csrf_token" value="<?= cms_generate_csrf() ?>">
 
-                <div class="apple-header-card" style="text-align: left; padding: 1.5rem 1.75rem; margin-bottom: 1.5rem;">
-                    <h2 style="font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 4px;">Menu Categories Manager</h2>
-                    <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Organize, rename, and assign display icons to restaurant menu sections.</p>
+                <div class="apple-header-card" style="text-align: left; padding: 1.5rem 1.75rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 style="font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 4px;">Menu Categories Manager</h2>
+                        <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Organize, rename, re-order, add new categories, and assign display icons to restaurant menu sections.</p>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="addNewCategoryRow()" style="gap: 6px;">
+                        <?= AdminIcons::get('plus', 15) ?>
+                        <span>Add New Category</span>
+                    </button>
                 </div>
 
                 <div class="card" style="padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="display: grid; grid-template-columns: 200px 1fr 160px 48px; gap: 12px; font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; padding: 0 14px 8px; border-bottom: 1px solid #E2E8F0; margin-bottom: 4px;">
+                        <div>Category Name</div>
+                        <div>Subtitle / Description</div>
+                        <div>Display Icon</div>
+                        <div style="text-align: center;">Action</div>
+                    </div>
                     <div id="categoriesList" style="display: flex; flex-direction: column; gap: 12px;">
                         <?php foreach ($categories as $idx => $cat): ?>
-                            <div class="category-row" style="background: #FAF7F2; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px; display: grid; grid-template-columns: 160px 1fr 140px; gap: 12px; align-items: center;">
+                            <div class="category-row" style="background: #FAF7F2; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px; display: grid; grid-template-columns: 200px 1fr 160px 48px; gap: 12px; align-items: center;">
                                 <div>
-                                    <input type="text" name="categories[<?= $idx ?>][name]" value="<?= e($cat['name']) ?>" class="form-control form-control-sm" placeholder="Category Name" required>
+                                    <input type="hidden" name="categories[<?= $idx ?>][id]" value="<?= e($cat['id'] ?? '') ?>">
+                                    <input type="text" name="categories[<?= $idx ?>][name]" value="<?= e($cat['name']) ?>" class="form-control form-control-sm" placeholder="e.g. Chef's Specials" required>
                                 </div>
                                 <div>
                                     <input type="text" name="categories[<?= $idx ?>][description]" value="<?= e($cat['description'] ?? '') ?>" class="form-control form-control-sm" placeholder="Short description / subtitle">
@@ -223,12 +236,27 @@ require_once __DIR__ . '/components/header.php';
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
+                                <div style="text-align: center;">
+                                    <button type="button" class="btn btn-outline-danger btn-sm" style="padding: 6px 9px; border-radius: 8px; color: #EF4444; border: 1px solid #FECACA; background: #FFF;" onclick="removeCategoryRow(this)" title="Remove Category">
+                                        <?= AdminIcons::get('trash', 14) ?>
+                                    </button>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
+
+                    <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px dashed #E2E8F0; display: flex; justify-content: flex-start;">
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="addNewCategoryRow()" style="gap: 6px; font-weight: 600;">
+                            <?= AdminIcons::get('plus', 14) ?>
+                            <span>+ Add Another Category</span>
+                        </button>
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="padding: 10px 24px;">Save Categories Order</button>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                    <button type="submit" class="btn btn-primary" style="padding: 10px 24px;">Save Categories</button>
+                    <a href="/admin.php?page=menu" class="btn btn-secondary" style="padding: 10px 20px;">Cancel</a>
+                </div>
             </form>
 
         <?php elseif ($section === 'catalog'): ?>
@@ -525,6 +553,72 @@ function chooseImageFor(inputId) {
         window.MediaPicker.open(function(asset) {
             var el = document.getElementById(inputId);
             if (el) el.value = asset.url;
+        });
+    }
+}
+
+// Category Management Functions
+function addNewCategoryRow() {
+    var list = document.getElementById('categoriesList');
+    if (!list) return;
+
+    var rows = list.querySelectorAll('.category-row');
+    var nextIdx = rows.length;
+
+    var row = document.createElement('div');
+    row.className = 'category-row';
+    row.style.cssText = 'background: #FAF7F2; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px; display: grid; grid-template-columns: 200px 1fr 160px 48px; gap: 12px; align-items: center; animation: fadeIn 0.25s ease-out;';
+
+    row.innerHTML = 
+        '<div>' +
+            '<input type="hidden" name="categories[' + nextIdx + '][id]" value="">' +
+            '<input type="text" name="categories[' + nextIdx + '][name]" value="" class="form-control form-control-sm" placeholder="e.g. Chef\'s Specials" required>' +
+        '</div>' +
+        '<div>' +
+            '<input type="text" name="categories[' + nextIdx + '][description]" value="" class="form-control form-control-sm" placeholder="Short description / subtitle">' +
+        '</div>' +
+        '<div>' +
+            '<select name="categories[' + nextIdx + '][icon]" class="form-control form-control-sm">' +
+                <?php foreach ($availableIcons as $iconKey => $iconLabel): ?>
+                    '<option value="<?= $iconKey ?>"><?= addslashes($iconLabel) ?></option>' +
+                <?php endforeach; ?>
+            '</select>' +
+        '</div>' +
+        '<div style="text-align: center;">' +
+            '<button type="button" class="btn btn-outline-danger btn-sm" style="padding: 6px 9px; border-radius: 8px; color: #EF4444; border: 1px solid #FECACA; background: #FFF;" onclick="removeCategoryRow(this)" title="Remove Category">' +
+                '<?= addslashes(AdminIcons::get('trash', 14)) ?>' +
+            '</button>' +
+        '</div>';
+
+    list.appendChild(row);
+
+    var nameInput = row.querySelector('input[type="text"]');
+    if (nameInput) {
+        nameInput.focus();
+    }
+}
+
+function removeCategoryRow(btn) {
+    var row = btn.closest('.category-row');
+    if (!row) return;
+
+    var nameInput = row.querySelector('input[name*="[name]"]');
+    var catName = nameInput ? nameInput.value.trim() : '';
+
+    var confirmMsg = catName 
+        ? 'Are you sure you want to remove the category "' + catName + '"?' 
+        : 'Are you sure you want to remove this category row?';
+
+    if (confirm(confirmMsg)) {
+        row.remove();
+        // Re-index remaining rows to keep indices contiguous
+        var rows = document.querySelectorAll('#categoriesList .category-row');
+        rows.forEach(function(r, idx) {
+            r.querySelectorAll('input, select').forEach(function(field) {
+                if (field.name) {
+                    field.name = field.name.replace(/categories\[\d+\]/, 'categories[' + idx + ']');
+                }
+            });
         });
     }
 }

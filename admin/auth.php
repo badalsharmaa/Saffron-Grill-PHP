@@ -27,7 +27,9 @@ class CMSAuth {
 
             // Session hijacking prevention
             if (!headers_sent() && !isset($_SESSION['cms_initiated'])) {
-                @session_regenerate_id(true);
+                if (empty($_SESSION['cms_user_id']) && empty($_SESSION['saffron_admin_id'])) {
+                    @session_regenerate_id(true);
+                }
                 $_SESSION['cms_initiated'] = true;
             }
 
@@ -42,7 +44,19 @@ class CMSAuth {
 
     public static function check(): bool {
         self::startSession();
-        return !empty($_SESSION['cms_user_id']) && !empty($_SESSION['cms_logged_in']);
+        if (!empty($_SESSION['cms_user_id']) && !empty($_SESSION['cms_logged_in'])) {
+            return true;
+        }
+        if (!empty($_SESSION['saffron_admin_id']) && !empty($_SESSION['saffron_admin_user'])) {
+            // Synchronize unified session keys
+            $_SESSION['cms_logged_in'] = true;
+            $_SESSION['cms_user_id'] = (int)$_SESSION['saffron_admin_id'];
+            $_SESSION['cms_username'] = $_SESSION['saffron_admin_user'];
+            $_SESSION['cms_role'] = ($_SESSION['saffron_admin_role'] ?? 'staff') === 'admin' ? 'super_admin' : ($_SESSION['saffron_admin_role'] ?? 'super_admin');
+            $_SESSION['cms_status'] = 'active';
+            return true;
+        }
+        return false;
     }
 
     public static function user(): ?array {
@@ -389,7 +403,7 @@ class CMSAuth {
         $now = date('Y-m-d H:i:s');
         $ins = $pdo->prepare("INSERT INTO cms_users (username, password_hash, name, email, role, status, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $ok = $ins->execute([$username, $hash, $name, $email, $role, $status, $now, $now]);
-
-        return ['success' => $ok, 'error' => $ok ? null : 'Failed to create user.'];
+        $newId = $ok ? (int)$pdo->lastInsertId() : 0;
+        return ['success' => $ok, 'id' => $newId, 'error' => $ok ? null : 'Failed to create user.'];
     }
 }

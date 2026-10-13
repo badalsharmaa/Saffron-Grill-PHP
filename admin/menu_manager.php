@@ -13,8 +13,8 @@ $msg = '';
 
 // Handle Add Item
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add_item') {
-    $category = trim($_POST['category_slug']);
-    $name = trim($_POST['name']);
+    $category = trim($_POST['category_slug'] ?? $_POST['category_id'] ?? $_POST['category'] ?? 'tandoori-breads');
+    $name = trim($_POST['name'] ?? '');
     $desc = trim($_POST['description'] ?? '');
     $price = (float)$_POST['price'];
     $isVeg = isset($_POST['is_vegetarian']) ? 1 : 0;

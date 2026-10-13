@@ -40,7 +40,7 @@ echo "[{$now}] Found {$count} qualifying offline conversions.\n";
 if ($count > 0) {
     $exportFile = $logsDir . '/gads_conversions_' . date('Ymd_H') . '.csv';
     $fp = fopen($exportFile, 'w');
-    fputcsv($fp, ['Google Click ID', 'Conversion Name', 'Conversion Time', 'Conversion Value', 'Currency']);
+    fputcsv($fp, ['Google Click ID', 'Conversion Name', 'Conversion Time', 'Conversion Value', 'Currency'], ',', '"', "\\");
 
     foreach ($conversions as $c) {
         $convTime = date('Y-m-d H:i:s O', strtotime($c['created_at']));
@@ -50,7 +50,7 @@ if ($count > 0) {
             $convTime,
             '250.00',
             'USD'
-        ]);
+        ], ',', '"', "\\");
     }
     fclose($fp);
     echo "[{$now}] Exported {$count} records to {$exportFile}\n";

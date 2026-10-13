@@ -15,7 +15,7 @@
 | **Remote Private Dir** | `domains/saffrongrillrestaurant.com/private` |
 | **Backup Storage** | `domains/saffrongrillrestaurant.com/deploy-backups` |
 | **Git Repository** | `https://github.com/badalsharmaa/Saffron-Grill-PHP.git` (`origin/main`) |
-| **Database** | SQLite 3 (`admin/data/saffron_crm.db`), seeded via `admin/includes/schema.php` & `cli/sync_menu_from_json.php` |
+| **Database Architecture** | Dual SQLite 3: `admin/data/saffron_crm.db` (CRM Bookings, Catering Leads, Master Menu) and `private/cms.db` (CMS Settings, Page Customizer Values, Promotional Popups, Menu Overrides, Media Library, Multi-Role Users) |
 | **Menu Dataset** | `data/menu.json` (mirrored in `assets/menu.json` & `menu/Saffron_Grill_Menu.json`, 82 items / 9 categories) |
 
 ---
@@ -64,7 +64,7 @@ The codebase maintains scripts and styles in **both** root and `/assets`:
 - **Footer Structure:**
   - Modular pages (`reserve.php`, `privacy-policy.php`, `terms.php`, `404.php`) include `includes/footer.php`.
   - Standalone pages (`index.php`, `menu.php`, etc.) have inline `<footer>` blocks.
-  - **Policy on Admin & Sitemap Links:** "Staff Login" (`/admin/login.php`) and "Sitemap" (`/sitemap.xml`) links are **intentionally hidden** from all public visible footers. `sitemap.xml` is exposed to search engines via `robots.txt`, and staff access `/admin/login.php` directly.
+  - **Policy on Admin & Sitemap Links:** "Admin Login" (`/admin.php`) is provided in the bottom utilities row of public footers across all templates (`index.php`, `menu.php`, `catering.php`, `story.php`, `contact.php`, and `includes/footer.php`) for quick access to the CMS portal. `sitemap.xml` is exposed to search engines via `robots.txt`.
   - Whenever updating header or footer elements, update **both** `includes/` and all standalone pages to ensure site-wide parity.
 
 ### Clean URL Policy for All Buttons and Internal Anchors
@@ -272,5 +272,146 @@ Standard reports and search crawl indexes take 24–48 hours to fully populate. 
   - `llms-full.txt`: 100-line comprehensive knowledge base detailing menu categories, signature dishes, buffet schedule, catering tiers, dietary standards, and FAQ library.
   - `restaurant-facts.json`: Structured, machine-readable facts schema with coordinates, citations, and services for immediate AI extraction.
 - **Verification Protocol:** Verified via `tests/qa_automated_crawler.php` (50/50 tests passing) and deployed via `cli/safe_deploy.php --deploy`.
+
+---
+
+## 8. Custom CMS Architecture & Administration
+
+### Directory Index & Routing
+- Accessing `/admin/` or `/admin` invokes `/admin/index.php`, which seamlessly bridges to the central admin router [`admin.php`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/admin.php).
+- Legacy CRM modules (`admin/reservations.php`, `admin/menu_manager.php`, `admin/export.php`) operate within the same authenticated perimeter.
+
+### Unified Session Management (`CMSAuth`)
+- **Session Name:** Standardized across the entire application as `saffron_admin_session` via [`config/config.php`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/config/config.php) and [`admin/config.php`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/admin/config.php).
+- **Bidirectional Session Bridge:**
+  - Logging in via [`admin/login.php`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/admin/login.php) sets legacy CRM session keys (`saffron_admin_id`, `saffron_admin_user`, `saffron_admin_role`) and unified CMS keys (`cms_logged_in`, `cms_user_id`, `cms_username`, `cms_role`, `cms_status`, `cms_initiated`).
+  - [`CMSAuth::check()`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/admin/auth.php#L43-L58) dynamically synchronizes CRM and CMS keys, preventing split-brain session desynchronization.
+  - Session regeneration (`session_regenerate_id`) is strictly guarded to avoid dropping active sessions during redirects.
+- **Role-Based Access Control (RBAC):**
+  - Roles: `super_admin` (full permissions, user management, configuration) and `staff` (day-to-day operations, lead management).
+  - Statuses: `active` and `suspended` (suspended users are denied login immediately).
+
+### Database Partitioning
+1. **`admin/data/saffron_crm.db`**:
+   - `admins`: Legacy staff and administrator credentials.
+   - `reservations`: Public table booking submissions with attribution metadata (`gclid`, UTM parameters).
+   - `leads`: Full catering proposal inquiries.
+   - `menu_items` & `menu_categories`: Relational dish catalog.
+   - `settings`: Global key-value operational flags.
+2. **`private/cms.db`**:
+   - `cms_users`: Multi-role CMS accounts with hashed passwords and audit timestamps.
+   - `cms_settings`: Page customizer overrides and global site customizations.
+   - `cms_popups`: Configuration for promotional announcements and lead capture modals.
+   - `cms_menu_overrides`: Live price, description, and availability overrides without altering canonical data.
+   - `captured_leads`: Unified lead inbox for submissions captured across the site.
+   - `cms_media`: Uploaded assets, metadata, alt text, and thumbnail tracking.
+
+---
+
+## 9. Promotional Popup Engine & Lead Capture Modal
+
+- **Controller & Views:** Managed in CMS via `admin/views/pages.php` (Tab: Promotional Popup).
+- **Frontend Presentation:** Rendered by [`includes/popup.php`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/includes/popup.php) and triggered by [`popup.js`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/popup.js).
+- **Configurable Attributes (`cms_popups`):**
+  - `is_active`: Global toggle to enable/disable the popup modal.
+  - `delay_seconds`: Trigger delay (0–60 seconds).
+  - `frequency`: Display frequency (`once_per_session`, `always`, `every_24h`).
+  - `disable_image`: Boolean toggle allowing the banner image to be suppressed completely.
+  - `enable_lead_capture`: Renders an embedded VIP coupon/discount capture form.
+  - `slides`: JSON array of flyer slide objects (`image_url`, `headline`, `subline`, `badge_text`).
+- **Zero-Slide Pure Modal Support:**
+  - The customizer allows saving 0 flyer slides when the restaurant wants a pure lead capture modal or text-only announcement.
+  - The frontend automatically transitions to a clean single-column layout without layout shift or console errors.
+
+---
+
+## 10. Storefront Synchronicity & Null/Empty Content Rules
+
+- **The `cms_get()` Contract (`api/cms_helper.php`):**
+  - Signature: `cms_get(string $key, mixed $default = null, bool $refresh = false): mixed`
+  - **Empty String Retention:** If an administrator explicitly clears an input in the CMS (e.g. removes a hero quote or subtitle), `cms_get()` returns `""` rather than falling back to `$default`.
+  - Fallback defaults are only returned when the key does not exist in `cms_settings`.
+- **Conditional Template Rendering:**
+  - When rendering optional CMS content on public storefront templates ([`story.php`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/story.php), [`catering.php`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/catering.php), [`index.php`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/index.php)), elements MUST be guarded with `trim(...) !== ''`:
+    ```php
+    <?php $heroQuote = cms_get('story_hero_quote', ''); ?>
+    <?php if (trim((string)$heroQuote) !== ''): ?>
+      <blockquote class="story-quote"><?= e($heroQuote) ?></blockquote>
+    <?php endif; ?>
+    ```
+  - This ensures that clearing text in the CMS cleanly removes the entire DOM element, preventing empty quotes, blank headers, or awkward spacing on the live website.
+
+---
+
+## 11. Testing Harness & Quality Assurance Suites
+
+The project maintains two comprehensive automated test suites providing 100% test coverage with zero mock data.
+
+### Suite 1: Deep Functional CMS Test Suite (`tests/cms_comprehensive_suite.php`)
+Executes **68 automated assertions** against internal CMS engines and `private/cms.db`:
+- **Module 1 (CMSAuth):** CSRF generation & validation, bad login rejection, super admin checks, user creation, role modification, suspension/activation, password resets, profile edits, user deletion.
+- **Module 2 (Settings & Popups):** Key-value persistence, empty-string retention, popup config saving, `disable_image` flag, frequency persistence, zero slides support.
+- **Module 3 (Menu Catalog):** Dish creation, price updates, availability toggling, soft deletes, dish restoration, categories retrieval, menu overrides, batch CSV import.
+- **Module 4 (Submissions & Leads):** Silent lead ingestion, filtered lead querying, status transitions, staff notes updates, lead metrics, permanent lead deletion.
+- **Module 5 (Media Engine):** Media syncing, stats computation, pagination, metadata updates, safe file deletion.
+- **Module 6 (Storefront Sync):** Empty string verification for story quotes, catering subtitles, hero subtitles, and teaser descriptions.
+
+**Run Command:**
+```bash
+php tests/cms_comprehensive_suite.php
+```
+*(Passing: 68/68, 100% PASS)*
+
+### Suite 2: Comprehensive System Audit (`tests/comprehensive_system_audit.php`)
+Executes **59 automated checks** testing live HTTP routes, firewall, CRM, and CLI workers:
+- **Section 1:** Clean URL routing and HTTP 200/301/404 verification.
+- **Section 2:** Security firewall blocking sensitive files (`.env`, `.git`, `.htaccess`, `saffron_crm.db`, `smtp-config.php`).
+- **Section 3:** Static asset & media availability.
+- **Section 4:** AI context manifests (`restaurant-facts.json`, `llms.txt`, JSON-LD schema, Google Consent Mode v2).
+- **Section 5:** AJAX table reservation pipeline, lead attribution (`gclid`, UTMs), honeypot bot trap.
+- **Section 6:** Admin authentication, dashboard KPI metrics, table reservation status transition, menu item creation via curl, CSV export generation.
+- **Section 7:** CLI conversion exporter (`cli/export_conversions.php`) and database backup worker (`cli/db_backup.php`).
+
+**Run Command:**
+```bash
+php tests/comprehensive_system_audit.php
+```
+*(Passing: 59/59, 100% PASS)*
+
+---
+
+## 12. PHP 8.5+ Modernization & CSV Standards
+
+- **`fputcsv()` Escape Parameter:**
+  - Starting in PHP 8.5, the `$escape` parameter in `fputcsv()` is mandatory; omitting it triggers a `PHP Deprecated` warning.
+  - All CSV export routines across the codebase explicitly pass all 5 arguments:
+    ```php
+    fputcsv($outputHandle, $rowArray, ',', '"', "\\");
+    ```
+  - Standardized across:
+    - [`admin/export.php`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/admin/export.php) (Reservations and Leads export)
+    - [`admin/helpers/CMS.php`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/admin/helpers/CMS.php) (`exportLeadsCsv` and `exportMenuCsv`)
+    - [`cli/export_conversions.php`](file:///Users/badalsharma/Work/Saffron-Grill-PHP/cli/export_conversions.php) (Google Ads offline conversions sync)
+
+---
+
+## 13. CMS Customizer & Desktop Workspace Architecture
+
+### Live 3-Panel Visual Page Customizer (`/admin.php?page=pages&edit=...`)
+Inspired by the modern StreetBeat customizer UX:
+1. **Left Section Tree:** Quick accordion navigation through all page sections (hero, announcement, spotlight, catering, etc.) with active state indicators and 2-way viewport sync.
+2. **Center Form Controls:** Real-time form fields with unsaved change detection, always-enabled "Save Changes" action with AJAX endpoint (`/admin.php?action=save_page_customizer`), and inline visual toasts.
+3. **Right Interactive Live Preview:**
+   - Multi-device viewport toggling (Desktop 100%, Tablet 768px, Mobile 375px) with iframe sandboxing.
+   - Real-time `postMessage` protocol: form field inputs stream changes instantly into the iframe DOM without page reload.
+   - Section scrolling sync: clicking a section card in panel 1 or 2 immediately scrolls the live iframe to the corresponding `#sectionId`.
+
+### Collapsible Desktop Sidebar Rail (`.sidebar-collapsed`)
+- **Desktop Collapse Toggle (`min-width: 901px`):**
+  - Allows staff to collapse the 260px left sidebar into a sleek 72px icon-only rail for a maximized workspace (particularly useful during page customization and menu editing).
+  - Toggled via the top header button (`#sidebarToggle`), dedicated sidebar collapse icon (`#sidebarCollapseDesktop`), or keyboard shortcuts (`⌘[` / `Ctrl+[` and `⌘B` / `Ctrl+B`).
+  - Text labels, section headings, and the search input hide smoothly; navigation squircles, badge counters, and profile avatars remain centered with hover tooltips.
+  - **State Persistence & Anti-Flicker:** Collapse state is persisted in `localStorage.getItem('sg_sidebar_collapsed')`. An inline pre-hydration script in `<head>` (`admin/views/components/header.php`) injects `sidebar-is-collapsed` onto `<html>` before DOM render to eliminate layout flash.
+
 
 
